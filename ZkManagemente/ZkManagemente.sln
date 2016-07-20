@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZkManagemente", "ZkManagemente\ZkManagemente.csproj", "{CEBF1BF5-65C7-4914-9730-E40F5B1B1935}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZkManagement", "ZkManagemente\ZkManagement.csproj", "{CEBF1BF5-65C7-4914-9730-E40F5B1B1935}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

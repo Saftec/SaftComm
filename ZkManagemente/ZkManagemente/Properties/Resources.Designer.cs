@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZkManagemente.Properties
+namespace ZkManagement.Properties
 {
 
 

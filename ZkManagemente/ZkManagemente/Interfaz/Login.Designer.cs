@@ -1,4 +1,4 @@
-﻿namespace ZkManagemente.Interfaz
+﻿namespace ZkManagement.Interfaz
 {
     partial class Login
     {
@@ -65,6 +65,8 @@
             // 
             this.textContraseña.Location = new System.Drawing.Point(83, 102);
             this.textContraseña.Name = "textContraseña";
+            this.textContraseña.PasswordChar = '*';
+            this.textContraseña.ShortcutsEnabled = false;
             this.textContraseña.Size = new System.Drawing.Size(186, 20);
             this.textContraseña.TabIndex = 3;
             // 
@@ -76,6 +78,7 @@
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -85,6 +88,7 @@
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Login
             // 
@@ -98,6 +102,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
