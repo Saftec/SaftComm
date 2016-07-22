@@ -60,6 +60,7 @@
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.Size = new System.Drawing.Size(186, 20);
             this.textUsuario.TabIndex = 2;
+            this.textUsuario.TextChanged += new System.EventHandler(this.textUsuario_TextChanged);
             // 
             // textContraseña
             // 

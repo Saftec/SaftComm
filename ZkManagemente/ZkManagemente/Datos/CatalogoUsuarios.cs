@@ -19,6 +19,7 @@ namespace ZkManagement.Datos
                 dr.Read();
                 usr.usr=(dr["Usuario"].ToString());
                 usr.pass = (dr["Password"].ToString());
+                dr.Close();
             }
 
            catch(InvalidCastException)

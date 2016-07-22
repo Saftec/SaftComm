@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ZkManagemente {
+namespace ZkManagement {
     
     
     /// <summary>
@@ -1552,7 +1552,7 @@ namespace ZkManagemente {
         }
     }
 }
-namespace ZkManagemente.ZkManagementDataSetTableAdapters {
+namespace ZkManagement.ZkManagementDataSetTableAdapters {
     
     
     /// <summary>
@@ -1690,7 +1690,7 @@ namespace ZkManagemente.ZkManagementDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ZkManagemente.Properties.Settings.Default.ZkManagementConnectionString;
+            this._connection.ConnectionString = global::ZkManagement.Properties.Settings.Default.ZkManagementConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1928,7 +1928,7 @@ namespace ZkManagemente.ZkManagementDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ZkManagemente.Properties.Settings.Default.ZkManagementConnectionString;
+            this._connection.ConnectionString = global::ZkManagement.Properties.Settings.Default.ZkManagementConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2181,7 +2181,7 @@ namespace ZkManagemente.ZkManagementDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ZkManagemente.Properties.Settings.Default.ZkManagementConnectionString;
+            this._connection.ConnectionString = global::ZkManagement.Properties.Settings.Default.ZkManagementConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

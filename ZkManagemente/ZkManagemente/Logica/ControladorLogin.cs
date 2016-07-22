@@ -1,7 +1,8 @@
 ﻿using System;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
-using ZkManagemente.Util;
+using ZkManagement.Interfaz;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -16,6 +17,11 @@ namespace ZkManagement.Logica
                 usr = cu.GetUsuario(usuario);
                 if (usr.usr == null) { throw new AppException("Usuario invalido"); }
                 if (usr.pass!=usuario.pass) { throw new AppException("Password invalida"); }
+
+                Principal ppal = new Principal();
+                ppal.Show();
+                
+                
             }
             catch  (InvalidCastException ioex)
             {

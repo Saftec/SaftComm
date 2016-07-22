@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ZkManagementConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ZkManagementConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ZkManagemente.Properties.Settings.GlobalReference.Default.ZkManagementConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ZkManagementConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ZkManagementConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ZkManagement.Properties.Settings.GlobalReference.Default.ZkManagementConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PermisosTableAdapter" GeneratorDataComponentClassName="PermisosTableAdapter" Name="Permisos" UserDataComponentName="PermisosTableAdapter">
@@ -102,7 +102,7 @@
   <xs:element name="ZkManagementDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ZkManagementDataSet" msprop:Generator_UserDSName="ZkManagementDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Permisos" msprop:Generator_TableClassName="PermisosDataTable" msprop:Generator_TableVarName="tablePermisos" msprop:Generator_TablePropName="Permisos" msprop:Generator_RowDeletingName="PermisosRowDeleting" msprop:Generator_RowChangingName="PermisosRowChanging" msprop:Generator_RowEvHandlerName="PermisosRowChangeEventHandler" msprop:Generator_RowDeletedName="PermisosRowDeleted" msprop:Generator_UserTableName="Permisos" msprop:Generator_RowChangedName="PermisosRowChanged" msprop:Generator_RowEvArgName="PermisosRowChangeEvent" msprop:Generator_RowClassName="PermisosRow">
+        <xs:element name="Permisos" msprop:Generator_TableClassName="PermisosDataTable" msprop:Generator_TableVarName="tablePermisos" msprop:Generator_RowChangedName="PermisosRowChanged" msprop:Generator_TablePropName="Permisos" msprop:Generator_RowDeletingName="PermisosRowDeleting" msprop:Generator_RowChangingName="PermisosRowChanging" msprop:Generator_RowEvHandlerName="PermisosRowChangeEventHandler" msprop:Generator_RowDeletedName="PermisosRowDeleted" msprop:Generator_RowClassName="PermisosRow" msprop:Generator_UserTableName="Permisos" msprop:Generator_RowEvArgName="PermisosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdPermisos" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdPermisos" msprop:Generator_ColumnPropNameInRow="IdPermisos" msprop:Generator_ColumnPropNameInTable="IdPermisosColumn" msprop:Generator_UserColumnName="IdPermisos" type="xs:int" />
@@ -116,7 +116,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Relojes" msprop:Generator_TableClassName="RelojesDataTable" msprop:Generator_TableVarName="tableRelojes" msprop:Generator_TablePropName="Relojes" msprop:Generator_RowDeletingName="RelojesRowDeleting" msprop:Generator_RowChangingName="RelojesRowChanging" msprop:Generator_RowEvHandlerName="RelojesRowChangeEventHandler" msprop:Generator_RowDeletedName="RelojesRowDeleted" msprop:Generator_UserTableName="Relojes" msprop:Generator_RowChangedName="RelojesRowChanged" msprop:Generator_RowEvArgName="RelojesRowChangeEvent" msprop:Generator_RowClassName="RelojesRow">
+        <xs:element name="Relojes" msprop:Generator_TableClassName="RelojesDataTable" msprop:Generator_TableVarName="tableRelojes" msprop:Generator_RowChangedName="RelojesRowChanged" msprop:Generator_TablePropName="Relojes" msprop:Generator_RowDeletingName="RelojesRowDeleting" msprop:Generator_RowChangingName="RelojesRowChanging" msprop:Generator_RowEvHandlerName="RelojesRowChangeEventHandler" msprop:Generator_RowDeletedName="RelojesRowDeleted" msprop:Generator_RowClassName="RelojesRow" msprop:Generator_UserTableName="Relojes" msprop:Generator_RowEvArgName="RelojesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdReloj" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdReloj" msprop:Generator_ColumnPropNameInRow="IdReloj" msprop:Generator_ColumnPropNameInTable="IdRelojColumn" msprop:Generator_UserColumnName="IdReloj" type="xs:int" />
@@ -152,7 +152,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Usuarios" msprop:Generator_TableClassName="UsuariosDataTable" msprop:Generator_TableVarName="tableUsuarios" msprop:Generator_TablePropName="Usuarios" msprop:Generator_RowDeletingName="UsuariosRowDeleting" msprop:Generator_RowChangingName="UsuariosRowChanging" msprop:Generator_RowEvHandlerName="UsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosRowDeleted" msprop:Generator_UserTableName="Usuarios" msprop:Generator_RowChangedName="UsuariosRowChanged" msprop:Generator_RowEvArgName="UsuariosRowChangeEvent" msprop:Generator_RowClassName="UsuariosRow">
+        <xs:element name="Usuarios" msprop:Generator_TableClassName="UsuariosDataTable" msprop:Generator_TableVarName="tableUsuarios" msprop:Generator_RowChangedName="UsuariosRowChanged" msprop:Generator_TablePropName="Usuarios" msprop:Generator_RowDeletingName="UsuariosRowDeleting" msprop:Generator_RowChangingName="UsuariosRowChanging" msprop:Generator_RowEvHandlerName="UsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosRowDeleted" msprop:Generator_RowClassName="UsuariosRow" msprop:Generator_UserTableName="Usuarios" msprop:Generator_RowEvArgName="UsuariosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idUsuario" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidUsuario" msprop:Generator_ColumnPropNameInRow="idUsuario" msprop:Generator_ColumnPropNameInTable="idUsuarioColumn" msprop:Generator_UserColumnName="idUsuario" type="xs:int" />

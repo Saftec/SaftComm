@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
-using ZkManagemente.Util;
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -30,6 +30,7 @@ namespace ZkManagement.Interfaz
             {
                 ValidarDatos();
                 cl.ValidarUsuario(usuario);
+                this.Hide();
             }
             catch(AppException appex)
             {
@@ -45,6 +46,11 @@ namespace ZkManagement.Interfaz
         private void ValidarDatos()
         {
             if (textContraseña.Text=="" | textUsuario.Text == "") { throw new AppException("Por favor, complete todos los campos"); }
+        }
+
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

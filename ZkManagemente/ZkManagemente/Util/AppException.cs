@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZkManagemente.Util
+namespace ZkManagement.Util
 {
     class AppException:Exception
     {
