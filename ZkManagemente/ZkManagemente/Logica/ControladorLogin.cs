@@ -19,6 +19,7 @@ namespace ZkManagement.Logica
                 if (usr.pass!=usuario.pass) { throw new AppException("Password invalida"); }
 
                 Principal ppal = new Principal();
+                ppal.SetPermisos(usr);
                 ppal.Show();
                 
                 

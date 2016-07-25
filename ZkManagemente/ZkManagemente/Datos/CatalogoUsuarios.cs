@@ -28,11 +28,11 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                throw sqlEx;
+                Program.log.Error(sqlEx.Message); ;
             }
             catch(Exception ex)
             {
-                throw ex;
+                Program.log.Error(ex.Message);
             }
             conn.Close();
             return usr;

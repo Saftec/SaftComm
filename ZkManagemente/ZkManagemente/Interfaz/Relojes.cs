@@ -10,7 +10,7 @@ namespace ZkManagement.Interfaz
     public partial class Relojes : Form
     {
         private ControladorOperaciones co = new ControladorOperaciones();
-        private List<Reloj> relojes = new List<Reloj>();;
+        private List<Reloj> relojes = new List<Reloj>();
         public Relojes()
         {
             InitializeComponent();

@@ -6,18 +6,21 @@ namespace ZkManagement.Datos
 {
     class Conexion
     {
-        public object ConfigurationManager { get; private set; }
-
         public SqlConnection Conectar()
-        {
+        {            
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=SAF05\sqlexpress;Initial Catalog=ZkManagement;Integrated Security=True;User ID=saftec;Password=ana";
+            conn.ConnectionString = @"Data Source=DESKTOP-1FK88J0\SQLSERVER;Initial Catalog=ZkManagement;Integrated Security=True";
             try
             {
                 conn.Open();
             }
-            catch (SqlException ex) //LOGUEAR ERRORES!
-            { 
+            catch (SqlException sqlex) //LOGUEAR ERRORES!
+            {
+                Program.log.Error(sqlex.Message);
+            }
+            catch(Exception ex)
+            {
+                Program.log.Fatal(ex.Message);
             }
             return conn;
         }
@@ -33,7 +36,7 @@ namespace ZkManagement.Datos
 
         public void ModificarStringConnection(String cadena)
         {
-      //      ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
+           //ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
         }
 
     }
