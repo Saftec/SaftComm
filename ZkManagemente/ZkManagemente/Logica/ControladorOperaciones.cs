@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
     class ControladorOperaciones
     {
+        zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
 
-        public bool Conectar(string ip, int puerto)
+        public void Conectar(string ip, int puerto)
         {
-            zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
             bool estado = false;
-            estado = axCZKEM1.Connect_Net(ip, Convert.ToInt32(4370));
-            return estado;
+            estado = axCZKEM1.Connect_Net(ip, puerto);
+            if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         //Metodo que se ejecuta cuando el dispositivo tiene clave//
-        public bool Conectar(string ip, int puerto, int llave)
+        public void Conectar(string ip, int puerto, int llave)
         {
-            zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
-            bool estado = false;
+            bool estado;
             axCZKEM1.SetCommPassword(llave);
-            estado = axCZKEM1.Connect_Net(ip, Convert.ToInt32(4370));
-            return estado;
+            estado = axCZKEM1.Connect_Net(ip, puerto);
+            if (estado==false) { throw new AppException("Error al intentar conectar con dispostivo");}
         }
 
         public int GetCantidadRegistros(int nroReloj)
         {
-            zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
             int codError = 0; //Controlo errores del dispositivo
             int cant = 0;
 
@@ -37,44 +31,40 @@ namespace ZkManagement.Logica
             if (!axCZKEM1.GetDeviceStatus(nroReloj, 6, ref cant)) //La funcion "GetDeviceStatus" con el parámetro 6, devuelve la cantidad de registros.
             {
                 axCZKEM1.GetLastError(ref codError);
-                return -1;
+                throw new AppException("Error al consultar la cantidad de registros en el equipo, coderror: " + codError.ToString());
             }
             axCZKEM1.EnableDevice(nroReloj, true);
             return cant;
         }
 
-        public bool BorrarRegistros(int nroReloj)
+        public void BorrarRegistros(int nroReloj)
         {
-            zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
-            int idwErrorCode = 0;
+            int codError = 0;
             axCZKEM1.EnableDevice(nroReloj, false);     //bloqueo dispositivo
             if (axCZKEM1.ClearGLog(nroReloj))
             {
                 axCZKEM1.RefreshData(nroReloj);     //los datos deben ser actualizados en el reloj
                 axCZKEM1.EnableDevice(nroReloj, true);      //desbloqueo
-                return true;
             }
             else
             {
-                axCZKEM1.GetLastError(ref idwErrorCode);
+                axCZKEM1.GetLastError(ref codError);
                 axCZKEM1.EnableDevice(nroReloj, true);      //desbloqueo
-                return false;
+                throw new AppException("Error al borrar los registros, coderror: " + codError.ToString());
             }
         }
 
-        public bool SincronizarHora(int nroReloj)
+        public void SincronizarHora(int nroReloj)
         {
-            zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
-            int idwErrorCode = 0;
+            int codError = 0;
             if (axCZKEM1.SetDeviceTime(nroReloj))
             {
                 axCZKEM1.RefreshData(nroReloj);     //actualizo datos en dispositivo
-                return true;
             }
             else
             {
-                axCZKEM1.GetLastError(ref idwErrorCode);
-                return false;
+                axCZKEM1.GetLastError(ref codError);
+                throw new AppException("Error al sincronizar hora, coderror: " + codError.ToString()); 
             }
         }
 

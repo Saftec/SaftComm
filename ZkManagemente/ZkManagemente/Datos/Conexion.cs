@@ -11,8 +11,7 @@ namespace ZkManagement.Datos
         public SqlConnection Conectar()
         {
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=DESKTOP-1FK88J0\SQLSERVER;Initial Catalog=ZkManagement;Integrated Security=True";
-      //      conn.ConnectionString = ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString;
+            conn.ConnectionString = @"Data Source=SAF05\sqlexpress;Initial Catalog=ZkManagement;Integrated Security=True;User ID=saftec;Password=ana";
             try
             {
                 conn.Open();
@@ -20,7 +19,6 @@ namespace ZkManagement.Datos
             catch (SqlException ex) //LOGUEAR ERRORES!
             { 
             }
-
             return conn;
         }
 

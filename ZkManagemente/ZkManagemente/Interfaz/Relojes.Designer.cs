@@ -30,6 +30,7 @@
         {
             this.dgvRelojes = new System.Windows.Forms.DataGridView();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantRegis = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,6 +64,7 @@
             this.dgvRelojes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelojes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Numero,
+            this.Puerto,
             this.IP,
             this.Nombre,
             this.CantRegis,
@@ -70,16 +72,24 @@
             this.Estado,
             this.Modelo});
             this.dgvRelojes.Location = new System.Drawing.Point(24, 144);
+            this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelojes.Size = new System.Drawing.Size(839, 239);
             this.dgvRelojes.TabIndex = 0;
+            this.dgvRelojes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRelojes_CellContentClick);
             // 
             // Numero
             // 
             this.Numero.HeaderText = "Numero";
             this.Numero.Name = "Numero";
             this.Numero.ReadOnly = true;
+            // 
+            // Puerto
+            // 
+            this.Puerto.HeaderText = "Puerto";
+            this.Puerto.Name = "Puerto";
+            this.Puerto.ReadOnly = true;
             // 
             // IP
             // 
@@ -175,6 +185,7 @@
             this.btnHora.TabIndex = 2;
             this.btnHora.Text = "Sinc. Hora";
             this.btnHora.UseVisualStyleBackColor = true;
+            this.btnHora.Click += new System.EventHandler(this.btnHora_Click);
             // 
             // btnBorrar
             // 
@@ -184,6 +195,7 @@
             this.btnBorrar.TabIndex = 1;
             this.btnBorrar.Text = "Borrar Regs";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnDescargar
             // 
@@ -265,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 549);
+            this.ClientSize = new System.Drawing.Size(875, 550);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDesconectar);
@@ -291,13 +303,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvRelojes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantRegis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
         private System.Windows.Forms.GroupBox gpbxRutinas;
         private System.Windows.Forms.Button btnRutinaHora;
         private System.Windows.Forms.Button btnRutinaBajar;
@@ -313,5 +318,13 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puerto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantRegis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
     }
 }

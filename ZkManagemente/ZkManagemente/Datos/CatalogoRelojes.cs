@@ -24,8 +24,8 @@ namespace ZkManagement.Datos
                 while (dr.Read())
                 {
                     Reloj r = new Reloj();
-                    r.Clave = Convert.ToInt32(dr.IsDBNull(3) ? '0' : dr["Clave"]);
-                    r.DNS = dr.IsDBNull(5) ? string.Empty : dr["DNS"].ToString();
+                 //   r.Clave = Convert.ToInt32(dr.IsDBNull(3) ? '0' : dr["Clave"]);
+                 //   r.DNS = dr.IsDBNull(5) ? string.Empty : dr["DNS"].ToString();
                     r.Id  = Convert.ToInt32(dr["IdReloj"]);
                     r.Ip = dr["IP"].ToString();
                     r.Nombre = dr["Nombre"].ToString();

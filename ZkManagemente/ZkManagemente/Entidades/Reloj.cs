@@ -63,5 +63,13 @@ namespace ZkManagement.Entidades
             set { puerto = value; }
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) { return false; }
+            if (this.GetType() != obj.GetType()) { return false; }
+
+            Reloj r = (Reloj)obj;
+            return (this.id == r.id);            
+        }
     }
 }
