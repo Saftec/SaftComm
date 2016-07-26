@@ -7,7 +7,8 @@ namespace ZkManagement.Datos
     class Conexion
     {
         public SqlConnection Conectar()
-        {            
+        {
+            Program.log.Error("ERRRO");         
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = @"Data Source=DESKTOP-1FK88J0\SQLSERVER;Initial Catalog=ZkManagement;Integrated Security=True";
             try
@@ -16,11 +17,11 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex) //LOGUEAR ERRORES!
             {
-                Program.log.Error(sqlex.Message);
+                Program.log.Info(sqlex.Message);
             }
             catch(Exception ex)
             {
-                Program.log.Fatal(ex.Message);
+                Program.log.Info(ex.Message);
             }
             return conn;
         }

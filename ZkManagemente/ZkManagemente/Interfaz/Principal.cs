@@ -52,5 +52,11 @@ namespace ZkManagement.Interfaz
         {
 
         }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            Configuracion config = new Configuracion();
+            config.Open();
+        }
     }
 }

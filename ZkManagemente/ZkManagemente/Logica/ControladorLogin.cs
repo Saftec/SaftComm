@@ -24,9 +24,9 @@ namespace ZkManagement.Logica
                 
                 
             }
-            catch  (InvalidCastException ioex)
+            catch  (Exception ex)
             {
-                throw ioex;
+                throw ex;
             }
         }
     }

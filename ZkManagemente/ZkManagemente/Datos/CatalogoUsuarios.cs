@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -22,17 +23,19 @@ namespace ZkManagement.Datos
                 dr.Close();
             }
 
-           catch(InvalidCastException)
+           catch(InvalidOperationException)  //si cacheo esto es porque la consulta no devolvió nada
             {
-                throw new InvalidCastException("Usuario incorrecto");
+                throw new AppException("Usuario incorrecto");
             }
             catch(SqlException sqlEx)
             {
-                Program.log.Error(sqlEx.Message); ;
+                Program.log.Error(sqlEx.Message);
+                throw new Exception("Error al consultar datos de usuario");
             }
             catch(Exception ex)
             {
                 Program.log.Error(ex.Message);
+                throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
             return usr;

@@ -80,6 +80,7 @@
     <Compile Include="Interfaz\Relojes.Designer.cs">
       <DependentUpon>Relojes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\ControladorArchivos.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorOperaciones.cs" />

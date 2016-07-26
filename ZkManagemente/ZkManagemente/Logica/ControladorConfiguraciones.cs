@@ -6,10 +6,9 @@ namespace ZkManagement.Logica
 {
     class ControladorConfiguraciones
     {
-
+        private CatalogoConfiguraciones cc = new CatalogoConfiguraciones();
         public string GetConfig(int id)
-        {
-            CatalogoConfiguraciones cc = new CatalogoConfiguraciones();
+        {            
             string valor;
             try
             {
@@ -25,7 +24,14 @@ namespace ZkManagement.Logica
 
         public void SetConfig(int id, string valor)
         {
-
+            try
+            {
+                cc.SetConfig(id, valor);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

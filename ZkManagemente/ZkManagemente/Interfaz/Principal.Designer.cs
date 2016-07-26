@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
-            this.lblVersion = new System.Windows.Forms.Label();
-            this.lblUsuario = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +48,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(987, 78);
             this.panel1.TabIndex = 0;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(940, 64);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(0, 13);
+            this.lblUsuario.TabIndex = 2;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(949, 9);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(0, 13);
+            this.lblVersion.TabIndex = 1;
             // 
             // panelMenu
             // 
@@ -67,6 +83,7 @@
             this.btnConfig.TabIndex = 1;
             this.btnConfig.Text = "Configuracion";
             this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // btnRelojes
             // 
@@ -77,22 +94,6 @@
             this.btnRelojes.Text = "Relojes";
             this.btnRelojes.UseVisualStyleBackColor = true;
             this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(949, 9);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(0, 13);
-            this.lblVersion.TabIndex = 1;
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(940, 64);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(0, 13);
-            this.lblUsuario.TabIndex = 2;
             // 
             // Principal
             // 

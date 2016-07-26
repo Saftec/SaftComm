@@ -32,7 +32,29 @@ namespace ZkManagement.Datos
             {
                 throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
             }
+            conn.Close();
             return valor;
+        }
+
+        public void SetConfig(int id, string valor)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("UPDATE Configuracion SET Valor='"+valor+"' WHERE ConfigId=" + id,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException sqlEx)
+            {
+                Program.log.Error(sqlEx.StackTrace);
+                throw new Exception("Error al actualizar la tabla configuracion");
+            }
+            catch(Exception ex)
+            {
+                Program.log.Error(ex.StackTrace);
+                throw new Exception("Error desconocido al actualizar la tabla configuracion");
+            }
+            conn.Close();
         }
     }
 }

@@ -34,11 +34,11 @@ namespace ZkManagement.Interfaz
             }
             catch(AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error pass");
+                MessageBox.Show(appex.Message, "Error ingreso");
             }
-            catch(InvalidOperationException)
+            catch(Exception ex)
             {
-                MessageBox.Show("Usuario incorrecto", "Error usr");
+                MessageBox.Show(ex.Message, "Error desconocido");
             }
             
         }
