@@ -12,6 +12,7 @@ namespace ZkManagement.Logica
         {
             Usuario usr = new Usuario();
             CatalogoUsuarios cu = new CatalogoUsuarios();
+            ControladorArchivos ca = new ControladorArchivos();
             try
             {
                 usr = cu.GetUsuario(usuario);
@@ -19,10 +20,9 @@ namespace ZkManagement.Logica
                 if (usr.pass!=usuario.pass) { throw new AppException("Password invalida"); }
 
                 Principal ppal = new Principal();
+                ca.InicioSesion(usr.usr);
                 ppal.SetPermisos(usr);
-                ppal.Show();
-                
-                
+                ppal.Show();                               
             }
             catch  (Exception ex)
             {

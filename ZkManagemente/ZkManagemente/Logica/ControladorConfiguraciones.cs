@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using ZkManagement.Datos;
 
 namespace ZkManagement.Logica

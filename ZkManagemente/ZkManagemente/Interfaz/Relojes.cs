@@ -95,6 +95,8 @@ namespace ZkManagement.Interfaz
             {
                 co.Conectar(GetIp(), GetPuerto());
                 SetEstado("Conectado");
+                SetMac(co.GetMac(GetNumero()));
+                SetModelo(co.GetMac(GetNumero()));
             }
             catch(AppException appex)
             {
@@ -143,6 +145,33 @@ namespace ZkManagement.Interfaz
                 return true;
             }
             return false;
+        }
+
+        private void btnDesconectar_Click(object sender, EventArgs e)
+        {
+            if (GetEstado()=="Desconectado")
+            {
+                MessageBox.Show("El dispositivo está desconectado", "Error");
+                return;
+            }
+            co.Desconectar();
+            SetEstado("Desconectado");
+        }
+
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            if(ValidarConexion()) { return; }
+
+            int total = 0;
+            try
+            {
+                total=co.DescargarRegistros(GetNumero());
+                MessageBox.Show("Se descargaron: " + total.ToString() + " registros");
+            }
+            catch(AppException appex)
+            {
+                MessageBox.Show(appex.Message, "Error");
+            }
         }
     }
 }

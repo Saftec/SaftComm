@@ -7,16 +7,15 @@ namespace ZkManagement.Logica
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
 
-        public void EscribirRegistros(int nroDispositivo, int ioModo, int año, int mes, int dia, int horas, int minuto, String legajo, String path)
+        public void EscribirRegistros(int nroDispositivo, int ioModo, int año, int mes, int dia, int horas, int minuto, string legajo)
         {
             string linea;
             string hora;
             string tipoMov;
-            int codError = 0;
             DateTime fecha = new DateTime(año, mes, dia);
+            string path = cc.GetConfig(2); //Obtengo path de descarga de registros
 
             hora = FormatearHora(horas, minuto);
-            path = cc.GetConfig(2);
             if (legajo.Length < 5) { legajo = legajo.PadLeft(5, '0'); } //COMPLETO EL LEGAJO CON CEROS
             if ((ioModo.ToString()).Length == 1) { tipoMov = ioModo.ToString().PadLeft(2, '0'); }
             else { tipoMov = ioModo.ToString(); }
@@ -29,7 +28,7 @@ namespace ZkManagement.Logica
 
             catch (Exception)
             {
-                throw new Exception("Error al intentar escribir el log de operaciones");
+                throw new Exception("Error al intentar escribir el archivo de registros");
             }
         }
 
@@ -94,8 +93,10 @@ namespace ZkManagement.Logica
             EscribirLog(" Inicio de proceso de descarga de registros");
         }
 
-        public void DescargaRegistros(int cantidad, String path)
+        public void DescargaRegistros(int cantidad)
         {
+            ControladorConfiguraciones cc = new ControladorConfiguraciones();
+            string path = cc.GetConfig(2);
             string linea;
             linea = " Se descargaron:" + cantidad.ToString() + " registraciones al archivo: " + path;
             EscribirLog(linea);

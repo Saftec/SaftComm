@@ -71,11 +71,11 @@
             this.Mac,
             this.Estado,
             this.Modelo});
-            this.dgvRelojes.Location = new System.Drawing.Point(24, 144);
+            this.dgvRelojes.Location = new System.Drawing.Point(24, 116);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRelojes.Size = new System.Drawing.Size(839, 239);
+            this.dgvRelojes.Size = new System.Drawing.Size(839, 215);
             this.dgvRelojes.TabIndex = 0;
             this.dgvRelojes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRelojes_CellContentClick);
             // 
@@ -131,7 +131,7 @@
             // 
             this.gpbxRutinas.Controls.Add(this.btnRutinaHora);
             this.gpbxRutinas.Controls.Add(this.btnRutinaBajar);
-            this.gpbxRutinas.Location = new System.Drawing.Point(24, 71);
+            this.gpbxRutinas.Location = new System.Drawing.Point(24, 46);
             this.gpbxRutinas.Name = "gpbxRutinas";
             this.gpbxRutinas.Size = new System.Drawing.Size(212, 55);
             this.gpbxRutinas.TabIndex = 1;
@@ -170,7 +170,7 @@
             this.groupManuales.Controls.Add(this.btnHora);
             this.groupManuales.Controls.Add(this.btnBorrar);
             this.groupManuales.Controls.Add(this.btnDescargar);
-            this.groupManuales.Location = new System.Drawing.Point(498, 71);
+            this.groupManuales.Location = new System.Drawing.Point(498, 46);
             this.groupManuales.Name = "groupManuales";
             this.groupManuales.Size = new System.Drawing.Size(326, 55);
             this.groupManuales.TabIndex = 3;
@@ -205,10 +205,11 @@
             this.btnDescargar.TabIndex = 0;
             this.btnDescargar.Text = "Descargar";
             this.btnDescargar.UseVisualStyleBackColor = true;
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // btnConectar
             // 
-            this.btnConectar.Location = new System.Drawing.Point(267, 81);
+            this.btnConectar.Location = new System.Drawing.Point(267, 53);
             this.btnConectar.Name = "btnConectar";
             this.btnConectar.Size = new System.Drawing.Size(98, 45);
             this.btnConectar.TabIndex = 0;
@@ -218,19 +219,20 @@
             // 
             // btnDesconectar
             // 
-            this.btnDesconectar.Location = new System.Drawing.Point(383, 81);
+            this.btnDesconectar.Location = new System.Drawing.Point(383, 53);
             this.btnDesconectar.Name = "btnDesconectar";
             this.btnDesconectar.Size = new System.Drawing.Size(98, 45);
             this.btnDesconectar.TabIndex = 1;
             this.btnDesconectar.Text = "Desconectar";
             this.btnDesconectar.UseVisualStyleBackColor = true;
+            this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Location = new System.Drawing.Point(298, 410);
+            this.groupBox1.Location = new System.Drawing.Point(298, 343);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(290, 47);
             this.groupBox1.TabIndex = 4;
