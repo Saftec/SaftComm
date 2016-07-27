@@ -1,6 +1,6 @@
 ﻿namespace ZkManagement.Interfaz
 {
-    partial class Principal
+    partial class btnUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.btnConfig);
             this.panelMenu.Controls.Add(this.btnRelojes);
             this.panelMenu.Location = new System.Drawing.Point(217, 0);
@@ -75,9 +77,19 @@
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(296, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 47);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Usuarios";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // btnConfig
             // 
-            this.btnConfig.Location = new System.Drawing.Point(168, 12);
+            this.btnConfig.Location = new System.Drawing.Point(167, 12);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(84, 47);
             this.btnConfig.TabIndex = 1;
@@ -95,13 +107,13 @@
             this.btnRelojes.UseVisualStyleBackColor = true;
             this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Principal
+            // btnUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 668);
             this.Controls.Add(this.panel1);
-            this.Name = "Principal";
+            this.Name = "btnUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -121,5 +133,6 @@
         private System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button button1;
     }
 }

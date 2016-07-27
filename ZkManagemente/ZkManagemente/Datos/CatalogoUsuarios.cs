@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -39,6 +40,38 @@ namespace ZkManagement.Datos
             }
             conn.Close();
             return usr;
+        }
+
+        public List<Usuario> GetUsuarios()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            conn = con.Conectar();
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos",conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Usuario usr = new Usuario();
+                    usr.usr = (dr["Usuario"].ToString());
+                    usr.pass = (dr["Password"].ToString());
+                    usr.nivel = Convert.ToInt32((dr["idPermisos"]));
+                    usuarios.Add(usr);                  
+                }
+                dr.Close();
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error al consultar los datos de usuario");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al consultar los datos de usuario");
+            }
+            conn.Close();
+            return usuarios;
         }
     }
 }

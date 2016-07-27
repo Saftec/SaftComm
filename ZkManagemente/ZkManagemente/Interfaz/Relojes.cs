@@ -37,8 +37,6 @@ namespace ZkManagement.Interfaz
             {
                 dgvRelojes.Rows.Add(reloj.Numero, reloj.Puerto, reloj.Ip, reloj.Nombre, "0", string.Empty, "Desconectado", string.Empty);
             }
-            
-            Show();
         }
 
         private void Relojes_Load(object sender, EventArgs e)

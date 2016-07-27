@@ -14,7 +14,6 @@ namespace ZkManagement.Interfaz
     
         public void Open()
         {
-            Show();
             CargarConfigs();
         }
 

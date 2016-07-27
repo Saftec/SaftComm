@@ -6,9 +6,9 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class Principal : Form
+    public partial class btnUsuarios : Form
     {
-        public Principal()
+        public btnUsuarios()
         {
             InitializeComponent();
         }
@@ -29,6 +29,7 @@ namespace ZkManagement.Interfaz
             {
                 lblUsuario.Text = "Usuario: " + usuario.usr;
                 lblVersion.Text = "Version: " + cc.GetConfig(1);
+                if (usuario.nivel>2) { btnConfig.Enabled = false; }
             }
             catch(Exception ex)
             {
@@ -41,6 +42,7 @@ namespace ZkManagement.Interfaz
         {
             Relojes relojes = new Relojes();
             relojes.Open();
+            relojes.ShowDialog(this);           
         }
 
         protected override void OnClosed(EventArgs e)
@@ -57,6 +59,13 @@ namespace ZkManagement.Interfaz
         {
             Configuracion config = new Configuracion();
             config.Open();
+            config.ShowDialog(this);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Usuarios usuarios = new Usuarios();
+            usuarios.ShowDialog(this);
         }
     }
 }
