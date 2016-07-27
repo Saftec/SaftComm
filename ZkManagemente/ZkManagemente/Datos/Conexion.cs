@@ -11,7 +11,8 @@ namespace ZkManagement.Datos
             Program.log.Error("ERRROR");         
             SqlConnection conn = new SqlConnection();
             // conn.ConnectionString = @"Data Source=DESKTOP-1FK88J0\SQLSERVER;Initial Catalog=ZkManagement;Integrated Security=True";
-            conn.ConnectionString = @"Data Source=SAF05\SQLEXPRESS;Initial Catalog=ZkManagement;User ID=saftec;Password=ana";
+            // conn.ConnectionString = @"Data Source=SAF05\SQLEXPRESS;Initial Catalog=ZkManagement;User ID=saftec;Password=ana";
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString;
             try
             {
                 conn.Open();
@@ -38,7 +39,7 @@ namespace ZkManagement.Datos
 
         public void ModificarStringConnection(String cadena)
         {
-           //ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
+           ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
         }
 
     }

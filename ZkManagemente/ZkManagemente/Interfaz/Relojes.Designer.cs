@@ -30,13 +30,15 @@
         {
             this.dgvRelojes = new System.Windows.Forms.DataGridView();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantRegis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantRegis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbxRutinas = new System.Windows.Forms.GroupBox();
             this.btnRutinaHora = new System.Windows.Forms.Button();
             this.btnRutinaBajar = new System.Windows.Forms.Button();
@@ -60,17 +62,20 @@
             // 
             // dgvRelojes
             // 
+            this.dgvRelojes.AllowUserToAddRows = false;
             this.dgvRelojes.AllowUserToOrderColumns = true;
             this.dgvRelojes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelojes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Numero,
-            this.Puerto,
-            this.IP,
             this.Nombre,
-            this.CantRegis,
-            this.Mac,
+            this.IP,
+            this.Puerto,
             this.Estado,
-            this.Modelo});
+            this.CantRegis,
+            this.Modelo,
+            this.Mac,
+            this.DNS,
+            this.Id});
             this.dgvRelojes.Location = new System.Drawing.Point(24, 116);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
@@ -84,36 +89,28 @@
             this.Numero.HeaderText = "Numero";
             this.Numero.Name = "Numero";
             this.Numero.ReadOnly = true;
-            // 
-            // Puerto
-            // 
-            this.Puerto.HeaderText = "Puerto";
-            this.Puerto.Name = "Puerto";
-            this.Puerto.ReadOnly = true;
-            // 
-            // IP
-            // 
-            this.IP.HeaderText = "IP V4";
-            this.IP.Name = "IP";
-            this.IP.ReadOnly = true;
+            this.Numero.Width = 50;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 80;
             // 
-            // CantRegis
+            // IP
             // 
-            this.CantRegis.HeaderText = "Cantidad Registros";
-            this.CantRegis.Name = "CantRegis";
-            this.CantRegis.ReadOnly = true;
+            this.IP.HeaderText = "IP V4";
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            this.IP.Width = 80;
             // 
-            // Mac
+            // Puerto
             // 
-            this.Mac.HeaderText = "Mac Address";
-            this.Mac.Name = "Mac";
-            this.Mac.ReadOnly = true;
+            this.Puerto.HeaderText = "Puerto";
+            this.Puerto.Name = "Puerto";
+            this.Puerto.ReadOnly = true;
+            this.Puerto.Width = 50;
             // 
             // Estado
             // 
@@ -121,11 +118,37 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             // 
+            // CantRegis
+            // 
+            this.CantRegis.HeaderText = "Cantidad Registros";
+            this.CantRegis.Name = "CantRegis";
+            this.CantRegis.ReadOnly = true;
+            this.CantRegis.Width = 55;
+            // 
             // Modelo
             // 
             this.Modelo.HeaderText = "Modelo";
             this.Modelo.Name = "Modelo";
             this.Modelo.ReadOnly = true;
+            // 
+            // Mac
+            // 
+            this.Mac.HeaderText = "Mac Address";
+            this.Mac.Name = "Mac";
+            this.Mac.ReadOnly = true;
+            // 
+            // DNS
+            // 
+            this.DNS.HeaderText = "DNS";
+            this.DNS.Name = "DNS";
+            this.DNS.Width = 180;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // gpbxRutinas
             // 
@@ -247,6 +270,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -256,6 +280,7 @@
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAgregar
             // 
@@ -265,6 +290,7 @@
             this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label1
             // 
@@ -321,12 +347,14 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Puerto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantRegis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puerto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantRegis;
         private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DNS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

@@ -35,7 +35,7 @@ namespace ZkManagement.Interfaz
 
             foreach(Reloj reloj in relojes)
             {
-                dgvRelojes.Rows.Add(reloj.Numero, reloj.Puerto, reloj.Ip, reloj.Nombre, "0", string.Empty, "Desconectado", string.Empty);
+                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty,  string.Empty, reloj.DNS, reloj.Id);
             }
         }
 
@@ -45,6 +45,11 @@ namespace ZkManagement.Interfaz
         }
 
         #region DataGriedView
+
+        private string GetNombre()
+        {
+            return (dgvRelojes.CurrentRow.Cells[0].Value).ToString();
+        }
         private string GetIp()
         {
             return (dgvRelojes.CurrentRow.Cells[2].Value).ToString();
@@ -52,7 +57,7 @@ namespace ZkManagement.Interfaz
 
         private int GetPuerto()
         {
-            return Convert.ToInt32((dgvRelojes.CurrentRow.Cells[1].Value).ToString());
+            return Convert.ToInt32((dgvRelojes.CurrentRow.Cells[3].Value).ToString());
         }
 
         private int GetNumero()
@@ -60,38 +65,49 @@ namespace ZkManagement.Interfaz
             return Convert.ToInt32((dgvRelojes.CurrentRow.Cells[0].Value).ToString());
         }
 
-        private void SetEstado(String valor)
+        private void SetEstado(string valor)
         {
-            dgvRelojes.CurrentRow.Cells[6].Value = valor;
+            dgvRelojes.CurrentRow.Cells[4].Value = valor;
         }
 
         private string GetEstado()
         {
-            return (dgvRelojes.CurrentRow.Cells[6].Value).ToString();
+            return (dgvRelojes.CurrentRow.Cells[4].Value).ToString();
         }
 
         private void SetCantRegis(string valor)
         {
-            dgvRelojes.CurrentRow.Cells[4].Value = valor;
+            dgvRelojes.CurrentRow.Cells[5].Value = valor;
         }
         
         private void SetModelo(string valor)
         {
-            dgvRelojes.CurrentRow.Cells[5].Value = valor;
+            dgvRelojes.CurrentRow.Cells[6].Value = valor;
         }
 
         private void SetMac(string valor)
         {
             dgvRelojes.CurrentRow.Cells[7].Value = valor;
         }
+
+        private string GetDns()
+        {
+            return (dgvRelojes.CurrentRow.Cells[8].Value).ToString();
+        }
+
+        private int GetId()
+        {
+            return Convert.ToInt32((dgvRelojes.CurrentRow.Cells[9].Value).ToString());
+        }
         #endregion
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-          
+            string llave = ObtenerLlave();   
             try
             {
-                co.Conectar(GetIp(), GetPuerto());
+                if (llave!=string.Empty) { co.Conectar(GetIp(), GetPuerto(), Convert.ToInt32(llave)); }
+                else { co.Conectar(GetIp(), GetPuerto()); }               
                 SetEstado("Conectado");
                 SetMac(co.GetMac(GetNumero()));
                 SetModelo(co.GetMac(GetNumero()));
@@ -169,6 +185,54 @@ namespace ZkManagement.Interfaz
             catch(AppException appex)
             {
                 MessageBox.Show(appex.Message, "Error");
+            }
+        }
+
+        private string ObtenerLlave()
+        {
+            int i;
+            Reloj r = new Reloj();
+            r.Id = GetId();
+            i=relojes.IndexOf(r);
+            r = relojes[i];
+            return r.Clave;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            AbmReloj abm = new AbmReloj();
+            Reloj r = new Reloj();
+            r.Clave = ObtenerLlave();
+            r.DNS = GetDns();
+            r.Id = GetId();
+            r.Ip = GetIp();
+            r.Nombre = GetNombre();
+            r.Numero = GetNumero();
+            r.Puerto = GetPuerto();
+            abm.Editar(r);
+            abm.ShowDialog(this);
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AbmReloj abm = new AbmReloj();
+            abm.Show(this);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea eliminar el reloj?", "Baja dispositivos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            try
+            {
+                ControladorReloj cr = new ControladorReloj();
+                Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), ObtenerLlave(), GetDns(), GetIp(), GetNombre());
+                cr.EliminarReloj(r);
+                MessageBox.Show("Dispositivo eliminado");
+                dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
             }
         }
     }

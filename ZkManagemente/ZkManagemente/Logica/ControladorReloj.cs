@@ -7,10 +7,9 @@ namespace ZkManagement.Logica
 {
     class ControladorReloj
     {
-
+        private CatalogoRelojes cr = new CatalogoRelojes();
         public List<Reloj> TodosRelojes()
         {
-            CatalogoRelojes cr = new CatalogoRelojes();
             List<Reloj> relojes = new List<Reloj>();
             try
             {
@@ -22,6 +21,32 @@ namespace ZkManagement.Logica
             }
             
             return relojes;
+        }
+
+        public void ModifReloj(Reloj r)
+        {
+            try
+            {
+                if (r.Id > 0) { cr.ActualizarReloj(r); }
+                else { cr.AgregarReloj(r); }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void EliminarReloj(Reloj r)
+        {
+            try
+            {
+                cr.EliminarReloj(r);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

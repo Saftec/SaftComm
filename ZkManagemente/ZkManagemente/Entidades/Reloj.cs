@@ -1,6 +1,7 @@
-﻿namespace ZkManagement.Entidades
+﻿
+namespace ZkManagement.Entidades
 {
-    class Reloj
+   public class Reloj
     {
         private int puerto;
         private int numero;
@@ -10,6 +11,21 @@
         private string ip;
         private string nombre;
 
+        public Reloj()
+        {
+        }
+
+        public Reloj(int puerto, int numero, int id, string clave, string dns, string ip, string nombre)
+        {
+            this.puerto = puerto;
+            this.numero = numero;
+            this.id = id;
+            this.clave = clave;
+            this.dns = dns;
+            this.ip = ip;
+            this.nombre = nombre;
+        }
+        
         public string DNS
         {
             get { return dns; }
@@ -63,7 +79,7 @@
             if (this.GetType() != obj.GetType()) { return false; }
 
             Reloj r = (Reloj)obj;
-            return (this.id == r.id);            
+            return (this.Id == r.Id);            
         }
     }
 }
