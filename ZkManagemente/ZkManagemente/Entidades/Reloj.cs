@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZkManagement.Entidades
+﻿namespace ZkManagement.Entidades
 {
     class Reloj
     {
         private int puerto;
         private int numero;
         private int id;
-        private int clave;
+        private string clave;
         private string dns;
         private string ip;
         private string nombre;
@@ -23,7 +17,7 @@ namespace ZkManagement.Entidades
         }
 
 
-        public int Clave
+        public string Clave
         {
             get { return clave; }
             set { clave = value; }
