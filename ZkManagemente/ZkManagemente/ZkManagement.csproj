@@ -81,6 +81,12 @@
     <Compile Include="Interfaz\Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\Empleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\Empleados.Designer.cs">
+      <DependentUpon>Empleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,9 +122,6 @@
     <Compile Include="Util\DgvRelojes.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Util\PswColumnDGV.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Util\UltId.cs" />
     <Compile Include="ZkManagementDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -136,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\Empleados.resx">
+      <DependentUpon>Empleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

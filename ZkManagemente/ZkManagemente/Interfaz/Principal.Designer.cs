@@ -1,6 +1,6 @@
 ﻿namespace ZkManagement.Interfaz
 {
-    partial class btnUsuarios
+    partial class btnEmpleados
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(805, 29);
+            this.lblUsuario.Location = new System.Drawing.Point(778, 33);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(43, 13);
             this.lblUsuario.TabIndex = 2;
@@ -62,7 +63,7 @@
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(805, 16);
+            this.lblVersion.Location = new System.Drawing.Point(779, 9);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 1;
@@ -70,6 +71,7 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.Controls.Add(this.button2);
             this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.btnConfig);
             this.panelMenu.Controls.Add(this.btnRelojes);
@@ -81,7 +83,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(296, 12);
+            this.button1.Location = new System.Drawing.Point(330, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 47);
             this.button1.TabIndex = 2;
@@ -91,7 +93,7 @@
             // 
             // btnConfig
             // 
-            this.btnConfig.Location = new System.Drawing.Point(167, 12);
+            this.btnConfig.Location = new System.Drawing.Point(58, 16);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(84, 47);
             this.btnConfig.TabIndex = 1;
@@ -101,7 +103,7 @@
             // 
             // btnRelojes
             // 
-            this.btnRelojes.Location = new System.Drawing.Point(37, 12);
+            this.btnRelojes.Location = new System.Drawing.Point(196, 16);
             this.btnRelojes.Name = "btnRelojes";
             this.btnRelojes.Size = new System.Drawing.Size(84, 47);
             this.btnRelojes.TabIndex = 0;
@@ -109,13 +111,22 @@
             this.btnRelojes.UseVisualStyleBackColor = true;
             this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnUsuarios
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(462, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 47);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Empleados";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 668);
             this.Controls.Add(this.panel1);
-            this.Name = "btnUsuarios";
+            this.Name = "btnEmpleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -136,5 +147,6 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

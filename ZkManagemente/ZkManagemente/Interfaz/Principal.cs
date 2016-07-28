@@ -6,9 +6,9 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class btnUsuarios : Form
+    public partial class btnEmpleados : Form
     {
-        public btnUsuarios()
+        public btnEmpleados()
         {
             InitializeComponent();
         }
@@ -41,7 +41,6 @@ namespace ZkManagement.Interfaz
         private void button1_Click(object sender, EventArgs e)
         {
             Relojes relojes = new Relojes();
-            relojes.Open();
             relojes.ShowDialog(this);           
         }
 
@@ -58,7 +57,6 @@ namespace ZkManagement.Interfaz
         private void btnConfig_Click(object sender, EventArgs e)
         {
             Configuracion config = new Configuracion();
-            config.Open();
             config.ShowDialog(this);
         }
 

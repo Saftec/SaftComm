@@ -10,14 +10,9 @@ namespace ZkManagement.Interfaz
         public Configuracion()
         {
             InitializeComponent();
-        }
-    
-        public void Open()
-        {
             CargarConfigs();
         }
-
-        private void CargarConfigs()
+            private void CargarConfigs()
         {
             textPathRegs.Text = cc.GetConfig(2);
             textPathLog.Text = cc.GetConfig(3);

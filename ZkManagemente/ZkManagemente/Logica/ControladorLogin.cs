@@ -20,7 +20,7 @@ namespace ZkManagement.Logica
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
-                btnUsuarios ppal = new btnUsuarios();
+                btnEmpleados ppal = new btnEmpleados();
                 ca.InicioSesion(usr.Usr);
                 ppal.SetPermisos(usr);
                 ppal.Show();                               

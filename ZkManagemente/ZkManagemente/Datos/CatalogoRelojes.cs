@@ -31,13 +31,13 @@ namespace ZkManagement.Datos
                 }
                 dr.Close();
             }
-            catch (SqlException sqlex)
+            catch (SqlException)
             {
-                throw sqlex;
+                throw new Exception("Error al consultar datos de los relojes");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw new Exception("Error desconocido al consultar datos de los relojes");
             }
             conn.Close();
             return relojes;           
@@ -51,7 +51,7 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Relojes VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
                 throw new Exception("Error al intentar agregar el reloj");
             }

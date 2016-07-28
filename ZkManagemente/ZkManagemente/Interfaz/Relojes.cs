@@ -14,20 +14,18 @@ namespace ZkManagement.Interfaz
         public Relojes()
         {
             InitializeComponent();
+            CargarDataGridView();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-        public void Open()
-        {
-            CargarDataGridView();
-        }
 
         public void CargarDataGridView()
         {
             ControladorReloj cr = new ControladorReloj();
+            dgvRelojes.DataSource = null;
             dgvRelojes.Rows.Clear();
             try
             {
