@@ -52,5 +52,24 @@ namespace ZkManagement.Interfaz
         {
 
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            bool estado = false;
+            ControladorLogin cl = new ControladorLogin();
+            try
+            {
+                estado = cl.CheckConexion();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            if (estado==false)
+            {
+                ConexionBD conexion = new ConexionBD();
+                conexion.Show();
+            }
+        }
     }
 }

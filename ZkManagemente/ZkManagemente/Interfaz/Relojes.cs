@@ -22,7 +22,13 @@ namespace ZkManagement.Interfaz
         }
         public void Open()
         {
-            ControladorReloj cr = new ControladorReloj();           
+            CargarDataGridView();
+        }
+
+        public void CargarDataGridView()
+        {
+            ControladorReloj cr = new ControladorReloj();
+            dgvRelojes.Rows.Clear();
             try
             {
                 relojes = cr.TodosRelojes();
@@ -31,17 +37,16 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message);
             }
-            
 
-            foreach(Reloj reloj in relojes)
+
+            foreach (Reloj reloj in relojes)
             {
-                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty,  string.Empty, reloj.DNS, reloj.Id);
+                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id);
             }
         }
 
         private void Relojes_Load(object sender, EventArgs e)
         {
-
         }
 
         #region DataGriedView

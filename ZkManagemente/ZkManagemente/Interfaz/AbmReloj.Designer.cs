@@ -60,6 +60,7 @@
             this.txtIp.Name = "txtIp";
             this.txtIp.Size = new System.Drawing.Size(123, 20);
             this.txtIp.TabIndex = 1;
+            this.txtIp.Text = "192.168.1.50";
             // 
             // label2
             // 
@@ -94,6 +95,7 @@
             this.txtPuerto.Name = "txtPuerto";
             this.txtPuerto.Size = new System.Drawing.Size(100, 20);
             this.txtPuerto.TabIndex = 5;
+            this.txtPuerto.Text = "4370";
             // 
             // label4
             // 

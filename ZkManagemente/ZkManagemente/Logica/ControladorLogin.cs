@@ -44,5 +44,19 @@ namespace ZkManagement.Logica
             }
             return usuarios;
         }
+
+        public bool CheckConexion()
+        {
+            Conexion con = new Conexion();
+            try
+            {
+                return (con.TestConexion());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
     }
 }

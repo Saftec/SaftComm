@@ -63,6 +63,12 @@
     <Compile Include="Interfaz\AbmReloj.Designer.cs">
       <DependentUpon>AbmReloj.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\ConexionBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\ConexionBD.Designer.cs">
+      <DependentUpon>ConexionBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <EmbeddedResource Include="Interfaz\AbmReloj.resx">
       <DependentUpon>AbmReloj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\ConexionBD.resx">
+      <DependentUpon>ConexionBD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>

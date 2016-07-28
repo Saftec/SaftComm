@@ -36,7 +36,6 @@ namespace ZkManagement.Interfaz
             {
                 cr.ModifReloj(r);
                 MessageBox.Show("Cambios guardados");
-                Close();
             }
             catch (Exception ex)
             {

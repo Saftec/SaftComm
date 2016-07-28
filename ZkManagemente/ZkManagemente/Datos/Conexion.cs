@@ -1,6 +1,8 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace ZkManagement.Datos
 {
@@ -30,16 +32,23 @@ namespace ZkManagement.Datos
             return conn;
         }
 
-        public SqlConnection TestConexion()
+        public bool TestConexion()
         {
             Conexion con = new Conexion();
             SqlConnection conn = new SqlConnection();
-
-            conn = con.Conectar();
-            return conn;
+            try
+            {
+                conn = con.Conectar();
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error al conectar con la base de datos");
+            }
+            if (conn.State==System.Data.ConnectionState.Open) { return true; }
+            else { return false; }
         }
 
-        public void ModificarStringConnection(String cadena)
+        public void ModificarStringConnection(string cadena)
         {
            ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
         }
