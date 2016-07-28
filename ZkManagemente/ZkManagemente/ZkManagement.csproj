@@ -63,6 +63,12 @@
     <Compile Include="Interfaz\AbmReloj.Designer.cs">
       <DependentUpon>AbmReloj.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\AbmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\AbmUsuarios.Designer.cs">
+      <DependentUpon>AbmUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\ConexionBD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,10 @@
     <Compile Include="Util\DgvRelojes.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Util\PswColumnDGV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\UltId.cs" />
     <Compile Include="ZkManagementDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +127,9 @@
     </Compile>
     <EmbeddedResource Include="Interfaz\AbmReloj.resx">
       <DependentUpon>AbmReloj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\AbmUsuarios.resx">
+      <DependentUpon>AbmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\ConexionBD.resx">
       <DependentUpon>ConexionBD.cs</DependentUpon>

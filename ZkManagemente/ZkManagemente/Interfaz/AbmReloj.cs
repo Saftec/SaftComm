@@ -30,6 +30,7 @@ namespace ZkManagement.Interfaz
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             ControladorReloj cr = new ControladorReloj();
             Reloj r = new Reloj(Convert.ToInt32(txtPuerto.Text), Convert.ToInt32(txtNro.Text), id, txtPsw.Text, txtDns.Text, txtIp.Text, txtNombre.Text);            
             try
@@ -41,6 +42,7 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+            Cursor = Cursors.Default;
         }
     }
 }

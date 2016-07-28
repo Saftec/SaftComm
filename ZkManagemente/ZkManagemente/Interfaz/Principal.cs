@@ -27,9 +27,9 @@ namespace ZkManagement.Interfaz
             ControladorConfiguraciones cc = new ControladorConfiguraciones();
             try
             {
-                lblUsuario.Text = "Usuario: " + usuario.usr;
+                lblUsuario.Text = "Usuario: " + usuario.Usr;
                 lblVersion.Text = "Version: " + cc.GetConfig(1);
-                if (usuario.nivel>2) { btnConfig.Enabled = false; }
+                if (usuario.Nivel>2) { btnConfig.Enabled = false; }
             }
             catch(Exception ex)
             {

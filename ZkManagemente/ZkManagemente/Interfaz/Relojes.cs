@@ -41,7 +41,7 @@ namespace ZkManagement.Interfaz
 
             foreach (Reloj reloj in relojes)
             {
-                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id);
+                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id,reloj.Clave);
             }
         }
 
@@ -104,15 +104,25 @@ namespace ZkManagement.Interfaz
         {
             return Convert.ToInt32((dgvRelojes.CurrentRow.Cells[9].Value).ToString());
         }
+
+        private string GetClave()
+        {
+            return (dgvRelojes.CurrentRow.Cells[10].Value).ToString();
+        }
         #endregion
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            string llave = ObtenerLlave(GetId());   
+            if(GetEstado()=="Conectado")
+            {
+                MessageBox.Show("El dispositivo ya se encuentra conectado", "Error");
+                return;
+            }
+            Cursor = Cursors.WaitCursor;
+            string llave = GetClave();   
             try
             {
-                if (llave!=string.Empty) { co.Conectar(GetIp(), GetPuerto(), Convert.ToInt32(llave)); }
-                else { co.Conectar(GetIp(), GetPuerto()); }               
+                co.Conectar(GetIp(), GetPuerto(), llave, GetNumero());                             
                 SetEstado("Conectado");
                 SetMac(co.GetMac(GetNumero()));
                 SetModelo(co.GetMac(GetNumero()));
@@ -120,7 +130,8 @@ namespace ZkManagement.Interfaz
             catch(AppException appex)
             {
                 MessageBox.Show(appex.Message, "Error");
-            }             
+            }
+            Cursor = Cursors.Default;
         }
 
         private void dgvRelojes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -180,7 +191,7 @@ namespace ZkManagement.Interfaz
         private void btnDescargar_Click(object sender, EventArgs e)
         {
             if(ValidarConexion()) { return; }
-
+            Cursor = Cursors.WaitCursor;
             int total = 0;
             try
             {
@@ -191,6 +202,7 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(appex.Message, "Error");
             }
+            Cursor = Cursors.Default;
         }
 
         private string ObtenerLlave(int id)
@@ -244,6 +256,7 @@ namespace ZkManagement.Interfaz
         private void btnRutinaBajar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            Cursor = Cursors.WaitCursor; //Cursor de espera
             ControladorArchivos ca = new ControladorArchivos();
             try
             {
@@ -254,8 +267,7 @@ namespace ZkManagement.Interfaz
                     int cant;
                     string llave;
                     llave=ObtenerLlave(r.Id);
-                    if (llave == string.Empty) { co.Conectar(r.Ip, r.Puerto); }
-                    else { co.Conectar(r.Ip, r.Puerto, Convert.ToInt32(r.Clave)); }
+                    { co.Conectar(r.Ip, r.Puerto, llave, GetNumero()); }                    
                     co.GetCantidadRegistros(r.Numero);
                     cant = co.DescargarRegistros(r.Numero);
                     co.BorrarRegistros(r.Numero);
@@ -270,11 +282,13 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show(ex.Message,"Error");
                 ca.Rutina("Fin", "Se produjo un error durante la rutina");
             }
+            Cursor = Cursors.Default; //Cursor normal 
         }
 
         private void btnRutinaHora_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            Cursor = Cursors.WaitCursor;
             ControladorArchivos ca = new ControladorArchivos();
             try
             {
@@ -282,9 +296,8 @@ namespace ZkManagement.Interfaz
                 foreach(Reloj r in relojes)
                 {
                     string llave;
-                    llave = ObtenerLlave(r.Id);
-                    if (llave == string.Empty) { co.Conectar(r.Ip, r.Puerto); }
-                    else { co.Conectar(r.Ip, r.Puerto, Convert.ToInt32(r.Clave)); }
+                    llave = ObtenerLlave(r.Id);                 
+                    co.Conectar(r.Ip, r.Puerto, r.Clave, GetNumero() ); 
                     co.SincronizarHora(r.Numero);
                 }
                 MessageBox.Show("Rutina de sincronizacion de hora finalizada");
@@ -295,7 +308,7 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show(ex.Message, "Error");
                 ca.Rutina("Fin", "Se produjo un error durante la rutina");
             }
-            
+            Cursor = Cursors.Default;
         }
     }
 }

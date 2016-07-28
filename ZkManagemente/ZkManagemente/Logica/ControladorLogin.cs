@@ -17,11 +17,11 @@ namespace ZkManagement.Logica
             try
             {
                 usr = cu.GetUsuario(usuario);
-                if (usr.usr == null) { throw new AppException("Usuario invalido"); }
-                if (usr.pass!=usuario.pass) { throw new AppException("Password invalida"); }
+                if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
+                if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
                 btnUsuarios ppal = new btnUsuarios();
-                ca.InicioSesion(usr.usr);
+                ca.InicioSesion(usr.Usr);
                 ppal.SetPermisos(usr);
                 ppal.Show();                               
             }

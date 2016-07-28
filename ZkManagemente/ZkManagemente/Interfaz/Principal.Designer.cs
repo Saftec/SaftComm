@@ -53,25 +53,27 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(940, 64);
+            this.lblUsuario.Location = new System.Drawing.Point(805, 29);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(0, 13);
+            this.lblUsuario.Size = new System.Drawing.Size(43, 13);
             this.lblUsuario.TabIndex = 2;
+            this.lblUsuario.Text = "Usuario";
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(949, 9);
+            this.lblVersion.Location = new System.Drawing.Point(805, 16);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(0, 13);
+            this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 1;
+            this.lblVersion.Text = "Version";
             // 
             // panelMenu
             // 
             this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.btnConfig);
             this.panelMenu.Controls.Add(this.btnRelojes);
-            this.panelMenu.Location = new System.Drawing.Point(217, 0);
+            this.panelMenu.Location = new System.Drawing.Point(153, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(587, 77);
             this.panelMenu.TabIndex = 0;

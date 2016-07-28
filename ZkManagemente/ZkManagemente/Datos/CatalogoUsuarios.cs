@@ -16,11 +16,11 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Usuario, Password FROM Usuarios u WHERE u.Usuario='" + usuario.usr + "';", conn);
+                SqlCommand cmd = new SqlCommand("SELECT Usuario, Password FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';", conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                usr.usr=(dr["Usuario"].ToString());
-                usr.pass = (dr["Password"].ToString());
+                usr.Usr=(dr["Usuario"].ToString());
+                usr.Pass = (dr["Password"].ToString());
                 dr.Close();
             }
 
@@ -55,9 +55,10 @@ namespace ZkManagement.Datos
                 while (dr.Read())
                 {
                     Usuario usr = new Usuario();
-                    usr.usr = (dr["Usuario"].ToString());
-                    usr.pass = (dr["Password"].ToString());
-                    usr.nivel = Convert.ToInt32((dr["idPermisos"]));
+                    usr.Usr = (dr["Usuario"].ToString());
+                    usr.Pass = (dr["Password"].ToString());
+                    usr.Nivel = Convert.ToInt32((dr["idPermisos"]));
+                    usr.Permisos = (dr["Permisos"].ToString());
                     usuarios.Add(usr);                  
                 }
                 dr.Close();

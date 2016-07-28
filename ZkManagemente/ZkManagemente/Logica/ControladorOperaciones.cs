@@ -9,21 +9,13 @@ namespace ZkManagement.Logica
        private zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
        private ControladorArchivos ca = new ControladorArchivos();
 
-        public void Conectar(string ip, int puerto)
-        {
-            bool estado = false;
-            estado = axCZKEM1.Connect_Net(ip, puerto);
-            ca.Conexion(1);
-            if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
-        }
-
         //Metodo que se ejecuta cuando el dispositivo tiene clave//
-        public void Conectar(string ip, int puerto, int llave)
+        public void Conectar(string ip, int puerto, string llave, int nroDispositivo)
         {
             bool estado;
-            axCZKEM1.SetCommPassword(llave);
+            if (llave!=string.Empty) { axCZKEM1.SetCommPassword(Convert.ToInt32(llave)); }            
             estado = axCZKEM1.Connect_Net(ip, puerto);
-            ca.Conexion(1);
+            ca.Conexion(nroDispositivo);
             if (estado==false) { throw new AppException("Error al intentar conectar con dispostivo");}
         }
 

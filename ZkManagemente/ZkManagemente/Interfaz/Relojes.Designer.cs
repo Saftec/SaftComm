@@ -54,6 +54,8 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblProgreso = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
@@ -195,7 +197,7 @@
             this.groupManuales.Controls.Add(this.btnHora);
             this.groupManuales.Controls.Add(this.btnBorrar);
             this.groupManuales.Controls.Add(this.btnDescargar);
-            this.groupManuales.Location = new System.Drawing.Point(498, 46);
+            this.groupManuales.Location = new System.Drawing.Point(537, 46);
             this.groupManuales.Name = "groupManuales";
             this.groupManuales.Size = new System.Drawing.Size(326, 55);
             this.groupManuales.TabIndex = 3;
@@ -234,7 +236,7 @@
             // 
             // btnConectar
             // 
-            this.btnConectar.Location = new System.Drawing.Point(267, 53);
+            this.btnConectar.Location = new System.Drawing.Point(288, 53);
             this.btnConectar.Name = "btnConectar";
             this.btnConectar.Size = new System.Drawing.Size(98, 45);
             this.btnConectar.TabIndex = 0;
@@ -244,7 +246,7 @@
             // 
             // btnDesconectar
             // 
-            this.btnDesconectar.Location = new System.Drawing.Point(383, 53);
+            this.btnDesconectar.Location = new System.Drawing.Point(404, 53);
             this.btnDesconectar.Name = "btnDesconectar";
             this.btnDesconectar.Size = new System.Drawing.Size(98, 45);
             this.btnDesconectar.TabIndex = 1;
@@ -303,11 +305,32 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Relojes";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(148, 449);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(596, 38);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Visible = false;
+            // 
+            // lblProgreso
+            // 
+            this.lblProgreso.AutoSize = true;
+            this.lblProgreso.Location = new System.Drawing.Point(435, 462);
+            this.lblProgreso.Name = "lblProgreso";
+            this.lblProgreso.Size = new System.Drawing.Size(21, 13);
+            this.lblProgreso.TabIndex = 7;
+            this.lblProgreso.Text = "0%";
+            this.lblProgreso.Visible = false;
+            // 
             // Relojes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.lblProgreso);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDesconectar);
@@ -358,5 +381,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lblProgreso;
     }
 }
