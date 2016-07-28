@@ -169,6 +169,7 @@
             this.btnRutinaHora.TabIndex = 1;
             this.btnRutinaHora.Text = "Sinc. Hora";
             this.btnRutinaHora.UseVisualStyleBackColor = true;
+            this.btnRutinaHora.Click += new System.EventHandler(this.btnRutinaHora_Click);
             // 
             // btnRutinaBajar
             // 
@@ -178,6 +179,7 @@
             this.btnRutinaBajar.TabIndex = 0;
             this.btnRutinaBajar.Text = "Bajar Registros";
             this.btnRutinaBajar.UseVisualStyleBackColor = true;
+            this.btnRutinaBajar.Click += new System.EventHandler(this.btnRutinaBajar_Click);
             // 
             // btnClose
             // 

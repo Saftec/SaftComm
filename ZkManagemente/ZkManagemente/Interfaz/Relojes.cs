@@ -103,7 +103,7 @@ namespace ZkManagement.Interfaz
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            string llave = ObtenerLlave();   
+            string llave = ObtenerLlave(GetId());   
             try
             {
                 if (llave!=string.Empty) { co.Conectar(GetIp(), GetPuerto(), Convert.ToInt32(llave)); }
@@ -188,11 +188,11 @@ namespace ZkManagement.Interfaz
             }
         }
 
-        private string ObtenerLlave()
+        private string ObtenerLlave(int id)
         {
             int i;
             Reloj r = new Reloj();
-            r.Id = GetId();
+            r.Id = id;
             i=relojes.IndexOf(r);
             r = relojes[i];
             return r.Clave;
@@ -202,7 +202,7 @@ namespace ZkManagement.Interfaz
         {
             AbmReloj abm = new AbmReloj();
             Reloj r = new Reloj();
-            r.Clave = ObtenerLlave();
+            r.Clave = ObtenerLlave(GetId());
             r.DNS = GetDns();
             r.Id = GetId();
             r.Ip = GetIp();
@@ -225,7 +225,7 @@ namespace ZkManagement.Interfaz
             try
             {
                 ControladorReloj cr = new ControladorReloj();
-                Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), ObtenerLlave(), GetDns(), GetIp(), GetNombre());
+                Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), ObtenerLlave(GetId()), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
                 MessageBox.Show("Dispositivo eliminado");
                 dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
@@ -234,6 +234,63 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+        }
+
+        private void btnRutinaBajar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            ControladorArchivos ca = new ControladorArchivos();
+            try
+            {
+                ca.Rutina("Inicio", "Descarga de registros");
+                int total = 0;
+                foreach (Reloj r in relojes)
+                {
+                    int cant;
+                    string llave;
+                    llave=ObtenerLlave(r.Id);
+                    if (llave == string.Empty) { co.Conectar(r.Ip, r.Puerto); }
+                    else { co.Conectar(r.Ip, r.Puerto, Convert.ToInt32(r.Clave)); }
+                    co.GetCantidadRegistros(r.Numero);
+                    cant = co.DescargarRegistros(r.Numero);
+                    co.BorrarRegistros(r.Numero);
+                    co.Desconectar();
+                    total += cant;
+                }
+                ca.Rutina("Fin", "Descarga de registros");
+                MessageBox.Show("Rutina finalizada, " + total.ToString() + " registros descargados");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error");
+                ca.Rutina("Fin", "Se produjo un error durante la rutina");
+            }
+        }
+
+        private void btnRutinaHora_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            ControladorArchivos ca = new ControladorArchivos();
+            try
+            {
+                ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
+                foreach(Reloj r in relojes)
+                {
+                    string llave;
+                    llave = ObtenerLlave(r.Id);
+                    if (llave == string.Empty) { co.Conectar(r.Ip, r.Puerto); }
+                    else { co.Conectar(r.Ip, r.Puerto, Convert.ToInt32(r.Clave)); }
+                    co.SincronizarHora(r.Numero);
+                }
+                MessageBox.Show("Rutina de sincronizacion de hora finalizada");
+                ca.Rutina("Fin", "Rutina de sincronizacion de hora");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                ca.Rutina("Fin", "Se produjo un error durante la rutina");
+            }
+            
         }
     }
 }

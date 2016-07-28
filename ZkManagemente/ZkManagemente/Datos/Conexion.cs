@@ -20,10 +20,12 @@ namespace ZkManagement.Datos
             catch (SqlException sqlex) //LOGUEAR ERRORES!
             {
                 Program.log.Info(sqlex.Message);
+                throw sqlex;
             }
             catch(Exception ex)
             {
                 Program.log.Info(ex.Message);
+                throw ex;
             }
             return conn;
         }

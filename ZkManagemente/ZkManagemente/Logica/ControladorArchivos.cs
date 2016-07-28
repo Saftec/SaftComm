@@ -49,7 +49,7 @@ namespace ZkManagement.Logica
             string path = cc.GetConfig(3);
             try
             {
-                using (StreamWriter l = File.AppendText(path + "log.txt"))
+                using (StreamWriter l = File.AppendText(path + "Log.txt"))
                     l.WriteLine(DateTime.Now.ToString() + linea);
             }
             catch (IOException ex)
