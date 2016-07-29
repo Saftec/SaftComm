@@ -44,6 +44,7 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+            Close();
             Cursor = Cursors.Default;
         }
     }

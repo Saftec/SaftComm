@@ -119,9 +119,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AppException.cs" />
-    <Compile Include="Util\DgvRelojes.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Util\UltId.cs" />
     <Compile Include="ZkManagementDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

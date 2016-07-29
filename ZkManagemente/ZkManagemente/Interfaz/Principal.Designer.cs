@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btnEmpleados));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +84,15 @@
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(462, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 47);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Empleados";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(330, 16);
@@ -111,14 +123,11 @@
             this.btnRelojes.UseVisualStyleBackColor = true;
             this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // iconoBandeja
             // 
-            this.button2.Location = new System.Drawing.Point(462, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Empleados";
-            this.button2.UseVisualStyleBackColor = true;
+            this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
+            this.iconoBandeja.Text = "notifyIcon1";
+            this.iconoBandeja.Visible = true;
             // 
             // btnEmpleados
             // 
@@ -126,6 +135,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 668);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "btnEmpleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
@@ -148,5 +158,6 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.NotifyIcon iconoBandeja;
     }
 }

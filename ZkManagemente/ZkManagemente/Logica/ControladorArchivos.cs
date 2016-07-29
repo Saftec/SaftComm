@@ -32,7 +32,7 @@ namespace ZkManagement.Logica
             }
         }
 
-        private String FormatearHora(int hora, int minutos) //LE DOY EL FORMATO CORRECTO A LA FECHA Y HORA Y CONCATENO
+        private string FormatearHora(int hora, int minutos) //LE DOY EL FORMATO CORRECTO A LA FECHA Y HORA Y CONCATENO
         {
             string linea;
             if ((hora.ToString()).Length == 1) { linea = hora.ToString().PadLeft(2, '0'); }
@@ -44,12 +44,12 @@ namespace ZkManagement.Logica
 
         #region Operaciones
 
-        private void EscribirLog(String linea)
+        private void EscribirLog(string linea)
         {
             string path = cc.GetConfig(3);
             try
             {
-                using (StreamWriter l = File.AppendText(path + "Log.txt"))
+                using (StreamWriter l = File.AppendText(path))
                     l.WriteLine(DateTime.Now.ToString() + linea);
             }
             catch (IOException ex)
@@ -58,10 +58,10 @@ namespace ZkManagement.Logica
 
         }
 
-        public void InicioSesion(String usuario)
+        public void InicioSesion(string usuario)
         {
             //VER FORMATO EN FORMATO.TXT
-            String linea;
+            string linea;
             linea = "-----------------------------------------------------------------\n";
             EscribirLog(linea);
             linea = " ---------" + " Sesión Iniciada: " + usuario.ToUpper() + " ---------" + "\n";
@@ -70,21 +70,21 @@ namespace ZkManagement.Logica
 
         public void SincronizarHora(int nroReloj)
         {
-            String linea;
+            string linea;
             linea = " Hora sincronizada con reloj: " + nroReloj;
             EscribirLog(linea);
         }
 
         public void Conexion(int nroReloj)
         {
-            String linea;
+            string linea;
             linea = " Conexión con Reloj: " + nroReloj.ToString().PadLeft(2, '0') + "\n";
             EscribirLog(linea);
         }
 
-        public void Rutina(String tipo, String rutina)
+        public void Rutina(string tipo, string rutina)
         {
-            String linea = "** " + tipo + " rutina de: " + rutina + " **";
+            string linea = "** " + tipo + " rutina de: " + rutina + " **";
             EscribirLog(linea);
         }
 
@@ -104,7 +104,7 @@ namespace ZkManagement.Logica
 
         public void BorradoRegistros(int cantidad)
         {
-            String linea;
+            string linea;
             linea = " Se borraron: " + cantidad.ToString() + " registros";
             EscribirLog(linea);
         }

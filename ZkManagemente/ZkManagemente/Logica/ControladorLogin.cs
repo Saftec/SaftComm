@@ -10,9 +10,9 @@ namespace ZkManagement.Logica
     class ControladorLogin
     {
         private CatalogoUsuarios cu = new CatalogoUsuarios();
+        private Usuario usr = new Usuario();
         public void ValidarUsuario(Usuario usuario)
-        {
-            Usuario usr = new Usuario();           
+        {                       
             ControladorArchivos ca = new ControladorArchivos();
             try
             {
@@ -43,6 +43,19 @@ namespace ZkManagement.Logica
                 throw ex;
             }
             return usuarios;
+        }
+
+        public void AgregarUsuario(Usuario usr)
+        {
+            try
+            {
+                cu.AltaUsuario(usr);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public bool CheckConexion()

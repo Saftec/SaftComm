@@ -1,0 +1,7 @@
+*Log4Net y loguear errores. (cargado pero no loguea)
+*Funciones avanzadas sobre relojes. (Falta borrar admin's)
+*Actualizar DGV despues de altas y modificaciones.
+*Progressbar para descarga de regs.
+*Archivos de regs a server FTP.
+*Ejecución de rutinas automatica.
+*Minizar a la bandeja tray.

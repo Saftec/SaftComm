@@ -39,6 +39,7 @@
             this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DNS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbxRutinas = new System.Windows.Forms.GroupBox();
             this.btnRutinaHora = new System.Windows.Forms.Button();
             this.btnRutinaBajar = new System.Windows.Forms.Button();
@@ -56,10 +57,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblProgreso = new System.Windows.Forms.Label();
+            this.btnReiniciar = new System.Windows.Forms.Button();
+            this.btnInicializar = new System.Windows.Forms.Button();
+            this.btnAdmin = new System.Windows.Forms.Button();
+            this.groupAvanzadas = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupAvanzadas.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvRelojes
@@ -77,7 +83,8 @@
             this.Modelo,
             this.Mac,
             this.DNS,
-            this.Id});
+            this.Id,
+            this.Clave});
             this.dgvRelojes.Location = new System.Drawing.Point(24, 116);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
@@ -151,6 +158,13 @@
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Visible = false;
             // 
             // gpbxRutinas
             // 
@@ -259,7 +273,7 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Location = new System.Drawing.Point(298, 343);
+            this.groupBox1.Location = new System.Drawing.Point(281, 341);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(290, 47);
             this.groupBox1.TabIndex = 4;
@@ -307,7 +321,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(148, 449);
+            this.progressBar1.Location = new System.Drawing.Point(148, 401);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(596, 38);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -317,18 +331,60 @@
             // lblProgreso
             // 
             this.lblProgreso.AutoSize = true;
-            this.lblProgreso.Location = new System.Drawing.Point(435, 462);
+            this.lblProgreso.Location = new System.Drawing.Point(435, 416);
             this.lblProgreso.Name = "lblProgreso";
             this.lblProgreso.Size = new System.Drawing.Size(21, 13);
             this.lblProgreso.TabIndex = 7;
             this.lblProgreso.Text = "0%";
             this.lblProgreso.Visible = false;
             // 
+            // btnReiniciar
+            // 
+            this.btnReiniciar.Location = new System.Drawing.Point(19, 19);
+            this.btnReiniciar.Name = "btnReiniciar";
+            this.btnReiniciar.Size = new System.Drawing.Size(123, 23);
+            this.btnReiniciar.TabIndex = 8;
+            this.btnReiniciar.Text = "Reiniciar Dispositivo";
+            this.btnReiniciar.UseVisualStyleBackColor = true;
+            this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
+            // 
+            // btnInicializar
+            // 
+            this.btnInicializar.Location = new System.Drawing.Point(179, 19);
+            this.btnInicializar.Name = "btnInicializar";
+            this.btnInicializar.Size = new System.Drawing.Size(122, 23);
+            this.btnInicializar.TabIndex = 9;
+            this.btnInicializar.Text = "Inicializar Dispositivo";
+            this.btnInicializar.UseVisualStyleBackColor = true;
+            this.btnInicializar.Click += new System.EventHandler(this.btnInicializar_Click);
+            // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Location = new System.Drawing.Point(335, 19);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(122, 23);
+            this.btnAdmin.TabIndex = 10;
+            this.btnAdmin.Text = "Eliminar Admins.";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            // 
+            // groupAvanzadas
+            // 
+            this.groupAvanzadas.Controls.Add(this.btnReiniciar);
+            this.groupAvanzadas.Controls.Add(this.btnAdmin);
+            this.groupAvanzadas.Controls.Add(this.btnInicializar);
+            this.groupAvanzadas.Location = new System.Drawing.Point(198, 461);
+            this.groupAvanzadas.Name = "groupAvanzadas";
+            this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
+            this.groupAvanzadas.TabIndex = 11;
+            this.groupAvanzadas.TabStop = false;
+            this.groupAvanzadas.Text = "Avanzadas";
+            // 
             // Relojes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.groupAvanzadas);
             this.Controls.Add(this.lblProgreso);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
@@ -348,6 +404,7 @@
             this.gpbxRutinas.ResumeLayout(false);
             this.groupManuales.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupAvanzadas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,6 +428,8 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lblProgreso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;
@@ -381,7 +440,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lblProgreso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Button btnInicializar;
+        private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.GroupBox groupAvanzadas;
     }
 }

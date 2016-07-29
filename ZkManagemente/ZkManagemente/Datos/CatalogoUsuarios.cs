@@ -45,8 +45,6 @@ namespace ZkManagement.Datos
         public List<Usuario> GetUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
-
-            conn = con.Conectar();
             try
             {
                 conn = con.Conectar();
@@ -57,8 +55,9 @@ namespace ZkManagement.Datos
                     Usuario usr = new Usuario();
                     usr.Usr = (dr["Usuario"].ToString());
                     usr.Pass = (dr["Password"].ToString());
-                    usr.Nivel = Convert.ToInt32((dr["idPermisos"]));
+                    usr.Nivel = Convert.ToInt32(dr["idPermisos"]);
                     usr.Permisos = (dr["Permisos"].ToString());
+                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usuarios.Add(usr);                  
                 }
                 dr.Close();
@@ -73,6 +72,42 @@ namespace ZkManagement.Datos
             }
             conn.Close();
             return usuarios;
+        }
+
+        public void AltaUsuario(Usuario usr)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')", conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error al intentar dar de alta el empelado");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al intentar dar de alta el empelado");
+            }
+            conn.Close();
+        }
+
+        public void ModifUsuario(Usuario usr)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Usuario='" + usr.Usr + "' Password='" + usr.Pass + "' IdPermisos='" + usr.Nivel.ToString() + "' WHERE IdUsuario='" + usr.Id.ToString()+"'"); //FALTA TERMINAR SENTENCIA!!
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error al intentar modificar usuario");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al intentar modificar usuario");
+            }
         }
     }
 }

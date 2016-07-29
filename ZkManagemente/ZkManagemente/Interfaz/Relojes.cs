@@ -23,10 +23,12 @@ namespace ZkManagement.Interfaz
         }
 
         public void CargarDataGridView()
-        {
+        {            
             ControladorReloj cr = new ControladorReloj();
             dgvRelojes.DataSource = null;
             dgvRelojes.Rows.Clear();
+            dgvRelojes.Refresh();
+            dgvRelojes.Update();
             try
             {
                 relojes = cr.TodosRelojes();
@@ -39,7 +41,7 @@ namespace ZkManagement.Interfaz
 
             foreach (Reloj reloj in relojes)
             {
-                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id,reloj.Clave);
+                dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id, reloj.Clave);
             }
         }
 
@@ -202,28 +204,10 @@ namespace ZkManagement.Interfaz
             }
             Cursor = Cursors.Default;
         }
-
-        private string ObtenerLlave(int id)
-        {
-            int i;
-            Reloj r = new Reloj();
-            r.Id = id;
-            i=relojes.IndexOf(r);
-            r = relojes[i];
-            return r.Clave;
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             AbmReloj abm = new AbmReloj();
-            Reloj r = new Reloj();
-            r.Clave = ObtenerLlave(GetId());
-            r.DNS = GetDns();
-            r.Id = GetId();
-            r.Ip = GetIp();
-            r.Nombre = GetNombre();
-            r.Numero = GetNumero();
-            r.Puerto = GetPuerto();
+            Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
             abm.Editar(r);
             abm.ShowDialog(this);
         }
@@ -236,13 +220,13 @@ namespace ZkManagement.Interfaz
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea eliminar el reloj?", "Baja dispositivos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            if (Preguntar()) { return; }
             try
             {
                 ControladorReloj cr = new ControladorReloj();
-                Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), ObtenerLlave(GetId()), GetDns(), GetIp(), GetNombre());
+                Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
-                MessageBox.Show("Dispositivo eliminado");
+                MessageBox.Show("Equipo eliminado","Baja");
                 dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
             }
             catch(Exception ex)
@@ -253,7 +237,7 @@ namespace ZkManagement.Interfaz
 
         private void btnRutinaBajar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            if (Preguntar()) { return; }
             Cursor = Cursors.WaitCursor; //Cursor de espera
             ControladorArchivos ca = new ControladorArchivos();
             try
@@ -264,7 +248,7 @@ namespace ZkManagement.Interfaz
                 {
                     int cant;
                     string llave;
-                    llave=ObtenerLlave(r.Id);
+                    llave = GetClave();
                     { co.Conectar(r.Ip, r.Puerto, llave, GetNumero()); }                    
                     co.GetCantidadRegistros(r.Numero);
                     cant = co.DescargarRegistros(r.Numero);
@@ -283,9 +267,15 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.Default; //Cursor normal 
         }
 
+        private bool Preguntar()
+        {
+            if (MessageBox.Show("Esta seguro que desea realizar la accion?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            { return true; }
+            else { return false; }
+        }
         private void btnRutinaHora_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea ejecutar la rutina?", "Rutinas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) { return; }
+            if (Preguntar()) { return; }
             Cursor = Cursors.WaitCursor;
             ControladorArchivos ca = new ControladorArchivos();
             try
@@ -294,7 +284,7 @@ namespace ZkManagement.Interfaz
                 foreach(Reloj r in relojes)
                 {
                     string llave;
-                    llave = ObtenerLlave(r.Id);                 
+                    llave = GetClave();                 
                     co.Conectar(r.Ip, r.Puerto, r.Clave, GetNumero() ); 
                     co.SincronizarHora(r.Numero);
                 }
@@ -307,6 +297,44 @@ namespace ZkManagement.Interfaz
                 ca.Rutina("Fin", "Se produjo un error durante la rutina");
             }
             Cursor = Cursors.Default;
+        }
+
+        private void btnReiniciar_Click(object sender, EventArgs e)
+        {
+            if (ValidarConexion()) { return; }
+            if (Preguntar()) { return; }
+            try
+            {
+                co.Reiniciar(GetNumero());
+                MessageBox.Show("Reinicio OK.", "Reiniciar dispositivos");
+            }
+            catch (AppException appex)
+            {
+                MessageBox.Show(appex.Message, "Error");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Error totalmente desconocido al intentar reiniciar el dispositivo.","Error");
+            }
+        }
+
+        private void btnInicializar_Click(object sender, EventArgs e)
+        {
+            if (ValidarConexion()) { return; }
+            if (Preguntar()) { return; }
+            try
+            {
+                co.Inicializar(GetNumero());
+                MessageBox.Show("Inicializacion OK.", "Incializar dispositivo");
+            }
+            catch (AppException appex)
+            {
+                MessageBox.Show(appex.Message, "Error");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error totalmente desconocido al intentar inicializar el dispositivo", "Error");
+            }
         }
     }
 }

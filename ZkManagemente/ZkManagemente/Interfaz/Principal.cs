@@ -22,6 +22,19 @@ namespace ZkManagement.Interfaz
             //Hasta aca
         }
 
+        private void Principal_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)  //SI MINIZO LA VENTANA, MUESTRO EL ÍCONO DE LA APP EN LA BANDEJA
+            {
+                Hide();
+                iconoBandeja.Visible = true;
+            }
+            else
+            {
+                iconoBandeja.Visible = false;
+            }
+
+        }
         internal void SetPermisos(Usuario usuario)
         {
             ControladorConfiguraciones cc = new ControladorConfiguraciones();

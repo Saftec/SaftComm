@@ -86,6 +86,29 @@ namespace ZkManagement.Logica
             return mac;
         }
 
+        public void Reiniciar(int nroReloj)
+        {
+            int error = 0;
+            axCZKEM1.GetLastError(error);
+            if (axCZKEM1.RestartDevice(nroReloj)!=true) { throw new AppException("Error al intentar reiniciar el dispositivo, error: "+error.ToString()); }
+        }
+
+        public void Inicializar(int nroReloj)
+        {
+            if (axCZKEM1.ClearKeeperData(nroReloj) != true)
+            {
+                int error = 0;
+                axCZKEM1.GetLastError(error);
+                throw new AppException("Error al intentar inicializar el dispositivo, error: "+error.ToString());
+            }
+            axCZKEM1.RefreshData(nroReloj); //Refresh a los datos del equipo.
+        }
+
+        public void EliminarAdmin(int nroReloj)
+        {
+
+        }
+
         //DESCARGA DE REGISTROS!!//
         public int DescargarRegistros(int nroReloj)
         {

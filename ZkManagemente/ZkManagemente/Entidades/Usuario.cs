@@ -1,19 +1,39 @@
 ﻿
 namespace ZkManagement.Entidades
 {
-    class Usuario
+    public class Usuario
     {
         private string _usr;
         private string _pass;
         private int _nivel;
+        private int _id;
         private string _permisos;
 
+        //CONSTRUCTORES
+        public Usuario(string usr, string pass,int nivel, int id)
+        {           
+            Usr = usr;
+            Pass = pass;
+            Nivel = nivel;
+            Id = id;
+        }
+
+        public Usuario()
+        {
+        }
+
+        //PROPIEDADES
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
         public int Nivel
         {
             get { return _nivel; }
             set { _nivel = value; }
         }
-
 
         public string Pass
         {
