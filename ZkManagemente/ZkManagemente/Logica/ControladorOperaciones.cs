@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using ZkManagement.Datos;
 using ZkManagement.Util;
 
 namespace ZkManagement.Logica
@@ -167,7 +168,8 @@ namespace ZkManagement.Logica
             }
             ca.DescargaRegistros(count);
             axCZKEM1.EnableDevice(nroReloj, true);
-          //  cr.GuardarRegis(regis);
+            ControladorRegistros cr = new ControladorRegistros();
+            cr.AparearRegis(regis);
             return count;
         }
 

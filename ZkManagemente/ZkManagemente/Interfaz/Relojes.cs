@@ -25,24 +25,24 @@ namespace ZkManagement.Interfaz
         public void CargarDataGridView()
         {            
             ControladorReloj cr = new ControladorReloj();
-            dgvRelojes.DataSource = null;
-            dgvRelojes.Rows.Clear();
-            dgvRelojes.Refresh();
-            dgvRelojes.Update();
+            relojes.Clear();
+            dgvRelojes.Rows.Clear();         
             try
             {
-                relojes = cr.TodosRelojes();
+                relojes = cr.TodosRelojes();               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-
             foreach (Reloj reloj in relojes)
             {
                 dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id, reloj.Clave);
             }
+            dgvRelojes.Refresh();
+            dgvRelojes.Update();
+
         }
 
         private void Relojes_Load(object sender, EventArgs e)
@@ -335,6 +335,10 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show("Error totalmente desconocido al intentar inicializar el dispositivo", "Error");
             }
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
         }
     }
 }

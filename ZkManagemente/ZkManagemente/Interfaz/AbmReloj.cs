@@ -36,9 +36,9 @@ namespace ZkManagement.Interfaz
             try
             {
                 cr.ModifReloj(r);
-                MessageBox.Show("Cambios guardados");
                 Relojes relojes = new Relojes();
                 relojes.CargarDataGridView();
+                MessageBox.Show("Cambios guardados");
             }
             catch (Exception ex)
             {

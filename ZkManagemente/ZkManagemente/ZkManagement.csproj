@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
+    <Compile Include="Datos\CatalogoRegistros.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorOperaciones.cs" />
+    <Compile Include="Logica\ControladorRegistros.cs" />
     <Compile Include="Logica\ControladorReloj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

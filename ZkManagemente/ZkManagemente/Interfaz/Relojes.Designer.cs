@@ -366,6 +366,7 @@
             this.btnAdmin.TabIndex = 10;
             this.btnAdmin.Text = "Eliminar Admins.";
             this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
             // groupAvanzadas
             // 
