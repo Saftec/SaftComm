@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -8,6 +9,7 @@ namespace ZkManagement.Interfaz
 {
     public partial class Login : Form
     {
+        private static readonly ILog lLog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public Login()
         {
             InitializeComponent();

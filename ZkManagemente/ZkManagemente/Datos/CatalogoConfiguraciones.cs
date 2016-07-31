@@ -42,12 +42,10 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                Program.log.Error(sqlEx.StackTrace);
                 throw new Exception("Error al actualizar la tabla configuracion");
             }
             catch(Exception ex)
             {
-                Program.log.Error(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla configuracion");
             }
             conn.Close();

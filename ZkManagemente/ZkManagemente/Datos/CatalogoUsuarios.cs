@@ -30,12 +30,10 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                Program.log.Error(sqlEx.Message);
                 throw new Exception("Error al consultar datos de usuario");
             }
             catch(Exception ex)
             {
-                Program.log.Error(ex.Message);
                 throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
