@@ -14,8 +14,15 @@ namespace ZkManagement.Interfaz
         }
             private void CargarConfigs()
         {
-            textPathRegs.Text = cc.GetConfig(2);
-            textPathLog.Text = cc.GetConfig(3);
+            string valor;
+            txtPathRegs.Text = cc.GetConfig(2);
+            txtPathLog.Text = cc.GetConfig(3);
+            txtMinRegs.Text = cc.GetConfig(5);
+            txtMinRegs.Text = cc.GetConfig(8);
+            valor = cc.GetConfig(4);
+            if (valor=="S") { chckActivaReg.Checked = true; }
+            valor = cc.GetConfig(7);
+            if (valor=="S") { chckActivaReg.Checked = true; }
         }
 
         private void btnClose_Click(object sender, System.EventArgs e)
@@ -27,8 +34,8 @@ namespace ZkManagement.Interfaz
         {
             try
             {
-                cc.SetConfig(2, textPathRegs.Text);
-                cc.SetConfig(3, textPathLog.Text);
+                cc.SetConfig(2, txtPathRegs.Text);
+                cc.SetConfig(3, txtPathLog.Text);
                 MessageBox.Show("Actualizacion grabada");
             }
             catch(Exception ex)

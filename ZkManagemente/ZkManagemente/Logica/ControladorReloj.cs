@@ -48,5 +48,19 @@ namespace ZkManagement.Logica
                 throw ex;
             }
         }
+
+        public void ActualizarBorrado(int idReloj, int cantidad)
+        {
+            DateTime fecha = DateTime.Now;
+            ControladorLogin cl = new ControladorLogin();
+            try
+            {
+                cr.SetBorrado(cl.GetUsrId(), idReloj, cantidad, fecha);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

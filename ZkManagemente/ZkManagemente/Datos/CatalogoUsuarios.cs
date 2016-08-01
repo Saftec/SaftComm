@@ -16,11 +16,13 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Usuario, Password FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';", conn);
+                SqlCommand cmd = new SqlCommand("SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';", conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                usr.Usr=(dr["Usuario"].ToString());
+                usr.Usr = (dr["Usuario"].ToString());
                 usr.Pass = (dr["Password"].ToString());
+                usr.Id = Convert.ToInt32(dr["IdUsuario"]);
+                usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                 dr.Close();
             }
 
@@ -34,7 +36,7 @@ namespace ZkManagement.Datos
             }
             catch(Exception)
             {
-                throw new Exception("Error desconocido al consultar datos de usuario");
+               throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
             return usr;
@@ -53,7 +55,7 @@ namespace ZkManagement.Datos
                     Usuario usr = new Usuario();
                     usr.Usr = (dr["Usuario"].ToString());
                     usr.Pass = (dr["Password"].ToString());
-                    usr.Nivel = Convert.ToInt32(dr["idPermisos"]);
+                    usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                     usr.Permisos = (dr["Permisos"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usuarios.Add(usr);                  

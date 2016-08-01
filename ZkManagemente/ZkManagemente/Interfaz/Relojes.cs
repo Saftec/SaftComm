@@ -125,7 +125,7 @@ namespace ZkManagement.Interfaz
                 co.Conectar(GetIp(), GetPuerto(), llave, GetNumero());                             
                 SetEstado("Conectado");
                 SetMac(co.GetMac(GetNumero()));
-                SetModelo(co.GetMac(GetNumero()));
+                SetModelo(co.GetModelo(GetNumero()));
             }
             catch(AppException appex)
             {
@@ -157,13 +157,22 @@ namespace ZkManagement.Interfaz
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (ValidarConexion()) { return; }
+            Cursor = Cursors.WaitCursor;
             try
             {
+                int cantidad;
+                cantidad = co.GetCantidadRegistros(GetNumero());
                 co.BorrarRegistros(GetNumero());
+                Borrado(GetId(), cantidad);
+                MessageBox.Show(cantidad.ToString() + " registros eliminados.");
             }
             catch(AppException appex)
             {
                 MessageBox.Show(appex.Message, "Error");
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
 
@@ -184,7 +193,7 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show("El dispositivo está desconectado", "Error");
                 return;
             }
-            co.Desconectar();
+            co.Desconectar(GetNumero());
             SetEstado("Desconectado");
         }
 
@@ -247,13 +256,11 @@ namespace ZkManagement.Interfaz
                 foreach (Reloj r in relojes)
                 {
                     int cant;
-                    string llave;
-                    llave = GetClave();
-                    { co.Conectar(r.Ip, r.Puerto, llave, GetNumero()); }                    
-                    co.GetCantidadRegistros(r.Numero);
+                    co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);                    
                     cant = co.DescargarRegistros(r.Numero);
                     co.BorrarRegistros(r.Numero);
-                    co.Desconectar();
+                    Borrado(r.Id, cant);
+                    co.Desconectar(r.Numero);
                     total += cant;
                 }
                 ca.Rutina("Fin", "Descarga de registros");
@@ -299,6 +306,18 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.Default;
         }
 
+        private void Borrado(int idReloj, int cant)
+        {
+            ControladorReloj cr = new ControladorReloj();
+            try
+            {
+                cr.ActualizarBorrado(idReloj, cant);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }            
+        }
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             if (ValidarConexion()) { return; }

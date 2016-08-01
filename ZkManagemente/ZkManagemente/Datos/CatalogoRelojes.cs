@@ -51,7 +51,7 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Relojes VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch (SqlException)
             {
                 throw new Exception("Error al intentar agregar el reloj");
             }
@@ -98,6 +98,30 @@ namespace ZkManagement.Datos
                 throw new Exception("Error desconocido al intentar eliminar el reloj");
             }
             conn.Close();
+        }
+
+        public void SetBorrado(int idUsuario, int idReloj, int cantidad, DateTime fecha)
+        {
+
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Borrado VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:MM:ss") + "')",conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+                //throw new Exception("Error al actualizar la tabla borrado");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

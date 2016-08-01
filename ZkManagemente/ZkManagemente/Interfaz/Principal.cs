@@ -54,6 +54,7 @@ namespace ZkManagement.Interfaz
         private void button1_Click(object sender, EventArgs e)
         {
             Relojes relojes = new Relojes();
+            ControladorLogin cl = new ControladorLogin();
             relojes.ShowDialog(this);           
         }
 

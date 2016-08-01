@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using ZkManagement.Datos;
 using ZkManagement.Util;
 
 namespace ZkManagement.Logica
@@ -20,9 +19,9 @@ namespace ZkManagement.Logica
             if (estado==false) { throw new AppException("Error al intentar conectar con dispostivo");}
         }
 
-        public void Desconectar()
+        public void Desconectar(int nroReloj)
         {
-            ca.Desconectar(1);
+            ca.Desconectar(nroReloj);
             axCZKEM1.Disconnect();
         }
 
@@ -168,8 +167,8 @@ namespace ZkManagement.Logica
             }
             ca.DescargaRegistros(count);
             axCZKEM1.EnableDevice(nroReloj, true);
-            ControladorRegistros cr = new ControladorRegistros();
-            cr.AparearRegis(regis);
+          //  ControladorRegistros cr = new ControladorRegistros();
+         //   cr.AparearRegis(regis);
             return count;
         }
 

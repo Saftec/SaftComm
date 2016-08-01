@@ -7,10 +7,11 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
+    
     class ControladorLogin
     {
         private CatalogoUsuarios cu = new CatalogoUsuarios();
-        private Usuario usr = new Usuario();
+        private static Usuario usr = new Usuario();
         public void ValidarUsuario(Usuario usuario)
         {                       
             ControladorArchivos ca = new ControladorArchivos();
@@ -45,13 +46,13 @@ namespace ZkManagement.Logica
             return usuarios;
         }
 
-        public void ModificarUsuario(Usuario usr)
+        public void ModificarUsuario(Usuario usuario)
         {
-            if (usr.Id==0)
+            if (usuario.Id==0)
             {
                 try
                 {
-                    cu.AltaUsuario(usr);
+                    cu.AltaUsuario(usuario);
                 }
                 catch (Exception ex)
                 {
@@ -62,7 +63,7 @@ namespace ZkManagement.Logica
             {
                 try
                 {
-                    cu.ModifUsuario(usr);
+                    cu.ModifUsuario(usuario);
                 }
                 catch(Exception ex)
                 {
@@ -72,11 +73,11 @@ namespace ZkManagement.Logica
             
         }
 
-        public void EliminarUsuario(Usuario usr)
+        public void EliminarUsuario(Usuario usuario)
         {
             try
             {
-                cu.EliminarUsuario(usr);
+                cu.EliminarUsuario(usuario);
             }
             catch(Exception ex)
             {
@@ -96,6 +97,10 @@ namespace ZkManagement.Logica
                 throw ex;
             }
             
+        }
+        public int GetUsrId()
+        {
+            return usr.Id;
         }
     }
 }

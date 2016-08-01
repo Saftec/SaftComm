@@ -111,7 +111,7 @@ namespace ZkManagement.Logica
 
         public void Desconectar(int nroReloj)
         {
-            string linea = " Reloj " + nroReloj.ToString() + " desconectado.";
+            string linea = " Reloj " + nroReloj.ToString().PadLeft(2,'0') + " desconectado.";
             EscribirLog(linea);
         }
         #endregion
