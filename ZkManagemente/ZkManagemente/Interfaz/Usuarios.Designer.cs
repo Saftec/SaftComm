@@ -30,17 +30,25 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Permisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.groupModificar = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboPermisos = new System.Windows.Forms.ComboBox();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnNuevo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupModificar.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -63,54 +71,15 @@
             this.Nivel,
             this.Permisos,
             this.Id});
-            this.dgvUsuarios.Location = new System.Drawing.Point(201, 107);
+            this.dgvUsuarios.Location = new System.Drawing.Point(201, 98);
             this.dgvUsuarios.MultiSelect = false;
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(449, 150);
             this.dgvUsuarios.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Controls.Add(this.btnEditar);
-            this.groupBox1.Location = new System.Drawing.Point(217, 307);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(423, 80);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Modificar Usuarios";
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(291, 29);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(111, 31);
-            this.btnEliminar.TabIndex = 4;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(19, 29);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(111, 31);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(157, 29);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(111, 31);
-            this.btnEditar.TabIndex = 3;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
+            this.dgvUsuarios.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
             // 
             // Usuario
             // 
@@ -144,12 +113,135 @@
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(238, 280);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(111, 31);
+            this.btnEliminar.TabIndex = 4;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(381, 280);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(111, 32);
+            this.btnEditar.TabIndex = 3;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Enabled = false;
+            this.txtUsuario.Location = new System.Drawing.Point(71, 36);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(149, 20);
+            this.txtUsuario.TabIndex = 3;
+            // 
+            // groupModificar
+            // 
+            this.groupModificar.Controls.Add(this.btnCancelar);
+            this.groupModificar.Controls.Add(this.btnGuardar);
+            this.groupModificar.Controls.Add(this.label3);
+            this.groupModificar.Controls.Add(this.comboPermisos);
+            this.groupModificar.Controls.Add(this.txtContraseña);
+            this.groupModificar.Controls.Add(this.label2);
+            this.groupModificar.Controls.Add(this.label1);
+            this.groupModificar.Controls.Add(this.txtUsuario);
+            this.groupModificar.Location = new System.Drawing.Point(179, 328);
+            this.groupModificar.Name = "groupModificar";
+            this.groupModificar.Size = new System.Drawing.Size(503, 185);
+            this.groupModificar.TabIndex = 4;
+            this.groupModificar.TabStop = false;
+            this.groupModificar.Text = "Modificar Usuarios";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(48, 134);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(111, 32);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(360, 134);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(111, 32);
+            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(158, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Permisos:";
+            // 
+            // comboPermisos
+            // 
+            this.comboPermisos.Enabled = false;
+            this.comboPermisos.FormattingEnabled = true;
+            this.comboPermisos.Location = new System.Drawing.Point(216, 81);
+            this.comboPermisos.Name = "comboPermisos";
+            this.comboPermisos.Size = new System.Drawing.Size(121, 21);
+            this.comboPermisos.TabIndex = 7;
+            // 
+            // txtContraseña
+            // 
+            this.txtContraseña.Enabled = false;
+            this.txtContraseña.Location = new System.Drawing.Point(323, 35);
+            this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
+            this.txtContraseña.Size = new System.Drawing.Size(174, 20);
+            this.txtContraseña.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(252, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Contraseña:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Usuario:";
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(524, 280);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(111, 32);
+            this.btnNuevo.TabIndex = 5;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnNuevo);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.groupModificar);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -158,7 +250,8 @@
             this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.Usuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.groupModificar.ResumeLayout(false);
+            this.groupModificar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -167,14 +260,22 @@
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvUsuarios;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nivel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Permisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.GroupBox groupModificar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboPermisos;
+        private System.Windows.Forms.TextBox txtContraseña;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

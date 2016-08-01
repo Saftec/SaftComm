@@ -28,11 +28,11 @@ namespace ZkManagement.Datos
             {
                 throw new AppException("Usuario incorrecto");
             }
-            catch(SqlException sqlEx)
+            catch(SqlException)
             {
                 throw new Exception("Error al consultar datos de usuario");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw new Exception("Error desconocido al consultar datos de usuario");
             }
@@ -66,7 +66,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception)
             {
-                throw new Exception("Error desconocido al consultar los datos de usuario");
+               throw new Exception("Error desconocido al consultar los datos de usuario");
             }
             conn.Close();
             return usuarios;
@@ -96,16 +96,37 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Usuario='" + usr.Usr + "' Password='" + usr.Pass + "' IdPermisos='" + usr.Nivel.ToString() + "' WHERE IdUsuario='" + usr.Id.ToString()+"'"); //FALTA TERMINAR SENTENCIA!!
+                SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString(),conn);
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException)
             {
                 throw new Exception("Error al intentar modificar usuario");
             }
-            catch (Exception)
+            catch (Exception )
             {
                 throw new Exception("Error desconocido al intentar modificar usuario");
             }
+            conn.Close();
+        }
+
+        public void EliminarUsuario(Usuario usr)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException)
+            {
+                throw new Exception("Error al intentar eliminar el usuario");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al intentar eliminar el usuario");
+            }
+            conn.Close();
         }
     }
 }

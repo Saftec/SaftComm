@@ -45,17 +45,43 @@ namespace ZkManagement.Logica
             return usuarios;
         }
 
-        public void AgregarUsuario(Usuario usr)
+        public void ModificarUsuario(Usuario usr)
+        {
+            if (usr.Id==0)
+            {
+                try
+                {
+                    cu.AltaUsuario(usr);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                try
+                {
+                    cu.ModifUsuario(usr);
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            
+        }
+
+        public void EliminarUsuario(Usuario usr)
         {
             try
             {
-                cu.AltaUsuario(usr);
+                cu.EliminarUsuario(usr);
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            
         }
 
         public bool CheckConexion()

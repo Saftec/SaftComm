@@ -8,6 +8,7 @@ namespace ZkManagement.Interfaz
 {
     public partial class Usuarios : Form
     {
+        Usuario usuario = new Usuario();
         public Usuarios()
         {
             InitializeComponent();
@@ -20,63 +21,155 @@ namespace ZkManagement.Interfaz
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            CargarDGV();
+            LlenarCombo();
+            CargarDGV();            
         }
-        public void CargarDGV()
+
+        //Devuelve el ID de la celda seleccionada
+        private int GetId()
+        {
+            return Convert.ToInt32((dgvUsuarios.CurrentRow.Cells[4].Value));
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {           
+        }
+
+        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarFormulario();
+        }
+
+        #region formulario
+        private void Editable()
+        {
+            txtUsuario.Enabled = true;
+            txtContraseña.Enabled = true;
+            comboPermisos.Enabled = true;
+        }
+
+        private void LimpiarTextBox()
+        {
+            txtUsuario.Text = string.Empty;
+            txtContraseña.Text = string.Empty;
+            comboPermisos.SelectedIndex = -1;
+        }
+
+        private void NoEditable()
+        {
+            LimpiarTextBox();
+            txtUsuario.Enabled = false;
+            txtContraseña.Enabled = false;
+            comboPermisos.Enabled = false;
+        }
+
+        private void ActualizarFormulario()
+        {
+            txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usuario"].Value.ToString();
+            txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
+            comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Nivel"].Value)) - 1);
+        }
+
+        private bool ValidarDatos()
+        {
+            if (txtContraseña.Text == string.Empty || txtUsuario.Text == string.Empty || comboPermisos.SelectedIndex == -1) { return false; }
+            else { return true; }
+        }
+        #endregion
+
+        #region botones
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarDatos())
+            {
+                MessageBox.Show("Por favor complete todos los datos.", "Error");
+                return;
+            }
+            ControladorLogin cl = new ControladorLogin();
+            usuario.Nivel = comboPermisos.SelectedIndex + 1;
+            usuario.Pass = txtContraseña.Text;
+            usuario.Usr = txtUsuario.Text;
+            try
+            {
+                cl.ModificarUsuario(usuario);
+                LimpiarTextBox();
+                NoEditable();
+                CargarDGV();
+                MessageBox.Show("Modificacion OK");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+        //BOTON "Nuevo"
+        private void button1_Click(object sender, EventArgs e)
+        {
+            usuario.Id = 0;
+            LimpiarTextBox();
+            Editable();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            NoEditable();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            usuario.Id = GetId();
+            Editable();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Esta seguro que desea eliminar el usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+            ControladorLogin cl = new ControladorLogin();
+            try
+            {
+                Usuario usr = new Usuario();
+                usr.Id = GetId();
+                cl.EliminarUsuario(usr);
+                dgvUsuarios.Rows.RemoveAt(dgvUsuarios.CurrentRow.Index);
+                MessageBox.Show("Usuario eliminado correctamente.", "Baja");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+        #endregion
+
+        #region incializacion
+        private void LlenarCombo()
+        {
+            comboPermisos.Items.Add("1 - Administrador");
+            comboPermisos.Items.Add("2 - Supervisor");
+            comboPermisos.Items.Add("3 - Operador");
+        }
+
+        private void CargarDGV()
         {
             List<Usuario> usuarios = new List<Usuario>();
             ControladorLogin cl = new ControladorLogin();
-
-            dgvUsuarios.DataSource = null;
             dgvUsuarios.Rows.Clear();
             try
             {
                 usuarios = cl.GetUsuarios();
                 foreach (Usuario usuario in usuarios)
                 {
-                    dgvUsuarios.Rows.Add(usuario.Usr, usuario.Pass, usuario.Nivel, usuario.Permisos,usuario.Id);
+                    dgvUsuarios.Rows.Add(usuario.Usr, usuario.Pass, usuario.Nivel, usuario.Permisos, usuario.Id);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error");
+                MessageBox.Show(ex.Message, "Error");
             }
         }
-
-        #region DataGridView
-        private string GetUsr()
-        {
-            return (dgvUsuarios.CurrentRow.Cells[0].Value).ToString();
-        }
-
-        private string GetPsw()
-        {
-            return (dgvUsuarios.CurrentRow.Cells[1].Value).ToString();
-        }
-
-        private int GetNivel()
-        {
-            return Convert.ToInt32((dgvUsuarios.CurrentRow.Cells[2].Value));
-        }
-        private int GetId()
-        {
-            return Convert.ToInt32((dgvUsuarios.CurrentRow.Cells[3].Value));
-        }
-
         #endregion
 
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            AbmUsuarios abm = new AbmUsuarios();
-            abm.ShowDialog(this);
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Usuario usuario = new Usuario(GetUsr(),GetPsw(),GetNivel(),GetId());
-            AbmUsuarios abm = new AbmUsuarios();
-            abm.Editar(usuario); //Siempre cargar los datos antes de llamar al ShowDialog();
-            abm.ShowDialog(this);
-        }
     }
 }
