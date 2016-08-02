@@ -98,7 +98,7 @@ namespace ZkManagement.Logica
             ControladorConfiguraciones cc = new ControladorConfiguraciones();
             string path = cc.GetConfig(2);
             string linea;
-            linea = " Se descargaron:" + cantidad.ToString() + " registraciones al archivo: " + path;
+            linea = " Se descargaron: " + cantidad.ToString() + " registraciones al archivo: " + path;
             EscribirLog(linea);
         }
 

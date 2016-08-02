@@ -153,57 +153,13 @@ namespace ZkManagement.Interfaz
         private void btnRutinaBajar_Click(object sender, EventArgs e)
         {
             if (Preguntar()) { return; }
-            Cursor = Cursors.WaitCursor; //Cursor de espera
-            ControladorArchivos ca = new ControladorArchivos();
-            try
-            {
-                ca.Rutina("Inicio", "Descarga de registros");
-                int total = 0;
-                foreach (Reloj r in relojes)
-                {
-                    int cant;
-                    co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
-                    cant = co.DescargarRegistros(r.Numero);
-                    co.BorrarRegistros(r.Numero);
-                    Borrado(r.Id, cant);
-                    co.Desconectar(r.Numero);
-                    total += cant;
-                }
-                ca.Rutina("Fin", "Descarga de registros");
-                MessageBox.Show("Rutina finalizada, " + total.ToString() + " registros descargados");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-                ca.Rutina("Fin", "Se produjo un error durante la rutina");
-            }
-            Cursor = Cursors.Default; //Cursor normal 
+            RutinaBajarRegistros();
         }
-
+                                             
         private void btnRutinaHora_Click(object sender, EventArgs e)
         {
             if (Preguntar()) { return; }
-            Cursor = Cursors.WaitCursor;
-            ControladorArchivos ca = new ControladorArchivos();
-            try
-            {
-                ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
-                foreach (Reloj r in relojes)
-                {
-                    string llave;
-                    llave = GetClave();
-                    co.Conectar(r.Ip, r.Puerto, r.Clave, GetNumero());
-                    co.SincronizarHora(r.Numero);
-                }
-                MessageBox.Show("Rutina de sincronizacion de hora finalizada");
-                ca.Rutina("Fin", "Rutina de sincronizacion de hora");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-                ca.Rutina("Fin", "Se produjo un error durante la rutina");
-            }
-            Cursor = Cursors.Default;
+            RutinaSincronizarHora();
         }
 
         private void btnReiniciar_Click(object sender, EventArgs e)
@@ -374,5 +330,57 @@ namespace ZkManagement.Interfaz
             }         
         }
 
+        public void RutinaBajarRegistros()
+        {
+            Cursor = Cursors.WaitCursor; //Cursor de espera
+            int total = 0;
+            ControladorArchivos ca = new ControladorArchivos();
+            ca.Rutina("Inicio", "Descarga de registros");
+            foreach (Reloj r in relojes)
+            {
+                try
+                {
+                    int cant;
+                    co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
+                    cant = co.DescargarRegistros(r.Numero);
+                    co.BorrarRegistros(r.Numero);
+                    Borrado(r.Id, cant);
+                    co.Desconectar(r.Numero);
+                    total += cant;
+                }
+                catch (Exception ex)
+                {
+                    ca.Rutina("Fin", "Se produjo un error con reloj: " + r.Numero.ToString());
+                }
+            }
+            ca.Rutina("Fin", "Descarga de registros");
+            MessageBox.Show("Rutina finalizada, " + total.ToString() + " registros descargados");
+            Cursor = Cursors.Default; //Cursor normal
+        }
+
+        public void RutinaSincronizarHora()
+        {
+            Cursor = Cursors.WaitCursor;
+            ControladorArchivos ca = new ControladorArchivos();
+            try
+            {
+                ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
+                foreach (Reloj r in relojes)
+                {
+                    string llave;
+                    llave = GetClave();
+                    co.Conectar(r.Ip, r.Puerto, r.Clave, GetNumero());
+                    co.SincronizarHora(r.Numero);
+                }
+                MessageBox.Show("Rutina de sincronizacion de hora finalizada");
+                ca.Rutina("Fin", "Rutina de sincronizacion de hora");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                ca.Rutina("Fin", "Se produjo un error durante la rutina");
+            }
+            Cursor = Cursors.Default;
+        }
     }
 }

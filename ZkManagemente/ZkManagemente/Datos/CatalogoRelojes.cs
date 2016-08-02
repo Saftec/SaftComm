@@ -106,7 +106,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Borrado VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:MM:ss") + "')",conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Borrado VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "')",conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)

@@ -39,6 +39,8 @@
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
             this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
+            this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +94,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Empleados";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -129,6 +132,14 @@
             this.iconoBandeja.Text = "notifyIcon1";
             this.iconoBandeja.Visible = true;
             // 
+            // timerRutinaRegs
+            // 
+            this.timerRutinaRegs.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerRutinaHora
+            // 
+            this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
+            // 
             // btnEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,5 +170,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NotifyIcon iconoBandeja;
+        private System.Windows.Forms.Timer timerRutinaRegs;
+        private System.Windows.Forms.Timer timerRutinaHora;
     }
 }

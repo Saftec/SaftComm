@@ -8,6 +8,7 @@ namespace ZkManagement.Interfaz
 {
     public partial class btnEmpleados : Form
     {
+        Relojes relojesRutinas = new Relojes();
         public btnEmpleados()
         {
             InitializeComponent();
@@ -15,6 +16,7 @@ namespace ZkManagement.Interfaz
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            InicializarTimer();
             //CENTRAR PANEL DE MENÚ!
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize; //Capturo tamaño del monitor
             Int32 ancho = (this.Width = panelMenu.Width) / 2;
@@ -78,6 +80,37 @@ namespace ZkManagement.Interfaz
         {
             Usuarios usuarios = new Usuarios();
             usuarios.ShowDialog(this);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            relojesRutinas.RutinaBajarRegistros();
+        }
+
+        private void InicializarTimer()
+        {
+            ControladorConfiguraciones cc = new ControladorConfiguraciones();
+            if (cc.GetConfig(4) == "S")
+            {
+                timerRutinaRegs.Enabled = true;
+                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
+            }                             
+            if (cc.GetConfig(7) == "S")
+            {
+                timerRutinaHora.Enabled = true;
+                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(8)) * 60000;
+            }            
+        }
+
+        private void timerRutinaHora_Tick(object sender, EventArgs e)
+        {
+            relojesRutinas.RutinaSincronizarHora();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Empleados emp = new Empleados();
+            emp.ShowDialog(this);
         }
     }
 }

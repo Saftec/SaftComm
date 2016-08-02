@@ -42,10 +42,12 @@ namespace ZkManagement.Logica
         public void BorrarRegistros(int nroReloj)
         {
             int codError = 0;
+            int cant;
             axCZKEM1.EnableDevice(nroReloj, false);     //bloqueo dispositivo
+            cant = GetCantidadRegistros(nroReloj);
             if (axCZKEM1.ClearGLog(nroReloj))
             {
-                ca.BorradoRegistros(nroReloj);
+                ca.BorradoRegistros(cant);
                 axCZKEM1.RefreshData(nroReloj);     //los datos deben ser actualizados en el reloj
                 axCZKEM1.EnableDevice(nroReloj, true);      //desbloqueo
             }

@@ -18,11 +18,11 @@ namespace ZkManagement.Interfaz
             txtPathRegs.Text = cc.GetConfig(2);
             txtPathLog.Text = cc.GetConfig(3);
             txtMinRegs.Text = cc.GetConfig(5);
-            txtMinRegs.Text = cc.GetConfig(8);
+            txtMinHs.Text = cc.GetConfig(8);
             valor = cc.GetConfig(4);
             if (valor=="S") { chckActivaReg.Checked = true; }
             valor = cc.GetConfig(7);
-            if (valor=="S") { chckActivaReg.Checked = true; }
+            if (valor=="S") { chckActivaHora.Checked = true; }
         }
 
         private void btnClose_Click(object sender, System.EventArgs e)
@@ -42,6 +42,11 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+
+        }
+
+        private void chckActivaReg_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }

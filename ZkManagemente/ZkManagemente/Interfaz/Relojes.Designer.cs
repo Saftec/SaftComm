@@ -85,7 +85,7 @@
             this.DNS,
             this.Id,
             this.Clave});
-            this.dgvRelojes.Location = new System.Drawing.Point(24, 116);
+            this.dgvRelojes.Location = new System.Drawing.Point(24, 109);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -275,7 +275,7 @@
             this.groupABM.Controls.Add(this.btnEditar);
             this.groupABM.Controls.Add(this.btnAgregar);
             this.groupABM.Enabled = false;
-            this.groupABM.Location = new System.Drawing.Point(281, 341);
+            this.groupABM.Location = new System.Drawing.Point(281, 336);
             this.groupABM.Name = "groupABM";
             this.groupABM.Size = new System.Drawing.Size(290, 47);
             this.groupABM.TabIndex = 4;
@@ -323,7 +323,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(148, 401);
+            this.progressBar1.Location = new System.Drawing.Point(148, 395);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(596, 38);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -333,7 +333,7 @@
             // lblProgreso
             // 
             this.lblProgreso.AutoSize = true;
-            this.lblProgreso.Location = new System.Drawing.Point(435, 416);
+            this.lblProgreso.Location = new System.Drawing.Point(435, 410);
             this.lblProgreso.Name = "lblProgreso";
             this.lblProgreso.Size = new System.Drawing.Size(21, 13);
             this.lblProgreso.TabIndex = 7;
@@ -376,7 +376,7 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(198, 461);
+            this.groupAvanzadas.Location = new System.Drawing.Point(198, 450);
             this.groupAvanzadas.Name = "groupAvanzadas";
             this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
             this.groupAvanzadas.TabIndex = 11;

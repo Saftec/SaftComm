@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
+    <Compile Include="Datos\CatalogoEmpleados.cs" />
     <Compile Include="Datos\CatalogoRegistros.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
@@ -108,6 +109,7 @@
     </Compile>
     <Compile Include="Logica\ControladorArchivos.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
+    <Compile Include="Logica\ControladorEmpleados.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorOperaciones.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />

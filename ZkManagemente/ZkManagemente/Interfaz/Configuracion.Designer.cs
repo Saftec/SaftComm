@@ -37,13 +37,13 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtMinRegs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chckActivaHora = new System.Windows.Forms.CheckBox();
+            this.chckActivaReg = new System.Windows.Forms.CheckBox();
             this.txtMinHs = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.chckActivaReg = new System.Windows.Forms.CheckBox();
-            this.chckActivaHora = new System.Windows.Forms.CheckBox();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +137,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Automatizacion Rutinas";
             // 
+            // chckActivaHora
+            // 
+            this.chckActivaHora.AutoSize = true;
+            this.chckActivaHora.Location = new System.Drawing.Point(30, 51);
+            this.chckActivaHora.Name = "chckActivaHora";
+            this.chckActivaHora.Size = new System.Drawing.Size(56, 17);
+            this.chckActivaHora.TabIndex = 11;
+            this.chckActivaHora.Text = "Activa";
+            this.chckActivaHora.UseVisualStyleBackColor = true;
+            // 
+            // chckActivaReg
+            // 
+            this.chckActivaReg.AutoSize = true;
+            this.chckActivaReg.Location = new System.Drawing.Point(30, 21);
+            this.chckActivaReg.Name = "chckActivaReg";
+            this.chckActivaReg.Size = new System.Drawing.Size(56, 17);
+            this.chckActivaReg.TabIndex = 10;
+            this.chckActivaReg.Text = "Activa";
+            this.chckActivaReg.UseVisualStyleBackColor = true;
+            this.chckActivaReg.CheckedChanged += new System.EventHandler(this.chckActivaReg_CheckedChanged);
+            // 
             // txtMinHs
             // 
             this.txtMinHs.Location = new System.Drawing.Point(326, 49);
@@ -179,26 +200,6 @@
             this.label3.Size = new System.Drawing.Size(212, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Ejecutar rutina de bajada de registros cada:";
-            // 
-            // chckActivaReg
-            // 
-            this.chckActivaReg.AutoSize = true;
-            this.chckActivaReg.Location = new System.Drawing.Point(30, 21);
-            this.chckActivaReg.Name = "chckActivaReg";
-            this.chckActivaReg.Size = new System.Drawing.Size(56, 17);
-            this.chckActivaReg.TabIndex = 10;
-            this.chckActivaReg.Text = "Activa";
-            this.chckActivaReg.UseVisualStyleBackColor = true;
-            // 
-            // chckActivaHora
-            // 
-            this.chckActivaHora.AutoSize = true;
-            this.chckActivaHora.Location = new System.Drawing.Point(30, 51);
-            this.chckActivaHora.Name = "chckActivaHora";
-            this.chckActivaHora.Size = new System.Drawing.Size(56, 17);
-            this.chckActivaHora.TabIndex = 11;
-            this.chckActivaHora.Text = "Activa";
-            this.chckActivaHora.UseVisualStyleBackColor = true;
             // 
             // Configuracion
             // 
