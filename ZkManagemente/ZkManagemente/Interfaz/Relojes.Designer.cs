@@ -50,7 +50,7 @@
             this.btnDescargar = new System.Windows.Forms.Button();
             this.btnConectar = new System.Windows.Forms.Button();
             this.btnDesconectar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupABM = new System.Windows.Forms.GroupBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -64,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupABM.SuspendLayout();
             this.groupAvanzadas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -230,6 +230,7 @@
             // 
             // btnBorrar
             // 
+            this.btnBorrar.Enabled = false;
             this.btnBorrar.Location = new System.Drawing.Point(117, 20);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(90, 23);
@@ -268,17 +269,18 @@
             this.btnDesconectar.UseVisualStyleBackColor = true;
             this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
-            // groupBox1
+            // groupABM
             // 
-            this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Controls.Add(this.btnEditar);
-            this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Location = new System.Drawing.Point(281, 341);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(290, 47);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Editar Equipos";
+            this.groupABM.Controls.Add(this.btnEliminar);
+            this.groupABM.Controls.Add(this.btnEditar);
+            this.groupABM.Controls.Add(this.btnAgregar);
+            this.groupABM.Enabled = false;
+            this.groupABM.Location = new System.Drawing.Point(281, 341);
+            this.groupABM.Name = "groupABM";
+            this.groupABM.Size = new System.Drawing.Size(290, 47);
+            this.groupABM.TabIndex = 4;
+            this.groupABM.TabStop = false;
+            this.groupABM.Text = "Editar Equipos";
             // 
             // btnEliminar
             // 
@@ -373,6 +375,7 @@
             this.groupAvanzadas.Controls.Add(this.btnReiniciar);
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
+            this.groupAvanzadas.Enabled = false;
             this.groupAvanzadas.Location = new System.Drawing.Point(198, 461);
             this.groupAvanzadas.Name = "groupAvanzadas";
             this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
@@ -389,7 +392,7 @@
             this.Controls.Add(this.lblProgreso);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupABM);
             this.Controls.Add(this.btnDesconectar);
             this.Controls.Add(this.groupManuales);
             this.Controls.Add(this.btnConectar);
@@ -404,7 +407,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).EndInit();
             this.gpbxRutinas.ResumeLayout(false);
             this.groupManuales.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.groupABM.ResumeLayout(false);
             this.groupAvanzadas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -424,7 +427,7 @@
         private System.Windows.Forms.Button btnDescargar;
         private System.Windows.Forms.Button btnConectar;
         private System.Windows.Forms.Button btnDesconectar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupABM;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;

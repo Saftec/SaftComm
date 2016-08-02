@@ -102,5 +102,10 @@ namespace ZkManagement.Logica
         {
             return usr.Id;
         }
+
+        public int GetNivelUsr()
+        {
+            return usr.Nivel;
+        }
     }
 }
