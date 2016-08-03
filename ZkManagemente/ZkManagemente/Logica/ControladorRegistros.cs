@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Net;
@@ -15,19 +16,20 @@ namespace ZkManagement.Logica
             cr.GuardarRegis(regis);
             SubirArchivoAFTP();
         }
-        private bool SubirArchivoAFTP()
+        public bool SubirArchivoAFTP()
         {
             ControladorConfiguraciones cc = new ControladorConfiguraciones();
-            string origen = cc.GetConfig(2);
+            string origen = @"C:\Users\Sergio\Desktop\Regs.cpc";
             //Almacenar datos de FTP en la base de datos//
-            string server = @"ftp://186.125.73.38/";
-            string user = "invitado";
-            string pass = "invitado";
-            string rutadestino = @"usb1_4/";
-            string nombredestino = "Log.txt";
+            string server = ConfigurationManager.AppSettings.Get("Servidor");
+            string user = ConfigurationManager.AppSettings.Get("Usuario");
+            string pass = ConfigurationManager.AppSettings.Get("Password");
+            string rutadestino = ConfigurationManager.AppSettings.Get("PathFtp");
+            string nombredestino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
             try
             {
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(server + rutadestino + nombredestino);
+                FtpWebRequest request = (FtpWebRequest)FtpWebRequest.Create(server + rutadestino + "/" + nombredestino);
+                request.UsePassive = false;
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential(user, pass);
                 request.UsePassive = true;

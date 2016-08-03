@@ -25,6 +25,17 @@ namespace ZkManagement.Interfaz
         #region Botones
         private void btnAdmin_Click(object sender, EventArgs e)
         {
+            ControladorRegistros cr = new ControladorRegistros();
+            try
+            {
+                cr.SubirArchivoAFTP();
+                MessageBox.Show("Archivo subido correctamente");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

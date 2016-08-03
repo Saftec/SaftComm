@@ -189,6 +189,7 @@
             // 
             // comboPermisos
             // 
+            this.comboPermisos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPermisos.Enabled = false;
             this.comboPermisos.FormattingEnabled = true;
             this.comboPermisos.Location = new System.Drawing.Point(216, 81);
