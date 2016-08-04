@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -10,6 +11,7 @@ namespace ZkManagement.Interfaz
     {
         private Empleado empleado = new Empleado();
         private ControladorEmpleados ce = new ControladorEmpleados();
+        private DataTable empleados = new DataTable();
         public Empleados()
         {
             InitializeComponent();
@@ -131,8 +133,7 @@ namespace ZkManagement.Interfaz
 
         #region DataGridView
         private void DatosDGV()
-        {
-            DataTable empleados = new DataTable();
+        {          
             try
             {
                 empleados = ce.GetEmpleados();
@@ -183,6 +184,25 @@ namespace ZkManagement.Interfaz
         {
             SincronizarDispositivo sin = new SincronizarDispositivo();
             sin.Show();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            //Problema con los valores int!
+            try
+            {
+                string fieldName = string.Concat("[", empleados.Columns[1].ColumnName, "]");
+                empleados.DefaultView.Sort = fieldName;
+                DataView view = empleados.DefaultView;
+                view.RowFilter = string.Empty;
+                if (txtBuscar.Text != string.Empty)
+                    view.RowFilter = fieldName + " LIKE '%" + txtBuscar.Text + "%'";
+                dgvEmpleados.DataSource = view;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

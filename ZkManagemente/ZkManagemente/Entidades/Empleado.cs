@@ -10,6 +10,7 @@ namespace ZkManagement.Entidades
         private string _legajo;
         private int _pin;
         private string _dni;
+        private string _huella;
 
         //Propiedades//
         public string Nombre
@@ -42,5 +43,11 @@ namespace ZkManagement.Entidades
             get { return _dni; }
             set { _dni = value; }
         }
+        public string Huella
+        {
+            get { return _huella; }
+            set { _huella = value; }
+        }
+        
     }
 }

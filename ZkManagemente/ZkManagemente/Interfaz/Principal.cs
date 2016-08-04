@@ -95,10 +95,10 @@ namespace ZkManagement.Interfaz
                 timerRutinaRegs.Enabled = true;
                 timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
             }                             
-            if (cc.GetConfig(7) == "S")
+            if (cc.GetConfig(6) == "S")
             {
                 timerRutinaHora.Enabled = true;
-                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(8)) * 60000;
+                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
             }            
         }
 

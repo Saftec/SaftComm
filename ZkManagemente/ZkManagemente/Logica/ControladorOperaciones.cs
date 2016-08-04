@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using ZkManagement.Util;
+using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
@@ -172,6 +173,60 @@ namespace ZkManagement.Logica
           //  ControladorRegistros cr = new ControladorRegistros();
          //   cr.AparearRegis(regis);
             return count;
+        }
+
+        //DESCARGA DE HUELLAS//
+
+        public void DescargarInfo(int nroReloj)
+        {
+            //Inicializo todas las variables necesarias//
+            string legajoEnReloj = "";
+            string nombre = "";
+            string contraseña = "";
+            int iPrivilege = 0;
+            bool bEnabled = false;       //Este codigo fue copiado de la documentación. 
+            int idwFingerIndex;         //Modifico sólo el nombre de las variables que voy a utilizar.
+            string huella = "";
+            int iTmpLength = 0;
+            int iFlag = 0;
+            //Hasta aca//
+
+            axCZKEM1.EnableDevice(nroReloj, false);
+
+            axCZKEM1.ReadAllUserID(nroReloj);//Trae toda la información de usuario a la memoria.
+            axCZKEM1.ReadAllTemplate(nroReloj);//Trae todas las huellas a la memoria.
+
+            while (axCZKEM1.SSR_GetAllUserInfo(nroReloj, out legajoEnReloj, out nombre, out contraseña, out iPrivilege, out bEnabled))//get all the users' information from the memory
+            {
+                for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
+                {
+                    if (axCZKEM1.GetUserTmpExStr(nroReloj, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//get the corresponding templates string and length from the memory
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Nombre = nombre;
+                        emp.Legajo = legajoEnReloj;
+                        emp.Pin = Convert.ToInt32(contraseña);
+                        emp.Huella = huella;   
+                        /*
+                        list.Text = legajoEnReloj;
+                        list.SubItems.Add(sName);
+                        list.SubItems.Add(idwFingerIndex.ToString());
+                        list.SubItems.Add(sTmpData);
+                        list.SubItems.Add(iPrivilege.ToString());
+                        list.SubItems.Add(sPassword);
+                        if (bEnabled == true)
+                        {
+                            list.SubItems.Add("true");
+                        }
+                        else
+                        {
+                            list.SubItems.Add("false");
+                        }
+                        list.SubItems.Add(iFlag.ToString());*/
+
+                    }
+                }
+            }
         }
 
 

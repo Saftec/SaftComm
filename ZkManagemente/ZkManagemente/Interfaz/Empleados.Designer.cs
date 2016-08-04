@@ -56,6 +56,8 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.linkCargar = new System.Windows.Forms.LinkLabel();
             this.linkDescargar = new System.Windows.Forms.LinkLabel();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             this.SuspendLayout();
@@ -330,11 +332,30 @@
             this.linkDescargar.TabStop = true;
             this.linkDescargar.Text = "Descargar de Dispositivo";
             // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(234, 12);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(193, 20);
+            this.txtBuscar.TabIndex = 9;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(193, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Buscar:";
+            // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 511);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.linkDescargar);
             this.Controls.Add(this.linkCargar);
             this.Controls.Add(this.btnEditar);
@@ -385,5 +406,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
         private System.Windows.Forms.LinkLabel linkCargar;
         private System.Windows.Forms.LinkLabel linkDescargar;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Label label2;
     }
 }
