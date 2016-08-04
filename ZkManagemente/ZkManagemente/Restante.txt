@@ -1,12 +1,11 @@
 App:
 *Minizar a la bandeja tray.
 *Log4Net y loguear errores. (cargado pero no loguea).
-*Validar permisos.
+*Validar permisos interfaz.
+*Mover versión del sw a App.Config.
 
 Relojes:
 *Borrado de admins en relojes.
 *Actualizar DGV relojes despues de alta o modificaciones.
 *Progressbar para descarga de regs.
 
-Otros:
-*Archivos de regs a server FTP.
