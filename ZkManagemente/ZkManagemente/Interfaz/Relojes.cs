@@ -25,17 +25,20 @@ namespace ZkManagement.Interfaz
         #region Botones
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            ControladorRegistros cr = new ControladorRegistros();
+            if(ValidarConexion()) { return; }
             try
             {
-                cr.SubirArchivoAFTP();
-                MessageBox.Show("Archivo subido correctamente");
+                co.EliminarAdmins(GetNumero());
+                MessageBox.Show("Todos los adminsitradores fueron borrados.");
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(appex.Message,"Erro");
             }
-            
+            catch(Exception)
+            {
+                MessageBox.Show("Error desconocido al intentar borrar administradores");
+            }
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -44,7 +47,7 @@ namespace ZkManagement.Interfaz
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            if (!ValidarConexion())
+            if (GetEstado()=="Conectado")
             {
                 MessageBox.Show("El dispositivo ya se encuentra conectado", "Error");
                 return;

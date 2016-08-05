@@ -107,9 +107,18 @@ namespace ZkManagement.Logica
             axCZKEM1.RefreshData(nroReloj); //Refresh a los datos del equipo.
         }
 
-        public void EliminarAdmin(int nroReloj)
+        public void EliminarAdmins(int nroReloj)
         {
-
+            int coderror = 0;
+            if (axCZKEM1.ClearAdministrators(nroReloj))
+            {
+                axCZKEM1.RefreshData(nroReloj);
+            }
+            else
+            {
+                axCZKEM1.GetLastError(ref coderror);
+                throw new AppException("Error al intentar eliminar los administradores del equipo, error: " + coderror.ToString());
+            }
         }
 
         //DESCARGA DE REGISTROS!!//

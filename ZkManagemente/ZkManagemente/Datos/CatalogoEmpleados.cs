@@ -103,5 +103,28 @@ namespace ZkManagement.Datos
                 conn.Close();
             }
         }
+
+        public int GetEmpId(Empleado emp)
+        {
+            int id;
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'", conn);
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                id = Convert.ToInt32(dr["IdEmpleado"]);
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Error al intentar consultar la tabla empleados");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido al intentar consultar la tabla empleados");
+            }
+            return id;
+        }
     }
 }

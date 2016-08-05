@@ -45,17 +45,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupFtp = new System.Windows.Forms.GroupBox();
-            this.chckActivarFtp = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtServidor = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPuerto = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtPathFtp = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtContraseña = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPuerto = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtServidor = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chckActivarFtp = new System.Windows.Forms.CheckBox();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupFtp.SuspendLayout();
@@ -234,81 +234,12 @@
             this.groupFtp.TabStop = false;
             this.groupFtp.Text = "FTP";
             // 
-            // chckActivarFtp
+            // txtPathFtp
             // 
-            this.chckActivarFtp.AutoSize = true;
-            this.chckActivarFtp.Location = new System.Drawing.Point(471, 43);
-            this.chckActivarFtp.Name = "chckActivarFtp";
-            this.chckActivarFtp.Size = new System.Drawing.Size(59, 17);
-            this.chckActivarFtp.TabIndex = 0;
-            this.chckActivarFtp.Text = "Activar";
-            this.chckActivarFtp.UseVisualStyleBackColor = true;
-            this.chckActivarFtp.CheckedChanged += new System.EventHandler(this.chckActivarFtp_CheckedChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(34, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Servidor:";
-            // 
-            // txtServidor
-            // 
-            this.txtServidor.Location = new System.Drawing.Point(88, 37);
-            this.txtServidor.Name = "txtServidor";
-            this.txtServidor.Size = new System.Drawing.Size(150, 20);
-            this.txtServidor.TabIndex = 2;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(256, 40);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Puerto:";
-            // 
-            // txtPuerto
-            // 
-            this.txtPuerto.Location = new System.Drawing.Point(303, 37);
-            this.txtPuerto.Name = "txtPuerto";
-            this.txtPuerto.Size = new System.Drawing.Size(61, 20);
-            this.txtPuerto.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Usuario:";
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(75, 73);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(114, 20);
-            this.txtUsuario.TabIndex = 6;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(195, 76);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Contraseña:";
-            // 
-            // txtContraseña
-            // 
-            this.txtContraseña.Location = new System.Drawing.Point(259, 73);
-            this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.PasswordChar = '*';
-            this.txtContraseña.Size = new System.Drawing.Size(117, 20);
-            this.txtContraseña.TabIndex = 8;
+            this.txtPathFtp.Location = new System.Drawing.Point(94, 113);
+            this.txtPathFtp.Name = "txtPathFtp";
+            this.txtPathFtp.Size = new System.Drawing.Size(282, 20);
+            this.txtPathFtp.TabIndex = 10;
             // 
             // label11
             // 
@@ -319,12 +250,81 @@
             this.label11.TabIndex = 9;
             this.label11.Text = "Path de subida:";
             // 
-            // txtPathFtp
+            // txtContraseña
             // 
-            this.txtPathFtp.Location = new System.Drawing.Point(94, 113);
-            this.txtPathFtp.Name = "txtPathFtp";
-            this.txtPathFtp.Size = new System.Drawing.Size(282, 20);
-            this.txtPathFtp.TabIndex = 10;
+            this.txtContraseña.Location = new System.Drawing.Point(259, 73);
+            this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
+            this.txtContraseña.Size = new System.Drawing.Size(117, 20);
+            this.txtContraseña.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(195, 76);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Contraseña:";
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Location = new System.Drawing.Point(75, 73);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(114, 20);
+            this.txtUsuario.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Usuario:";
+            // 
+            // txtPuerto
+            // 
+            this.txtPuerto.Location = new System.Drawing.Point(303, 37);
+            this.txtPuerto.Name = "txtPuerto";
+            this.txtPuerto.Size = new System.Drawing.Size(61, 20);
+            this.txtPuerto.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(256, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Puerto:";
+            // 
+            // txtServidor
+            // 
+            this.txtServidor.Location = new System.Drawing.Point(88, 37);
+            this.txtServidor.Name = "txtServidor";
+            this.txtServidor.Size = new System.Drawing.Size(150, 20);
+            this.txtServidor.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(34, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Servidor:";
+            // 
+            // chckActivarFtp
+            // 
+            this.chckActivarFtp.AutoSize = true;
+            this.chckActivarFtp.Location = new System.Drawing.Point(471, 43);
+            this.chckActivarFtp.Name = "chckActivarFtp";
+            this.chckActivarFtp.Size = new System.Drawing.Size(59, 17);
+            this.chckActivarFtp.TabIndex = 0;
+            this.chckActivarFtp.Text = "Activar";
+            this.chckActivarFtp.UseVisualStyleBackColor = true;
+            this.chckActivarFtp.CheckedChanged += new System.EventHandler(this.chckActivarFtp_CheckedChanged);
             // 
             // Configuracion
             // 
@@ -341,6 +341,7 @@
             this.Name = "Configuracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuracion";
+            this.Load += new System.EventHandler(this.Configuracion_Load);
             this.groupArchivos.ResumeLayout(false);
             this.groupArchivos.PerformLayout();
             this.groupBox1.ResumeLayout(false);

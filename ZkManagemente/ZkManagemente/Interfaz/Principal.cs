@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
@@ -35,7 +36,6 @@ namespace ZkManagement.Interfaz
             {
                 iconoBandeja.Visible = false;
             }
-
         }
         internal void SetPermisos(Usuario usuario)
         {
@@ -43,7 +43,7 @@ namespace ZkManagement.Interfaz
             try
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
-                lblVersion.Text = "Version: " + cc.GetConfig(1);
+                lblVersion.Text = "Version: " + ConfigurationManager.AppSettings["Version"].ToString();
                 if (usuario.Nivel>2) { btnConfig.Enabled = false; }
             }
             catch(Exception ex)

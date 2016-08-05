@@ -1,11 +1,9 @@
-App:
-*Minizar a la bandeja tray.
+﻿App:
+*Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
 *Log4Net y loguear errores. (cargado pero no loguea).
 *Validar permisos interfaz.
-*Mover versión del sw a App.Config.
 
 Relojes:
-*Borrado de admins en relojes.
 *Actualizar DGV relojes despues de alta o modificaciones.
 *Progressbar para descarga de regs.
 

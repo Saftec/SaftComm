@@ -10,7 +10,6 @@ namespace ZkManagement.Interfaz
         public Configuracion()
         {
             InitializeComponent();
-            CargarConfigs();
         }
             private void CargarConfigs()
         {
@@ -76,6 +75,11 @@ namespace ZkManagement.Interfaz
             {
                 groupFtp.Enabled = true;
             }
+        }
+
+        private void Configuracion_Load(object sender, EventArgs e)
+        {
+            CargarConfigs();
         }
     }
 }
