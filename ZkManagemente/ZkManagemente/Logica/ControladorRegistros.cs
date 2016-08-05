@@ -9,26 +9,40 @@ namespace ZkManagement.Logica
 {
     class ControladorRegistros
     {
-       // private CatalogoRegistros cr = new CatalogoRegistros();
         private CatalogoEmpleados ce = new CatalogoEmpleados();
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
-        public void AparearRegis(DataTable regis)
+        public void AgregarRegis(DataTable regis)
         {
-            //TENGO QUE BUSCAR EL EMPID DE C/U Y GUARDAR LINEA POR LINEA CON EMPID Y NO LEGAJO!!
-           // cr.GuardarRegis(regis);
            foreach(DataRow fila in regis.Rows)
             {
                 int id;
+                int tipoMov;
+                int reloj;
                 DateTime fecha;
                 Empleado emp = new Empleado();
                 emp.Legajo = fila["Legajo"].ToString();
-                id = ce.GetEmpId(emp);
-
+                reloj = Convert.ToInt32(fila["Reloj"]);
+                try
+                {
+                    id = ce.GetEmpId(emp);
+                    fecha = Convert.ToDateTime(fila["Registro"]);
+                    tipoMov = Convert.ToInt32(fila["Tipo"]);
+                    if (tipoMov == 1)
+                    {
+                        ce.InsertarRegis(id, fecha, "Salida",reloj);
+                    }
+                    else
+                    {
+                        ce.InsertarRegis(id, fecha, "Entrada",reloj);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
             }
-
-
-            string destino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
-            SubirArchivoFTP(cc.GetConfig(2), destino);
+           /* string destino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
+            SubirArchivoFTP(cc.GetConfig(2), destino);*/
         }
         public bool SubirArchivoFTP(string origen, string destino)
         {

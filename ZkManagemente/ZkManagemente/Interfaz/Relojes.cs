@@ -29,15 +29,15 @@ namespace ZkManagement.Interfaz
             try
             {
                 co.EliminarAdmins(GetNumero());
-                MessageBox.Show("Todos los adminsitradores fueron borrados.");
+                Informar("Todos los adminsitradores fueron borrados.", "Borrado de administradores");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message,"Erro");
+                InformarError(appex.Message);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                MessageBox.Show("Error desconocido al intentar borrar administradores");
+                InformarError("Error desconocido al intentar eliminar administradores");
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace ZkManagement.Interfaz
         {
             if (GetEstado()=="Conectado")
             {
-                MessageBox.Show("El dispositivo ya se encuentra conectado", "Error");
+                InformarError("El dispositivo ya se encuentra conectado");
                 return;
             }
             Cursor = Cursors.WaitCursor;
@@ -60,10 +60,11 @@ namespace ZkManagement.Interfaz
                 SetEstado("Conectado");
                 SetMac(co.GetMac(GetNumero()));
                 SetModelo(co.GetModelo(GetNumero()));
+                SetCantRegis(co.GetCantidadRegistros(GetNumero()).ToString());
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
             }
             Cursor = Cursors.Default;
         }
@@ -74,11 +75,11 @@ namespace ZkManagement.Interfaz
             try
             {
                 co.SincronizarHora(GetNumero());
-                MessageBox.Show("Hora sincronizada");
+                Informar("Hora sincronizada correctamente.", "Sincronizacion hora");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
             }
 
         }
@@ -86,6 +87,7 @@ namespace ZkManagement.Interfaz
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (ValidarConexion()) { return; }
+            if(Preguntar()) { return; }
             Cursor = Cursors.WaitCursor;
             try
             {
@@ -93,23 +95,20 @@ namespace ZkManagement.Interfaz
                 cantidad = co.GetCantidadRegistros(GetNumero());
                 co.BorrarRegistros(GetNumero());
                 Borrado(GetId(), cantidad);
-                MessageBox.Show(cantidad.ToString() + " registros eliminados.");
+                Informar(cantidad.ToString() + " registros eliminados.", "Eliminar registros");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
             }
-            finally
-            {
                 Cursor = Cursors.Default;
-            }
         }
 
         private void btnDesconectar_Click(object sender, EventArgs e)
         {
             if (GetEstado() == "Desconectado")
             {
-                MessageBox.Show("El dispositivo está desconectado", "Error");
+                InformarError("El dispositivo está desconectado");
                 return;
             }
             co.Desconectar(GetNumero());
@@ -124,11 +123,15 @@ namespace ZkManagement.Interfaz
             try
             {
                 total = co.DescargarRegistros(GetNumero());
-                MessageBox.Show("Se descargaron: " + total.ToString() + " registros");
+                Informar("Se descargaron: " + total.ToString() + " registros", "Descarga de registros");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
             }
             Cursor = Cursors.Default;
         }
@@ -155,7 +158,7 @@ namespace ZkManagement.Interfaz
                 ControladorReloj cr = new ControladorReloj();
                 Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
-                MessageBox.Show("Equipo eliminado", "Baja");
+                Informar("Equipo eliminar correctamente.", "Eliminar reloj");
                 dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
             }
             catch (Exception ex)
@@ -183,15 +186,15 @@ namespace ZkManagement.Interfaz
             try
             {
                 co.Reiniciar(GetNumero());
-                MessageBox.Show("Reinicio OK.", "Reiniciar dispositivos");
+                Informar("Reinicio OK.", "Reiniciar dispositivos");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
             }
             catch (Exception)
             {
-                MessageBox.Show("Error totalmente desconocido al intentar reiniciar el dispositivo.", "Error");
+                InformarError("Error totalmente desconocido al intentar reiniciar el dispositivo.");
             }
         }
         private void btnInicializar_Click(object sender, EventArgs e)
@@ -201,15 +204,15 @@ namespace ZkManagement.Interfaz
             try
             {
                 co.Inicializar(GetNumero());
-                MessageBox.Show("Inicializacion OK.", "Incializar dispositivo");
+                Informar("Dispositivo inicializado correctamente.", "Incializar dispositivo");
             }
             catch (AppException appex)
             {
-                MessageBox.Show(appex.Message, "Error");
+                InformarError(appex.Message);
             }
             catch (Exception)
             {
-                MessageBox.Show("Error totalmente desconocido al intentar inicializar el dispositivo", "Error");
+                InformarError("Error totalmente desconocido al intentar inicializar el dispositivo");
             }
         }
 
@@ -303,7 +306,7 @@ namespace ZkManagement.Interfaz
         {
             if ("Desconectado" == GetEstado())
             {
-                MessageBox.Show("Por favor, conecte con dispositivo", "Error");
+                InformarError("Por favor, conecte con dispositivo");
                 return true;
             }
             return false;
@@ -316,6 +319,15 @@ namespace ZkManagement.Interfaz
             else { return false; }
         }
 
+        private void Informar(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo , MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void InformarError(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         private void Borrado(int idReloj, int cant)
         {
             ControladorReloj cr = new ControladorReloj();
@@ -325,7 +337,7 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                InformarError(ex.Message);
             }            
         }
 

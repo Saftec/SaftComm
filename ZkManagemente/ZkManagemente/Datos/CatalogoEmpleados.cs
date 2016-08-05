@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -106,7 +108,7 @@ namespace ZkManagement.Datos
 
         public int GetEmpId(Empleado emp)
         {
-            int id;
+            int id = 0; //El simbolo "?" indica que la variable puede tomar el valor NULL
             try
             {
                 conn = con.Conectar();
@@ -116,6 +118,9 @@ namespace ZkManagement.Datos
                 dr.Read();
                 id = Convert.ToInt32(dr["IdEmpleado"]);
             }
+            catch (AppException)
+            {
+            }
             catch (SqlException)
             {
                 throw new Exception("Error al intentar consultar la tabla empleados");
@@ -124,7 +129,27 @@ namespace ZkManagement.Datos
             {
                 throw new Exception("Error desconocido al intentar consultar la tabla empleados");
             }
+            conn.Close();
             return id;
+        }
+
+        public void InsertarRegis(int id, DateTime fecha, string modo, int reloj)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Registros VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "')", conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException)
+            {
+                throw new Exception("Error al intentar insertar en la tabla registros");
+            }
+            catch(Exception)
+            {
+                throw new Exception("Error desconocido al intentar actualizar la tabla registros");
+            }
+            conn.Close();
         }
     }
 }
