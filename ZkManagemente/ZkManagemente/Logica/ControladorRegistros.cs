@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Net;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -11,8 +13,9 @@ namespace ZkManagement.Logica
     {
         private CatalogoEmpleados ce = new CatalogoEmpleados();
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
-        public void AgregarRegis(DataTable regis)
+        public List<string> AgregarRegis(DataTable regis)
         {
+            List<string> desconocidos = new List<string>(); 
            foreach(DataRow fila in regis.Rows)
             {
                 int id;
@@ -25,24 +28,32 @@ namespace ZkManagement.Logica
                 try
                 {
                     id = ce.GetEmpId(emp);
-                    fecha = Convert.ToDateTime(fila["Registro"]);
-                    tipoMov = Convert.ToInt32(fila["Tipo"]);
-                    if (tipoMov == 1)
+                    if (id < 1)
                     {
-                        ce.InsertarRegis(id, fecha, "Salida",reloj);
+                        desconocidos.Add(emp.Legajo);
                     }
                     else
                     {
-                        ce.InsertarRegis(id, fecha, "Entrada",reloj);
+                        fecha = Convert.ToDateTime(fila["Registro"]);
+                        tipoMov = Convert.ToInt32(fila["Tipo"]);
+                        if (tipoMov == 1)
+                        {
+                            ce.InsertarRegis(id, fecha, "Salida", reloj);
+                        }
+                        else
+                        {
+                            ce.InsertarRegis(id, fecha, "Entrada", reloj);
+                        }
                     }
                 }
                 catch(Exception ex)
                 {
                     throw ex;
-                }
+                }              
             }
-           /* string destino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
-            SubirArchivoFTP(cc.GetConfig(2), destino);*/
+            return desconocidos;
+            /* string destino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
+             SubirArchivoFTP(cc.GetConfig(2), destino);*/
         }
         public bool SubirArchivoFTP(string origen, string destino)
         {

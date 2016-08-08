@@ -7,5 +7,9 @@ namespace ZkManagement.Util
         public AppException (string message): base(message)
         {
         }
+
+        public AppException()
+        {
+        }
     }
 }

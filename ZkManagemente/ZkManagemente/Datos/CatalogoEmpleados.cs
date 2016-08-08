@@ -115,11 +115,10 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'", conn);
                 cmd.ExecuteNonQuery();
                 SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                id = Convert.ToInt32(dr["IdEmpleado"]);
-            }
-            catch (AppException)
-            {
+                if (dr.Read())
+                {
+                    id = Convert.ToInt32(dr["IdEmpleado"]);
+                }       
             }
             catch (SqlException)
             {

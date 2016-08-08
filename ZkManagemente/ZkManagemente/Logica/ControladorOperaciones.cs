@@ -122,7 +122,7 @@ namespace ZkManagement.Logica
         }
 
         //DESCARGA DE REGISTROS!!//
-        public int DescargarRegistros(int nroReloj)
+        public DataTable DescargarRegistros(int nroReloj)
         {
             ca.IniciaDescarga();
             string sdwEnrollNumber = string.Empty;
@@ -179,16 +179,7 @@ namespace ZkManagement.Logica
             }
             ca.DescargaRegistros(count);
             axCZKEM1.EnableDevice(nroReloj, true);
-            ControladorRegistros cr = new ControladorRegistros();
-            try
-            {
-                cr.AgregarRegis(regis);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            return count;
+            return regis;
         }
 
         //DESCARGA DE HUELLAS//

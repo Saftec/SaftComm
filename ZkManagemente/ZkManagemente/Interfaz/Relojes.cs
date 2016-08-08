@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -37,7 +38,7 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                InformarError("Error desconocido al intentar eliminar administradores");
+                InformarError(ex.Message);
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -117,13 +118,17 @@ namespace ZkManagement.Interfaz
 
         private void btnDescargar_Click(object sender, EventArgs e)
         {
+            ControladorRegistros cr = new ControladorRegistros();
+            DataTable regis = new DataTable();
+            List<string> desconocidos = new List<string>();
             if (ValidarConexion()) { return; }
             Cursor = Cursors.WaitCursor;
-            int total = 0;
             try
             {
-                total = co.DescargarRegistros(GetNumero());
-                Informar("Se descargaron: " + total.ToString() + " registros", "Descarga de registros");
+                regis = co.DescargarRegistros(GetNumero());
+                desconocidos=cr.AgregarRegis(regis);
+                if (desconocidos.Count > 0) { InformarError("Los legajos: " + string.Join("--", desconocidos.ToArray()) + " son desconocidos"); }
+                Informar("Se descargaron: " + (regis.Rows.Count-desconocidos.Count).ToString() + " registros", "Descarga de registros");
             }
             catch (AppException appex)
             {
@@ -158,7 +163,7 @@ namespace ZkManagement.Interfaz
                 ControladorReloj cr = new ControladorReloj();
                 Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
-                Informar("Equipo eliminar correctamente.", "Eliminar reloj");
+                Informar("Equipo eliminado correctamente.", "Eliminar reloj");
                 dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
             }
             catch (Exception ex)
@@ -361,20 +366,22 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.WaitCursor; //Cursor de espera
             int total = 0;
             ControladorArchivos ca = new ControladorArchivos();
+            ControladorRegistros cr = new ControladorRegistros();
             ca.Rutina("Inicio", "Descarga de registros");
             foreach (Reloj r in relojes)
             {
                 try
                 {
-                    int cant;
+                    DataTable regis = new DataTable();
                     co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
-                    cant = co.DescargarRegistros(r.Numero);
+                    regis = co.DescargarRegistros(r.Numero);
+                    cr.AgregarRegis(regis);
                     co.BorrarRegistros(r.Numero);
-                    Borrado(r.Id, cant);
+                    Borrado(r.Id, regis.Rows.Count);
                     co.Desconectar(r.Numero);
-                    total += cant;
+                    total += regis.Rows.Count;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ca.Rutina("Fin", "Se produjo un error con reloj: " + r.Numero.ToString());
                 }
