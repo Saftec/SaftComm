@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Data.SqlClient;
 
 namespace ZkManagement.Datos
@@ -7,6 +8,7 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
+        private ILog logger = LogManager.GetLogger("CatalogoConfiguraciones");
 
         public string GetConfig(int id)
         {
@@ -22,10 +24,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
+                logger.Error(sqlEx.StackTrace);
                 throw new Exception("Error al consulta el valor de configuracion: " + id.ToString());
             }
             catch(Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
             }
             conn.Close();
@@ -42,10 +46,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
+                logger.Error(sqlEx.StackTrace);
                 throw new Exception("Error al actualizar la tabla configuracion");
             }
             catch(Exception ex)
             {
+                logger.Error(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla configuracion");
             }
             conn.Close();

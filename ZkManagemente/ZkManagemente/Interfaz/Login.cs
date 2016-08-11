@@ -9,9 +9,10 @@ namespace ZkManagement.Interfaz
 {
     public partial class Login : Form
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        ILog logger = LogManager.GetLogger("ALL");
         public Login()
         {
+            
             InitializeComponent();
         }
 
@@ -57,8 +58,7 @@ namespace ZkManagement.Interfaz
 
         private void Login_Load(object sender, EventArgs e)
         {
-            log.Info("Esto es info");
-            log.Debug("Esto es debug");         
+            log4net.Config.XmlConfigurator.Configure();
             bool estado = false;
             ControladorLogin cl = new ControladorLogin();
             try
