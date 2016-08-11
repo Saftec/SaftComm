@@ -54,12 +54,11 @@
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
     <Compile Include="Datos\CatalogoEmpleados.cs" />
-    <Compile Include="Datos\CatalogoRegistros.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
-    <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\Reloj.cs" />
+    <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Interfaz\AbmReloj.cs">
       <SubType>Form</SubType>

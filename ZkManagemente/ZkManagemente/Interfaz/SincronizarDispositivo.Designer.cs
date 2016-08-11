@@ -33,19 +33,24 @@
             this.btnMostrar = new System.Windows.Forms.Button();
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnCargar = new System.Windows.Forms.Button();
-            this.btnDescargar = new System.Windows.Forms.Button();
             this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dgvDispositivo = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCargar = new System.Windows.Forms.Button();
+            this.btnDescargar = new System.Windows.Forms.Button();
+            this.labelEstado = new System.Windows.Forms.Label();
+            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
             this.SuspendLayout();
             // 
             // comboRelojes
@@ -75,15 +80,17 @@
             this.btnMostrar.TabIndex = 2;
             this.btnMostrar.Text = "Mostrar Usuarios";
             this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // groupSeleccion
             // 
+            this.groupSeleccion.Controls.Add(this.labelEstado);
             this.groupSeleccion.Controls.Add(this.comboRelojes);
             this.groupSeleccion.Controls.Add(this.btnMostrar);
             this.groupSeleccion.Controls.Add(this.label1);
             this.groupSeleccion.Location = new System.Drawing.Point(227, 14);
             this.groupSeleccion.Name = "groupSeleccion";
-            this.groupSeleccion.Size = new System.Drawing.Size(441, 72);
+            this.groupSeleccion.Size = new System.Drawing.Size(631, 72);
             this.groupSeleccion.TabIndex = 3;
             this.groupSeleccion.TabStop = false;
             this.groupSeleccion.Text = "Seleccionar Dispositivo";
@@ -105,50 +112,6 @@
             this.dgvLocal.Size = new System.Drawing.Size(345, 420);
             this.dgvLocal.TabIndex = 4;
             this.dgvLocal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocal_CellContentClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 99);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Usuarios en base de datos";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(481, 118);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(377, 420);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(618, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Usuarios en dispositivo";
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.Location = new System.Drawing.Point(126, 549);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(158, 23);
-            this.btnCargar.TabIndex = 8;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
-            // 
-            // btnDescargar
-            // 
-            this.btnDescargar.Location = new System.Drawing.Point(596, 549);
-            this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(158, 23);
-            this.btnDescargar.TabIndex = 9;
-            this.btnDescargar.Text = "Descargar";
-            this.btnDescargar.UseVisualStyleBackColor = true;
             // 
             // Legajo
             // 
@@ -188,6 +151,93 @@
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(139, 99);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Usuarios en base de datos";
+            // 
+            // dgvDispositivo
+            // 
+            this.dgvDispositivo.AllowUserToAddRows = false;
+            this.dgvDispositivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDispositivo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Leg,
+            this.Nom,
+            this.Pin,
+            this.Privilegio});
+            this.dgvDispositivo.Location = new System.Drawing.Point(481, 118);
+            this.dgvDispositivo.Name = "dgvDispositivo";
+            this.dgvDispositivo.Size = new System.Drawing.Size(377, 420);
+            this.dgvDispositivo.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(618, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Usuarios en dispositivo";
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.Location = new System.Drawing.Point(126, 549);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(158, 23);
+            this.btnCargar.TabIndex = 8;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = true;
+            // 
+            // btnDescargar
+            // 
+            this.btnDescargar.Location = new System.Drawing.Point(596, 549);
+            this.btnDescargar.Name = "btnDescargar";
+            this.btnDescargar.Size = new System.Drawing.Size(158, 23);
+            this.btnDescargar.TabIndex = 9;
+            this.btnDescargar.Text = "Descargar";
+            this.btnDescargar.UseVisualStyleBackColor = true;
+            // 
+            // labelEstado
+            // 
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.Location = new System.Drawing.Point(435, 36);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(77, 13);
+            this.labelEstado.TabIndex = 3;
+            this.labelEstado.Text = "Desconectado";
+            // 
+            // Leg
+            // 
+            this.Leg.DataPropertyName = "Legajo";
+            this.Leg.HeaderText = "Legajo";
+            this.Leg.Name = "Leg";
+            this.Leg.ReadOnly = true;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nombre";
+            this.Nom.HeaderText = "Nombre";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegios";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,7 +246,7 @@
             this.Controls.Add(this.btnDescargar);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvDispositivo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvLocal);
             this.Controls.Add(this.groupSeleccion);
@@ -206,7 +256,7 @@
             this.groupSeleccion.ResumeLayout(false);
             this.groupSeleccion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,7 +270,7 @@
         private System.Windows.Forms.GroupBox groupSeleccion;
         private System.Windows.Forms.DataGridView dgvLocal;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDispositivo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.Button btnDescargar;
@@ -229,5 +279,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.Label labelEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Leg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
     }
 }

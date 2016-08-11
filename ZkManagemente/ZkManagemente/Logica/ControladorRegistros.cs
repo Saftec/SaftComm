@@ -5,7 +5,6 @@ using System.IO;
 using System.Net;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
-using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -36,6 +35,12 @@ namespace ZkManagement.Logica
                     {
                         fecha = Convert.ToDateTime(fila["Registro"]);
                         tipoMov = Convert.ToInt32(fila["Tipo"]);
+                        /* 
+                         1-->Salida
+                         0-->Entrada
+                         4-->Entrada T.E.
+                         5-->Salida T.E.
+                         */
                         if (tipoMov == 1)
                         {
                             ce.InsertarRegis(id, fecha, "Salida", reloj);

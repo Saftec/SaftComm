@@ -11,6 +11,7 @@ namespace ZkManagement.Interfaz
     public partial class Relojes : Form
     {
         private ControladorOperaciones co = new ControladorOperaciones();
+        private Reloj reloj = new Reloj();
         private List<Reloj> relojes = new List<Reloj>();
         public Relojes()
         {
@@ -23,13 +24,20 @@ namespace ZkManagement.Interfaz
             SetPermisos();
         }
 
+        private Reloj BuscarEquipo(int id)
+        {
+            Reloj r = new Reloj(id);
+            return (relojes[relojes.IndexOf(r)]);
+        }
+
         #region Botones
         private void btnAdmin_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if(ValidarConexion()) { return; }
             try
             {
-                co.EliminarAdmins(GetNumero());
+                reloj.EliminarAdmins();
                 Informar("Todos los adminsitradores fueron borrados.", "Borrado de administradores");
             }
             catch (AppException appex)
@@ -48,20 +56,21 @@ namespace ZkManagement.Interfaz
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (GetEstado()=="Conectado")
             {
                 InformarError("El dispositivo ya se encuentra conectado");
                 return;
             }
             Cursor = Cursors.WaitCursor;
-            string llave = GetClave();
+            string llave = reloj.Clave;
             try
             {
-                co.Conectar(GetIp(), GetPuerto(), llave, GetNumero());
+                reloj.Conectar();
                 SetEstado("Conectado");
-                SetMac(co.GetMac(GetNumero()));
-                SetModelo(co.GetModelo(GetNumero()));
-                SetCantRegis(co.GetCantidadRegistros(GetNumero()).ToString());
+                SetMac(reloj.GetMac());
+                SetModelo(reloj.GetModelo());
+                SetCantRegis(reloj.GetCantidadRegistros().ToString());
             }
             catch (AppException appex)
             {
@@ -72,10 +81,11 @@ namespace ZkManagement.Interfaz
 
         private void btnHora_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (ValidarConexion()) { return; }
             try
             {
-                co.SincronizarHora(GetNumero());
+                reloj.SincronizarHora();
                 Informar("Hora sincronizada correctamente.", "Sincronizacion hora");
             }
             catch (AppException appex)
@@ -87,15 +97,16 @@ namespace ZkManagement.Interfaz
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (ValidarConexion()) { return; }
             if(Preguntar()) { return; }
             Cursor = Cursors.WaitCursor;
             try
             {
                 int cantidad;
-                cantidad = co.GetCantidadRegistros(GetNumero());
-                co.BorrarRegistros(GetNumero());
-                Borrado(GetId(), cantidad);
+                cantidad = reloj.GetCantidadRegistros();
+                reloj.BorrarRegistros();
+                Borrado(reloj.Id, cantidad);
                 Informar(cantidad.ToString() + " registros eliminados.", "Eliminar registros");
             }
             catch (AppException appex)
@@ -107,17 +118,19 @@ namespace ZkManagement.Interfaz
 
         private void btnDesconectar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (GetEstado() == "Desconectado")
             {
                 InformarError("El dispositivo está desconectado");
                 return;
             }
-            co.Desconectar(GetNumero());
+            reloj.Desconectar();
             SetEstado("Desconectado");
         }
 
         private void btnDescargar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             ControladorRegistros cr = new ControladorRegistros();
             DataTable regis = new DataTable();
             List<string> desconocidos = new List<string>();
@@ -125,7 +138,7 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.WaitCursor;
             try
             {
-                regis = co.DescargarRegistros(GetNumero());
+                regis = reloj.DescargarRegistros();
                 desconocidos=cr.AgregarRegis(regis);
                 if (desconocidos.Count > 0) { InformarError("Los legajos: " + string.Join("--", desconocidos.ToArray()) + " son desconocidos"); }
                 Informar("Se descargaron: " + (regis.Rows.Count-desconocidos.Count).ToString() + " registros", "Descarga de registros");
@@ -186,11 +199,12 @@ namespace ZkManagement.Interfaz
 
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (ValidarConexion()) { return; }
             if (Preguntar()) { return; }
             try
             {
-                co.Reiniciar(GetNumero());
+                reloj.Reiniciar();
                 Informar("Reinicio OK.", "Reiniciar dispositivos");
             }
             catch (AppException appex)
@@ -204,11 +218,12 @@ namespace ZkManagement.Interfaz
         }
         private void btnInicializar_Click(object sender, EventArgs e)
         {
+            reloj = BuscarEquipo(GetId());
             if (ValidarConexion()) { return; }
             if (Preguntar()) { return; }
             try
             {
-                co.Inicializar(GetNumero());
+                reloj.Inicializar();
                 Informar("Dispositivo inicializado correctamente.", "Incializar dispositivo");
             }
             catch (AppException appex)

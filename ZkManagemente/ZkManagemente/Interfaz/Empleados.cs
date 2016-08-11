@@ -116,7 +116,7 @@ namespace ZkManagement.Interfaz
             empleado.Dni = txtDNI.Text;
             empleado.Legajo = txtLegajo.Text;
             empleado.Nombre = txtNombre.Text;
-            if (txtPin.Text != string.Empty) { empleado.Pin = Convert.ToInt32(txtPin.Text); }
+            if (txtPin.Text != string.Empty) { empleado.Pin = txtPin.Text; }
             empleado.Tarjeta = txtTarjeta.Text;
 
             try

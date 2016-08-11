@@ -16,9 +16,8 @@ namespace ZkManagement.Logica
             string path = cc.GetConfig(2); //Obtengo path de descarga de registros
 
             hora = FormatearHora(horas, minuto);
-            if (legajo.Length < 5) { legajo = legajo.PadLeft(5, '0'); } //COMPLETO EL LEGAJO CON CEROS
-            if ((ioModo.ToString()).Length == 1) { tipoMov = ioModo.ToString().PadLeft(2, '0'); }
-            else { tipoMov = ioModo.ToString(); }
+            legajo = legajo.PadLeft(5, '0'); //COMPLETO EL LEGAJO CON CEROS
+            tipoMov = ioModo.ToString().PadLeft(2, '0'); 
             linea = "0" + nroDispositivo.ToString() + tipoMov + fecha.ToString("yyMMdd") + horas + legajo + "\n";
             try
             {

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -14,6 +9,8 @@ namespace ZkManagement.Interfaz
 {
     public partial class SincronizarDispositivo : Form
     {
+        private List<Reloj> relojes = new List<Reloj>();
+        private DataTable usuariosEnDisp = new DataTable();
         public SincronizarDispositivo()
         {
             InitializeComponent();
@@ -32,9 +29,7 @@ namespace ZkManagement.Interfaz
 
         private void LlenarComboBox()
         {
-            ControladorReloj cr = new ControladorReloj();
-            List<Reloj> relojes = new List<Reloj>();
-
+            ControladorReloj cr = new ControladorReloj();           
             try
             {
                 relojes = cr.TodosRelojes();
@@ -70,6 +65,13 @@ namespace ZkManagement.Interfaz
             }
         }
 
+        private void LlenarDgvDispositivo()
+        {
+            dgvDispositivo.AutoGenerateColumns = false;
+            dgvDispositivo.DataSource = usuariosEnDisp;
+            dgvDispositivo.Refresh();
+        }
+
         private void dgvLocal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Como el datagridview tiene la propieda ReadOnly activada, no me permite seleccionar el checkbox.
@@ -93,6 +95,31 @@ namespace ZkManagement.Interfaz
                     cellSeleccion.Value = true;
                 }
             }
+        }
+
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            if (comboRelojes.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor seleccione un dispositivo", "Error");
+                return;
+            }
+
+            ControladorOperaciones co = new ControladorOperaciones();
+            Reloj r = new Reloj();
+            r=relojes[comboRelojes.SelectedIndex];
+            try
+            {
+                co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
+                labelEstado.Text = "Conectado a dispostivo :" + r.Numero.ToString();
+                usuariosEnDisp=co.DescargarInfo(r.Numero);
+                LlenarDgvDispositivo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            
         }
     }
 }

@@ -8,9 +8,10 @@ namespace ZkManagement.Entidades
         private string _tarjeta;
         private int _id;
         private string _legajo;
-        private int _pin;
+        private string _pin;
         private string _dni;
         private string _huella;
+        private int _privilegio;
 
         //Propiedades//
         public string Nombre
@@ -33,7 +34,7 @@ namespace ZkManagement.Entidades
             get { return _legajo; }
             set { _legajo = value; }
         }
-        public int Pin
+        public string Pin
         {
             get { return _pin; }
             set { _pin = value; }
@@ -48,6 +49,11 @@ namespace ZkManagement.Entidades
             get { return _huella; }
             set { _huella = value; }
         }
-        
+        public int Privilegio
+        {
+            get { return _privilegio; }
+            set { _privilegio = value; }
+        }
+
     }
 }

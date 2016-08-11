@@ -2,6 +2,7 @@
 using System.Data;
 using ZkManagement.Util;
 using ZkManagement.Entidades;
+using System.Collections.Generic;
 
 namespace ZkManagement.Logica
 {
@@ -121,6 +122,31 @@ namespace ZkManagement.Logica
             }
         }
 
+        public List<Empleado> GetUsuarios(int nroReloj)
+        {
+            List<Empleado> empleados = new List<Empleado>();
+
+            string legajo = "";
+            string nombre = "";
+            string password = "";
+            int privilegio = 0;
+            bool bEnabled = false;
+
+            axCZKEM1.EnableDevice(nroReloj, false);
+            axCZKEM1.ReadAllUserID(nroReloj);//Leo toda la información de los usuarios.
+            while (axCZKEM1.SSR_GetAllUserInfo(nroReloj, out legajo, out nombre, out password, out privilegio, out bEnabled))
+            {
+                Empleado emp = new Empleado();
+                emp.Legajo = legajo;
+                emp.Nombre = nombre;
+                emp.Pin = password;
+                emp.Privilegio = privilegio;
+                empleados.Add(emp);
+            }
+            axCZKEM1.EnableDevice(nroReloj, true);
+            return empleados;
+        }
+
         //DESCARGA DE REGISTROS!!//
         public DataTable DescargarRegistros(int nroReloj)
         {
@@ -184,13 +210,13 @@ namespace ZkManagement.Logica
 
         //DESCARGA DE HUELLAS//
 
-        public void DescargarInfo(int nroReloj)
+        public DataTable DescargarInfo(int nroReloj)
         {
             //Inicializo todas las variables necesarias//
             string legajoEnReloj = "";
             string nombre = "";
             string contraseña = "";
-            int iPrivilege = 0;
+            int privilegio = 0;
             bool bEnabled = false;       //Este codigo fue copiado de la documentación. 
             int idwFingerIndex;         //Modifico sólo el nombre de las variables que voy a utilizar.
             string huella = "";
@@ -198,42 +224,41 @@ namespace ZkManagement.Logica
             int iFlag = 0;
             //Hasta aca//
 
+            DataTable usuariosDispositivo = new DataTable();
+            usuariosDispositivo.Columns.Add("Legajo", typeof(string));
+            usuariosDispositivo.Columns.Add("Nombre", typeof(string));
+            usuariosDispositivo.Columns.Add("Pin", typeof(string));
+            //usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
+            //usuariosDispositivo.Columns.Add("Cant", typeof(int));
+            usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
+
             axCZKEM1.EnableDevice(nroReloj, false);
 
             axCZKEM1.ReadAllUserID(nroReloj);//Trae toda la información de usuario a la memoria.
             axCZKEM1.ReadAllTemplate(nroReloj);//Trae todas las huellas a la memoria.
 
-            while (axCZKEM1.SSR_GetAllUserInfo(nroReloj, out legajoEnReloj, out nombre, out contraseña, out iPrivilege, out bEnabled))//get all the users' information from the memory
+            while (axCZKEM1.SSR_GetAllUserInfo(nroReloj, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
             {
+                DataRow fila = usuariosDispositivo.NewRow();
+                fila["Legajo"] = legajoEnReloj;
+                fila["Nombre"] = nombre;
+                fila["Pin"] = contraseña;
+                fila["Privilegio"] = privilegio;
+                
+
+                //A partir de acá es solo para leer las huellas!!//
                 for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
                 {
-                    if (axCZKEM1.GetUserTmpExStr(nroReloj, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//get the corresponding templates string and length from the memory
+
+                    if (axCZKEM1.GetUserTmpExStr(nroReloj, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//Trae todas las huellas!!
                     {
-                        Empleado emp = new Empleado();
-                        emp.Nombre = nombre;
-                        emp.Legajo = legajoEnReloj;
-                        emp.Pin = Convert.ToInt32(contraseña);
-                        emp.Huella = huella;   
-                        /*
-                        list.Text = legajoEnReloj;
-                        list.SubItems.Add(sName);
-                        list.SubItems.Add(idwFingerIndex.ToString());
-                        list.SubItems.Add(sTmpData);
-                        list.SubItems.Add(iPrivilege.ToString());
-                        list.SubItems.Add(sPassword);
-                        if (bEnabled == true)
-                        {
-                            list.SubItems.Add("true");
-                        }
-                        else
-                        {
-                            list.SubItems.Add("false");
-                        }
-                        list.SubItems.Add(iFlag.ToString());*/
 
                     }
                 }
+                usuariosDispositivo.Rows.Add(fila);
             }
+            axCZKEM1.EnableDevice(nroReloj, true);
+            return usuariosDispositivo;
         }
 
 
