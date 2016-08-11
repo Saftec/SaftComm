@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -37,6 +38,7 @@ namespace ZkManagement.Interfaz
 
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
+            NoEditable();
             ActualizarFormulario();
         }
 
@@ -65,9 +67,9 @@ namespace ZkManagement.Interfaz
 
         private void ActualizarFormulario()
         {
-            txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usuario"].Value.ToString();
+            txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usr"].Value.ToString();
             txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
-            comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Nivel"].Value)) - 1);
+            comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdPermisos"].Value)) - 1);
         }
 
         private bool ValidarDatos()
@@ -153,16 +155,15 @@ namespace ZkManagement.Interfaz
 
         private void CargarDGV()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            DataTable usuarios = new DataTable();
             ControladorLogin cl = new ControladorLogin();
+            dgvUsuarios.AutoGenerateColumns = false;
             dgvUsuarios.Rows.Clear();
             try
             {
                 usuarios = cl.GetUsuarios();
-                foreach (Usuario usuario in usuarios)
-                {
-                    dgvUsuarios.Rows.Add(usuario.Usr, usuario.Pass, usuario.Nivel, usuario.Permisos, usuario.Id);
-                }
+                dgvUsuarios.DataSource = usuarios;
+                dgvUsuarios.Refresh();
             }
             catch (Exception ex)
             {

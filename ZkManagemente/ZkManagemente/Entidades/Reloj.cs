@@ -62,8 +62,8 @@ namespace ZkManagement.Entidades
 
         public int Numero
         {
-            get { return numero; }
-            set { numero = value; }
+            get { return this.numero; }
+            set { this.numero = value; }
         }
 
 
@@ -104,54 +104,54 @@ namespace ZkManagement.Entidades
             bool estado;
             if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
             estado = base.Connect_Net(ip, puerto);
-            ca.Conexion(numero);
+            ca.Conexion(this.numero);
             if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         public void Desconectar()
         {
-            ca.Desconectar(numero);
+            ca.Desconectar(this.numero);
             base.Disconnect();
         }
         public int GetCantidadRegistros()
         {
             int codError = 0; //Controlo errores del dispositivo
             int cant = 0;
-            base.EnableDevice(numero, false);
-            if (!base.GetDeviceStatus(numero, 6, ref cant)) //La funcion "GetDeviceStatus" con el parámetro 6, devuelve la cantidad de registros.
+            base.EnableDevice(this.numero, false);
+            if (!base.GetDeviceStatus(this.numero, 6, ref cant)) //La funcion "GetDeviceStatus" con el parámetro 6, devuelve la cantidad de registros.
             {
                 base.GetLastError(ref codError);
                 throw new AppException("Error al consultar la cantidad de registros en el equipo, coderror: " + codError.ToString());
             }
-            base.EnableDevice(numero, true);
+            base.EnableDevice(this.numero, true);
             return cant;
         }
         public void BorrarRegistros()
         {
             int codError = 0;
             int cant;
-            base.EnableDevice(numero, false);     //bloqueo dispositivo
+            base.EnableDevice(this.numero, false);     //bloqueo dispositivo
             cant = GetCantidadRegistros();
-            if (base.ClearGLog(numero))
+            if (base.ClearGLog(this.numero))
             {
                 ca.BorradoRegistros(cant);
-                base.RefreshData(numero);     //los datos deben ser actualizados en el reloj
-                base.EnableDevice(numero, true);      //desbloqueo
+                base.RefreshData(this.numero);     //los datos deben ser actualizados en el reloj
+                base.EnableDevice(this.numero, true);      //desbloqueo
             }
             else
             {
                 base.GetLastError(ref codError);
-                base.EnableDevice(numero, true);      //desbloqueo
+                base.EnableDevice(this.numero, true);      //desbloqueo
                 throw new AppException("Error al borrar los registros, coderror: " + codError.ToString());
             }
         }
         public void SincronizarHora()
         {
             int codError = 0;
-            if (base.SetDeviceTime(numero))
+            if (base.SetDeviceTime(this.numero))
             {
-                ca.SincronizarHora(numero);
-                base.RefreshData(numero);     //actualizo datos en dispositivo
+                ca.SincronizarHora(this.numero);
+                base.RefreshData(this.numero);     //actualizo datos en dispositivo
             }
             else
             {
@@ -162,37 +162,37 @@ namespace ZkManagement.Entidades
         public string GetModelo()
         {
             string modelo = string.Empty;
-            base.GetProductCode(numero, out modelo);
+            base.GetProductCode(this.numero, out modelo);
             return modelo;
         }
         public string GetMac()
         {
             string mac = string.Empty;
-            base.GetDeviceMAC(numero, ref mac);
+            base.GetDeviceMAC(this.numero, ref mac);
             return mac;
         }
         public void Reiniciar()
         {
             int error = 0;
             base.GetLastError(error);
-            if (base.RestartDevice(numero) != true) { throw new AppException("Error al intentar reiniciar el dispositivo, error: " + error.ToString()); }
+            if (base.RestartDevice(this.numero) != true) { throw new AppException("Error al intentar reiniciar el dispositivo, error: " + error.ToString()); }
         }
         public void Inicializar()
         {
-            if (base.ClearKeeperData(numero) != true)
+            if (base.ClearKeeperData(this.numero) != true)
             {
                 int error = 0;
                 base.GetLastError(error);
                 throw new AppException("Error al intentar inicializar el dispositivo, error: " + error.ToString());
             }
-            base.RefreshData(numero); //Refresh a los datos del equipo.
+            base.RefreshData(this.numero); //Refresh a los datos del equipo.
         }
         public void EliminarAdmins()
         {
             int coderror = 0;
-            if (base.ClearAdministrators(numero))
+            if (base.ClearAdministrators(this.numero))
             {
-                base.RefreshData(numero);
+                base.RefreshData(this.numero);
             }
             else
             {
@@ -229,22 +229,22 @@ namespace ZkManagement.Entidades
             regis.Columns.Add("Reloj", typeof(Int32));
             //HASTA ACA
 
-            base.EnableDevice(numero, false);//Bloqueo dispositivo
+            base.EnableDevice(this.numero, false);//Bloqueo dispositivo
             cantRegs = GetCantidadRegistros();
-            if (base.ReadGeneralLogData(numero)) //Leo todos los registros del dispositivo
+            if (base.ReadGeneralLogData(this.numero)) //Leo todos los registros del dispositivo
             {
-                while (base.SSR_GetGeneralLogData(numero, out sdwEnrollNumber, out idwVerifyMode,
+                while (base.SSR_GetGeneralLogData(this.numero, out sdwEnrollNumber, out idwVerifyMode,
                            out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkcode) && codError == 0)//Obtengo los registros
                 {
                     DataRow fila = regis.NewRow();
                     fila["Legajo"] = sdwEnrollNumber;
                     fila["Registro"] = new DateTime(año, mes, dia, hora, minutos, 00);
                     fila["Tipo"] = tipoMov;
-                    fila["Reloj"] = Convert.ToInt32(numero);
+                    fila["Reloj"] = Convert.ToInt32(this.numero);
                     regis.Rows.Add(fila);
 
                     count++;
-                    ca.EscribirRegistros(numero, tipoMov, año, mes, dia, hora, minutos, sdwEnrollNumber);
+                    ca.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, sdwEnrollNumber);
                 }
             }
             if (count != cantRegs) { throw new AppException("No se descargo el total de registros"); }
@@ -258,11 +258,11 @@ namespace ZkManagement.Entidades
                 }
             }
             ca.DescargaRegistros(count);
-            base.EnableDevice(numero, true);
+            base.EnableDevice(this.numero, true);
             return regis;
         }
 
-        public DataTable DescargarInfo(int nroReloj)
+        public DataTable DescargarInfo()
         {
             //Inicializo todas las variables necesarias//
             string legajoEnReloj = "";
@@ -284,12 +284,12 @@ namespace ZkManagement.Entidades
             //usuariosDispositivo.Columns.Add("Cant", typeof(int));
             usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
 
-            base.EnableDevice(nroReloj, false);
+            base.EnableDevice(this.numero, false);
 
-            base.ReadAllUserID(nroReloj);//Trae toda la información de usuario a la memoria.
-            base.ReadAllTemplate(nroReloj);//Trae todas las huellas a la memoria.
+            base.ReadAllUserID(this.numero);//Trae toda la información de usuario a la memoria.
+            base.ReadAllTemplate(this.numero);//Trae todas las huellas a la memoria.
 
-            while (base.SSR_GetAllUserInfo(nroReloj, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
+            while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
             {
                 DataRow fila = usuariosDispositivo.NewRow();
                 fila["Legajo"] = legajoEnReloj;
@@ -302,14 +302,14 @@ namespace ZkManagement.Entidades
                 for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
                 {
 
-                    if (base.GetUserTmpExStr(nroReloj, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//Trae todas las huellas!!
+                    if (base.GetUserTmpExStr(this.numero, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//Trae todas las huellas!!
                     {
 
                     }
                 }
                 usuariosDispositivo.Rows.Add(fila);
             }
-            base.EnableDevice(nroReloj, true);
+            base.EnableDevice(this.numero, true);
             return usuariosDispositivo;
         }
         #endregion

@@ -104,15 +104,13 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show("Por favor seleccione un dispositivo", "Error");
                 return;
             }
-
-            ControladorOperaciones co = new ControladorOperaciones();
             Reloj r = new Reloj();
             r=relojes[comboRelojes.SelectedIndex];
             try
             {
-                co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
+                r.Conectar();
                 labelEstado.Text = "Conectado a dispostivo :" + r.Numero.ToString();
-                usuariosEnDisp=co.DescargarInfo(r.Numero);
+                usuariosEnDisp=r.DescargarInfo();
                 LlenarDgvDispositivo();
             }
             catch (Exception ex)

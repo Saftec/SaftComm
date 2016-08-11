@@ -30,11 +30,6 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Permisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -47,6 +42,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
+            this.Usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdPermisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Permisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupModificar.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +66,9 @@
             this.dgvUsuarios.AllowUserToDeleteRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Usuario,
+            this.Usr,
             this.Password,
-            this.Nivel,
+            this.IdPermisos,
             this.Permisos,
             this.Id});
             this.dgvUsuarios.Location = new System.Drawing.Point(201, 98);
@@ -80,38 +80,6 @@
             this.dgvUsuarios.TabIndex = 1;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             this.dgvUsuarios.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            // 
-            // Password
-            // 
-            this.Password.HeaderText = "Contraseña";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
-            // 
-            // Nivel
-            // 
-            this.Nivel.HeaderText = "Nivel";
-            this.Nivel.Name = "Nivel";
-            this.Nivel.ReadOnly = true;
-            // 
-            // Permisos
-            // 
-            this.Permisos.HeaderText = "Permisos";
-            this.Permisos.Name = "Permisos";
-            this.Permisos.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
             // 
             // btnEliminar
             // 
@@ -234,6 +202,43 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Usr
+            // 
+            this.Usr.DataPropertyName = "Usuario";
+            this.Usr.HeaderText = "Usuario";
+            this.Usr.Name = "Usr";
+            this.Usr.ReadOnly = true;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Contraseña";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
+            // 
+            // IdPermisos
+            // 
+            this.IdPermisos.DataPropertyName = "IdPermisos";
+            this.IdPermisos.HeaderText = "Nivel";
+            this.IdPermisos.Name = "IdPermisos";
+            this.IdPermisos.ReadOnly = true;
+            // 
+            // Permisos
+            // 
+            this.Permisos.DataPropertyName = "Permisos";
+            this.Permisos.HeaderText = "Permisos";
+            this.Permisos.Name = "Permisos";
+            this.Permisos.ReadOnly = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "IdUsuario";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,11 +268,6 @@
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nivel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Permisos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.GroupBox groupModificar;
         private System.Windows.Forms.Label label3;
@@ -278,5 +278,10 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdPermisos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Permisos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

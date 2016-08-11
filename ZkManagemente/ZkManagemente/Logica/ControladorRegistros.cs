@@ -30,26 +30,32 @@ namespace ZkManagement.Logica
                     if (id < 1)
                     {
                         desconocidos.Add(emp.Legajo);
+                        break;
                     }
-                    else
-                    {
+
                         fecha = Convert.ToDateTime(fila["Registro"]);
                         tipoMov = Convert.ToInt32(fila["Tipo"]);
-                        /* 
-                         1-->Salida
+                        string tipo = "Desconocida"; 
+           /*            1-->Salida
                          0-->Entrada
                          4-->Entrada T.E.
-                         5-->Salida T.E.
-                         */
-                        if (tipoMov == 1)
+                         5-->Salida T.E.        */
+                        switch (tipoMov)
                         {
-                            ce.InsertarRegis(id, fecha, "Salida", reloj);
+                            case 0:
+                                tipo = "Entrada";
+                                break;
+                            case 1:
+                                tipo = "Salida";
+                                break;
+                            case 4:
+                                tipo = "Entrada TE";
+                                break;
+                            case 5:
+                                tipo = "Salida TE";
+                                break;
                         }
-                        else
-                        {
-                            ce.InsertarRegis(id, fecha, "Entrada", reloj);
-                        }
-                    }
+                            ce.InsertarRegis(id, fecha, tipo , reloj);
                 }
                 catch(Exception ex)
                 {

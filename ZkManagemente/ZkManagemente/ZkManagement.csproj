@@ -118,7 +118,6 @@
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorEmpleados.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
-    <Compile Include="Logica\ControladorOperaciones.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />
     <Compile Include="Logica\ControladorReloj.cs" />
     <Compile Include="Program.cs" />

@@ -10,7 +10,6 @@ namespace ZkManagement.Interfaz
 {
     public partial class Relojes : Form
     {
-        private ControladorOperaciones co = new ControladorOperaciones();
         private Reloj reloj = new Reloj();
         private List<Reloj> relojes = new List<Reloj>();
         public Relojes()
@@ -18,7 +17,6 @@ namespace ZkManagement.Interfaz
             InitializeComponent();
             CargarDataGridView();
         }
-
         private void Relojes_Load(object sender, EventArgs e)
         {
             SetPermisos();
@@ -388,12 +386,12 @@ namespace ZkManagement.Interfaz
                 try
                 {
                     DataTable regis = new DataTable();
-                    co.Conectar(r.Ip, r.Puerto, r.Clave, r.Numero);
-                    regis = co.DescargarRegistros(r.Numero);
+                    r.Conectar();
+                    regis = r.DescargarRegistros();
                     cr.AgregarRegis(regis);
-                    co.BorrarRegistros(r.Numero);
+                    r.BorrarRegistros();
                     Borrado(r.Id, regis.Rows.Count);
-                    co.Desconectar(r.Numero);
+                    r.Desconectar();
                     total += regis.Rows.Count;
                 }
                 catch (Exception)
@@ -415,10 +413,8 @@ namespace ZkManagement.Interfaz
                 ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
                 foreach (Reloj r in relojes)
                 {
-                    string llave;
-                    llave = GetClave();
-                    co.Conectar(r.Ip, r.Puerto, r.Clave, GetNumero());
-                    co.SincronizarHora(r.Numero);
+                    r.Conectar();
+                    r.SincronizarHora();
                 }
                 MessageBox.Show("Rutina de sincronizacion de hora finalizada");
                 ca.Rutina("Fin", "Rutina de sincronizacion de hora");

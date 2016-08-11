@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -26,7 +27,7 @@ namespace ZkManagement.Datos
                 dr.Close();
             }
 
-           catch(InvalidOperationException)  //si cacheo esto es porque la consulta no devolvió nada
+           catch(InvalidOperationException)  //Si cacheo esto es porque la consulta no devolvió nada
             {
                 throw new AppException("Usuario incorrecto");
             }
@@ -42,25 +43,16 @@ namespace ZkManagement.Datos
             return usr;
         }
 
-        public List<Usuario> GetUsuarios()
+        public DataTable GetUsuarios()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            DataTable usuarios = new DataTable();
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos",conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    Usuario usr = new Usuario();
-                    usr.Usr = (dr["Usuario"].ToString());
-                    usr.Pass = (dr["Password"].ToString());
-                    usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
-                    usr.Permisos = (dr["Permisos"].ToString());
-                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
-                    usuarios.Add(usr);                  
-                }
-                dr.Close();
+                SqlCommand cmd = new SqlCommand("SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos", conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(usuarios);
+                da.Dispose();
             }
             catch (SqlException)
             {

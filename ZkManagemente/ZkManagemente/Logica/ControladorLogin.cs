@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 using ZkManagement.Interfaz;
@@ -32,9 +33,9 @@ namespace ZkManagement.Logica
             }
         }
 
-        public List<Usuario> GetUsuarios()
+        public DataTable GetUsuarios()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            DataTable usuarios = new DataTable();
             try
             {
                 usuarios = cu.GetUsuarios();
