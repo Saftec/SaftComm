@@ -15,7 +15,7 @@ namespace ZkManagement.Logica
         private static Usuario usr = new Usuario();
         public void ValidarUsuario(Usuario usuario)
         {                       
-            ControladorArchivos ca = new ControladorArchivos();
+            Logger ca = new Logger();
             try
             {
                 usr = cu.GetUsuario(usuario);

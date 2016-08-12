@@ -378,7 +378,7 @@ namespace ZkManagement.Interfaz
         {
             Cursor = Cursors.WaitCursor; //Cursor de espera
             int total = 0;
-            ControladorArchivos ca = new ControladorArchivos();
+            Logica.Logger ca = new Logica.Logger();
             ControladorRegistros cr = new ControladorRegistros();
             ca.Rutina("Inicio", "Descarga de registros");
             foreach (Reloj r in relojes)
@@ -407,7 +407,7 @@ namespace ZkManagement.Interfaz
         public void RutinaSincronizarHora()
         {
             Cursor = Cursors.WaitCursor;
-            ControladorArchivos ca = new ControladorArchivos();
+            Logica.Logger ca = new Logica.Logger();
             try
             {
                 ca.Rutina("Inicio", "Rutina de sincronizacion de hora");

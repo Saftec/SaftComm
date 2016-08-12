@@ -62,6 +62,7 @@ namespace ZkManagement.Interfaz
 
         protected override void OnClosed(EventArgs e)
         {
+            iconoBandeja.Visible = false;
             Application.Exit(); //CIERRA LA APLICACION POR COMPLETO AL CERRAR EL FORM PRINCIPAL
         }
 
@@ -111,6 +112,11 @@ namespace ZkManagement.Interfaz
         {
             Empleados emp = new Empleados();
             emp.ShowDialog(this);
+        }
+
+        private void btnEmpleados_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

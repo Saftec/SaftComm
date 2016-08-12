@@ -94,9 +94,10 @@ namespace ZkManagement.Datos
             {
                 throw new Exception("Error al intentar agregar el empleado a la tabla empleados");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error desconocido al intentar agregar el empleado");
+                throw ex;
+               // throw new Exception("Error desconocido al intentar agregar el empleado");
             }
             finally
             {

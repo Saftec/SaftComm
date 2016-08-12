@@ -7,7 +7,7 @@ namespace ZkManagement.Entidades
 {
     public class Reloj : zkemkeeper.CZKEMClass
     {
-        private ControladorArchivos ca = new ControladorArchivos();
+        private Logica.Logger ca = new Logica.Logger();
         private int puerto;
         private int numero;
         private int id;
@@ -15,6 +15,8 @@ namespace ZkManagement.Entidades
         private string dns;
         private string ip;
         private string nombre;
+        private bool estado;
+     // private string tipo;  --Esta variable la voy a usar para controlar si es TFT ByW o Facial.-- //
 
         #region Constructores
         public Reloj()
@@ -45,7 +47,11 @@ namespace ZkManagement.Entidades
             get { return dns; }
             set { dns = value; }
         }
-
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
 
         public string Clave
         {
@@ -283,6 +289,8 @@ namespace ZkManagement.Entidades
             //usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
             //usuariosDispositivo.Columns.Add("Cant", typeof(int));
             usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
+            usuariosDispositivo.Columns.Add("Huella", typeof(string));
+            usuariosDispositivo.Columns.Add("Cantidad", typeof(int));
 
             base.EnableDevice(this.numero, false);
 
@@ -296,15 +304,16 @@ namespace ZkManagement.Entidades
                 fila["Nombre"] = nombre;
                 fila["Pin"] = contraseña;
                 fila["Privilegio"] = privilegio;
-
+                int cant = 0;
 
                 //A partir de acá es solo para leer las huellas!!//
                 for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
-                {
-
+                {                  
                     if (base.GetUserTmpExStr(this.numero, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//Trae todas las huellas!!
                     {
-
+                        cant++;
+                        fila["Huella"] = huella;
+                        fila["Cantidad"] = cant;
                     }
                 }
                 usuariosDispositivo.Rows.Add(fila);

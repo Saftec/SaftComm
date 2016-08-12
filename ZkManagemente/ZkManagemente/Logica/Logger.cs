@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ZkManagement.Logica
 {
-    class ControladorArchivos
+    class Logger
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
 
@@ -45,10 +45,9 @@ namespace ZkManagement.Logica
 
         private void EscribirLog(string linea)
         {
-            string path = cc.GetConfig(3);
             try
             {
-                using (StreamWriter l = File.AppendText(path))
+                using (StreamWriter l = File.AppendText("Log.txt"))
                     l.WriteLine(DateTime.Now.ToString() + linea);
             }
             catch (IOException ex)

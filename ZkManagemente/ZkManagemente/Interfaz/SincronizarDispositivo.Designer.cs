@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnMostrar = new System.Windows.Forms.Button();
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
+            this.labelEstado = new System.Windows.Forms.Label();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
             this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,11 +44,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCargar = new System.Windows.Forms.Button();
             this.btnDescargar = new System.Windows.Forms.Button();
-            this.labelEstado = new System.Windows.Forms.Label();
             this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Huella = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -94,6 +97,15 @@
             this.groupSeleccion.TabIndex = 3;
             this.groupSeleccion.TabStop = false;
             this.groupSeleccion.Text = "Seleccionar Dispositivo";
+            // 
+            // labelEstado
+            // 
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.Location = new System.Drawing.Point(435, 36);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(77, 13);
+            this.labelEstado.TabIndex = 3;
+            this.labelEstado.Text = "Desconectado";
             // 
             // dgvLocal
             // 
@@ -168,11 +180,16 @@
             this.Leg,
             this.Nom,
             this.Pin,
-            this.Privilegio});
-            this.dgvDispositivo.Location = new System.Drawing.Point(481, 118);
+            this.Privilegio,
+            this.Cantidad,
+            this.Huella,
+            this.Seleccion});
+            this.dgvDispositivo.Location = new System.Drawing.Point(475, 118);
             this.dgvDispositivo.Name = "dgvDispositivo";
-            this.dgvDispositivo.Size = new System.Drawing.Size(377, 420);
+            this.dgvDispositivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDispositivo.Size = new System.Drawing.Size(389, 420);
             this.dgvDispositivo.TabIndex = 6;
+            this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
             // 
             // label3
             // 
@@ -200,15 +217,7 @@
             this.btnDescargar.TabIndex = 9;
             this.btnDescargar.Text = "Descargar";
             this.btnDescargar.UseVisualStyleBackColor = true;
-            // 
-            // labelEstado
-            // 
-            this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(435, 36);
-            this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(77, 13);
-            this.labelEstado.TabIndex = 3;
-            this.labelEstado.Text = "Desconectado";
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // Leg
             // 
@@ -216,6 +225,7 @@
             this.Leg.HeaderText = "Legajo";
             this.Leg.Name = "Leg";
             this.Leg.ReadOnly = true;
+            this.Leg.Width = 60;
             // 
             // Nom
             // 
@@ -230,6 +240,7 @@
             this.Pin.HeaderText = "Pin";
             this.Pin.Name = "Pin";
             this.Pin.ReadOnly = true;
+            this.Pin.Width = 40;
             // 
             // Privilegio
             // 
@@ -237,6 +248,29 @@
             this.Privilegio.HeaderText = "Privilegios";
             this.Privilegio.Name = "Privilegio";
             this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cant";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 30;
+            // 
+            // Huella
+            // 
+            this.Huella.DataPropertyName = "Huella";
+            this.Huella.HeaderText = "Huella";
+            this.Huella.Name = "Huella";
+            this.Huella.Visible = false;
+            // 
+            // Seleccion
+            // 
+            this.Seleccion.HeaderText = "Seleccionar";
+            this.Seleccion.Name = "Seleccion";
+            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Seleccion.Width = 65;
             // 
             // SincronizarDispositivo
             // 
@@ -252,6 +286,7 @@
             this.Controls.Add(this.groupSeleccion);
             this.Name = "SincronizarDispositivo";
             this.Text = "SincronizarDispositivo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SincronizarDispositivo_FormClosing);
             this.Load += new System.EventHandler(this.SincronizarDispositivo_Load);
             this.groupSeleccion.ResumeLayout(false);
             this.groupSeleccion.PerformLayout();
@@ -284,5 +319,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Huella;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
     }
 }

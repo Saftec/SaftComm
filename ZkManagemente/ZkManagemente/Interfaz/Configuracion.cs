@@ -15,7 +15,6 @@ namespace ZkManagement.Interfaz
         {
             string valor;
             txtPathRegs.Text = cc.GetConfig(2);
-            txtPathLog.Text = cc.GetConfig(3);
             txtMinRegs.Text = cc.GetConfig(5);
             txtMinHs.Text = cc.GetConfig(7);
             valor = cc.GetConfig(4);
@@ -45,8 +44,7 @@ namespace ZkManagement.Interfaz
             try
             {
                 cc.SetConfig(2, txtPathRegs.Text);
-                cc.SetConfig(3, txtPathLog.Text);
-                MessageBox.Show("Actualizacion grabada");
+                MessageBox.Show("Configuraciones guardadas");
             }
             catch(Exception ex)
             {

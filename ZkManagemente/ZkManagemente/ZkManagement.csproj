@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
     <Compile Include="Datos\CatalogoEmpleados.cs" />
+    <Compile Include="Datos\CatalogoHuellas.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
@@ -114,16 +115,16 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logica\ControladorArchivos.cs" />
+    <Compile Include="Logica\Logger.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorEmpleados.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />
     <Compile Include="Logica\ControladorReloj.cs" />
+    <Compile Include="Logica\ControladorSincronizacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AppException.cs" />
-    <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\UltId.cs" />
     <EmbeddedResource Include="Interfaz\AbmReloj.resx">
       <DependentUpon>AbmReloj.cs</DependentUpon>

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupArchivos = new System.Windows.Forms.GroupBox();
-            this.txtPathLog = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPathRegs = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -63,32 +61,14 @@
             // 
             // groupArchivos
             // 
-            this.groupArchivos.Controls.Add(this.txtPathLog);
-            this.groupArchivos.Controls.Add(this.label2);
             this.groupArchivos.Controls.Add(this.label1);
             this.groupArchivos.Controls.Add(this.txtPathRegs);
             this.groupArchivos.Location = new System.Drawing.Point(12, 24);
             this.groupArchivos.Name = "groupArchivos";
-            this.groupArchivos.Size = new System.Drawing.Size(417, 80);
+            this.groupArchivos.Size = new System.Drawing.Size(417, 52);
             this.groupArchivos.TabIndex = 0;
             this.groupArchivos.TabStop = false;
-            this.groupArchivos.Text = "Archivos";
-            // 
-            // txtPathLog
-            // 
-            this.txtPathLog.Location = new System.Drawing.Point(104, 50);
-            this.txtPathLog.Name = "txtPathLog";
-            this.txtPathLog.Size = new System.Drawing.Size(299, 20);
-            this.txtPathLog.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Archivos log: ";
+            this.groupArchivos.Text = "Archivo de Registros";
             // 
             // label1
             // 
@@ -143,7 +123,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMinRegs);
-            this.groupBox1.Location = new System.Drawing.Point(12, 132);
+            this.groupBox1.Location = new System.Drawing.Point(12, 99);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(417, 78);
             this.groupBox1.TabIndex = 4;
@@ -356,8 +336,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupArchivos;
-        private System.Windows.Forms.TextBox txtPathLog;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPathRegs;
         private System.Windows.Forms.Button btnClose;
