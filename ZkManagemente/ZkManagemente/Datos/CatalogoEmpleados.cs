@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
@@ -9,6 +10,7 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
+        private ILog logger = LogManager.GetLogger("");
 
         public DataTable Empleados()
         {
@@ -23,12 +25,14 @@ namespace ZkManagement.Datos
                 da.Fill(empleados);
                 da.Dispose();
             }
-            catch (SqlException)
+            catch (SqlException sqlEx)
             {
+                logger.Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar consultar los datos de los empleados");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar los datos de los empleados");
             }
             finally
@@ -46,12 +50,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString(),conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlEx)
             {
+                logger.Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar eliminar empleado de la base de datos");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el empleado");
             }
             finally
@@ -68,12 +74,21 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("UPDATE Empleados SET DNI='"+emp.Dni+"', Legajo='"+emp.Legajo+"', Nombre='"+emp.Nombre+"', Pin='"+emp.Pin+"', Tarjeta='"+emp.Tarjeta+"' WHERE IdEmpleado="+emp.Id.ToString(), conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlEx)
             {
-                throw new Exception("Error al intentar actualizar la tabla empleados");
+                logger.Error(sqlEx.StackTrace);
+                if (sqlEx.Number == 2627)
+                {
+                    throw new Exception("Este valor no puede estar duplicado");
+                }
+                else
+                {
+                    throw new Exception("Error al intentar actualizar los datos en la tabla empleados");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del empleado");
             }
             finally
@@ -90,12 +105,21 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Empleados Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"')",conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlEx)
             {
-                throw new Exception("Error al intentar agregar el empleado a la tabla empleados");
+                logger.Error(sqlEx.StackTrace);
+                if (sqlEx.Number == 2627)
+                {
+                    throw new Exception("Este valor no puede estar duplicado");
+                }
+                else
+                {
+                    throw new Exception("Error al intentar agregar el empleado en la tabla empleados");
+                }
             }
             catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw ex;
                // throw new Exception("Error desconocido al intentar agregar el empleado");
             }
@@ -119,12 +143,14 @@ namespace ZkManagement.Datos
                     id = Convert.ToInt32(dr["IdEmpleado"]);
                 }       
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar consultar la tabla empleados");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla empleados");
             }
             conn.Close();
@@ -139,12 +165,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Registros VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "')", conn);
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException)
+            catch(SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar insertar en la tabla registros");
             }
-            catch(Exception)
+            catch(Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla registros");
             }
             conn.Close();

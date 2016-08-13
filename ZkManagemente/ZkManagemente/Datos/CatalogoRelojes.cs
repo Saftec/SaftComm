@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
@@ -9,6 +10,7 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
+        private ILog logger = LogManager.GetLogger("");
         public List<Reloj> GetRelojes()
         {
             List<Reloj> relojes = new List<Reloj>();
@@ -31,12 +33,14 @@ namespace ZkManagement.Datos
                 }
                 dr.Close();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar datos de los relojes");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar datos de los relojes");
             }
             conn.Close();
@@ -51,12 +55,21 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Relojes VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
-                throw new Exception("Error al intentar agregar el reloj");
+                logger.Error(sqlex.StackTrace);
+                if (sqlex.Number == 2627)
+                {
+                    throw new Exception("Este valor no puede estar duplicado");
+                }
+                else
+                {
+                    throw new Exception("Error al intentar agregar el equipo en la tabla relojes");
+                }              
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar agregar el reloj");
             }
             conn.Close();
@@ -70,12 +83,21 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + r.Clave + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id, conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
-                throw new Exception("Error al intentar actuailizar los datos del reloj");
+                logger.Error(sqlex.StackTrace);
+                if (sqlex.Number == 2627)
+                {
+                    throw new Exception("Este valor no puede estar duplicado");
+                }
+                else
+                {
+                    throw new Exception("Error al intentar actualizar los datos del equipo en la tabla relojes");
+                }
             }
-            catch (Exception)
+            catch (Exception ex) 
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del reloj");
             }
             conn.Close();
@@ -89,12 +111,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("DELETE FROM Relojes WHERE IdReloj="+r.Id , conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar el reloj");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el reloj");
             }
             conn.Close();
@@ -111,11 +135,13 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw sqlex;
                 //throw new Exception("Error al actualizar la tabla borrado");
             }
-            catch (Exception)
+            catch (Exception ex) 
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
             }
             finally

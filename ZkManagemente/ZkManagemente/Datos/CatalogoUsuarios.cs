@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using log4net;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
@@ -9,8 +9,9 @@ namespace ZkManagement.Datos
 {
     class CatalogoUsuarios
     {
-        Conexion con = new Conexion();
-        SqlConnection conn = new SqlConnection();
+        private Conexion con = new Conexion();
+        private SqlConnection conn = new SqlConnection();
+        private ILog logger = LogManager.GetLogger("");
         public Usuario GetUsuario(Usuario usuario)
         {
             Usuario usr = new Usuario();
@@ -31,12 +32,14 @@ namespace ZkManagement.Datos
             {
                 throw new AppException("Usuario incorrecto");
             }
-            catch(SqlException)
+            catch(SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar datos de usuario");
             }
-            catch(Exception)
+            catch(Exception ex)
             {
+                logger.Fatal(ex.StackTrace);            
                throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
@@ -54,12 +57,14 @@ namespace ZkManagement.Datos
                 da.Fill(usuarios);
                 da.Dispose();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar los datos de usuario");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                throw new Exception("Error desconocido al consultar los datos de usuario");
             }
             conn.Close();
@@ -74,12 +79,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')", conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar dar de alta el empelado");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar dar de alta el empelado");
             }
             conn.Close();
@@ -93,12 +100,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString(),conn);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar modificar usuario");
             }
-            catch (Exception )
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar modificar usuario");
             }
             conn.Close();
@@ -112,12 +121,14 @@ namespace ZkManagement.Datos
                 SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id,conn);
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException)
+            catch(SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar el usuario");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el usuario");
             }
             conn.Close();
