@@ -136,18 +136,14 @@ namespace ZkManagement.Datos
             catch (SqlException sqlex)
             {
                 logger.Error(sqlex.StackTrace);
-                throw sqlex;
-                //throw new Exception("Error al actualizar la tabla borrado");
+                throw new Exception("Error al actualizar la tabla borrado");
             }
             catch (Exception ex) 
             {
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
             }
-            finally
-            {
                 conn.Close();
-            }
         }
     }
 }

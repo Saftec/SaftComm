@@ -16,7 +16,7 @@ namespace ZkManagement.Datos
             {
                 conn.Open();
             }
-            catch (SqlException sqlex) //LOGUEAR ERRORES!
+            catch (SqlException sqlex)
             {               
                 logger.Error(sqlex.StackTrace);
                 throw sqlex;
@@ -37,18 +37,13 @@ namespace ZkManagement.Datos
             {
                 conn = con.Conectar();
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
+                logger.Error(sqlex.StackTrace);
                 throw new Exception("Error al conectar con la base de datos");
             }
             if (conn.State==System.Data.ConnectionState.Open) { return true; }
             else { return false; }
         }
-
-        public void ModificarStringConnection(string cadena)
-        {
-           ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString = cadena;
-        }
-
     }
 }

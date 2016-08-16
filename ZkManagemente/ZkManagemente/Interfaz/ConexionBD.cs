@@ -18,7 +18,7 @@ namespace ZkManagement.Interfaz
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            String cnx;
+            string cnx;
             cnx = @"Data Source=" + txtServidor.Text + ";Initial Catalog=" + txtBase.Text + ";Integrated Security=True;User ID=" + txtUsuario.Text + ";Password=" + txtPassword.Text;
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.ConnectionStrings.ConnectionStrings["cnsSQL"].ConnectionString = cnx;

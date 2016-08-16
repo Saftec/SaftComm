@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using ZkManagement.Logica;
 using ZkManagement.Util;
@@ -274,12 +275,8 @@ namespace ZkManagement.Entidades
             string legajoEnReloj = "";
             string nombre = "";
             string contraseña = "";
-            int privilegio = 0;
-            bool bEnabled = false;       //Este codigo fue copiado de la documentación. 
-            int idwFingerIndex;         //Modifico sólo el nombre de las variables que voy a utilizar.
-            string huella = "";
-            int iTmpLength = 0;
-            int iFlag = 0;
+            int privilegio = 0;          //Este codigo fue copiado de la documentación. 
+            bool bEnabled = false;       //Solo modifico el nombre de las variables que utilizo.
             //Hasta aca//
 
             DataTable usuariosDispositivo = new DataTable();
@@ -287,15 +284,12 @@ namespace ZkManagement.Entidades
             usuariosDispositivo.Columns.Add("Nombre", typeof(string));
             usuariosDispositivo.Columns.Add("Pin", typeof(string));
             //usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
-            //usuariosDispositivo.Columns.Add("Cant", typeof(int));
             usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
-            usuariosDispositivo.Columns.Add("Huella", typeof(string));
             usuariosDispositivo.Columns.Add("Cantidad", typeof(int));
 
             base.EnableDevice(this.numero, false);
 
             base.ReadAllUserID(this.numero);//Trae toda la información de usuario a la memoria.
-            base.ReadAllTemplate(this.numero);//Trae todas las huellas a la memoria.
 
             while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
             {
@@ -304,24 +298,46 @@ namespace ZkManagement.Entidades
                 fila["Nombre"] = nombre;
                 fila["Pin"] = contraseña;
                 fila["Privilegio"] = privilegio;
-                int cant = 0;
-
-                //A partir de acá es solo para leer las huellas!!//
-                for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
-                {                  
-                    if (base.GetUserTmpExStr(this.numero, legajoEnReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))//Trae todas las huellas!!
-                    {
-                        cant++;
-                        fila["Huella"] = huella;
-                        fila["Cantidad"] = cant;
-                    }
-                }
                 usuariosDispositivo.Rows.Add(fila);
             }
             base.EnableDevice(this.numero, true);
             return usuariosDispositivo;
         }
-        #endregion
 
+        public DataTable DescargarHuella(List<string> legajos)
+        {
+            int idwFingerIndex = 0;
+            string huella = "";
+            int iTmpLength = 0;
+            int iFlag = 0;
+            string legajoReloj = string.Empty;
+
+            DataTable legajosHuellas = new DataTable();
+            legajosHuellas.Columns.Add("Legajo", typeof(string));
+            legajosHuellas.Columns.Add("Huella", typeof(string));
+            DataRow fila = legajosHuellas.NewRow();
+
+            base.EnableDevice(this.numero, false);
+
+            base.ReadAllTemplate(this.numero);
+
+            while (base.SSR_GetUserTmpStr(this.numero, legajos[2], idwFingerIndex, out huella, out iTmpLength))
+            {
+                if (base.GetUserTmpExStr(this.numero, legajos[2], idwFingerIndex, out iFlag, out huella, out iTmpLength))
+                {
+                  //  if (legajos.Contains(legajoReloj))
+                   // {
+                        fila["Huella"] = huella;
+                        fila["Legajo"] = legajoReloj;
+                   // }
+                }
+            }
+                //A partir de acá es solo para leer las huellas!!//                 
+            base.EnableDevice(this.numero, true);
+            return legajosHuellas;
+
+        }
+            #endregion
+
+        }
     }
-}

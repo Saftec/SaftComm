@@ -44,12 +44,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCargar = new System.Windows.Forms.Button();
             this.btnDescargar = new System.Windows.Forms.Button();
+            this.checkTodos = new System.Windows.Forms.CheckBox();
+            this.checkTodosLocal = new System.Windows.Forms.CheckBox();
+            this.backgroundWorkerSincronizacion = new System.ComponentModel.BackgroundWorker();
+            this.rtbxLog = new System.Windows.Forms.RichTextBox();
             this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Huella = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
@@ -117,11 +119,11 @@
             this.Cant,
             this.Seleccionar,
             this.Id});
-            this.dgvLocal.Location = new System.Drawing.Point(59, 116);
+            this.dgvLocal.Location = new System.Drawing.Point(93, 116);
             this.dgvLocal.Name = "dgvLocal";
             this.dgvLocal.ReadOnly = true;
             this.dgvLocal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLocal.Size = new System.Drawing.Size(345, 420);
+            this.dgvLocal.Size = new System.Drawing.Size(363, 420);
             this.dgvLocal.TabIndex = 4;
             this.dgvLocal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocal_CellContentClick);
             // 
@@ -166,7 +168,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 99);
+            this.label2.Location = new System.Drawing.Point(204, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 13);
             this.label2.TabIndex = 5;
@@ -181,20 +183,18 @@
             this.Nom,
             this.Pin,
             this.Privilegio,
-            this.Cantidad,
-            this.Huella,
             this.Seleccion});
-            this.dgvDispositivo.Location = new System.Drawing.Point(475, 118);
+            this.dgvDispositivo.Location = new System.Drawing.Point(505, 116);
             this.dgvDispositivo.Name = "dgvDispositivo";
             this.dgvDispositivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDispositivo.Size = new System.Drawing.Size(389, 420);
+            this.dgvDispositivo.Size = new System.Drawing.Size(405, 420);
             this.dgvDispositivo.TabIndex = 6;
             this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(618, 102);
+            this.label3.Location = new System.Drawing.Point(641, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 7;
@@ -202,22 +202,58 @@
             // 
             // btnCargar
             // 
-            this.btnCargar.Location = new System.Drawing.Point(126, 549);
+            this.btnCargar.Location = new System.Drawing.Point(165, 542);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(158, 23);
             this.btnCargar.TabIndex = 8;
             this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // btnDescargar
             // 
-            this.btnDescargar.Location = new System.Drawing.Point(596, 549);
+            this.btnDescargar.Location = new System.Drawing.Point(644, 542);
             this.btnDescargar.Name = "btnDescargar";
             this.btnDescargar.Size = new System.Drawing.Size(158, 23);
             this.btnDescargar.TabIndex = 9;
             this.btnDescargar.Text = "Descargar";
             this.btnDescargar.UseVisualStyleBackColor = true;
             this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
+            // checkTodos
+            // 
+            this.checkTodos.AutoSize = true;
+            this.checkTodos.Location = new System.Drawing.Point(840, 97);
+            this.checkTodos.Name = "checkTodos";
+            this.checkTodos.Size = new System.Drawing.Size(56, 17);
+            this.checkTodos.TabIndex = 10;
+            this.checkTodos.Text = "Todos";
+            this.checkTodos.UseVisualStyleBackColor = true;
+            this.checkTodos.CheckedChanged += new System.EventHandler(this.checkTodos_CheckedChanged);
+            // 
+            // checkTodosLocal
+            // 
+            this.checkTodosLocal.AutoSize = true;
+            this.checkTodosLocal.Location = new System.Drawing.Point(367, 97);
+            this.checkTodosLocal.Name = "checkTodosLocal";
+            this.checkTodosLocal.Size = new System.Drawing.Size(56, 17);
+            this.checkTodosLocal.TabIndex = 11;
+            this.checkTodosLocal.Text = "Todos";
+            this.checkTodosLocal.UseVisualStyleBackColor = true;
+            this.checkTodosLocal.CheckedChanged += new System.EventHandler(this.checkTodosLocal_CheckedChanged);
+            // 
+            // backgroundWorkerSincronizacion
+            // 
+            this.backgroundWorkerSincronizacion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSincronizacion_DoWork);
+            this.backgroundWorkerSincronizacion.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSincronizacion_ProgressChanged);
+            // 
+            // rtbxLog
+            // 
+            this.rtbxLog.Location = new System.Drawing.Point(317, 571);
+            this.rtbxLog.Name = "rtbxLog";
+            this.rtbxLog.Size = new System.Drawing.Size(323, 96);
+            this.rtbxLog.TabIndex = 15;
+            this.rtbxLog.Text = "";
             // 
             // Leg
             // 
@@ -250,20 +286,6 @@
             this.Privilegio.ReadOnly = true;
             this.Privilegio.Width = 50;
             // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            this.Cantidad.HeaderText = "Cant";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 30;
-            // 
-            // Huella
-            // 
-            this.Huella.DataPropertyName = "Huella";
-            this.Huella.HeaderText = "Huella";
-            this.Huella.Name = "Huella";
-            this.Huella.Visible = false;
-            // 
             // Seleccion
             // 
             this.Seleccion.HeaderText = "Seleccionar";
@@ -276,7 +298,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 599);
+            this.ClientSize = new System.Drawing.Size(966, 666);
+            this.Controls.Add(this.rtbxLog);
+            this.Controls.Add(this.checkTodosLocal);
+            this.Controls.Add(this.checkTodos);
             this.Controls.Add(this.btnDescargar);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.label3);
@@ -315,12 +340,14 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.Label labelEstado;
+        private System.Windows.Forms.CheckBox checkTodos;
+        private System.Windows.Forms.CheckBox checkTodosLocal;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSincronizacion;
+        private System.Windows.Forms.RichTextBox rtbxLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn Leg;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Huella;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
     }
 }
