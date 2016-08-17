@@ -238,6 +238,14 @@ namespace ZkManagement.Interfaz
         }
         private void backgroundWorkerSincronizacion_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            /**************************************************** 
+             Tengo que descargar la info de usuario (sin huellas) y comparar a través del legajo.
+             Si existe-->Actualizo los datos.
+             Si es nuevo-->Agrego el empleado.
+             Bajar las huellas:
+             Validar que no supere las 10 huellas (no me importa el fingerindex).
+             Guardar las huellas en la BD.
+            *****************************************************/
             ControladorSincronizacion cs = new ControladorSincronizacion();
             List<string> legajos = new List<string>();
             DataTable legajosYHuellas = new DataTable();
