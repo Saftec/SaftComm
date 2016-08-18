@@ -243,6 +243,7 @@ namespace ZkManagement.Interfaz
              Si existe-->Actualizo los datos.
              Si es nuevo-->Agrego el empleado.
              Bajar las huellas:
+             Descargar huellas de los legajos seleccionados.
              Validar que no supere las 10 huellas (no me importa el fingerindex).
              Guardar las huellas en la BD.
             *****************************************************/
@@ -276,7 +277,8 @@ namespace ZkManagement.Interfaz
                     }
                 }
             }
-
+        //Acá termino de descargar y guardar la info de usuario guardada en el reloj
+        //Y comienzo la descarga de huellas!
             try
             {
                 legajosYHuellas = reloj.DescargarHuella(legajos);

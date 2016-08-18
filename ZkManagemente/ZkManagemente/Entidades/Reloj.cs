@@ -304,6 +304,8 @@ namespace ZkManagement.Entidades
             return usuariosDispositivo;
         }
 
+        //NO FUNCIONA//
+        //Devuelve un DT vacio//
         public DataTable DescargarHuella(List<string> legajos)
         {
             int idwFingerIndex = 0;
@@ -321,17 +323,18 @@ namespace ZkManagement.Entidades
 
             base.ReadAllTemplate(this.numero);
 
-            while (base.SSR_GetUserTmpStr(this.numero, legajos[2], idwFingerIndex, out huella, out iTmpLength))
-            {
-                if (base.GetUserTmpExStr(this.numero, legajos[2], idwFingerIndex, out iFlag, out huella, out iTmpLength))
+         //   while (base.SSR_GetUserTmpStr(this.numero, legajoReloj, idwFingerIndex, out huella, out iTmpLength))
+           // {
+                if (base.GetUserTmpExStr(this.numero, legajoReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))
                 {
-                  //  if (legajos.Contains(legajoReloj))
-                   // {
-                        fila["Huella"] = huella;
-                        fila["Legajo"] = legajoReloj;
-                   // }
+                    if (legajos.Contains(legajoReloj))
+                    {
+                    fila["Huella"] = huella;
+                    fila["Legajo"] = legajoReloj;
+                    idwFingerIndex++;
+                    }
                 }
-            }
+           // }
                 //A partir de acá es solo para leer las huellas!!//                 
             base.EnableDevice(this.numero, true);
             return legajosHuellas;
