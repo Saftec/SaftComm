@@ -82,6 +82,7 @@
             this.dgvEmpleados.Size = new System.Drawing.Size(657, 271);
             this.dgvEmpleados.TabIndex = 1;
             this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
+            this.dgvEmpleados.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpleados_ColumnHeaderMouseClick);
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged_1);
             // 
             // Legajo

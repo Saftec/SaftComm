@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
@@ -202,6 +203,38 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //CODIGO PARA ORDENAR DGV CUANDO SE HACE CLICK EN LA CABECERA
+            DataGridViewColumn newColumn = dgvEmpleados.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = dgvEmpleados.SortedColumn;
+            ListSortDirection direction;
+
+            // Si la columno es = null el dgv no se ordena.
+            if (oldColumn != null)
+            {
+                if (oldColumn == newColumn &&
+                    dgvEmpleados.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+
+            // Ordeno la columna saleccionada
+            dgvEmpleados.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection =
+                direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
         }
     }
 }

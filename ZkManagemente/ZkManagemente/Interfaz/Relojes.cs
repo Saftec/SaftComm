@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -128,11 +129,11 @@ namespace ZkManagement.Interfaz
 
         private void btnDescargar_Click(object sender, EventArgs e)
         {
+            if (ValidarConexion()) { return; }          
             reloj = BuscarEquipo(GetId());
             ControladorRegistros cr = new ControladorRegistros();
             DataTable regis = new DataTable();
             List<string> desconocidos = new List<string>();
-            if (ValidarConexion()) { return; }
             Cursor = Cursors.WaitCursor;
             try
             {
@@ -340,11 +341,15 @@ namespace ZkManagement.Interfaz
         private void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo , MessageBoxButtons.OK, MessageBoxIcon.Information);
+            rtbLog.SelectionColor = Color.Black;
+            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje);
         }
 
         private void InformarError(string mensaje)
         {
             MessageBox.Show(mensaje, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            rtbLog.SelectionColor = Color.Red;
+            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje);
         }
         private void Borrado(int idReloj, int cant)
         {

@@ -55,12 +55,11 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lblProgreso = new System.Windows.Forms.Label();
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.btnInicializar = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
             this.groupAvanzadas = new System.Windows.Forms.GroupBox();
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
@@ -321,25 +320,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Relojes";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(148, 395);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(596, 38);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 6;
-            this.progressBar1.Visible = false;
-            // 
-            // lblProgreso
-            // 
-            this.lblProgreso.AutoSize = true;
-            this.lblProgreso.Location = new System.Drawing.Point(435, 410);
-            this.lblProgreso.Name = "lblProgreso";
-            this.lblProgreso.Size = new System.Drawing.Size(21, 13);
-            this.lblProgreso.TabIndex = 7;
-            this.lblProgreso.Text = "0%";
-            this.lblProgreso.Visible = false;
-            // 
             // btnReiniciar
             // 
             this.btnReiniciar.Location = new System.Drawing.Point(19, 19);
@@ -376,21 +356,28 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(198, 450);
+            this.groupAvanzadas.Location = new System.Drawing.Point(197, 389);
             this.groupAvanzadas.Name = "groupAvanzadas";
             this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
             this.groupAvanzadas.TabIndex = 11;
             this.groupAvanzadas.TabStop = false;
             this.groupAvanzadas.Text = "Avanzadas";
             // 
+            // rtbLog
+            // 
+            this.rtbLog.Location = new System.Drawing.Point(216, 449);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.Size = new System.Drawing.Size(453, 89);
+            this.rtbLog.TabIndex = 12;
+            this.rtbLog.Text = "";
+            // 
             // Relojes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.groupAvanzadas);
-            this.Controls.Add(this.lblProgreso);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupABM);
             this.Controls.Add(this.btnDesconectar);
@@ -432,8 +419,6 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lblProgreso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;
@@ -449,5 +434,6 @@
         private System.Windows.Forms.Button btnInicializar;
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.GroupBox groupAvanzadas;
+        private System.Windows.Forms.RichTextBox rtbLog;
     }
 }

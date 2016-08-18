@@ -44,6 +44,29 @@ namespace ZkManagement.Interfaz
             try
             {
                 cc.SetConfig(2, txtPathRegs.Text);
+                cc.SetConfig(5, txtMinRegs.Text);
+                cc.SetConfig(7, txtMinHs.Text);
+                if (chckActivaHora.Checked == true)
+                {
+                    cc.SetConfig(8, "S");
+                }
+                else
+                {
+                    cc.SetConfig(8,"N");
+                }
+                if (chckActivaReg.Checked == true)
+                {
+                    cc.SetConfig(6, "S");
+                }
+                else
+                {
+                    cc.SetConfig(6, "N");
+                }
+                if (chckActivarFtp.Checked == true)
+                {
+                    cc.SetConfig(8, "S");
+                }
+                else { cc.SetConfig(8, "N"); }
                 MessageBox.Show("Configuraciones guardadas");
             }
             catch(Exception ex)
