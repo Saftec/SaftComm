@@ -60,6 +60,7 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.groupAvanzadas = new System.Windows.Forms.GroupBox();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
@@ -371,6 +372,10 @@
             this.rtbLog.TabIndex = 12;
             this.rtbLog.Text = "";
             // 
+            // backgroundWorkerRutinaHora
+            // 
+            this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
+            // 
             // Relojes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,5 +440,6 @@
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.GroupBox groupAvanzadas;
         private System.Windows.Forms.RichTextBox rtbLog;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaHora;
     }
 }

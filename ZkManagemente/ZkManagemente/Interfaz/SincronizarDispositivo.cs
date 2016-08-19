@@ -172,21 +172,46 @@ namespace ZkManagement.Interfaz
         }
         private void btnCargar_Click(object sender, EventArgs e)
         {
+            if (!reloj.Estado)
+            {
+                InformarError("Por favor, conecte con dispositivo");
+                return;
+            }
+            foreach (DataGridViewRow fila in dgvLocal.Rows)
+            {              
+                DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
 
+                if (Convert.ToBoolean(cellSeleccion.Value))
+                {
+                    try
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
+                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
+                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
+                    }
+                    catch (SqlException sqlex)
+                    {
+                        throw sqlex;
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("Error desconocido durante la descarga de datos");
+                    }
+                }
+            }
         }
         private void btnDescargar_Click(object sender, EventArgs e)
         {
             if (!reloj.Estado)
             {
-                MessageBox.Show("Por favor conecte con dispositivo", "Error");
+                InformarError("Por favor conecte con dispositivo");
                 return;
             }
             try
             {
                 rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Iniciando descarga \n");
                 backgroundWorkerSincronizacion.RunWorkerAsync();
-                rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Finalizacion de descarga exitosa \n");
-                InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
             }
             catch (Exception ex)
             {
@@ -236,6 +261,8 @@ namespace ZkManagement.Interfaz
                 reloj.Desconectar();
             }
         }
+
+        //BACKGROUND WORKER PARA DESCARGA DE DATOS///
         private void backgroundWorkerSincronizacion_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             /**************************************************** 
@@ -251,40 +278,44 @@ namespace ZkManagement.Interfaz
             List<string> legajos = new List<string>();
             DataTable legajosYHuellas = new DataTable();
 
-            foreach (DataGridViewRow fila in dgvDispositivo.Rows)
-            {
-                Empleado emp = new Empleado();
-                DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
 
-                if (Convert.ToBoolean(cellSeleccion.Value))
+            //DESCARGA DE LA INFO (Sin huellas)
+            try
+            {
+                foreach (DataGridViewRow fila in dgvDispositivo.Rows)
                 {
-                    try
+                    
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+
+                    if (Convert.ToBoolean(cellSeleccion.Value))
                     {
+                        Empleado emp = new Empleado();
                         emp.Legajo = fila.Cells["Leg"].Value.ToString();
                         emp.Nombre = fila.Cells["Nom"].Value.ToString();
                         emp.Pin = fila.Cells["Pin"].Value.ToString();
-                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);                   
+                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
                         cs.DescargarInfo(emp);
                         legajos.Add(emp.Legajo);
                     }
-                    catch(SqlException sqlex)
-                    {
-                        throw sqlex;
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Error desconocido durante la descarga de datos");
-                    }
                 }
             }
-        //Acá termino de descargar y guardar la info de usuario guardada en el reloj
-        //Y comienzo la descarga de huellas!
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error desconocido durante la descarga de datos");
+            }
+            //HASTA ACA//
+
+            //Comienzo la descarga de huellas!
             try
             {
                 legajosYHuellas = reloj.DescargarHuella(legajos);
-                foreach (DataRow row in legajosYHuellas.Rows)
+                foreach(DataRow fila in legajosYHuellas.Rows)
                 {
-                    cs.Agregarhuella(row["Legajo"].ToString(), row["Huella"].ToString());
+                    cs.Agregarhuella(fila["Legajo"].ToString(), fila["Huella"].ToString());
                 }
             }
             catch(Exception ex)
@@ -296,11 +327,16 @@ namespace ZkManagement.Interfaz
         private void backgroundWorkerSincronizacion_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             InformarUsuario("Porcentaje:" + e.ProgressPercentage.ToString(), "Prueba");
-           // progressBar1.Value = e.ProgressPercentage;    //Desde acá puedo manejar el progreso de una ProgressBar!!
             DateTime time = Convert.ToDateTime(e.UserState);
             rtbxLog.AppendText(time.ToLongTimeString());
             rtbxLog.AppendText(Environment.NewLine);
 
+        }
+
+        private void backgroundWorkerSincronizacion_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
+            rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Finalizacion de descarga exitosa \n");
         }
     }
 }

@@ -311,34 +311,22 @@ namespace ZkManagement.Entidades
             int idwFingerIndex = 0;
             string huella = "";
             int iTmpLength = 0;
-            int iFlag = 0;
-            string legajoReloj = string.Empty;
-
-            DataTable legajosHuellas = new DataTable();
-            legajosHuellas.Columns.Add("Legajo", typeof(string));
-            legajosHuellas.Columns.Add("Huella", typeof(string));
-            DataRow fila = legajosHuellas.NewRow();
+            DataTable legajosYHuellas = new DataTable();
+            legajosYHuellas.Columns.Add("Legajo", typeof(string));
+            legajosYHuellas.Columns.Add("Huella", typeof(string));
 
             base.EnableDevice(this.numero, false);
+            base.ReadAllTemplate(this.numero); //Este método trae TODAS las huellas a la memoria. Es mas rapido que consultar 
 
-            base.ReadAllTemplate(this.numero);
-
-         //   while (base.SSR_GetUserTmpStr(this.numero, legajoReloj, idwFingerIndex, out huella, out iTmpLength))
-           // {
-                if (base.GetUserTmpExStr(this.numero, legajoReloj, idwFingerIndex, out iFlag, out huella, out iTmpLength))
+            for (int i = 0; i < legajos.Count; i++)
+            {              
+                while (base.SSR_GetUserTmpStr(this.numero, legajos[i], idwFingerIndex, out huella, out iTmpLength))
                 {
-                    if (legajos.Contains(legajoReloj))
-                    {
-                    fila["Huella"] = huella;
-                    fila["Legajo"] = legajoReloj;
-                    idwFingerIndex++;
-                    }
+                    legajosYHuellas.Rows.Add(legajos[i], huella);
                 }
-           // }
-                //A partir de acá es solo para leer las huellas!!//                 
+            }             
             base.EnableDevice(this.numero, true);
-            return legajosHuellas;
-
+            return legajosYHuellas;
         }
             #endregion
 

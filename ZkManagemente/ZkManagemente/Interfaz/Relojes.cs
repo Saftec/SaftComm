@@ -54,19 +54,21 @@ namespace ZkManagement.Interfaz
         }
 
         private void btnConectar_Click(object sender, EventArgs e)
-        {
-            reloj = BuscarEquipo(GetId());
+        {           
             if (GetEstado()=="Conectado")
             {
                 InformarError("El dispositivo ya se encuentra conectado");
                 return;
             }
+            reloj = BuscarEquipo(GetId());
+            LogInforme("Conectando con reloj: " + reloj.Numero.ToString());
             Cursor = Cursors.WaitCursor;
             string llave = reloj.Clave;
             try
             {
                 reloj.Conectar();
                 SetEstado("Conectado");
+                LogInforme("Conexión OK con reloj: " + reloj.Numero.ToString());
                 SetMac(reloj.GetMac());
                 SetModelo(reloj.GetModelo());
                 SetCantRegis(reloj.GetCantidadRegistros().ToString());
@@ -116,15 +118,16 @@ namespace ZkManagement.Interfaz
         }
 
         private void btnDesconectar_Click(object sender, EventArgs e)
-        {
-            reloj = BuscarEquipo(GetId());
+        {            
             if (GetEstado() == "Desconectado")
             {
                 InformarError("El dispositivo está desconectado");
                 return;
             }
+            reloj = BuscarEquipo(GetId());
             reloj.Desconectar();
             SetEstado("Desconectado");
+            LogInforme("Reloj: " + reloj.Numero.ToString() + " desconectado.");
         }
 
         private void btnDescargar_Click(object sender, EventArgs e)
@@ -351,6 +354,16 @@ namespace ZkManagement.Interfaz
             rtbLog.SelectionColor = Color.Red;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje);
         }
+        private void LogInforme(string mensaje)
+        {
+            rtbLog.SelectionColor = Color.Black;
+            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
+        }
+        private void LogError(string mensaje)
+        {
+            rtbLog.SelectionColor = Color.Red;
+            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
+        }
         private void Borrado(int idReloj, int cant)
         {
             ControladorReloj cr = new ControladorReloj();
@@ -411,25 +424,33 @@ namespace ZkManagement.Interfaz
 
         public void RutinaSincronizarHora()
         {
-            Cursor = Cursors.WaitCursor;
-            Logica.Logger ca = new Logica.Logger();
+            Logger ca = new Logica.Logger();
             try
             {
+                LogInforme("Inicio rutina de sincronización de hora");
                 ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
                 foreach (Reloj r in relojes)
                 {
+                    LogInforme("Conectando a reloj :" + r.Numero.ToString());
                     r.Conectar();
+                    LogInforme("Conexion correcta con reloj :" + r.Numero.ToString());
+                    LogInforme("Sincronizando hora con reloj :" + r.Numero.ToString());
                     r.SincronizarHora();
+                    LogInforme("Hora sincronizada con reloj :" + r.Numero.ToString());
                 }
-                MessageBox.Show("Rutina de sincronizacion de hora finalizada");
                 ca.Rutina("Fin", "Rutina de sincronizacion de hora");
+                LogInforme("Rutina de sincronización de hora finalizada");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
                 ca.Rutina("Fin", "Se produjo un error durante la rutina");
+                LogError("Se produjo un error durante la rutina");
+                LogError(ex.Message);
             }
-            Cursor = Cursors.Default;
+        }
+
+        private void backgroundWorkerRutinaHora_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
         }
     }
 }

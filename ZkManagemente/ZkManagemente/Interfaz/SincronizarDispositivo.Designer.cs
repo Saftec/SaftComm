@@ -41,6 +41,11 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDispositivo = new System.Windows.Forms.DataGridView();
+            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCargar = new System.Windows.Forms.Button();
             this.btnDescargar = new System.Windows.Forms.Button();
@@ -48,11 +53,6 @@
             this.checkTodosLocal = new System.Windows.Forms.CheckBox();
             this.backgroundWorkerSincronizacion = new System.ComponentModel.BackgroundWorker();
             this.rtbxLog = new System.Windows.Forms.RichTextBox();
-            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -191,6 +191,45 @@
             this.dgvDispositivo.TabIndex = 6;
             this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
             // 
+            // Leg
+            // 
+            this.Leg.DataPropertyName = "Legajo";
+            this.Leg.HeaderText = "Legajo";
+            this.Leg.Name = "Leg";
+            this.Leg.ReadOnly = true;
+            this.Leg.Width = 60;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nombre";
+            this.Nom.HeaderText = "Nombre";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 40;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegios";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Seleccion
+            // 
+            this.Seleccion.HeaderText = "Seleccionar";
+            this.Seleccion.Name = "Seleccion";
+            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Seleccion.Width = 65;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -246,6 +285,7 @@
             // 
             this.backgroundWorkerSincronizacion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSincronizacion_DoWork);
             this.backgroundWorkerSincronizacion.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSincronizacion_ProgressChanged);
+            this.backgroundWorkerSincronizacion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSincronizacion_RunWorkerCompleted);
             // 
             // rtbxLog
             // 
@@ -254,45 +294,6 @@
             this.rtbxLog.Size = new System.Drawing.Size(323, 96);
             this.rtbxLog.TabIndex = 15;
             this.rtbxLog.Text = "";
-            // 
-            // Leg
-            // 
-            this.Leg.DataPropertyName = "Legajo";
-            this.Leg.HeaderText = "Legajo";
-            this.Leg.Name = "Leg";
-            this.Leg.ReadOnly = true;
-            this.Leg.Width = 60;
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "Nombre";
-            this.Nom.HeaderText = "Nombre";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 40;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegios";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
-            // 
-            // Seleccion
-            // 
-            this.Seleccion.HeaderText = "Seleccionar";
-            this.Seleccion.Name = "Seleccion";
-            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Seleccion.Width = 65;
             // 
             // SincronizarDispositivo
             // 

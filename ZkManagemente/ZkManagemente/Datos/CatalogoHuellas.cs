@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using log4net;
+using System.Collections.Generic;
 
 namespace ZkManagement.Datos
 {
@@ -31,6 +32,32 @@ namespace ZkManagement.Datos
                 throw new Exception("Error desconocido al intentar actualizar en la tabla huellas");
             }
             conn.Close();
+        }
+
+        public List<string> GetHuellas(Empleado emp)
+        {
+            List<string> huellas = new List<string>();
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("SELECT Template FROM Huellas WHERE IdEmpleado=" + emp.Id.ToString());
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    huellas.Add(dr["Template"].ToString());
+                }
+            }
+            catch(SqlException sqlex)
+            {
+                logger.Error(sqlex.StackTrace);
+                throw new Exception("Error al consultar la tabla huellas");
+            }
+            catch(Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                throw new Exception("Error desconocido al intentar consultar la tabla huellas");
+            }
+            return huellas;
         }
     }
 }

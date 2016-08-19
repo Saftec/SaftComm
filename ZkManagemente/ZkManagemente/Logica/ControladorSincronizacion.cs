@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 
@@ -44,6 +45,21 @@ namespace ZkManagement.Logica
             {
                 throw ex;
             }
+        }
+
+        public List<string> ObtenerHuellas(Empleado emp)
+        {
+            CatalogoHuellas ch = new CatalogoHuellas();
+            List<string> huellas = new List<string>();
+            try
+            {
+                huellas = ch.GetHuellas(emp);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return huellas;
         }
     }
 }

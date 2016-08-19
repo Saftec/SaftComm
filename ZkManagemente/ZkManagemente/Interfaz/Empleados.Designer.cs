@@ -55,7 +55,6 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.linkCargar = new System.Windows.Forms.LinkLabel();
-            this.linkDescargar = new System.Windows.Forms.LinkLabel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
@@ -315,23 +314,13 @@
             // linkCargar
             // 
             this.linkCargar.AutoSize = true;
-            this.linkCargar.Location = new System.Drawing.Point(724, 104);
+            this.linkCargar.Location = new System.Drawing.Point(724, 149);
             this.linkCargar.Name = "linkCargar";
-            this.linkCargar.Size = new System.Drawing.Size(101, 13);
+            this.linkCargar.Size = new System.Drawing.Size(130, 13);
             this.linkCargar.TabIndex = 7;
             this.linkCargar.TabStop = true;
-            this.linkCargar.Text = "Cargar a Dispositivo";
+            this.linkCargar.Text = "Sincrinizar con Dispositivo";
             this.linkCargar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCargar_LinkClicked);
-            // 
-            // linkDescargar
-            // 
-            this.linkDescargar.AutoSize = true;
-            this.linkDescargar.Location = new System.Drawing.Point(724, 142);
-            this.linkDescargar.Name = "linkDescargar";
-            this.linkDescargar.Size = new System.Drawing.Size(125, 13);
-            this.linkDescargar.TabIndex = 8;
-            this.linkDescargar.TabStop = true;
-            this.linkDescargar.Text = "Descargar de Dispositivo";
             // 
             // txtBuscar
             // 
@@ -357,7 +346,6 @@
             this.ClientSize = new System.Drawing.Size(859, 511);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.linkDescargar);
             this.Controls.Add(this.linkCargar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
@@ -406,7 +394,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
         private System.Windows.Forms.LinkLabel linkCargar;
-        private System.Windows.Forms.LinkLabel linkDescargar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label2;
     }

@@ -4,5 +4,6 @@
 
 Relojes:
 *Actualizar DGV relojes despues de alta o modificaciones.
-*Progressbar para descarga de regs.
+*Verificar log en ritchtextbox.
+*Background para rutinas.
 
