@@ -274,10 +274,10 @@ namespace ZkManagement.Interfaz
              Validar que no supere las 10 huellas (no me importa el fingerindex).
              Guardar las huellas en la BD.
             *****************************************************/
+
             ControladorSincronizacion cs = new ControladorSincronizacion();
             List<string> legajos = new List<string>();
             DataTable legajosYHuellas = new DataTable();
-
 
             //DESCARGA DE LA INFO (Sin huellas)
             try

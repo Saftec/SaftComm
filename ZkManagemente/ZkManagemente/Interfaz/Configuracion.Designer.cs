@@ -88,9 +88,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(809, 2);
+            this.btnClose.Image = global::ZkManagement.Properties.Resources.cerrar1;
+            this.btnClose.Location = new System.Drawing.Point(834, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(47, 30);
+            this.btnClose.Size = new System.Drawing.Size(40, 38);
             this.btnClose.TabIndex = 1;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
