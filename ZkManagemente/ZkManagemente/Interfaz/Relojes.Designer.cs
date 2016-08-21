@@ -43,7 +43,6 @@
             this.gpbxRutinas = new System.Windows.Forms.GroupBox();
             this.btnRutinaHora = new System.Windows.Forms.Button();
             this.btnRutinaBajar = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.groupManuales = new System.Windows.Forms.GroupBox();
             this.btnHora = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
@@ -54,7 +53,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.btnInicializar = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
@@ -197,15 +195,6 @@
             this.btnRutinaBajar.UseVisualStyleBackColor = true;
             this.btnRutinaBajar.Click += new System.EventHandler(this.btnRutinaBajar_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(836, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(37, 27);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // groupManuales
             // 
             this.groupManuales.Controls.Add(this.btnHora);
@@ -312,15 +301,6 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(413, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Relojes";
-            // 
             // btnReiniciar
             // 
             this.btnReiniciar.Location = new System.Drawing.Point(19, 19);
@@ -383,19 +363,24 @@
             this.ClientSize = new System.Drawing.Size(875, 550);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.groupAvanzadas);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupABM);
             this.Controls.Add(this.btnDesconectar);
             this.Controls.Add(this.groupManuales);
             this.Controls.Add(this.btnConectar);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gpbxRutinas);
             this.Controls.Add(this.dgvRelojes);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Relojes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relojes";
             this.Load += new System.EventHandler(this.Relojes_Load);
+            this.Controls.SetChildIndex(this.dgvRelojes, 0);
+            this.Controls.SetChildIndex(this.gpbxRutinas, 0);
+            this.Controls.SetChildIndex(this.btnConectar, 0);
+            this.Controls.SetChildIndex(this.groupManuales, 0);
+            this.Controls.SetChildIndex(this.btnDesconectar, 0);
+            this.Controls.SetChildIndex(this.groupABM, 0);
+            this.Controls.SetChildIndex(this.groupAvanzadas, 0);
+            this.Controls.SetChildIndex(this.rtbLog, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).EndInit();
             this.gpbxRutinas.ResumeLayout(false);
             this.groupManuales.ResumeLayout(false);
@@ -412,7 +397,6 @@
         private System.Windows.Forms.GroupBox gpbxRutinas;
         private System.Windows.Forms.Button btnRutinaHora;
         private System.Windows.Forms.Button btnRutinaBajar;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox groupManuales;
         private System.Windows.Forms.Button btnHora;
         private System.Windows.Forms.Button btnBorrar;
@@ -423,7 +407,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;

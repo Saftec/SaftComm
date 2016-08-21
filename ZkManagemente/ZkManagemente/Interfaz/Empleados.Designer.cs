@@ -37,7 +37,6 @@
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClose = new System.Windows.Forms.Button();
             this.groupEmpleados = new System.Windows.Forms.GroupBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -145,15 +144,6 @@
             this.EmpId.Name = "EmpId";
             this.EmpId.ReadOnly = true;
             this.EmpId.Visible = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(832, 0);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(27, 30);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupEmpleados
             // 
@@ -343,7 +333,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 511);
+            this.ClientSize = new System.Drawing.Size(875, 550);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.linkCargar);
@@ -351,13 +341,19 @@
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.groupEmpleados);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvEmpleados);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Empleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empleados";
             this.Load += new System.EventHandler(this.Empleados_Load);
+            this.Controls.SetChildIndex(this.dgvEmpleados, 0);
+            this.Controls.SetChildIndex(this.groupEmpleados, 0);
+            this.Controls.SetChildIndex(this.btnEliminar, 0);
+            this.Controls.SetChildIndex(this.btnNuevo, 0);
+            this.Controls.SetChildIndex(this.btnEditar, 0);
+            this.Controls.SetChildIndex(this.linkCargar, 0);
+            this.Controls.SetChildIndex(this.txtBuscar, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.groupEmpleados.ResumeLayout(false);
             this.groupEmpleados.PerformLayout();
@@ -367,7 +363,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvEmpleados;
         private System.Windows.Forms.GroupBox groupEmpleados;
         private System.Windows.Forms.TextBox txtPin;

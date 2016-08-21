@@ -7,7 +7,7 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class Empleados : Form
+    public partial class Empleados : GenericaPadre
     {
         private Empleado empleado = new Empleado();
         private ControladorEmpleados ce = new ControladorEmpleados();

@@ -7,7 +7,7 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class Usuarios : Form
+    public partial class Usuarios : GenericaPadre
     {
         Usuario usuario = new Usuario();
         public Usuarios()

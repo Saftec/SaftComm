@@ -9,7 +9,7 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class Relojes : Form
+    public partial class Relojes : GenericaPadre
     {
         private Reloj reloj = new Reloj();
         private List<Reloj> relojes = new List<Reloj>();

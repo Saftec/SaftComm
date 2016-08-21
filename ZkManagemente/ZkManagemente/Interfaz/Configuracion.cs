@@ -4,7 +4,7 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class Configuracion : Form
+    public partial class Configuracion : GenericaPadre
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         public Configuracion()

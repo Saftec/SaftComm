@@ -63,6 +63,16 @@ namespace ZkManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BaseDatos {
+            get {
+                object obj = ResourceManager.GetObject("BaseDatos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CandadoLogin {
             get {
                 object obj = ResourceManager.GetObject("CandadoLogin", resourceCulture);
@@ -76,16 +86,6 @@ namespace ZkManagement.Properties {
         internal static System.Drawing.Bitmap cerrar {
             get {
                 object obj = ResourceManager.GetObject("cerrar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap cerrar1 {
-            get {
-                object obj = ResourceManager.GetObject("cerrar1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
