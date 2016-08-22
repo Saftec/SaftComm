@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ZkManagement.Logica;
 using ZkManagement.Util;
 
 namespace ZkManagement.Entidades
@@ -304,29 +303,35 @@ namespace ZkManagement.Entidades
             return usuariosDispositivo;
         }
 
-        //NO FUNCIONA//
-        //Devuelve un DT vacio//
-        public DataTable DescargarHuella(List<string> legajos)
+        public void LeerTodasLasHuellas()
         {
-            int idwFingerIndex = 0;
-            string huella = "";
-            int iTmpLength = 0;
-            DataTable legajosYHuellas = new DataTable();
-            legajosYHuellas.Columns.Add("Legajo", typeof(string));
-            legajosYHuellas.Columns.Add("Huella", typeof(string));
-
             base.EnableDevice(this.numero, false);
-            base.ReadAllTemplate(this.numero); //Este método trae TODAS las huellas a la memoria. Es mas rapido que consultar 
+            base.ReadAllTemplate(this.numero);
+        }
 
-            for (int i = 0; i < legajos.Count; i++)
-            {              
-                while (base.SSR_GetUserTmpStr(this.numero, legajos[i], idwFingerIndex, out huella, out iTmpLength))
+        public List<string> ObtenerHuella(string legajo)
+        {
+            /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
+             * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
+
+            int iTmpLenght = 0;
+            string huella = string.Empty;
+            List<string> huellas = new List<string>();
+            
+            for(int fingerIndex=0; fingerIndex<10; fingerIndex++)
+            {
+                base.SSR_GetUserTmpStr(this.numero, legajo, fingerIndex, out huella, out iTmpLenght);
+                if (huella != null)
                 {
-                    legajosYHuellas.Rows.Add(legajos[i], huella);
+                    huellas.Add(huella);
+                    huella = string.Empty;
                 }
-            }             
+            }
+            return huellas;
+        }
+        public void ActivarDispositivo()
+        {
             base.EnableDevice(this.numero, true);
-            return legajosYHuellas;
         }
             #endregion
 

@@ -88,7 +88,6 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::ZkManagement.Properties.Resources.cerrar1;
             this.btnClose.Location = new System.Drawing.Point(834, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 38);

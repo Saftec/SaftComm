@@ -30,7 +30,7 @@ namespace ZkManagement.Logica
             }                       
         }
 
-        public void Agregarhuella(string legajo, string huella)
+        public void AgregarHuella(string legajo, string huella)
         {
             CatalogoHuellas ch = new CatalogoHuellas();
             Empleado emp = new Empleado();
@@ -47,19 +47,43 @@ namespace ZkManagement.Logica
             }
         }
 
-        public List<string> ObtenerHuellas(Empleado emp)
+        public int AgregarHuella(List<string> legajos, Reloj reloj)
         {
+            /*Recibo todos los legajos seleccionados en el dgv junto con el reloj.
+             * Por cada legajo obtengo una list con todas las huellas que tenga en el equipo.
+             * Por cada legajo, consulto el empid. --> El legajo existe SI O SI en la BD ya que anteriormente descargué y guardé los datos del equipo.
+             * Por cada huella guardo el empid + template. (FALTA TRAER EL FINGERINDEX!!!)
+             * */
             CatalogoHuellas ch = new CatalogoHuellas();
-            List<string> huellas = new List<string>();
+            int total = 0;
+
             try
             {
-                huellas = ch.GetHuellas(emp);
+                reloj.LeerTodasLasHuellas();
+                for(int i=0; i<legajos.Count; i++)
+                {
+                    List<string> huellas = new List<string>();
+                    huellas = reloj.ObtenerHuella(legajos[i]);
+                    if (huellas.Count>0)
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Legajo = legajos[i];
+                        emp.Id = ce.GetEmpId(emp);
+                        total += huellas.Count;
+                        for(int j=0; j<huellas.Count; j++)
+                        {
+                            emp.Huella = huellas[j];                         
+                            ch.InsertarHuella(emp);
+                        }
+                    }                                   
+                }
+                reloj.ActivarDispositivo();
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return huellas;
+            return total;
         }
     }
 }

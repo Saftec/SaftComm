@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -13,6 +14,8 @@ namespace ZkManagement.Interfaz
         private List<Reloj> relojes = new List<Reloj>();
         private DataTable usuariosEnDisp = new DataTable();
         private Reloj reloj = new Reloj();
+        private ControladorSincronizacion cs = new ControladorSincronizacion();
+        private int total;
         public SincronizarDispositivo()
         {
             InitializeComponent();
@@ -210,12 +213,11 @@ namespace ZkManagement.Interfaz
             }
             try
             {
-                rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Iniciando descarga \n");
+                LoguearInforme("Iniciando descarga de datos de usuarios...");
                 backgroundWorkerSincronizacion.RunWorkerAsync();
             }
             catch (Exception ex)
             {
-                rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Se produjo un error durante la descarga \n");
                 InformarError(ex.Message);
             }
 
@@ -225,15 +227,24 @@ namespace ZkManagement.Interfaz
         private void InformarUsuario(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoguearInforme(mensaje);
         }
         private void InformarError(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            LoguearError(mensaje);
         }
-        /* private bool ValidarSeleccion()
- {
+        private void LoguearInforme(string mensaje)
+        {
+            rtbxLog.SelectionColor = Color.Black;
+            rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + " " + mensaje +"\n");
+        }
+        private void LoguearError(string mensaje)
+        {
+            rtbxLog.SelectionColor = Color.Red;
+            rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + " " + mensaje + "\n");
+        }
 
- }*/
         #endregion
         private void comboRelojes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -271,17 +282,16 @@ namespace ZkManagement.Interfaz
              Si es nuevo-->Agrego el empleado.
              Bajar las huellas:
              Descargar huellas de los legajos seleccionados.
-             Validar que no supere las 10 huellas (no me importa el fingerindex).
-             Guardar las huellas en la BD.
+             Para comparar las huellas necesito traer el fingerIndex cuando descargo.
+                El FI no puede ser mayuor a 10.
+                Si para un empid ya tengo una huella con el mismo FI-->Reemplazo.
+                Sino-->Agrego.
             *****************************************************/
-
-            ControladorSincronizacion cs = new ControladorSincronizacion();
+            
             List<string> legajos = new List<string>();
-            DataTable legajosYHuellas = new DataTable();
-
             //DESCARGA DE LA INFO (Sin huellas)
             try
-            {
+            {                           
                 foreach (DataGridViewRow fila in dgvDispositivo.Rows)
                 {
                     
@@ -299,44 +309,37 @@ namespace ZkManagement.Interfaz
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (Exception ex)
             {
-                throw sqlex;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error desconocido durante la descarga de datos");
+                InformarError(ex.Message);
             }
             //HASTA ACA//
 
             //Comienzo la descarga de huellas!
             try
             {
-                legajosYHuellas = reloj.DescargarHuella(legajos);
-                foreach(DataRow fila in legajosYHuellas.Rows)
-                {
-                    cs.Agregarhuella(fila["Legajo"].ToString(), fila["Huella"].ToString());
-                }
+                total = 0;
+                total=cs.AgregarHuella(legajos, reloj); //LA VARIABLE TOTAL ME INFORMA LA CANTIDAD DE FP DESCARGADAS.
             }
             catch(Exception ex)
             {
-                throw ex;
+                InformarError(ex.Message);   
             }
         }
 
+        //ESTE EVENTO NO SE EJECUTA
         private void backgroundWorkerSincronizacion_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             InformarUsuario("Porcentaje:" + e.ProgressPercentage.ToString(), "Prueba");
             DateTime time = Convert.ToDateTime(e.UserState);
             rtbxLog.AppendText(time.ToLongTimeString());
             rtbxLog.AppendText(Environment.NewLine);
-
         }
 
         private void backgroundWorkerSincronizacion_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
-            rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm") + "--" + "Finalizacion de descarga exitosa \n");
+            LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
         }
     }
 }
