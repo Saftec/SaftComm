@@ -59,6 +59,7 @@
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Entidades\Huella.cs" />
     <Compile Include="Entidades\Reloj.cs" />
     <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\Usuario.cs" />

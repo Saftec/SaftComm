@@ -129,13 +129,13 @@ namespace ZkManagement.Datos
             }
         }
 
-        public int GetEmpId(Empleado emp)
+        public int GetEmpId(string legajo)
         {
             int id = 0; //El simbolo "?" indica que la variable puede tomar el valor NULL
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'", conn);
+                SqlCommand cmd = new SqlCommand("SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + legajo + "'", conn);
                 cmd.ExecuteNonQuery();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())

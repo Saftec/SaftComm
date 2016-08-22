@@ -309,22 +309,24 @@ namespace ZkManagement.Entidades
             base.ReadAllTemplate(this.numero);
         }
 
-        public List<string> ObtenerHuella(string legajo)
+        public List<Huella> ObtenerHuella (string legajo)
         {
             /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
              * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
 
-            int iTmpLenght = 0;
-            string huella = string.Empty;
-            List<string> huellas = new List<string>();
+            int tmpLenght = 0;
+            string template = string.Empty;
+            List<Huella> huellas = new List<Huella>();
             
+            //Controlar errores!!//
             for(int fingerIndex=0; fingerIndex<10; fingerIndex++)
             {
-                base.SSR_GetUserTmpStr(this.numero, legajo, fingerIndex, out huella, out iTmpLenght);
-                if (huella != null)
+                base.SSR_GetUserTmpStr(this.numero, legajo, fingerIndex, out template, out tmpLenght);
+                if (template != null)
                 {
+                    Huella huella = new Huella(template, legajo, fingerIndex, tmpLenght);
                     huellas.Add(huella);
-                    huella = string.Empty;
+                    template = string.Empty;
                 }
             }
             return huellas;
@@ -332,6 +334,16 @@ namespace ZkManagement.Entidades
         public void ActivarDispositivo()
         {
             base.EnableDevice(this.numero, true);
+        }
+
+        public void AgregarHuella(DataTable datos)
+        {
+            int flag = 0;
+            foreach(DataRow fila in datos.Rows)
+            {
+                base.SetUserTmpExStr(this.numero, fila["Legajo"].ToString(), Convert.ToInt32(fila["FingerIndex"]), flag ,fila["Huella"].ToString());
+            }
+            
         }
             #endregion
 

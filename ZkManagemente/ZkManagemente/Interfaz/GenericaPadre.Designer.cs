@@ -45,9 +45,11 @@
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Location = new System.Drawing.Point(322, 17);
+            this.labelTitulo.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelTitulo.Location = new System.Drawing.Point(435, 9);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(33, 13);
+            this.labelTitulo.Size = new System.Drawing.Size(51, 21);
             this.labelTitulo.TabIndex = 1;
             this.labelTitulo.Text = "Titulo";
             // 

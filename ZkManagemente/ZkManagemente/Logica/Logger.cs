@@ -50,8 +50,9 @@ namespace ZkManagement.Logica
                 using (StreamWriter l = File.AppendText("Log.txt"))
                     l.WriteLine(DateTime.Now.ToString() + linea);
             }
-            catch (IOException ex)
+            catch (IOException ioex)
             {
+                
             }
 
         }

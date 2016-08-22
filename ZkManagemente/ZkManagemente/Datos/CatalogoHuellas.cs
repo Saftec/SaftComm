@@ -12,12 +12,12 @@ namespace ZkManagement.Datos
         private SqlConnection conn = new SqlConnection();
         private ILog logger = LogManager.GetLogger("");
 
-        public void InsertarHuella(Empleado emp)
+        public void InsertarHuella(Huella h, int id)
         {
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas VALUES(" + emp.Id.ToString() + ", '" + emp.Huella + "' )", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "' )", conn);
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -34,6 +34,55 @@ namespace ZkManagement.Datos
             conn.Close();
         }
 
+        public bool Existe(Huella h, int id)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='"+id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'" , conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    conn.Close();
+                    return true;
+                }
+                else
+                {
+                    conn.Close();
+                    return false;                  
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                logger.Error(sqlex.StackTrace);
+                throw new Exception("Error al consultar la tabla de huellas");
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                throw new Exception("Error desconocido al consultar la tabla huellas");
+            }            
+        }
+
+        public void ActualizarHuella(Huella h, int id)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("UPDATE Huellas SET IdEmpleado='" + id.ToString() + "', Template='" + h.Template + "', FingerIndex='" + h.FingerIndex.ToString() + "', Lengh='" + h.Lengh + "'", conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException sqlex)
+            {
+                logger.Error(sqlex.StackTrace);
+                throw new Exception("Error al actualizar la tabla de huellas");
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                throw new Exception("Error desconocido al actualizar la tabla huellas");
+            }
+        }
         public List<string> GetHuellas(Empleado emp)
         {
             List<string> huellas = new List<string>();

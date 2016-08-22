@@ -6,4 +6,4 @@ Relojes:
 *Actualizar DGV relojes despues de alta o modificaciones.
 *Verificar log en ritchtextbox.
 *Background para rutinas.
-
+*Obtener IP de dns.

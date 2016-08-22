@@ -21,15 +21,13 @@ namespace ZkManagement.Logica
                 int tipoMov;
                 int reloj;
                 DateTime fecha;
-                Empleado emp = new Empleado();
-                emp.Legajo = fila["Legajo"].ToString();
                 reloj = Convert.ToInt32(fila["Reloj"]);
                 try
                 {
-                    id = ce.GetEmpId(emp);
+                    id = ce.GetEmpId(fila["Legajo"].ToString());
                     if (id < 1)
                     {
-                        desconocidos.Add(emp.Legajo);
+                        desconocidos.Add(fila["Legajo"].ToString());
                         break;
                     }
 
