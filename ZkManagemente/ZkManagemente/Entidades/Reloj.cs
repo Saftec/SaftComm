@@ -362,6 +362,28 @@ namespace ZkManagement.Entidades
                 
             }
         }
+
+        public void EnviarMensaje(int idSMS, string legajo)  //Se debe indicar el ID al mensaje que DEBE ESTAR guardado en el equipo.
+        {
+            if(!base.SSR_SetUserSMS(this.numero, legajo, idSMS))
+            {
+                throw new AppException("Error al intentar enviar el mensaje");
+            }
+        }
+
+        //Estos métodos diferencian al usuario dentro del equipo (cambia de color) pero no lo inhabilita para marcar!!
+        /*
+        public void Habilitar(string legajo)
+        {
+            base.SSR_EnableUser(this.numero, legajo, true);
+        }
+        public void Deshabilitar(string legajo)
+        {
+            if(!base.SSR_EnableUser(this.numero, legajo, false))
+            {
+                throw new AppException("Error al inhabilitar usuario");
+            }
+        }*/ 
             #endregion
 
         }

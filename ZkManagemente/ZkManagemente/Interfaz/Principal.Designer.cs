@@ -34,15 +34,17 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,19 +88,6 @@
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
-            // button2
-            // 
-            this.button2.Image = global::ZkManagement.Properties.Resources.group;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(462, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Empleados";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // iconoBandeja
             // 
             this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
@@ -112,6 +101,28 @@
             // timerRutinaHora
             // 
             this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ZkManagement.Properties.Resources.LogoPpal;
+            this.pictureBox1.Location = new System.Drawing.Point(211, 192);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(614, 243);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Image = global::ZkManagement.Properties.Resources.group;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(462, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 47);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Empleados";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -157,6 +168,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 668);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "btnEmpleados";
@@ -168,6 +180,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,5 +198,6 @@
         private System.Windows.Forms.NotifyIcon iconoBandeja;
         private System.Windows.Forms.Timer timerRutinaRegs;
         private System.Windows.Forms.Timer timerRutinaHora;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
