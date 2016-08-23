@@ -315,18 +315,17 @@ namespace ZkManagement.Entidades
              * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
 
             int tmpLenght = 0;
+            int flag = 0;
             string template = string.Empty;
             List<Huella> huellas = new List<Huella>();
-            
+
             //Controlar errores!!//
-            for(int fingerIndex=0; fingerIndex<10; fingerIndex++)
+            for (int fingerIndex=0; fingerIndex<10; fingerIndex++)
             {
-                base.SSR_GetUserTmpStr(this.numero, legajo, fingerIndex, out template, out tmpLenght);
-                if (template != null)
+                if(base.GetUserTmpExStr(this.numero, legajo, fingerIndex, out flag, out template, out tmpLenght))
                 {
-                    Huella huella = new Huella(template, legajo, fingerIndex, tmpLenght);
+                    Huella huella = new Huella(template, legajo, fingerIndex, tmpLenght, flag);
                     huellas.Add(huella);
-                    template = string.Empty;
                 }
             }
             return huellas;
@@ -336,14 +335,32 @@ namespace ZkManagement.Entidades
             base.EnableDevice(this.numero, true);
         }
 
-        public void AgregarHuella(DataTable datos)
+        public void AgregarHuellas(List<Huella> huellas)
         {
-            int flag = 0;
-            foreach(DataRow fila in datos.Rows)
+
+            base.EnableDevice(this.numero, false);
+            foreach(Huella h in huellas)
             {
-                base.SetUserTmpExStr(this.numero, fila["Legajo"].ToString(), Convert.ToInt32(fila["FingerIndex"]), flag ,fila["Huella"].ToString());
+                base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag ,h.Template.Trim());
             }
+            base.RefreshData(this.numero);
             
+        }
+        public void CargarInfoUsuario(List<Empleado> empleados)
+        {
+            base.EnableDevice(this.numero, false);
+            foreach(Empleado emp in empleados)
+            {
+                if (emp.Pin == "0")
+                {
+                    base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true);
+                }
+                else
+                {
+                    base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, emp.Pin, emp.Privilegio, true);
+                }
+                
+            }
         }
             #endregion
 

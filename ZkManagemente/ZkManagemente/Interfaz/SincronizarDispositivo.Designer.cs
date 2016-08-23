@@ -34,11 +34,6 @@
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
-            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDispositivo = new System.Windows.Forms.DataGridView();
             this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +48,15 @@
             this.checkTodosLocal = new System.Windows.Forms.CheckBox();
             this.backgroundWorkerSincronizacion = new System.ComponentModel.BackgroundWorker();
             this.rtbxLog = new System.Windows.Forms.RichTextBox();
+            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backgroundWorkerCargaDatos = new System.ComponentModel.BackgroundWorker();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -118,7 +122,10 @@
             this.Nombre,
             this.Cant,
             this.Seleccionar,
-            this.Id});
+            this.Id,
+            this.Privilegios,
+            this.Clave,
+            this.Tarjeta});
             this.dgvLocal.Location = new System.Drawing.Point(93, 116);
             this.dgvLocal.Name = "dgvLocal";
             this.dgvLocal.ReadOnly = true;
@@ -126,44 +133,6 @@
             this.dgvLocal.Size = new System.Drawing.Size(363, 420);
             this.dgvLocal.TabIndex = 4;
             this.dgvLocal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocal_CellContentClick);
-            // 
-            // Legajo
-            // 
-            this.Legajo.DataPropertyName = "Legajo";
-            this.Legajo.HeaderText = "Legajo";
-            this.Legajo.Name = "Legajo";
-            this.Legajo.ReadOnly = true;
-            this.Legajo.Width = 70;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Cant
-            // 
-            this.Cant.DataPropertyName = "Cant";
-            this.Cant.HeaderText = "Cant Huellas";
-            this.Cant.Name = "Cant";
-            this.Cant.ReadOnly = true;
-            this.Cant.Width = 60;
-            // 
-            // Seleccionar
-            // 
-            this.Seleccionar.HeaderText = "Seleccionar";
-            this.Seleccionar.Name = "Seleccionar";
-            this.Seleccionar.ReadOnly = true;
-            this.Seleccionar.Width = 70;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "IdEmpleado";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
             // 
             // label2
             // 
@@ -295,6 +264,73 @@
             this.rtbxLog.TabIndex = 15;
             this.rtbxLog.Text = "";
             // 
+            // Legajo
+            // 
+            this.Legajo.DataPropertyName = "Legajo";
+            this.Legajo.HeaderText = "Legajo";
+            this.Legajo.Name = "Legajo";
+            this.Legajo.ReadOnly = true;
+            this.Legajo.Width = 70;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Cant
+            // 
+            this.Cant.DataPropertyName = "Cant";
+            this.Cant.HeaderText = "Cant Huellas";
+            this.Cant.Name = "Cant";
+            this.Cant.ReadOnly = true;
+            this.Cant.Width = 60;
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.ReadOnly = true;
+            this.Seleccionar.Width = 70;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "IdEmpleado";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Privilegios
+            // 
+            this.Privilegios.DataPropertyName = "Privilegio";
+            this.Privilegios.HeaderText = "Privilegios";
+            this.Privilegios.Name = "Privilegios";
+            this.Privilegios.ReadOnly = true;
+            this.Privilegios.Visible = false;
+            // 
+            // Clave
+            // 
+            this.Clave.DataPropertyName = "Pin";
+            this.Clave.HeaderText = "Clave";
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Visible = false;
+            // 
+            // Tarjeta
+            // 
+            this.Tarjeta.DataPropertyName = "Tarjeta";
+            this.Tarjeta.HeaderText = "Tarjeta";
+            this.Tarjeta.Name = "Tarjeta";
+            this.Tarjeta.ReadOnly = true;
+            this.Tarjeta.Visible = false;
+            // 
+            // backgroundWorkerCargaDatos
+            // 
+            this.backgroundWorkerCargaDatos.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerCargaDatos_DoWork);
+            this.backgroundWorkerCargaDatos.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerCargaDatos_RunWorkerCompleted);
+            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,11 +371,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.Button btnDescargar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.CheckBox checkTodos;
         private System.Windows.Forms.CheckBox checkTodosLocal;
@@ -350,5 +381,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilegios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerCargaDatos;
     }
 }

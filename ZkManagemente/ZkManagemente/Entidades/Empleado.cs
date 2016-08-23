@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ZkManagement.Entidades
+﻿namespace ZkManagement.Entidades
 {
     public class Empleado
     {

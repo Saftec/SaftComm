@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
@@ -13,8 +12,7 @@ namespace ZkManagement.Interfaz
     {
         private List<Reloj> relojes = new List<Reloj>();
         private DataTable usuariosEnDisp = new DataTable();
-        private Reloj reloj = new Reloj();
-        private ControladorSincronizacion cs = new ControladorSincronizacion();
+        private Reloj reloj = new Reloj();      
         private int total;
         public SincronizarDispositivo()
         {
@@ -130,7 +128,7 @@ namespace ZkManagement.Interfaz
             {
                 foreach (DataGridViewRow fila in dgvLocal.Rows)
                 {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
                     cellSeleccion.Value = true;
                 }
             }
@@ -138,7 +136,7 @@ namespace ZkManagement.Interfaz
             {
                 foreach (DataGridViewRow fila in dgvLocal.Rows)
                 {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
                     cellSeleccion.Value = false;
                 }
             }
@@ -175,35 +173,33 @@ namespace ZkManagement.Interfaz
         }
         private void btnCargar_Click(object sender, EventArgs e)
         {
+            /*INFORMACIÓN A ENVIAR AL EQUIPO:
+            * Pin
+            * Tarjeta
+            * Privilegio
+            * Nombre
+            * Legajo
+            * ----------------
+            * Template
+            * FingerIndex
+            * */
             if (!reloj.Estado)
             {
                 InformarError("Por favor, conecte con dispositivo");
                 return;
             }
-            foreach (DataGridViewRow fila in dgvLocal.Rows)
-            {              
-                DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
 
-                if (Convert.ToBoolean(cellSeleccion.Value))
-                {
-                    try
-                    {
-                        Empleado emp = new Empleado();
-                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
-                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
-                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
-                    }
-                    catch (SqlException sqlex)
-                    {
-                        throw sqlex;
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Error desconocido durante la descarga de datos");
-                    }
-                }
+            try
+            {
+                LoguearInforme("Iniciando carga de datos");
+                backgroundWorkerCargaDatos.RunWorkerAsync();                
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);                
             }
         }
+ 
         private void btnDescargar_Click(object sender, EventArgs e)
         {
             if (!reloj.Estado)
@@ -289,6 +285,7 @@ namespace ZkManagement.Interfaz
             *****************************************************/
             
             List<string> legajos = new List<string>();
+            ControladorDescargaDatos cdd = new ControladorDescargaDatos();
             //DESCARGA DE LA INFO (Sin huellas)
             try
             {                           
@@ -304,7 +301,7 @@ namespace ZkManagement.Interfaz
                         emp.Nombre = fila.Cells["Nom"].Value.ToString();
                         emp.Pin = fila.Cells["Pin"].Value.ToString();
                         emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
-                        cs.DescargarInfo(emp);
+                        cdd.DescargarInfo(emp);
                         legajos.Add(emp.Legajo);
                     }
                 }
@@ -319,7 +316,7 @@ namespace ZkManagement.Interfaz
             try
             {
                 total = 0;
-                total=cs.AgregarHuella(legajos, reloj); //LA VARIABLE TOTAL ME INFORMA LA CANTIDAD DE FP DESCARGADAS.
+                total=cdd.AgregarHuella(legajos, reloj); //LA VARIABLE TOTAL ME INFORMA LA CANTIDAD DE FP DESCARGADAS.
             }
             catch(Exception ex)
             {
@@ -340,6 +337,40 @@ namespace ZkManagement.Interfaz
         {
             InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
             LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
+        }
+
+        private void backgroundWorkerCargaDatos_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            List<Empleado> empleados = new List<Empleado>();
+            ControladorCargaDatos ccd = new ControladorCargaDatos();
+            try
+            {
+                foreach (DataGridViewRow fila in dgvLocal.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
+                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
+                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
+                        emp.Pin = fila.Cells["Clave"].Value.ToString();
+                        emp.Tarjeta = fila.Cells["Tarjeta"].Value.ToString();
+                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegios"].Value);
+                        empleados.Add(emp);
+                    }
+                }
+                ccd.CargarDatos(empleados, reloj);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void backgroundWorkerCargaDatos_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            InformarUsuario("Carga de datos finalizada correctamente", "Carga de datos");
         }
     }
 }

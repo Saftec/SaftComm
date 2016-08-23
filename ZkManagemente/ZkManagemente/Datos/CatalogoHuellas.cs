@@ -17,7 +17,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "' )", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')", conn);
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -69,7 +69,8 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Huellas SET IdEmpleado='" + id.ToString() + "', Template='" + h.Template + "', FingerIndex='" + h.FingerIndex.ToString() + "', Lengh='" + h.Lengh + "'", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() + 
+                    "' WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'", conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -83,17 +84,22 @@ namespace ZkManagement.Datos
                 throw new Exception("Error desconocido al actualizar la tabla huellas");
             }
         }
-        public List<string> GetHuellas(Empleado emp)
+        public List<Huella> GetHuellas(int id)
         {
-            List<string> huellas = new List<string>();
+            List<Huella> huellas = new List<Huella>();
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Template FROM Huellas WHERE IdEmpleado=" + emp.Id.ToString());
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Huellas WHERE IdEmpleado=" + id.ToString(),conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    huellas.Add(dr["Template"].ToString());
+                    Huella h = new Huella();
+                    h.FingerIndex = Convert.ToInt32(dr["FingerIndex"]);
+                    h.Lengh = Convert.ToInt32(dr["Lengh"]);
+                    h.Template = dr["Template"].ToString();
+                    h.Flag = Convert.ToInt32(dr["Flag"]);
+                    huellas.Add(h);
                 }
             }
             catch(SqlException sqlex)
@@ -106,6 +112,7 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla huellas");
             }
+            conn.Close();
             return huellas;
         }
     }

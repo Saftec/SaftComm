@@ -9,18 +9,20 @@ namespace ZkManagement.Entidades
     public class Huella
     {
         private string _huella;
+        private string _legajo;
         private int _lengh;
         private int _fingerIndex;
-        private string _legajo;
+        private int _flag;
 
         public Huella() { }
 
-        public Huella(string template, string legajo, int fingerIndex, int lengh)
+        public Huella(string template, string legajo, int fingerIndex, int lengh, int flag)
         {
             Template = template;
             Legajo = legajo;
             FingerIndex = fingerIndex;
             Lengh = lengh;
+            Flag = flag;
         }
         #region Propiedades
         public string Template
@@ -42,6 +44,11 @@ namespace ZkManagement.Entidades
         {
             get { return _fingerIndex; }
             set { _fingerIndex = value; }
+        }
+        public int Flag
+        {
+            get { return _flag; }
+            set { _flag = value; }
         }
         #endregion
     }

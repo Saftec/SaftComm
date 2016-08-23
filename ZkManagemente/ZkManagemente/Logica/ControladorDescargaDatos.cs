@@ -5,7 +5,7 @@ using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
-    class ControladorSincronizacion
+    class ControladorDescargaDatos
     {
         private CatalogoEmpleados ce = new CatalogoEmpleados();
         public void DescargarInfo(Empleado emp)

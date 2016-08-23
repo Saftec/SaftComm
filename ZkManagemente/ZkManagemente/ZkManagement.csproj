@@ -123,13 +123,14 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\Logger.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorEmpleados.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />
     <Compile Include="Logica\ControladorReloj.cs" />
-    <Compile Include="Logica\ControladorSincronizacion.cs" />
+    <Compile Include="Logica\ControladorDescargaDatos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AppException.cs" />
