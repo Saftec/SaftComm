@@ -35,12 +35,12 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnConfig = new System.Windows.Forms.Button();
-            this.btnRelojes = new System.Windows.Forms.Button();
             this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnRelojes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -88,43 +88,16 @@
             // 
             // button2
             // 
+            this.button2.Image = global::ZkManagement.Properties.Resources.group;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.Location = new System.Drawing.Point(462, 16);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 47);
             this.button2.TabIndex = 1;
             this.button2.Text = "Empleados";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(330, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 47);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Usuarios";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.Location = new System.Drawing.Point(58, 16);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(84, 47);
-            this.btnConfig.TabIndex = 1;
-            this.btnConfig.Text = "Configuracion";
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // btnRelojes
-            // 
-            this.btnRelojes.Location = new System.Drawing.Point(196, 16);
-            this.btnRelojes.Name = "btnRelojes";
-            this.btnRelojes.Size = new System.Drawing.Size(84, 47);
-            this.btnRelojes.TabIndex = 0;
-            this.btnRelojes.Text = "Relojes";
-            this.btnRelojes.UseVisualStyleBackColor = true;
-            this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
             // iconoBandeja
             // 
@@ -139,6 +112,45 @@
             // timerRutinaHora
             // 
             this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
+            // 
+            // button1
+            // 
+            this.button1.Image = global::ZkManagement.Properties.Resources.padlock;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(330, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 47);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Usuarios";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Image = global::ZkManagement.Properties.Resources.settings;
+            this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConfig.Location = new System.Drawing.Point(58, 16);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(84, 47);
+            this.btnConfig.TabIndex = 1;
+            this.btnConfig.Text = "Configuracion";
+            this.btnConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
+            // btnRelojes
+            // 
+            this.btnRelojes.Image = global::ZkManagement.Properties.Resources.clock;
+            this.btnRelojes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRelojes.Location = new System.Drawing.Point(196, 16);
+            this.btnRelojes.Name = "btnRelojes";
+            this.btnRelojes.Size = new System.Drawing.Size(84, 47);
+            this.btnRelojes.TabIndex = 0;
+            this.btnRelojes.Text = "Relojes";
+            this.btnRelojes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRelojes.UseVisualStyleBackColor = true;
+            this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnEmpleados
             // 

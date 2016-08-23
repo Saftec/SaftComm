@@ -83,7 +83,7 @@
             this.DNS,
             this.Id,
             this.Clave});
-            this.dgvRelojes.Location = new System.Drawing.Point(24, 109);
+            this.dgvRelojes.Location = new System.Drawing.Point(24, 126);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -168,7 +168,7 @@
             // 
             this.gpbxRutinas.Controls.Add(this.btnRutinaHora);
             this.gpbxRutinas.Controls.Add(this.btnRutinaBajar);
-            this.gpbxRutinas.Location = new System.Drawing.Point(24, 46);
+            this.gpbxRutinas.Location = new System.Drawing.Point(47, 64);
             this.gpbxRutinas.Name = "gpbxRutinas";
             this.gpbxRutinas.Size = new System.Drawing.Size(212, 55);
             this.gpbxRutinas.TabIndex = 1;
@@ -200,61 +200,76 @@
             this.groupManuales.Controls.Add(this.btnHora);
             this.groupManuales.Controls.Add(this.btnBorrar);
             this.groupManuales.Controls.Add(this.btnDescargar);
-            this.groupManuales.Location = new System.Drawing.Point(537, 46);
+            this.groupManuales.Location = new System.Drawing.Point(537, 64);
             this.groupManuales.Name = "groupManuales";
-            this.groupManuales.Size = new System.Drawing.Size(326, 55);
+            this.groupManuales.Size = new System.Drawing.Size(313, 55);
             this.groupManuales.TabIndex = 3;
             this.groupManuales.TabStop = false;
             this.groupManuales.Text = "Operaciones Manuales";
             // 
             // btnHora
             // 
-            this.btnHora.Location = new System.Drawing.Point(227, 19);
+            this.btnHora.Image = global::ZkManagement.Properties.Resources.sinc;
+            this.btnHora.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHora.Location = new System.Drawing.Point(217, 19);
             this.btnHora.Name = "btnHora";
-            this.btnHora.Size = new System.Drawing.Size(90, 23);
+            this.btnHora.Size = new System.Drawing.Size(83, 23);
             this.btnHora.TabIndex = 2;
             this.btnHora.Text = "Sinc. Hora";
+            this.btnHora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHora.UseVisualStyleBackColor = true;
             this.btnHora.Click += new System.EventHandler(this.btnHora_Click);
             // 
             // btnBorrar
             // 
             this.btnBorrar.Enabled = false;
-            this.btnBorrar.Location = new System.Drawing.Point(117, 20);
+            this.btnBorrar.Image = global::ZkManagement.Properties.Resources.basura;
+            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBorrar.Location = new System.Drawing.Point(114, 20);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(90, 23);
+            this.btnBorrar.Size = new System.Drawing.Size(86, 23);
             this.btnBorrar.TabIndex = 1;
             this.btnBorrar.Text = "Borrar Regs";
+            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBorrar.UseVisualStyleBackColor = true;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnDescargar
             // 
-            this.btnDescargar.Location = new System.Drawing.Point(6, 20);
+            this.btnDescargar.Image = global::ZkManagement.Properties.Resources.download;
+            this.btnDescargar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDescargar.Location = new System.Drawing.Point(18, 20);
             this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(90, 23);
+            this.btnDescargar.Size = new System.Drawing.Size(83, 23);
             this.btnDescargar.TabIndex = 0;
             this.btnDescargar.Text = "Descargar";
+            this.btnDescargar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDescargar.UseVisualStyleBackColor = true;
             this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // btnConectar
             // 
-            this.btnConectar.Location = new System.Drawing.Point(288, 53);
+            this.btnConectar.Image = global::ZkManagement.Properties.Resources.poweron;
+            this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConectar.Location = new System.Drawing.Point(300, 75);
             this.btnConectar.Name = "btnConectar";
             this.btnConectar.Size = new System.Drawing.Size(98, 45);
             this.btnConectar.TabIndex = 0;
             this.btnConectar.Text = "Conectar";
+            this.btnConectar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnConectar.UseVisualStyleBackColor = true;
             this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
             // btnDesconectar
             // 
-            this.btnDesconectar.Location = new System.Drawing.Point(404, 53);
+            this.btnDesconectar.Image = global::ZkManagement.Properties.Resources.poweroff;
+            this.btnDesconectar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDesconectar.Location = new System.Drawing.Point(422, 75);
             this.btnDesconectar.Name = "btnDesconectar";
             this.btnDesconectar.Size = new System.Drawing.Size(98, 45);
             this.btnDesconectar.TabIndex = 1;
             this.btnDesconectar.Text = "Desconectar";
+            this.btnDesconectar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDesconectar.UseVisualStyleBackColor = true;
             this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
@@ -264,7 +279,7 @@
             this.groupABM.Controls.Add(this.btnEditar);
             this.groupABM.Controls.Add(this.btnAgregar);
             this.groupABM.Enabled = false;
-            this.groupABM.Location = new System.Drawing.Point(281, 336);
+            this.groupABM.Location = new System.Drawing.Point(281, 347);
             this.groupABM.Name = "groupABM";
             this.groupABM.Size = new System.Drawing.Size(290, 47);
             this.groupABM.TabIndex = 4;
@@ -273,31 +288,40 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.Location = new System.Drawing.Point(200, 17);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
+            this.btnEditar.Image = global::ZkManagement.Properties.Resources.edit;
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditar.Location = new System.Drawing.Point(108, 17);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.Size = new System.Drawing.Size(64, 23);
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Image = global::ZkManagement.Properties.Resources._new;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.Location = new System.Drawing.Point(6, 18);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -337,7 +361,7 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(197, 389);
+            this.groupAvanzadas.Location = new System.Drawing.Point(197, 396);
             this.groupAvanzadas.Name = "groupAvanzadas";
             this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
             this.groupAvanzadas.TabIndex = 11;
@@ -346,7 +370,7 @@
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(216, 449);
+            this.rtbLog.Location = new System.Drawing.Point(216, 456);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.Size = new System.Drawing.Size(453, 89);
             this.rtbLog.TabIndex = 12;

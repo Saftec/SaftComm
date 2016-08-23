@@ -248,6 +248,7 @@ namespace ZkManagement.Interfaz
 
         private void LlenarDgvLocal()
         {
+            dgvLocal.Rows.Clear();
             dgvLocal.AutoGenerateColumns = false;
             ControladorEmpleados ce = new ControladorEmpleados();
             DataTable empleados = new DataTable();
@@ -290,10 +291,8 @@ namespace ZkManagement.Interfaz
             try
             {                           
                 foreach (DataGridViewRow fila in dgvDispositivo.Rows)
-                {
-                    
+                {                  
                     DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
-
                     if (Convert.ToBoolean(cellSeleccion.Value))
                     {
                         Empleado emp = new Empleado();

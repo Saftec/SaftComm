@@ -34,6 +34,14 @@
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
+            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDispositivo = new System.Windows.Forms.DataGridView();
             this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,15 +56,9 @@
             this.checkTodosLocal = new System.Windows.Forms.CheckBox();
             this.backgroundWorkerSincronizacion = new System.ComponentModel.BackgroundWorker();
             this.rtbxLog = new System.Windows.Forms.RichTextBox();
-            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilegios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backgroundWorkerCargaDatos = new System.ComponentModel.BackgroundWorker();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnConectar = new System.Windows.Forms.Button();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -83,7 +85,7 @@
             // 
             // btnMostrar
             // 
-            this.btnMostrar.Location = new System.Drawing.Point(293, 31);
+            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(120, 23);
             this.btnMostrar.TabIndex = 2;
@@ -93,13 +95,14 @@
             // 
             // groupSeleccion
             // 
+            this.groupSeleccion.Controls.Add(this.btnConectar);
             this.groupSeleccion.Controls.Add(this.labelEstado);
             this.groupSeleccion.Controls.Add(this.comboRelojes);
             this.groupSeleccion.Controls.Add(this.btnMostrar);
             this.groupSeleccion.Controls.Add(this.label1);
             this.groupSeleccion.Location = new System.Drawing.Point(227, 14);
             this.groupSeleccion.Name = "groupSeleccion";
-            this.groupSeleccion.Size = new System.Drawing.Size(631, 72);
+            this.groupSeleccion.Size = new System.Drawing.Size(631, 80);
             this.groupSeleccion.TabIndex = 3;
             this.groupSeleccion.TabStop = false;
             this.groupSeleccion.Text = "Seleccionar Dispositivo";
@@ -107,7 +110,7 @@
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(435, 36);
+            this.labelEstado.Location = new System.Drawing.Point(462, 36);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(77, 13);
             this.labelEstado.TabIndex = 3;
@@ -126,143 +129,13 @@
             this.Privilegios,
             this.Clave,
             this.Tarjeta});
-            this.dgvLocal.Location = new System.Drawing.Point(93, 116);
+            this.dgvLocal.Location = new System.Drawing.Point(93, 125);
             this.dgvLocal.Name = "dgvLocal";
             this.dgvLocal.ReadOnly = true;
             this.dgvLocal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLocal.Size = new System.Drawing.Size(363, 420);
             this.dgvLocal.TabIndex = 4;
             this.dgvLocal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocal_CellContentClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Usuarios en base de datos";
-            // 
-            // dgvDispositivo
-            // 
-            this.dgvDispositivo.AllowUserToAddRows = false;
-            this.dgvDispositivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDispositivo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Leg,
-            this.Nom,
-            this.Pin,
-            this.Privilegio,
-            this.Seleccion});
-            this.dgvDispositivo.Location = new System.Drawing.Point(505, 116);
-            this.dgvDispositivo.Name = "dgvDispositivo";
-            this.dgvDispositivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDispositivo.Size = new System.Drawing.Size(405, 420);
-            this.dgvDispositivo.TabIndex = 6;
-            this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
-            // 
-            // Leg
-            // 
-            this.Leg.DataPropertyName = "Legajo";
-            this.Leg.HeaderText = "Legajo";
-            this.Leg.Name = "Leg";
-            this.Leg.ReadOnly = true;
-            this.Leg.Width = 60;
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "Nombre";
-            this.Nom.HeaderText = "Nombre";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 40;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegios";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
-            // 
-            // Seleccion
-            // 
-            this.Seleccion.HeaderText = "Seleccionar";
-            this.Seleccion.Name = "Seleccion";
-            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Seleccion.Width = 65;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(641, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Usuarios en dispositivo";
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.Location = new System.Drawing.Point(165, 542);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(158, 23);
-            this.btnCargar.TabIndex = 8;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // btnDescargar
-            // 
-            this.btnDescargar.Location = new System.Drawing.Point(644, 542);
-            this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(158, 23);
-            this.btnDescargar.TabIndex = 9;
-            this.btnDescargar.Text = "Descargar";
-            this.btnDescargar.UseVisualStyleBackColor = true;
-            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
-            // 
-            // checkTodos
-            // 
-            this.checkTodos.AutoSize = true;
-            this.checkTodos.Location = new System.Drawing.Point(840, 97);
-            this.checkTodos.Name = "checkTodos";
-            this.checkTodos.Size = new System.Drawing.Size(56, 17);
-            this.checkTodos.TabIndex = 10;
-            this.checkTodos.Text = "Todos";
-            this.checkTodos.UseVisualStyleBackColor = true;
-            this.checkTodos.CheckedChanged += new System.EventHandler(this.checkTodos_CheckedChanged);
-            // 
-            // checkTodosLocal
-            // 
-            this.checkTodosLocal.AutoSize = true;
-            this.checkTodosLocal.Location = new System.Drawing.Point(367, 97);
-            this.checkTodosLocal.Name = "checkTodosLocal";
-            this.checkTodosLocal.Size = new System.Drawing.Size(56, 17);
-            this.checkTodosLocal.TabIndex = 11;
-            this.checkTodosLocal.Text = "Todos";
-            this.checkTodosLocal.UseVisualStyleBackColor = true;
-            this.checkTodosLocal.CheckedChanged += new System.EventHandler(this.checkTodosLocal_CheckedChanged);
-            // 
-            // backgroundWorkerSincronizacion
-            // 
-            this.backgroundWorkerSincronizacion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSincronizacion_DoWork);
-            this.backgroundWorkerSincronizacion.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSincronizacion_ProgressChanged);
-            this.backgroundWorkerSincronizacion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSincronizacion_RunWorkerCompleted);
-            // 
-            // rtbxLog
-            // 
-            this.rtbxLog.Location = new System.Drawing.Point(317, 571);
-            this.rtbxLog.Name = "rtbxLog";
-            this.rtbxLog.Size = new System.Drawing.Size(323, 96);
-            this.rtbxLog.TabIndex = 15;
-            this.rtbxLog.Text = "";
             // 
             // Legajo
             // 
@@ -326,16 +199,165 @@
             this.Tarjeta.ReadOnly = true;
             this.Tarjeta.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 110);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Usuarios en base de datos";
+            // 
+            // dgvDispositivo
+            // 
+            this.dgvDispositivo.AllowUserToAddRows = false;
+            this.dgvDispositivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDispositivo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Leg,
+            this.Nom,
+            this.Pin,
+            this.Privilegio,
+            this.Seleccion});
+            this.dgvDispositivo.Location = new System.Drawing.Point(505, 125);
+            this.dgvDispositivo.Name = "dgvDispositivo";
+            this.dgvDispositivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDispositivo.Size = new System.Drawing.Size(405, 420);
+            this.dgvDispositivo.TabIndex = 6;
+            this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
+            // 
+            // Leg
+            // 
+            this.Leg.DataPropertyName = "Legajo";
+            this.Leg.HeaderText = "Legajo";
+            this.Leg.Name = "Leg";
+            this.Leg.ReadOnly = true;
+            this.Leg.Width = 60;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nombre";
+            this.Nom.HeaderText = "Nombre";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 40;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegios";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Seleccion
+            // 
+            this.Seleccion.HeaderText = "Seleccionar";
+            this.Seleccion.Name = "Seleccion";
+            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Seleccion.Width = 65;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(641, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Usuarios en dispositivo";
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.Location = new System.Drawing.Point(165, 558);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(158, 23);
+            this.btnCargar.TabIndex = 8;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
+            // btnDescargar
+            // 
+            this.btnDescargar.Location = new System.Drawing.Point(533, 561);
+            this.btnDescargar.Name = "btnDescargar";
+            this.btnDescargar.Size = new System.Drawing.Size(158, 23);
+            this.btnDescargar.TabIndex = 9;
+            this.btnDescargar.Text = "Descargar";
+            this.btnDescargar.UseVisualStyleBackColor = true;
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
+            // checkTodos
+            // 
+            this.checkTodos.AutoSize = true;
+            this.checkTodos.Location = new System.Drawing.Point(851, 106);
+            this.checkTodos.Name = "checkTodos";
+            this.checkTodos.Size = new System.Drawing.Size(56, 17);
+            this.checkTodos.TabIndex = 10;
+            this.checkTodos.Text = "Todos";
+            this.checkTodos.UseVisualStyleBackColor = true;
+            this.checkTodos.CheckedChanged += new System.EventHandler(this.checkTodos_CheckedChanged);
+            // 
+            // checkTodosLocal
+            // 
+            this.checkTodosLocal.AutoSize = true;
+            this.checkTodosLocal.Location = new System.Drawing.Point(399, 106);
+            this.checkTodosLocal.Name = "checkTodosLocal";
+            this.checkTodosLocal.Size = new System.Drawing.Size(56, 17);
+            this.checkTodosLocal.TabIndex = 11;
+            this.checkTodosLocal.Text = "Todos";
+            this.checkTodosLocal.UseVisualStyleBackColor = true;
+            this.checkTodosLocal.CheckedChanged += new System.EventHandler(this.checkTodosLocal_CheckedChanged);
+            // 
+            // backgroundWorkerSincronizacion
+            // 
+            this.backgroundWorkerSincronizacion.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSincronizacion_DoWork);
+            this.backgroundWorkerSincronizacion.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSincronizacion_ProgressChanged);
+            this.backgroundWorkerSincronizacion.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSincronizacion_RunWorkerCompleted);
+            // 
+            // rtbxLog
+            // 
+            this.rtbxLog.Location = new System.Drawing.Point(277, 599);
+            this.rtbxLog.Name = "rtbxLog";
+            this.rtbxLog.Size = new System.Drawing.Size(426, 96);
+            this.rtbxLog.TabIndex = 15;
+            this.rtbxLog.Text = "";
+            // 
             // backgroundWorkerCargaDatos
             // 
             this.backgroundWorkerCargaDatos.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerCargaDatos_DoWork);
             this.backgroundWorkerCargaDatos.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerCargaDatos_RunWorkerCompleted);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(783, 561);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnConectar
+            // 
+            this.btnConectar.Location = new System.Drawing.Point(278, 49);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(120, 23);
+            this.btnConectar.TabIndex = 4;
+            this.btnConectar.Text = "Sólo conectar";
+            this.btnConectar.UseVisualStyleBackColor = true;
+            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(966, 666);
+            this.ClientSize = new System.Drawing.Size(978, 698);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.rtbxLog);
             this.Controls.Add(this.checkTodosLocal);
             this.Controls.Add(this.checkTodos);
@@ -390,5 +412,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
         private System.ComponentModel.BackgroundWorker backgroundWorkerCargaDatos;
+        private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

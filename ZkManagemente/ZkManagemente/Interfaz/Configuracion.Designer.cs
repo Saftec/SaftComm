@@ -63,7 +63,7 @@
             // 
             this.groupArchivos.Controls.Add(this.label1);
             this.groupArchivos.Controls.Add(this.txtPathRegs);
-            this.groupArchivos.Location = new System.Drawing.Point(12, 24);
+            this.groupArchivos.Location = new System.Drawing.Point(12, 110);
             this.groupArchivos.Name = "groupArchivos";
             this.groupArchivos.Size = new System.Drawing.Size(417, 52);
             this.groupArchivos.TabIndex = 0;
@@ -123,7 +123,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMinRegs);
-            this.groupBox1.Location = new System.Drawing.Point(12, 99);
+            this.groupBox1.Location = new System.Drawing.Point(12, 171);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(417, 78);
             this.groupBox1.TabIndex = 4;
@@ -207,7 +207,7 @@
             this.groupFtp.Controls.Add(this.txtServidor);
             this.groupFtp.Controls.Add(this.label7);
             this.groupFtp.Enabled = false;
-            this.groupFtp.Location = new System.Drawing.Point(471, 62);
+            this.groupFtp.Location = new System.Drawing.Point(471, 110);
             this.groupFtp.Name = "groupFtp";
             this.groupFtp.Size = new System.Drawing.Size(392, 139);
             this.groupFtp.TabIndex = 5;
@@ -298,7 +298,7 @@
             // chckActivarFtp
             // 
             this.chckActivarFtp.AutoSize = true;
-            this.chckActivarFtp.Location = new System.Drawing.Point(471, 43);
+            this.chckActivarFtp.Location = new System.Drawing.Point(641, 87);
             this.chckActivarFtp.Name = "chckActivarFtp";
             this.chckActivarFtp.Size = new System.Drawing.Size(59, 17);
             this.chckActivarFtp.TabIndex = 0;
@@ -317,11 +317,16 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupArchivos);
             this.Controls.Add(this.chckActivarFtp);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Configuracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuracion";
             this.Load += new System.EventHandler(this.Configuracion_Load);
+            this.Controls.SetChildIndex(this.chckActivarFtp, 0);
+            this.Controls.SetChildIndex(this.groupArchivos, 0);
+            this.Controls.SetChildIndex(this.btnClose, 0);
+            this.Controls.SetChildIndex(this.btnGuardar, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.groupFtp, 0);
             this.groupArchivos.ResumeLayout(false);
             this.groupArchivos.PerformLayout();
             this.groupBox1.ResumeLayout(false);

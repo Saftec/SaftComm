@@ -67,6 +67,7 @@ namespace ZkManagement.Interfaz
             try
             {
                 reloj.Conectar();
+                reloj.Estado = true;
                 SetEstado("Conectado");
                 LogInforme("Conexión OK con reloj: " + reloj.Numero.ToString());
                 SetMac(reloj.GetMac());
@@ -126,6 +127,7 @@ namespace ZkManagement.Interfaz
             }
             reloj = BuscarEquipo(GetId());
             reloj.Desconectar();
+            reloj.Estado = false;
             SetEstado("Desconectado");
             LogInforme("Reloj: " + reloj.Numero.ToString() + " desconectado.");
         }
@@ -451,6 +453,11 @@ namespace ZkManagement.Interfaz
 
         private void backgroundWorkerRutinaHora_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+        }
+
+        private void Relojes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }
