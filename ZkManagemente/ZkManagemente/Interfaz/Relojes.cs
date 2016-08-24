@@ -401,51 +401,67 @@ namespace ZkManagement.Interfaz
             Logica.Logger ca = new Logica.Logger();
             ControladorRegistros cr = new ControladorRegistros();
             ca.Rutina("Inicio", "Descarga de registros");
+            LogInforme("Iniciando rutina de descarga de registros...");
             foreach (Reloj r in relojes)
             {
                 try
                 {
                     DataTable regis = new DataTable();
+                    LogInforme("Conectado a reloj: " + r.Numero.ToString());
                     r.Conectar();
+                    LogInforme("Conexion correcta con reloj: " + r.Numero.ToString());
+                    r.Estado = true;
+                    LogInforme("Descargando registros...");
                     regis = r.DescargarRegistros();
                     cr.AgregarRegis(regis);
-                    r.BorrarRegistros();
+                    LogInforme("Se descargaron " + regis.Rows.Count.ToString() + " registros");
+                    LogInforme("Borrando registros...");
+                    r.BorrarRegistros();                  
                     Borrado(r.Id, regis.Rows.Count);
+                    LogInforme("Registros eliminados correctamente...");
                     r.Desconectar();
+                    r.Estado = false;
+                    LogInforme("Reloj: " + r.Numero.ToString() + " desconectado");
                     total += regis.Rows.Count;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    LogError("Se produjo un error con reloj: " + r.Numero.ToString());
+                    LogError("Error: " + ex.Message);
                     ca.Rutina("Fin", "Se produjo un error con reloj: " + r.Numero.ToString());
                 }
             }
             ca.Rutina("Fin", "Descarga de registros");
-            MessageBox.Show("Rutina finalizada, " + total.ToString() + " registros descargados");
+            LogInforme("Rutina de descarga de registros finalizada.");
             Cursor = Cursors.Default; //Cursor normal
         }
 
         public void RutinaSincronizarHora()
         {
-            Logger ca = new Logica.Logger();
+            Logger lg = new Logger();
             try
             {
                 LogInforme("Inicio rutina de sincronización de hora");
-                ca.Rutina("Inicio", "Rutina de sincronizacion de hora");
+                lg.Rutina("Inicio", "Rutina de sincronizacion de hora");
                 foreach (Reloj r in relojes)
                 {
                     LogInforme("Conectando a reloj :" + r.Numero.ToString());
                     r.Conectar();
+                    r.Estado = true;
                     LogInforme("Conexion correcta con reloj :" + r.Numero.ToString());
                     LogInforme("Sincronizando hora con reloj :" + r.Numero.ToString());
                     r.SincronizarHora();
                     LogInforme("Hora sincronizada con reloj :" + r.Numero.ToString());
+                    r.Desconectar();
+                    r.Estado = false;
+                    LogInforme("Reloj: " + r.Numero.ToString() + " desconectado.");
                 }
-                ca.Rutina("Fin", "Rutina de sincronizacion de hora");
+                lg.Rutina("Fin", "Rutina de sincronizacion de hora");
                 LogInforme("Rutina de sincronización de hora finalizada");
             }
             catch (Exception ex)
             {
-                ca.Rutina("Fin", "Se produjo un error durante la rutina");
+                lg.Rutina("Fin", "Se produjo un error durante la rutina");
                 LogError("Se produjo un error durante la rutina");
                 LogError(ex.Message);
             }
@@ -458,6 +474,18 @@ namespace ZkManagement.Interfaz
         private void Relojes_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            foreach(Reloj r in relojes)
+            {
+                if (r.Estado == true)
+                {
+                    r.Desconectar();
+                    r.Estado = false;
+                }
+            }
         }
     }
 }

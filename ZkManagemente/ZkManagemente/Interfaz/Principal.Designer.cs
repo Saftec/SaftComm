@@ -55,22 +55,24 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(987, 78);
+            this.panel1.Size = new System.Drawing.Size(1048, 78);
             this.panel1.TabIndex = 0;
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(840, 33);
+            this.lblUsuario.Font = new System.Drawing.Font("Lucida Sans Unicode", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblUsuario.Location = new System.Drawing.Point(916, 37);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(43, 13);
+            this.lblUsuario.Size = new System.Drawing.Size(56, 15);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Usuario";
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(839, 9);
+            this.lblVersion.Location = new System.Drawing.Point(951, 9);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(42, 13);
             this.lblVersion.TabIndex = 1;
@@ -82,9 +84,9 @@
             this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.btnConfig);
             this.panelMenu.Controls.Add(this.btnRelojes);
-            this.panelMenu.Location = new System.Drawing.Point(153, 0);
+            this.panelMenu.Location = new System.Drawing.Point(153, 3);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(587, 77);
+            this.panelMenu.Size = new System.Drawing.Size(587, 72);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
@@ -105,9 +107,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.LogoPpal;
-            this.pictureBox1.Location = new System.Drawing.Point(211, 192);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 105);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(614, 243);
+            this.pictureBox1.Size = new System.Drawing.Size(630, 128);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -167,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 668);
+            this.ClientSize = new System.Drawing.Size(1048, 714);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

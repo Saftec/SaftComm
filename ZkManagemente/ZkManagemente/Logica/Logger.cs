@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.IO;
 
 namespace ZkManagement.Logica
@@ -6,6 +7,7 @@ namespace ZkManagement.Logica
     class Logger
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
+        private ILog logger = LogManager.GetLogger("");
 
         public void EscribirRegistros(int nroDispositivo, int ioModo, int año, int mes, int dia, int horas, int minuto, string legajo)
         {
@@ -25,9 +27,10 @@ namespace ZkManagement.Logica
                     w.WriteLine(linea);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error al intentar escribir el archivo de registros");
+                logger.Fatal(ex.Message);
+                throw new Exception("Error al intentar escribir el archivo de registros");               
             }
         }
 
@@ -52,7 +55,13 @@ namespace ZkManagement.Logica
             }
             catch (IOException ioex)
             {
-                
+                logger.Error(ioex.Message);
+                throw new Exception("Error al intentar escribir el log");                
+            }
+            catch(Exception ex)
+            {
+                logger.Fatal(ex.Message);
+                throw new Exception("Error no controlado al intentar escribir el log");
             }
 
         }
@@ -60,58 +69,118 @@ namespace ZkManagement.Logica
         public void InicioSesion(string usuario)
         {
             //VER FORMATO EN FORMATO.TXT
-            string linea;
-            linea = "-----------------------------------------------------------------\n";
-            EscribirLog(linea);
-            linea = " ---------" + " Sesión Iniciada: " + usuario.ToUpper() + " ---------" + "\n";
-            EscribirLog(linea);
+            try
+            {
+                string linea;
+                linea = "-----------------------------------------------------------------\n";
+                EscribirLog(linea);
+                linea = " ---------" + " Sesión Iniciada: " + usuario.ToUpper() + " ---------" + "\n";
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void SincronizarHora(int nroReloj)
         {
-            string linea;
-            linea = " Hora sincronizada con reloj: " + nroReloj;
-            EscribirLog(linea);
+            try
+            {
+                string linea;
+                linea = " Hora sincronizada con reloj: " + nroReloj;
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public void Conexion(int nroReloj)
         {
-            string linea;
-            linea = " Conexión con Reloj: " + nroReloj.ToString().PadLeft(2, '0') + "\n";
-            EscribirLog(linea);
+            try
+            {
+                string linea;
+                linea = " Conexión con Reloj: " + nroReloj.ToString().PadLeft(2, '0') + "\n";
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Rutina(string tipo, string rutina)
         {
-            string linea = "** " + tipo + " rutina de: " + rutina + " **";
-            EscribirLog(linea);
+            try
+            {
+                string linea = "** " + tipo + " rutina de: " + rutina + " **";
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void IniciaDescarga()
         {
-            EscribirLog(" Inicio de proceso de descarga de registros");
+            try
+            {
+                EscribirLog(" Inicio de proceso de descarga de registros");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void DescargaRegistros(int cantidad)
         {
-            ControladorConfiguraciones cc = new ControladorConfiguraciones();
-            string path = cc.GetConfig(2);
-            string linea;
-            linea = " Se descargaron: " + cantidad.ToString() + " registraciones al archivo: " + path;
-            EscribirLog(linea);
+            try
+            {
+                ControladorConfiguraciones cc = new ControladorConfiguraciones();
+                string path = cc.GetConfig(2);
+                string linea;
+                linea = " Se descargaron: " + cantidad.ToString() + " registraciones al archivo: " + path;
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public void BorradoRegistros(int cantidad)
         {
-            string linea;
-            linea = " Se borraron: " + cantidad.ToString() + " registros";
-            EscribirLog(linea);
+            try
+            {
+                string linea;
+                linea = " Se borraron: " + cantidad.ToString() + " registros";
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public void Desconectar(int nroReloj)
         {
-            string linea = " Reloj " + nroReloj.ToString().PadLeft(2,'0') + " desconectado.";
-            EscribirLog(linea);
+            try
+            {
+                string linea = " Reloj " + nroReloj.ToString().PadLeft(2, '0') + " desconectado.";
+                EscribirLog(linea);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
         }
         #endregion
     }

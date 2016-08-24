@@ -30,7 +30,6 @@
         {
             this.comboRelojes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnMostrar = new System.Windows.Forms.Button();
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
@@ -44,21 +43,23 @@
             this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDispositivo = new System.Windows.Forms.DataGridView();
-            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCargar = new System.Windows.Forms.Button();
-            this.btnDescargar = new System.Windows.Forms.Button();
             this.checkTodos = new System.Windows.Forms.CheckBox();
             this.checkTodosLocal = new System.Windows.Forms.CheckBox();
             this.backgroundWorkerSincronizacion = new System.ComponentModel.BackgroundWorker();
             this.rtbxLog = new System.Windows.Forms.RichTextBox();
             this.backgroundWorkerCargaDatos = new System.ComponentModel.BackgroundWorker();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnDescargar = new System.Windows.Forms.Button();
+            this.btnCargar = new System.Windows.Forms.Button();
             this.btnConectar = new System.Windows.Forms.Button();
+            this.btnMostrar = new System.Windows.Forms.Button();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -82,16 +83,6 @@
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Dispositivo:";
-            // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(120, 23);
-            this.btnMostrar.TabIndex = 2;
-            this.btnMostrar.Text = "Mostrar Usuarios";
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // groupSeleccion
             // 
@@ -211,58 +202,22 @@
             // dgvDispositivo
             // 
             this.dgvDispositivo.AllowUserToAddRows = false;
+            this.dgvDispositivo.AllowUserToDeleteRows = false;
+            this.dgvDispositivo.AllowUserToOrderColumns = true;
             this.dgvDispositivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDispositivo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Leg,
             this.Nom,
             this.Pin,
+            this.RFID,
             this.Privilegio,
             this.Seleccion});
             this.dgvDispositivo.Location = new System.Drawing.Point(505, 125);
             this.dgvDispositivo.Name = "dgvDispositivo";
             this.dgvDispositivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDispositivo.Size = new System.Drawing.Size(405, 420);
+            this.dgvDispositivo.Size = new System.Drawing.Size(413, 420);
             this.dgvDispositivo.TabIndex = 6;
             this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
-            // 
-            // Leg
-            // 
-            this.Leg.DataPropertyName = "Legajo";
-            this.Leg.HeaderText = "Legajo";
-            this.Leg.Name = "Leg";
-            this.Leg.ReadOnly = true;
-            this.Leg.Width = 60;
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "Nombre";
-            this.Nom.HeaderText = "Nombre";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 40;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegios";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
-            // 
-            // Seleccion
-            // 
-            this.Seleccion.HeaderText = "Seleccionar";
-            this.Seleccion.Name = "Seleccion";
-            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Seleccion.Width = 65;
             // 
             // label3
             // 
@@ -272,26 +227,6 @@
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Usuarios en dispositivo";
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.Location = new System.Drawing.Point(165, 558);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(158, 23);
-            this.btnCargar.TabIndex = 8;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // btnDescargar
-            // 
-            this.btnDescargar.Location = new System.Drawing.Point(533, 561);
-            this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(158, 23);
-            this.btnDescargar.TabIndex = 9;
-            this.btnDescargar.Text = "Descargar";
-            this.btnDescargar.UseVisualStyleBackColor = true;
-            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // checkTodos
             // 
@@ -336,21 +271,115 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(783, 561);
+            this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(843, 551);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 16;
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // Leg
+            // 
+            this.Leg.DataPropertyName = "Legajo";
+            this.Leg.HeaderText = "Legajo";
+            this.Leg.Name = "Leg";
+            this.Leg.ReadOnly = true;
+            this.Leg.Width = 60;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nombre";
+            this.Nom.HeaderText = "Nombre";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 40;
+            // 
+            // RFID
+            // 
+            this.RFID.DataPropertyName = "Tarjeta";
+            this.RFID.HeaderText = "Tarjeta";
+            this.RFID.Name = "RFID";
+            this.RFID.ReadOnly = true;
+            this.RFID.Width = 50;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegios";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Seleccion
+            // 
+            this.Seleccion.HeaderText = "Seleccionar";
+            this.Seleccion.Name = "Seleccion";
+            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Seleccion.Width = 65;
+            // 
+            // btnDescargar
+            // 
+            this.btnDescargar.Image = global::ZkManagement.Properties.Resources.download_2;
+            this.btnDescargar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDescargar.Location = new System.Drawing.Point(586, 551);
+            this.btnDescargar.Name = "btnDescargar";
+            this.btnDescargar.Size = new System.Drawing.Size(105, 38);
+            this.btnDescargar.TabIndex = 9;
+            this.btnDescargar.Text = "Descargar";
+            this.btnDescargar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDescargar.UseVisualStyleBackColor = true;
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.Image = global::ZkManagement.Properties.Resources.upload;
+            this.btnCargar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCargar.Location = new System.Drawing.Point(164, 551);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(105, 38);
+            this.btnCargar.TabIndex = 8;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // btnConectar
             // 
+            this.btnConectar.Image = global::ZkManagement.Properties.Resources.connect;
+            this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConectar.Location = new System.Drawing.Point(278, 49);
             this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(120, 23);
+            this.btnConectar.Size = new System.Drawing.Size(111, 23);
             this.btnConectar.TabIndex = 4;
             this.btnConectar.Text = "Sólo conectar";
+            this.btnConectar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            // 
+            // btnMostrar
+            // 
+            this.btnMostrar.Image = global::ZkManagement.Properties.Resources.view;
+            this.btnMostrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(111, 23);
+            this.btnMostrar.TabIndex = 2;
+            this.btnMostrar.Text = "Mostrar Usuarios";
+            this.btnMostrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // SincronizarDispositivo
             // 
@@ -398,11 +427,6 @@
         private System.Windows.Forms.CheckBox checkTodosLocal;
         private System.ComponentModel.BackgroundWorker backgroundWorkerSincronizacion;
         private System.Windows.Forms.RichTextBox rtbxLog;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Leg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
@@ -414,5 +438,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorkerCargaDatos;
         private System.Windows.Forms.Button btnConectar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Leg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RFID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
     }
 }

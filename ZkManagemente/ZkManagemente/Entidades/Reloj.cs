@@ -7,7 +7,7 @@ namespace ZkManagement.Entidades
 {
     public class Reloj : zkemkeeper.CZKEMClass
     {
-        private Logica.Logger ca = new Logica.Logger();
+        private Logica.Logger lg = new Logica.Logger();
         private int puerto;
         private int numero;
         private int id;
@@ -110,13 +110,13 @@ namespace ZkManagement.Entidades
             bool estado;
             if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
             estado = base.Connect_Net(ip, puerto);
-            ca.Conexion(this.numero);
+            lg.Conexion(this.numero);
             if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         public void Desconectar()
         {
-            ca.Desconectar(this.numero);
+            lg.Desconectar(this.numero);
             base.Disconnect();
         }
         public int GetCantidadRegistros()
@@ -140,7 +140,7 @@ namespace ZkManagement.Entidades
             cant = GetCantidadRegistros();
             if (base.ClearGLog(this.numero))
             {
-                ca.BorradoRegistros(cant);
+                lg.BorradoRegistros(cant);
                 base.RefreshData(this.numero);     //los datos deben ser actualizados en el reloj
                 base.EnableDevice(this.numero, true);      //desbloqueo
             }
@@ -156,7 +156,7 @@ namespace ZkManagement.Entidades
             int codError = 0;
             if (base.SetDeviceTime(this.numero))
             {
-                ca.SincronizarHora(this.numero);
+                lg.SincronizarHora(this.numero);
                 base.RefreshData(this.numero);     //actualizo datos en dispositivo
             }
             else
@@ -210,7 +210,7 @@ namespace ZkManagement.Entidades
         //DESCARGA DE REGISTROS!!//
         public DataTable DescargarRegistros()
         {
-            ca.IniciaDescarga();
+            lg.IniciaDescarga();
             string sdwEnrollNumber = string.Empty;
             int idwVerifyMode = 0;
             int tipoMov = 0;
@@ -250,7 +250,7 @@ namespace ZkManagement.Entidades
                     regis.Rows.Add(fila);
 
                     count++;
-                    ca.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, sdwEnrollNumber);
+                    lg.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, sdwEnrollNumber);
                 }
             }
             if (count != cantRegs) { throw new AppException("No se descargo el total de registros"); }
@@ -263,7 +263,7 @@ namespace ZkManagement.Entidades
                     throw new AppException("Error durante la descarga de registros, codError: " + idwErrorCode);
                 }
             }
-            ca.DescargaRegistros(count);
+            lg.DescargaRegistros(count);
             base.EnableDevice(this.numero, true);
             return regis;
         }
@@ -282,9 +282,8 @@ namespace ZkManagement.Entidades
             usuariosDispositivo.Columns.Add("Legajo", typeof(string));
             usuariosDispositivo.Columns.Add("Nombre", typeof(string));
             usuariosDispositivo.Columns.Add("Pin", typeof(string));
-            //usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
+            usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
             usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
-            usuariosDispositivo.Columns.Add("Cantidad", typeof(int));
 
             base.EnableDevice(this.numero, false);
 
@@ -292,11 +291,16 @@ namespace ZkManagement.Entidades
 
             while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
             {
+                string tarjeta = string.Empty;
                 DataRow fila = usuariosDispositivo.NewRow();
                 fila["Legajo"] = legajoEnReloj;
                 fila["Nombre"] = nombre;
                 fila["Pin"] = contraseña;
                 fila["Privilegio"] = privilegio;
+                if(base.GetStrCardNumber(out tarjeta))
+                {
+                    fila["tarjeta"] = tarjeta;
+                }
                 usuariosDispositivo.Rows.Add(fila);
             }
             base.EnableDevice(this.numero, true);
@@ -348,16 +352,29 @@ namespace ZkManagement.Entidades
         }
         public void CargarInfoUsuario(List<Empleado> empleados)
         {
+            int codErrror = 0;
             base.EnableDevice(this.numero, false);
             foreach(Empleado emp in empleados)
             {
                 if (emp.Pin == "0")
                 {
-                    base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true);
+                    if(!base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true))
+                    {
+                        base.GetLastError(ref codErrror);
+                        throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
+                    }
                 }
                 else
                 {
-                    base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, emp.Pin, emp.Privilegio, true);
+                    if(!base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, emp.Pin, emp.Privilegio, true))
+                    {
+                        base.GetLastError(ref codErrror);
+                        throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
+                    }
+                }
+                if (emp.Tarjeta != null)
+                {
+                    base.SetStrCardNumber(emp.Tarjeta);
                 }
                 
             }
@@ -368,6 +385,19 @@ namespace ZkManagement.Entidades
             if(!base.SSR_SetUserSMS(this.numero, legajo, idSMS))
             {
                 throw new AppException("Error al intentar enviar el mensaje");
+            }
+        }
+
+        public void EliminarUsuarios(List<string> legajos)
+        {
+            int codError = 0;
+            foreach(string leg in legajos)
+            {
+                if (!base.SSR_DeleteEnrollData(this.numero, leg, 12)) // El parámetro 12 elimina el usuario por completo del equipo. 
+                {
+                    base.GetLastError(ref codError);
+                    throw new AppException("Error durante el borrado de usuarios, CodError= " + codError.ToString());
+                }
             }
         }
 

@@ -66,6 +66,10 @@
             this.groupAvanzadas.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // dgvRelojes
             // 
             this.dgvRelojes.AllowUserToAddRows = false;
@@ -397,6 +401,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relojes";
             this.Load += new System.EventHandler(this.Relojes_Load);
+            this.Controls.SetChildIndex(this.btnCerrar, 0);
             this.Controls.SetChildIndex(this.dgvRelojes, 0);
             this.Controls.SetChildIndex(this.gpbxRutinas, 0);
             this.Controls.SetChildIndex(this.btnConectar, 0);
@@ -411,7 +416,6 @@
             this.groupABM.ResumeLayout(false);
             this.groupAvanzadas.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

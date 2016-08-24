@@ -16,17 +16,9 @@ namespace ZkManagement.Interfaz
         {
             InitializeComponent();
         }
-        private bool Preguntar()
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Esta seguro que desea realizar la accion?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            { return true; }
-            else { return false; }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            Close();
         }
     }
-
 }

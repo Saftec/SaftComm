@@ -31,7 +31,6 @@
             this.groupArchivos = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPathRegs = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtMinRegs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -85,15 +84,6 @@
             this.txtPathRegs.Name = "txtPathRegs";
             this.txtPathRegs.Size = new System.Drawing.Size(299, 20);
             this.txtPathRegs.TabIndex = 0;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(834, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(40, 38);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnGuardar
             // 
@@ -314,7 +304,6 @@
             this.Controls.Add(this.groupFtp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupArchivos);
             this.Controls.Add(this.chckActivarFtp);
             this.Name = "Configuracion";
@@ -323,7 +312,6 @@
             this.Load += new System.EventHandler(this.Configuracion_Load);
             this.Controls.SetChildIndex(this.chckActivarFtp, 0);
             this.Controls.SetChildIndex(this.groupArchivos, 0);
-            this.Controls.SetChildIndex(this.btnClose, 0);
             this.Controls.SetChildIndex(this.btnGuardar, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupFtp, 0);
@@ -343,7 +331,6 @@
         private System.Windows.Forms.GroupBox groupArchivos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPathRegs;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtMinRegs;
         private System.Windows.Forms.GroupBox groupBox1;

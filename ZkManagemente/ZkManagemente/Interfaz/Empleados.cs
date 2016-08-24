@@ -236,5 +236,31 @@ namespace ZkManagement.Interfaz
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SincronizarDispositivo sin = new SincronizarDispositivo();
+            sin.Show();
+        }
+
+        private void chckTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckTodos.Checked == true)
+            {
+                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+                    cellSeleccion.Value = true;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+                    cellSeleccion.Value = false;
+                }
+            }
+        }
     }
 }

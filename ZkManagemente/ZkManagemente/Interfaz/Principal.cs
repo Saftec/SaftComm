@@ -18,11 +18,8 @@ namespace ZkManagement.Interfaz
         private void Principal_Load(object sender, EventArgs e)
         {
             InicializarTimer();
-            //CENTRAR PANEL DE MENÚ!
-            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize; //Capturo tamaño del monitor
-            Int32 ancho = (this.Width = panelMenu.Width) / 2;
-            panelMenu.Location = new Point(ancho, panelMenu.Location.Y);
-            //Hasta aca
+            CentrarElementos();
+            iconoBandeja.Visible = false;
         }
 
         private void Principal_Resize(object sender, EventArgs e)
@@ -117,6 +114,22 @@ namespace ZkManagement.Interfaz
         private void btnEmpleados_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void CentrarElementos()
+        {
+            //CENTRAR PANEL DE MENÚ!
+            panelMenu.Top = (panel1.Height / 2) - (panelMenu.Height / 2);
+            panelMenu.Left = (panel1.Width / 2) - (panelMenu.Width / 2);
+            panel1.Controls.Add(panelMenu);
+            //Hasta aca
+            //CENTRAR IMAGEN PPAL
+            pictureBox1.Top = (this.Height / 2) - (pictureBox1.Height / 2);
+            pictureBox1.Left = (this.Width / 2) - (pictureBox1.Width / 2);
+            this.Controls.Add(pictureBox1);
+            //Hasta acá
+            lblUsuario.Left = (this.Width) - (lblUsuario.Width + 50);
+            lblVersion.Left = (this.Width) - (lblVersion.Width + 50);
         }
     }
 }

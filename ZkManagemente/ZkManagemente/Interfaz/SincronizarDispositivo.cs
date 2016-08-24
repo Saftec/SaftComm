@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -153,12 +154,12 @@ namespace ZkManagement.Interfaz
                 return;
             }
             Cursor = Cursors.WaitCursor;
-            reloj = relojes[comboRelojes.SelectedIndex];
-            reloj.Estado = true;
+            reloj = relojes[comboRelojes.SelectedIndex];           
             try
             {
                 reloj.Conectar();
                 labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
+                reloj.Estado = true;
                 usuariosEnDisp = reloj.DescargarInfo();
                 LlenarDgvDispositivo();
             }
@@ -300,6 +301,7 @@ namespace ZkManagement.Interfaz
                         emp.Nombre = fila.Cells["Nom"].Value.ToString();
                         emp.Pin = fila.Cells["Pin"].Value.ToString();
                         emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
+                        emp.Tarjeta = fila.Cells["RFID"].Value.ToString();
                         cdd.DescargarInfo(emp);
                         legajos.Add(emp.Legajo);
                     }
@@ -370,6 +372,55 @@ namespace ZkManagement.Interfaz
         private void backgroundWorkerCargaDatos_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             InformarUsuario("Carga de datos finalizada correctamente", "Carga de datos");
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        { 
+            List<string> legajos = new List<string>();
+            try
+            {
+                foreach (DataGridViewRow fila in dgvDispositivo.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        legajos.Add(fila.Cells["Leg"].Value.ToString());
+                    }
+                }
+                //Valido que haya seleccionado al menos 1
+                if (legajos.Count==0) { throw new AppException("Debe seleccionar al menos 1 usuarios a eliminar");}
+                //Pregunto si realmente quiere hacer la acción
+                if (MessageBox.Show("Esta seguro que desea eliminar los empleados seleccionados?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                { return; }
+
+                reloj.EliminarUsuarios(legajos);
+                InformarUsuario(legajos.Count.ToString() + " usuarios eliminados correctamente", "Baja de usuarios");
+            } 
+            catch(Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+        }
+
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+            if (comboRelojes.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor seleccione un dispositivo", "Error");
+                return;
+            }
+            Cursor = Cursors.WaitCursor;
+            reloj = relojes[comboRelojes.SelectedIndex];
+            try
+            {
+                reloj.Conectar();
+                reloj.Estado = true;
+                labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message);
+            }
         }
     }
 }

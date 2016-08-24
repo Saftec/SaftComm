@@ -53,10 +53,11 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.linkCargar = new System.Windows.Forms.LinkLabel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.chckTodos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -319,17 +320,6 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // linkCargar
-            // 
-            this.linkCargar.AutoSize = true;
-            this.linkCargar.Location = new System.Drawing.Point(733, 192);
-            this.linkCargar.Name = "linkCargar";
-            this.linkCargar.Size = new System.Drawing.Size(130, 13);
-            this.linkCargar.TabIndex = 7;
-            this.linkCargar.TabStop = true;
-            this.linkCargar.Text = "Sincrinizar con Dispositivo";
-            this.linkCargar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCargar_LinkClicked);
-            // 
             // txtBuscar
             // 
             this.txtBuscar.Location = new System.Drawing.Point(322, 45);
@@ -358,15 +348,40 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Image = global::ZkManagement.Properties.Resources.sinc2;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(733, 272);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Sinc. con Dispositivo";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // chckTodos
+            // 
+            this.chckTodos.AutoSize = true;
+            this.chckTodos.Location = new System.Drawing.Point(655, 52);
+            this.chckTodos.Name = "chckTodos";
+            this.chckTodos.Size = new System.Drawing.Size(56, 17);
+            this.chckTodos.TabIndex = 13;
+            this.chckTodos.Text = "Todos";
+            this.chckTodos.UseVisualStyleBackColor = true;
+            this.chckTodos.CheckedChanged += new System.EventHandler(this.chckTodos_CheckedChanged);
+            // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.chckTodos);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.linkCargar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEliminar);
@@ -376,15 +391,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empleados";
             this.Load += new System.EventHandler(this.Empleados_Load);
+            this.Controls.SetChildIndex(this.btnCerrar, 0);
             this.Controls.SetChildIndex(this.dgvEmpleados, 0);
             this.Controls.SetChildIndex(this.groupEmpleados, 0);
             this.Controls.SetChildIndex(this.btnEliminar, 0);
             this.Controls.SetChildIndex(this.btnNuevo, 0);
             this.Controls.SetChildIndex(this.btnEditar, 0);
-            this.Controls.SetChildIndex(this.linkCargar, 0);
             this.Controls.SetChildIndex(this.txtBuscar, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.chckTodos, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.groupEmpleados.ResumeLayout(false);
             this.groupEmpleados.PerformLayout();
@@ -420,9 +437,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
-        private System.Windows.Forms.LinkLabel linkCargar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chckTodos;
     }
 }
