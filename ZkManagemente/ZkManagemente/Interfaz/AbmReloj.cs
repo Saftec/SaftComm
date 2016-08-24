@@ -19,7 +19,14 @@ namespace ZkManagement.Interfaz
             txtNro.Text = r.Numero.ToString();
             txtIp.Text = r.Ip;
             txtPuerto.Text = r.Puerto.ToString();
-            txtPsw.Text = r.Clave;
+            if (r.Clave == "0")
+            {
+                txtPsw.Text = string.Empty;
+            }
+            else
+            {
+                txtPsw.Text = r.Clave;
+            }           
             txtDns.Text = r.DNS;
             id = r.Id;
         }
@@ -36,8 +43,6 @@ namespace ZkManagement.Interfaz
             try
             {
                 cr.ModifReloj(r);
-                Relojes relojes = new Relojes();
-                relojes.CargarDataGridView();
                 MessageBox.Show("Cambios guardados");
             }
             catch (Exception ex)

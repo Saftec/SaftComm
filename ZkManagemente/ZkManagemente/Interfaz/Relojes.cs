@@ -164,12 +164,16 @@ namespace ZkManagement.Interfaz
             Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
             abm.Editar(r);
             abm.ShowDialog(this);
+            abm.Dispose();
+            CargarDataGridView();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AbmReloj abm = new AbmReloj();
-            abm.Show(this);
+            abm.ShowDialog(this);
+            abm.Dispose();
+            CargarDataGridView();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -269,7 +273,7 @@ namespace ZkManagement.Interfaz
         }
         private string GetNombre()
         {
-            return (dgvRelojes.CurrentRow.Cells[0].Value).ToString();
+            return (dgvRelojes.CurrentRow.Cells[1].Value).ToString();
         }
         private string GetIp()
         {
