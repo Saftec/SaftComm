@@ -1,8 +1,8 @@
 ﻿App:
 *Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
 *Validar permisos interfaz. (Algunas pantallas ya están).
+*Error al intentar ordenar los DataGridView.
 
 Relojes:
-*Actualizar DGV relojes despues de alta o modificaciones.
 *Background para rutinas.
 *Obtener IP de dns.

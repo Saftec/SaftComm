@@ -41,6 +41,7 @@ namespace ZkManagement.Interfaz
 
         private void btnGuardar_Click(object sender, System.EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             try
             {
                 cc.SetConfig(2, txtPathRegs.Text);
@@ -65,15 +66,17 @@ namespace ZkManagement.Interfaz
                 if (chckActivarFtp.Checked == true)
                 {
                     cc.SetConfig(8, "S");
-                }
+                }               
                 else { cc.SetConfig(8, "N"); }
+                cc.SetConfig(14, (comboHSDesde.Text + ":" + comboMinsDesde.Text));
+
                 MessageBox.Show("Configuraciones guardadas");
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-
+            Cursor = Cursors.Default;
         }
 
         private void chckActivaReg_CheckedChanged(object sender, EventArgs e)
@@ -101,6 +104,11 @@ namespace ZkManagement.Interfaz
         private void Configuracion_Load(object sender, EventArgs e)
         {
             CargarConfigs();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

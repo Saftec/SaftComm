@@ -34,17 +34,21 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
-            this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
-            this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
+            this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
+            this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStriplabelHora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerHora = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -89,29 +93,6 @@
             this.panelMenu.Size = new System.Drawing.Size(587, 72);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
-            // 
-            // iconoBandeja
-            // 
-            this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
-            this.iconoBandeja.Text = "notifyIcon1";
-            this.iconoBandeja.Visible = true;
-            // 
-            // timerRutinaRegs
-            // 
-            this.timerRutinaRegs.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timerRutinaHora
-            // 
-            this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ZkManagement.Properties.Resources.LogoPpal;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 105);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(630, 128);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // button2
             // 
@@ -165,11 +146,57 @@
             this.btnRelojes.UseVisualStyleBackColor = true;
             this.btnRelojes.Click += new System.EventHandler(this.button1_Click);
             // 
+            // iconoBandeja
+            // 
+            this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
+            this.iconoBandeja.Text = "notifyIcon1";
+            this.iconoBandeja.Visible = true;
+            // 
+            // timerRutinaRegs
+            // 
+            this.timerRutinaRegs.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerRutinaHora
+            // 
+            this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ZkManagement.Properties.Resources.LogoPpal;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 105);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(630, 128);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStriplabelHora});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 692);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1048, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
+            // 
+            // toolStriplabelHora
+            // 
+            this.toolStriplabelHora.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStriplabelHora.Name = "toolStriplabelHora";
+            this.toolStriplabelHora.Size = new System.Drawing.Size(123, 17);
+            this.toolStriplabelHora.Text = "toolStripStatusLabel1";
+            // 
+            // timerHora
+            // 
+            this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
+            // 
             // btnEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 714);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -183,7 +210,10 @@
             this.panel1.PerformLayout();
             this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -201,5 +231,8 @@
         private System.Windows.Forms.Timer timerRutinaRegs;
         private System.Windows.Forms.Timer timerRutinaHora;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStriplabelHora;
+        private System.Windows.Forms.Timer timerHora;
     }
 }

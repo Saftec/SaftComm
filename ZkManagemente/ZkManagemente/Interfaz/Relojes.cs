@@ -157,7 +157,7 @@ namespace ZkManagement.Interfaz
             }
             Cursor = Cursors.Default;
         }
-
+                //DESPUES DE EDITAR O AGREGAR UN RELOJ NECESITO SI O SI VOLVER A CARGAR EL LIST<> ACTUALIZADO EN MEMORIA!
         private void btnEditar_Click(object sender, EventArgs e)
         {
             AbmReloj abm = new AbmReloj();

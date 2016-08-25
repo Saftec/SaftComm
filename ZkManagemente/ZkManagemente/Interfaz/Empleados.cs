@@ -208,6 +208,7 @@ namespace ZkManagement.Interfaz
         private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //CODIGO PARA ORDENAR DGV CUANDO SE HACE CLICK EN LA CABECERA
+            MessageBox.Show("Click");
             DataGridViewColumn newColumn = dgvEmpleados.Columns[e.ColumnIndex];
             DataGridViewColumn oldColumn = dgvEmpleados.SortedColumn;
             ListSortDirection direction;

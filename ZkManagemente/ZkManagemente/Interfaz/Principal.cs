@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -17,6 +16,7 @@ namespace ZkManagement.Interfaz
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            IniciarReloj();
             InicializarTimer();
             CentrarElementos();
             iconoBandeja.Visible = false;
@@ -54,7 +54,14 @@ namespace ZkManagement.Interfaz
         {
             Relojes relojes = new Relojes();
             ControladorLogin cl = new ControladorLogin();
-            relojes.ShowDialog(this);           
+            try
+            {
+                relojes.ShowDialog(this);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         protected override void OnClosed(EventArgs e)
@@ -108,7 +115,15 @@ namespace ZkManagement.Interfaz
         private void button2_Click(object sender, EventArgs e)
         {
             Empleados emp = new Empleados();
-            emp.ShowDialog(this);
+            try
+            {
+                emp.ShowDialog(this);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnEmpleados_FormClosing(object sender, FormClosingEventArgs e)
@@ -130,6 +145,21 @@ namespace ZkManagement.Interfaz
             //Hasta acá
             lblUsuario.Left = (this.Width) - (lblUsuario.Width + 50);
             lblVersion.Left = (this.Width) - (lblVersion.Width + 50);
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void IniciarReloj()
+        {
+            timerHora.Interval = 1000; //se actualiza cada 1 segundo.
+            timerHora.Enabled = true;
+        }
+        private void timerHora_Tick(object sender, EventArgs e)
+        {
+            toolStriplabelHora.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }
