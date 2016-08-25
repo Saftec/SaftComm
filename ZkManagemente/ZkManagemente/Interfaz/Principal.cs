@@ -109,6 +109,7 @@ namespace ZkManagement.Interfaz
 
         private void timerRutinaHora_Tick(object sender, EventArgs e)
         {
+            ControladorConfiguraciones cc = new ControladorConfiguraciones();
             relojesRutinas.RutinaSincronizarHora();
         }
 

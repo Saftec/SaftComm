@@ -17,11 +17,15 @@ namespace ZkManagement.Interfaz
             txtPathRegs.Text = cc.GetConfig(2);
             txtMinRegs.Text = cc.GetConfig(5);
             txtMinHs.Text = cc.GetConfig(7);
+            txtHSDesde.Text = cc.GetConfig(14);
+            txtHSHasta.Text = cc.GetConfig(15);
             valor = cc.GetConfig(4);
             if (valor=="S") { chckActivaReg.Checked = true; }
             valor = cc.GetConfig(6);
             if (valor=="S") { chckActivaHora.Checked = true; }
-            valor = cc.GetConfig(8);
+            valor = cc.GetConfig(16);
+            if(valor=="S") { chckActivarHorarios.Checked = true; }
+            valor = cc.GetConfig(8);          
             if (valor == "S")
             {
                 groupFtp.Enabled = true;
@@ -68,7 +72,13 @@ namespace ZkManagement.Interfaz
                     cc.SetConfig(8, "S");
                 }               
                 else { cc.SetConfig(8, "N"); }
-                cc.SetConfig(14, (comboHSDesde.Text + ":" + comboMinsDesde.Text));
+                if (chckActivarHorarios.Checked == true)
+                {
+                    cc.SetConfig(16, "S");
+                    cc.SetConfig(14, txtHSDesde.Text);
+                    cc.SetConfig(15, txtHSHasta.Text);
+                }
+                else { cc.SetConfig(16, "N"); }
 
                 MessageBox.Show("Configuraciones guardadas");
             }
@@ -81,7 +91,14 @@ namespace ZkManagement.Interfaz
 
         private void chckActivaReg_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (chckActivaReg.Checked == true)
+            {
+                txtMinRegs.Enabled = true;
+            }
+            else
+            {
+                txtMinRegs.Enabled = false;
+            }
         }
 
         private void chckActivarFtp_CheckedChanged(object sender, EventArgs e)
@@ -109,6 +126,32 @@ namespace ZkManagement.Interfaz
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void chckActivarHorarios_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckActivarHorarios.Checked == true)
+            {
+                txtHSDesde.Enabled = true;
+                txtHSHasta.Enabled = true;
+            }
+            else
+            {
+                txtHSDesde.Enabled = false;
+                txtHSHasta.Enabled = false;
+            }
+        }
+
+        private void chckActivaHora_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckActivaHora.Checked == true)
+            {
+                txtMinHs.Enabled = true;
+            }
+            else
+            {
+                txtMinHs.Enabled = false;
+            }
         }
     }
 }

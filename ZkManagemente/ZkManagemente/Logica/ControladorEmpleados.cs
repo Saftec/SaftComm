@@ -24,9 +24,11 @@ namespace ZkManagement.Logica
 
         public void BajaEmpleado(Empleado emp)
         {
+            CatalogoHuellas ch = new CatalogoHuellas();
             try
             {
                 ce.Eliminar(emp);
+                ch.EliminarHuella(emp.Id);
             }
             catch(Exception ex)
             {

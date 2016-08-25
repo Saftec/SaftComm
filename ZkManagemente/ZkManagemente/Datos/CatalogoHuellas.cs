@@ -115,5 +115,26 @@ namespace ZkManagement.Datos
             conn.Close();
             return huellas;
         }
+
+        public void EliminarHuella(int id)
+        {
+            try
+            {
+                conn = con.Conectar();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Huellas WHERE IdEmpleado=" + id.ToString(), conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException sqlex)
+            {
+                logger.Error(sqlex.StackTrace);
+                throw new Exception("Error al intentar eliminar las huellas");
+            }
+            catch(Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                throw new Exception("Error no controlado al intentar eliminar las huellas");
+            }
+            conn.Close();
+        }
     }
 }

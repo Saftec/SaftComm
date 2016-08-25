@@ -34,8 +34,9 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtMinRegs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboMinsDesde = new System.Windows.Forms.ComboBox();
-            this.comboHSDesde = new System.Windows.Forms.ComboBox();
+            this.chckActivarHorarios = new System.Windows.Forms.CheckBox();
+            this.txtHSHasta = new System.Windows.Forms.TextBox();
+            this.txtHSDesde = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chckActivaHora = new System.Windows.Forms.CheckBox();
@@ -57,10 +58,6 @@
             this.txtServidor = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.chckActivarFtp = new System.Windows.Forms.CheckBox();
-            this.comboHsHasta = new System.Windows.Forms.ComboBox();
-            this.comboMinsHasta = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupFtp.SuspendLayout();
@@ -105,6 +102,7 @@
             // 
             // txtMinRegs
             // 
+            this.txtMinRegs.Enabled = false;
             this.txtMinRegs.Location = new System.Drawing.Point(301, 20);
             this.txtMinRegs.MaxLength = 2;
             this.txtMinRegs.Name = "txtMinRegs";
@@ -113,12 +111,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.comboMinsHasta);
-            this.groupBox1.Controls.Add(this.comboHsHasta);
-            this.groupBox1.Controls.Add(this.comboMinsDesde);
-            this.groupBox1.Controls.Add(this.comboHSDesde);
+            this.groupBox1.Controls.Add(this.chckActivarHorarios);
+            this.groupBox1.Controls.Add(this.txtHSHasta);
+            this.groupBox1.Controls.Add(this.txtHSDesde);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.chckActivaHora);
@@ -136,63 +131,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Automatizacion Rutinas";
             // 
-            // comboMinsDesde
+            // chckActivarHorarios
             // 
-            this.comboMinsDesde.FormattingEnabled = true;
-            this.comboMinsDesde.Items.AddRange(new object[] {
-            "00",
-            "05",
-            "15",
-            "20",
-            "25",
-            "30",
-            "35",
-            "40",
-            "45",
-            "50",
-            "55"});
-            this.comboMinsDesde.Location = new System.Drawing.Point(213, 49);
-            this.comboMinsDesde.Name = "comboMinsDesde";
-            this.comboMinsDesde.Size = new System.Drawing.Size(33, 21);
-            this.comboMinsDesde.TabIndex = 15;
+            this.chckActivarHorarios.AutoSize = true;
+            this.chckActivarHorarios.Location = new System.Drawing.Point(21, 50);
+            this.chckActivarHorarios.Name = "chckActivarHorarios";
+            this.chckActivarHorarios.Size = new System.Drawing.Size(59, 17);
+            this.chckActivarHorarios.TabIndex = 16;
+            this.chckActivarHorarios.Text = "Activar";
+            this.chckActivarHorarios.UseVisualStyleBackColor = true;
+            this.chckActivarHorarios.CheckedChanged += new System.EventHandler(this.chckActivarHorarios_CheckedChanged);
             // 
-            // comboHSDesde
+            // txtHSHasta
             // 
-            this.comboHSDesde.FormattingEnabled = true;
-            this.comboHSDesde.Items.AddRange(new object[] {
-            "00",
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23"});
-            this.comboHSDesde.Location = new System.Drawing.Point(163, 49);
-            this.comboHSDesde.Name = "comboHSDesde";
-            this.comboHSDesde.Size = new System.Drawing.Size(35, 21);
-            this.comboHSDesde.TabIndex = 14;
+            this.txtHSHasta.Enabled = false;
+            this.txtHSHasta.Location = new System.Drawing.Point(296, 49);
+            this.txtHSHasta.Name = "txtHSHasta";
+            this.txtHSHasta.Size = new System.Drawing.Size(43, 20);
+            this.txtHSHasta.TabIndex = 15;
+            // 
+            // txtHSDesde
+            // 
+            this.txtHSDesde.Enabled = false;
+            this.txtHSDesde.Location = new System.Drawing.Point(181, 50);
+            this.txtHSDesde.Name = "txtHSDesde";
+            this.txtHSDesde.Size = new System.Drawing.Size(43, 20);
+            this.txtHSDesde.TabIndex = 14;
+            this.txtHSDesde.Tag = "";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(252, 52);
+            this.label12.Location = new System.Drawing.Point(230, 52);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 13);
             this.label12.TabIndex = 13;
@@ -201,7 +171,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 52);
+            this.label2.Location = new System.Drawing.Point(101, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 12;
@@ -217,6 +187,7 @@
             this.chckActivaHora.TabIndex = 11;
             this.chckActivaHora.Text = "Activa";
             this.chckActivaHora.UseVisualStyleBackColor = true;
+            this.chckActivaHora.CheckedChanged += new System.EventHandler(this.chckActivaHora_CheckedChanged);
             // 
             // chckActivaReg
             // 
@@ -231,6 +202,7 @@
             // 
             // txtMinHs
             // 
+            this.txtMinHs.Enabled = false;
             this.txtMinHs.Location = new System.Drawing.Point(318, 101);
             this.txtMinHs.Name = "txtMinHs";
             this.txtMinHs.Size = new System.Drawing.Size(38, 20);
@@ -384,79 +356,6 @@
             this.chckActivarFtp.UseVisualStyleBackColor = true;
             this.chckActivarFtp.CheckedChanged += new System.EventHandler(this.chckActivarFtp_CheckedChanged);
             // 
-            // comboHsHasta
-            // 
-            this.comboHsHasta.FormattingEnabled = true;
-            this.comboHsHasta.Items.AddRange(new object[] {
-            "00",
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23"});
-            this.comboHsHasta.Location = new System.Drawing.Point(316, 49);
-            this.comboHsHasta.Name = "comboHsHasta";
-            this.comboHsHasta.Size = new System.Drawing.Size(35, 21);
-            this.comboHsHasta.TabIndex = 16;
-            // 
-            // comboMinsHasta
-            // 
-            this.comboMinsHasta.FormattingEnabled = true;
-            this.comboMinsHasta.Items.AddRange(new object[] {
-            "00",
-            "05",
-            "15",
-            "20",
-            "25",
-            "30",
-            "35",
-            "40",
-            "45",
-            "50",
-            "55"});
-            this.comboMinsHasta.Location = new System.Drawing.Point(359, 49);
-            this.comboMinsHasta.Name = "comboMinsHasta";
-            this.comboMinsHasta.Size = new System.Drawing.Size(33, 21);
-            this.comboMinsHasta.TabIndex = 17;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(199, 52);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(11, 13);
-            this.label13.TabIndex = 18;
-            this.label13.Text = ":";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(350, 53);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(11, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = ":";
-            // 
             // Configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,12 +415,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chckActivarFtp;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboMinsDesde;
-        private System.Windows.Forms.ComboBox comboHSDesde;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboMinsHasta;
-        private System.Windows.Forms.ComboBox comboHsHasta;
+        private System.Windows.Forms.TextBox txtHSHasta;
+        private System.Windows.Forms.TextBox txtHSDesde;
+        private System.Windows.Forms.CheckBox chckActivarHorarios;
     }
 }
