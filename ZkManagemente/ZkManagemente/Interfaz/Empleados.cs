@@ -31,12 +31,21 @@ namespace ZkManagement.Interfaz
         #region Formulario
         private void ActualizarFormulario()
         {
-            txtNombre.Text = dgvEmpleados.CurrentRow.Cells["Nombre"].Value.ToString();
-            txtDNI.Text = dgvEmpleados.CurrentRow.Cells["DNI"].Value.ToString();
-            txtLegajo.Text = dgvEmpleados.CurrentRow.Cells["Legajo"].Value.ToString();
-            txtTarjeta.Text = dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value.ToString();
-            txtPin.Text = dgvEmpleados.CurrentRow.Cells["Pin"].Value.ToString();
-            lblNivel.Text = dgvEmpleados.CurrentRow.Cells["Privilegio"].Value.ToString();
+            try
+            {
+                txtNombre.Text = dgvEmpleados.CurrentRow.Cells["Nombre"].Value.ToString();
+                txtDNI.Text = dgvEmpleados.CurrentRow.Cells["DNI"].Value.ToString();
+                txtLegajo.Text = dgvEmpleados.CurrentRow.Cells["Legajo"].Value.ToString();
+                txtTarjeta.Text = dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value.ToString();
+                txtPin.Text = dgvEmpleados.CurrentRow.Cells["Pin"].Value.ToString();
+                lblNivel.Text = dgvEmpleados.CurrentRow.Cells["Privilegio"].Value.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                LimpiarTextBox();
+                NoEditable();
+            }
+
         }
 
         private bool ValidarDatos()

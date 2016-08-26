@@ -7,11 +7,4 @@ Relojes:
 *Obtener IP de dns.
 
 Empleados:
-*Error al hacer click en cabecera de DGV.
 *Problemas con valores int en la búsqueda.
-
-Usuarios:
-*Error al hacer click en cabecera de DGV.
-
-Reloj:
-*No funciona la carga de nro de tarjeta.

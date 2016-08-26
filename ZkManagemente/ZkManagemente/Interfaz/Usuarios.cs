@@ -31,11 +31,6 @@ namespace ZkManagement.Interfaz
         {
             return Convert.ToInt32((dgvUsuarios.CurrentRow.Cells[4].Value));
         }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {           
-        }
-
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             NoEditable();
@@ -67,9 +62,17 @@ namespace ZkManagement.Interfaz
 
         private void ActualizarFormulario()
         {
-            txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usr"].Value.ToString();
-            txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
-            comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdPermisos"].Value)) - 1);
+            try
+            {
+                txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usr"].Value.ToString();
+                txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
+                comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdPermisos"].Value)) - 1);
+            }
+            catch(NullReferenceException)  //HAGO ESTE CATCH PORQUE CUANDO ORDENO EN LAS CABECERAS SE DISPARA ESTA EXCEPCION!
+            {
+                LimpiarTextBox();
+            }
+
         }
 
         private bool ValidarDatos()
@@ -172,5 +175,10 @@ namespace ZkManagement.Interfaz
         }
         #endregion
 
+        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            NoEditable();
+            ActualizarFormulario();            
+        }
     }
 }
