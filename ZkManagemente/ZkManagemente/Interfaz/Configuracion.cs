@@ -80,11 +80,11 @@ namespace ZkManagement.Interfaz
                 }
                 else { cc.SetConfig(16, "N"); }
 
-                MessageBox.Show("Configuraciones guardadas");
+                base.InformarEvento("Configuraciones guardadas", "Configuraciones");
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                base.InformarError(ex.Message);
             }
             Cursor = Cursors.Default;
         }

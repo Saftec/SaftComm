@@ -67,7 +67,7 @@ namespace ZkManagement.Interfaz
         #region Botones
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea eliminar por completo el/los empleado/s seleccionado/s?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (!(base.ConsultarUsuario("Desea eliminar por completo el/los empleado/s seleccionado/s?", "Eliminar")))
             { return; }
 
             // Recorro todo el DGV y elimino todos los seleccionados//
@@ -87,10 +87,11 @@ namespace ZkManagement.Interfaz
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Error");
+                        base.InformarError(ex.Message);
                     }
                 }
             }
+            if (filas.Count==0) { base.InformarError("Por favor, seleccione al menos 1 empleado"); }
             //Borro las filas del DGV
             foreach (DataGridViewRow row in filas)
             {
@@ -118,7 +119,7 @@ namespace ZkManagement.Interfaz
         {
             if (!ValidarDatos())
             {
-                MessageBox.Show("El legajo y el nombre no pueden ser nulos", "Error");
+                base.InformarError("El legajo y el nombre no pueden ser nulos");
                 return;
             }
             Cursor = Cursors.WaitCursor;
@@ -134,11 +135,11 @@ namespace ZkManagement.Interfaz
                 DatosDGV();              
                 LimpiarTextBox();
                 NoEditable();
-                MessageBox.Show("Empleado actualizado correctamente");
+                base.InformarEvento("Empleado actualizado correctamente", "Modificar usuarios");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                base.InformarError(ex.Message);
             }
             finally
             {
@@ -160,7 +161,7 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                base.InformarError(ex.Message);
             }
 
         }
@@ -220,14 +221,13 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                base.InformarError(ex.Message);
             }
         }
 
         private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //CODIGO PARA ORDENAR DGV CUANDO SE HACE CLICK EN LA CABECERA
-            MessageBox.Show("Click");
             DataGridViewColumn newColumn = dgvEmpleados.Columns[e.ColumnIndex];
             DataGridViewColumn oldColumn = dgvEmpleados.SortedColumn;
             ListSortDirection direction;

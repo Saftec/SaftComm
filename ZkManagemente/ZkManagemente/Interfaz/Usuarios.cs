@@ -84,7 +84,7 @@ namespace ZkManagement.Interfaz
         {
             if (!ValidarDatos())
             {
-                MessageBox.Show("Por favor complete todos los datos.", "Error");
+                base.InformarError("Por favor complete todos los datos.");
                 return;
             }
             ControladorLogin cl = new ControladorLogin();
@@ -97,11 +97,11 @@ namespace ZkManagement.Interfaz
                 LimpiarTextBox();
                 NoEditable();
                 CargarDGV();
-                MessageBox.Show("Modificacion OK");
+                base.InformarEvento("Modificacion OK", "Modificar usuarios");
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                base.InformarError(ex.Message);
             }
         }
         //BOTON "Nuevo"
@@ -125,7 +125,7 @@ namespace ZkManagement.Interfaz
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Esta seguro que desea eliminar el usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (!base.ConsultarUsuario("Esta seguro que desea eliminar el usuario seleccionado?", "Modificar usuarios"))
             {
                 return;
             }
@@ -136,11 +136,11 @@ namespace ZkManagement.Interfaz
                 usr.Id = GetId();
                 cl.EliminarUsuario(usr);
                 dgvUsuarios.Rows.RemoveAt(dgvUsuarios.CurrentRow.Index);
-                MessageBox.Show("Usuario eliminado correctamente.", "Baja");
+                base.InformarEvento("Usuario eliminado correctamente.", "Baja");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                InformarError(ex.Message);
             }
         }
         #endregion
@@ -167,7 +167,7 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                InformarError(ex.Message);
             }
         }
         #endregion

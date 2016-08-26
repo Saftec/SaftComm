@@ -39,7 +39,8 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                InformarError(ex.Message);
+                base.InformarError(ex.Message);
+                LogError(ex.Message);
             }
         }
 
@@ -58,19 +59,23 @@ namespace ZkManagement.Interfaz
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
-            if(ValidarConexion()) { return; }
+            if(!ValidarConexion()) { return; }
+            if(!base.ConsultarUsuario("Está seguro que desea eliminar los administradores del equipo?", "Operaciones")) { return; }
             try
             {
                 reloj.EliminarAdmins();
-                Informar("Todos los adminsitradores fueron borrados.", "Borrado de administradores");
+                base.InformarEvento("Todos los adminsitradores fueron borrados.", "Borrado de administradores");
+                LogInforme("Todos los administradores fuero borrados del reloj: " + reloj.Numero);
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
             catch(Exception ex)
             {
-                InformarError(ex.Message);
+                base.InformarError(ex.Message);
+                LogError(ex.Message);
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -82,7 +87,8 @@ namespace ZkManagement.Interfaz
         {           
             if (GetEstado()=="Conectado")
             {
-                InformarError("El dispositivo ya se encuentra conectado");
+                base.InformarError("El dispositivo ya se encuentra conectado");
+                LogError("El dispositivo ya se encuentra conectado");
                 return;
             }
             reloj = BuscarEquipo(GetId());
@@ -101,7 +107,8 @@ namespace ZkManagement.Interfaz
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
             Cursor = Cursors.Default;
         }
@@ -109,15 +116,17 @@ namespace ZkManagement.Interfaz
         private void btnHora_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
-            if (ValidarConexion()) { return; }
+            if (!ValidarConexion()) { return; }
             try
             {
                 reloj.SincronizarHora();
-                Informar("Hora sincronizada correctamente.", "Sincronizacion hora");
+                base.InformarEvento("Hora sincronizada correctamente.", "Sincronizacion hora");
+                LogInforme("Hora sincronizada con reloj: " + reloj.Numero.ToString());
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
 
         }
@@ -125,8 +134,8 @@ namespace ZkManagement.Interfaz
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
-            if (ValidarConexion()) { return; }
-            if(Preguntar()) { return; }
+            if (!ValidarConexion()) { return; }
+            if(!base.ConsultarUsuario("Está seguro que desea eliminar los registros?","Eliminar datos")) { return; }
             Cursor = Cursors.WaitCursor;
             try
             {
@@ -134,11 +143,13 @@ namespace ZkManagement.Interfaz
                 cantidad = reloj.GetCantidadRegistros();
                 reloj.BorrarRegistros();
                 Borrado(reloj.Id, cantidad);
-                Informar(cantidad.ToString() + " registros eliminados.", "Eliminar registros");
+                base.InformarEvento(cantidad.ToString() + " registros eliminados.", "Eliminar registros");
+                LogInforme("Registros eliminados correctamente en reloj: " + reloj.Numero.ToString());
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
                 Cursor = Cursors.Default;
         }
@@ -147,7 +158,8 @@ namespace ZkManagement.Interfaz
         {            
             if (GetEstado() == "Desconectado")
             {
-                InformarError("El dispositivo está desconectado");
+                base.InformarError("El dispositivo está desconectado");
+                LogError("El dispositivo seleccionado no está conectado");
                 return;
             }
             reloj = BuscarEquipo(GetId());
@@ -159,7 +171,7 @@ namespace ZkManagement.Interfaz
 
         private void btnDescargar_Click(object sender, EventArgs e)
         {
-            if (ValidarConexion()) { return; }          
+            if (!ValidarConexion()) { return; }          
             reloj = BuscarEquipo(GetId());
             ControladorRegistros cr = new ControladorRegistros();
             DataTable regis = new DataTable();
@@ -169,16 +181,27 @@ namespace ZkManagement.Interfaz
             {
                 regis = reloj.DescargarRegistros();
                 desconocidos=cr.AgregarRegis(regis);
-                if (desconocidos.Count > 0) { InformarError("Los legajos: " + string.Join("--", desconocidos.ToArray()) + " son desconocidos"); }
-                Informar("Se descargaron: " + (regis.Rows.Count-desconocidos.Count).ToString() + " registros", "Descarga de registros");
+                if (desconocidos.Count > 0)
+                {
+                    base.InformarError("Los legajos: " + string.Join("--", desconocidos.ToArray()) + " son desconocidos");
+                    LogError("Hubo legajos desconocidos durante la descarga:");
+                    foreach(string l in desconocidos)
+                    {
+                        LogError("Legajo: " + l);
+                    }
+                }
+                base.InformarEvento("Se descargaron: " + (regis.Rows.Count-desconocidos.Count).ToString() + " registros", "Descarga de registros");
+                LogInforme("Se descargaron: " + (regis.Rows.Count - desconocidos.Count).ToString() + " registros");
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
             catch (Exception ex)
             {
-                InformarError(ex.Message);
+                base.InformarError(ex.Message);
+                LogError(ex.Message);
             }
             Cursor = Cursors.Default;
         }
@@ -203,13 +226,14 @@ namespace ZkManagement.Interfaz
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (Preguntar()) { return; }
+            if (!base.ConsultarUsuario("Está seguro que desea eliminar el equipo?", "Eliminar equipo")) { return; }
             try
             {
                 ControladorReloj cr = new ControladorReloj();
                 Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
-                Informar("Equipo eliminado correctamente.", "Eliminar reloj");
+                base.InformarEvento("Equipo eliminado correctamente.", "Eliminar reloj");
+                LogInforme("Se ha eliminado un equipo");
                 dgvRelojes.Rows.RemoveAt(dgvRelojes.CurrentRow.Index); //Elimino la fila actual
             }
             catch (Exception ex)
@@ -220,52 +244,58 @@ namespace ZkManagement.Interfaz
 
         private void btnRutinaBajar_Click(object sender, EventArgs e)
         {
-            if (Preguntar()) { return; }
+            if (!base.ConsultarUsuario("Está seguro que desea ejecutar la rutina de bajada de registros?", "Rutinas")) { return; }
             RutinaBajarRegistros();
         }
                                              
         private void btnRutinaHora_Click(object sender, EventArgs e)
         {
-            if (Preguntar()) { return; }
+            if (!base.ConsultarUsuario("Está seguro que desea ejecutar la rutina de sincronización de hora?", "Rutinas")) { return; }
             RutinaSincronizarHora();
         }
 
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
-            if (ValidarConexion()) { return; }
-            if (Preguntar()) { return; }
+            if (!ValidarConexion()) { return; }
+            if (!base.ConsultarUsuario("Está seguro que desea reiniciar el equipo?", "Operaciones")) { return; }
             try
             {
                 reloj.Reiniciar();
-                Informar("Reinicio OK.", "Reiniciar dispositivos");
+                base.InformarEvento("Reinicio OK.", "Reiniciar dispositivos");
+                LogInforme("Se ha reiniciado correctamente el reloj: " + reloj.Numero.ToString());
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
             catch (Exception)
             {
-                InformarError("Error totalmente desconocido al intentar reiniciar el dispositivo.");
+                base.InformarError("Error totalmente desconocido al intentar reiniciar el dispositivo.");
+                LogError("Error no controlado al intentar reiniciar el dispositivo");
             }
         }
         private void btnInicializar_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
-            if (ValidarConexion()) { return; }
-            if (Preguntar()) { return; }
+            if (!ValidarConexion()) { return; }
+            if (!base.ConsultarUsuario("Está seguro que desea inicializar el equipo?", "Operaciones")) { return; }
             try
             {
                 reloj.Inicializar();
-                Informar("Dispositivo inicializado correctamente.", "Incializar dispositivo");
+                base.InformarEvento("Dispositivo inicializado correctamente.", "Incializar dispositivo");
+                LogInforme("Se ha inicializado el equipo: " + reloj.Numero.ToString());
             }
             catch (AppException appex)
             {
-                InformarError(appex.Message);
+                base.InformarError(appex.Message);
+                LogError(appex.Message);
             }
             catch (Exception)
             {
-                InformarError("Error totalmente desconocido al intentar inicializar el dispositivo");
+                base.InformarError("Error totalmente desconocido al intentar inicializar el dispositivo");
+                LogError("Error no controlado al intentar inicializar el equipo.");
             }
         }
 
@@ -360,29 +390,11 @@ namespace ZkManagement.Interfaz
         {
             if ("Desconectado" == GetEstado())
             {
-                InformarError("Por favor, conecte con dispositivo");
-                return true;
+                base.InformarError("Por favor, conecte con dispositivo");
+                LogError("Por favor, conecte con dispositivo");
+                return false;
             }
-            return false;
-        }
-
-        private bool Preguntar()
-        {
-            if (MessageBox.Show("Esta seguro que desea realizar la accion?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            { return true; }
-            else { return false; }
-        }
-
-        private void Informar(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LogInforme(mensaje);
-        }
-
-        private void InformarError(string mensaje)
-        {
-            MessageBox.Show(mensaje, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
-            LogError(mensaje);
+            return true;
         }
         private void LogInforme(string mensaje)
         {
