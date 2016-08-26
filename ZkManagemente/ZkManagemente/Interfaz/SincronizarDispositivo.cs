@@ -421,6 +421,10 @@ namespace ZkManagement.Interfaz
             {
                 InformarError(ex.Message);
             }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

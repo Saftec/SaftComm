@@ -246,7 +246,7 @@ namespace ZkManagement.Entidades
                     fila["Legajo"] = sdwEnrollNumber;
                     fila["Registro"] = new DateTime(año, mes, dia, hora, minutos, 00);
                     fila["Tipo"] = tipoMov;
-                    fila["Reloj"] = Convert.ToInt32(this.numero);
+                    fila["Reloj"] = Convert.ToInt32(this.Id);
                     regis.Rows.Add(fila);
 
                     count++;
@@ -356,6 +356,10 @@ namespace ZkManagement.Entidades
             base.EnableDevice(this.numero, false);
             foreach(Empleado emp in empleados)
             {
+                if (emp.Tarjeta != null)
+                {
+                    base.SetStrCardNumber(emp.Tarjeta.PadLeft(10, '0'));
+                }
                 if (emp.Pin == "0")
                 {
                     if(!base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true))
@@ -372,11 +376,7 @@ namespace ZkManagement.Entidades
                         throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
                     }
                 }
-                if (emp.Tarjeta != null)
-                {
-                    base.SetStrCardNumber(emp.Tarjeta);
-                }
-                
+               
             }
         }
 
@@ -401,11 +401,15 @@ namespace ZkManagement.Entidades
             }
         }
 
-        //Estos métodos diferencian al usuario dentro del equipo (cambia de color) pero no lo inhabilita para marcar!!
-        /*
+        //Estos métodos deshabilitan o habilitan el ingreso al menú de un usuario administrador.
+        
         public void Habilitar(string legajo)
         {
-            base.SSR_EnableUser(this.numero, legajo, true);
+            if(!base.SSR_EnableUser(this.numero, legajo, true))
+            {
+                throw new AppException("Error al intentar habilitar el usuario");
+            }
+            
         }
         public void Deshabilitar(string legajo)
         {
@@ -413,7 +417,7 @@ namespace ZkManagement.Entidades
             {
                 throw new AppException("Error al inhabilitar usuario");
             }
-        }*/ 
+        } 
             #endregion
 
         }

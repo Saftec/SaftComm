@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
@@ -35,6 +36,7 @@ namespace ZkManagement.Interfaz
             txtLegajo.Text = dgvEmpleados.CurrentRow.Cells["Legajo"].Value.ToString();
             txtTarjeta.Text = dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value.ToString();
             txtPin.Text = dgvEmpleados.CurrentRow.Cells["Pin"].Value.ToString();
+            lblNivel.Text = dgvEmpleados.CurrentRow.Cells["Privilegio"].Value.ToString();
         }
 
         private bool ValidarDatos()
@@ -65,11 +67,11 @@ namespace ZkManagement.Interfaz
         #region Botones
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Empleado emp = new Empleado();
             if (MessageBox.Show("Desea eliminar por completo el/los empleado/s seleccionado/s?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             { return; }
 
             // Recorro todo el DGV y elimino todos los seleccionados//
+            List<DataGridViewRow> filas = new List<DataGridViewRow>();
             foreach (DataGridViewRow row in dgvEmpleados.Rows)
             {
                 DataGridViewCheckBoxCell cellSelecion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
@@ -78,15 +80,21 @@ namespace ZkManagement.Interfaz
                 {
                     try
                     {
+                        Empleado emp = new Empleado();
                         emp.Id = Convert.ToInt32(row.Cells["EmpId"].Value);
                         ce.BajaEmpleado(emp);
-                        dgvEmpleados.Rows.RemoveAt(row.Index);
+                        filas.Add(row);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Error");
                     }
                 }
+            }
+            //Borro las filas del DGV
+            foreach (DataGridViewRow row in filas)
+            {
+                dgvEmpleados.Rows.Remove(row);
             }
         }
 
@@ -113,31 +121,42 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show("El legajo y el nombre no pueden ser nulos", "Error");
                 return;
             }
+            Cursor = Cursors.WaitCursor;
             empleado.Dni = txtDNI.Text;
             empleado.Legajo = txtLegajo.Text;
             empleado.Nombre = txtNombre.Text;
-            if (txtPin.Text != string.Empty) { empleado.Pin = txtPin.Text; }
+            if (txtPin.Text != null) { empleado.Pin = txtPin.Text; }
             empleado.Tarjeta = txtTarjeta.Text;
-
+            empleado.Privilegio = Convert.ToInt32(lblNivel.Text);
             try
             {
                 ce.ActualizarEmpleado(empleado);
+                DatosDGV();              
+                LimpiarTextBox();
+                NoEditable();
                 MessageBox.Show("Empleado actualizado correctamente");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
         #endregion
 
         #region DataGridView
         private void DatosDGV()
-        {          
+        {
+            dgvEmpleados.DataSource = null;
+            dgvEmpleados.Refresh();      
             try
             {
                 empleados = ce.GetEmpleados();
                 dgvEmpleados.DataSource = empleados;
+                dgvEmpleados.Refresh();
             }
             catch (Exception ex)
             {
@@ -242,6 +261,7 @@ namespace ZkManagement.Interfaz
         {
             SincronizarDispositivo sin = new SincronizarDispositivo();
             sin.Show();
+            //DatosDGV();
         }
 
         private void chckTodos_CheckedChanged(object sender, EventArgs e)

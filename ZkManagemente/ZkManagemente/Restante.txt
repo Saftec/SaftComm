@@ -1,8 +1,17 @@
 ﻿App:
 *Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
 *Validar permisos interfaz. (Algunas pantallas ya están).
-*Error al intentar ordenar los DataGridView.
 
 Relojes:
 *Background para rutinas.
 *Obtener IP de dns.
+
+Empleados:
+*Error al hacer click en cabecera de DGV.
+*Problemas con valores int en la búsqueda.
+
+Usuarios:
+*Error al hacer click en cabecera de DGV.
+
+Reloj:
+*No funciona la carga de nro de tarjeta.

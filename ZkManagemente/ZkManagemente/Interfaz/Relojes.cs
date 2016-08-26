@@ -11,16 +11,17 @@ namespace ZkManagement.Interfaz
 {
     public partial class Relojes : GenericaPadre
     {
-        private Reloj reloj = new Reloj();
+        private Reloj reloj = new Reloj(); //Esta instancia la utilizo para ejecutar todas las operaciones.
         private List<Reloj> relojes = new List<Reloj>();
         public Relojes()
         {
-            InitializeComponent();
-            CargarDataGridView();
+            InitializeComponent();            
         }
+
         private void Relojes_Load(object sender, EventArgs e)
         {
             SetPermisos();
+            CargarDataGridView();
         }
 
         private Reloj BuscarEquipo(int id)
@@ -29,7 +30,31 @@ namespace ZkManagement.Interfaz
             return (relojes[relojes.IndexOf(r)]);
         }
 
+        private void Borrado(int idReloj, int cant)
+        {
+            ControladorReloj cr = new ControladorReloj();
+            try
+            {
+                cr.ActualizarBorrado(idReloj, cant);
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+        }
+
         #region Botones
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            foreach (Reloj r in relojes)
+            {
+                if (r.Estado == true)
+                {
+                    r.Desconectar();
+                    r.Estado = false;
+                }
+            }
+        }
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             reloj = BuscarEquipo(GetId());
@@ -330,6 +355,7 @@ namespace ZkManagement.Interfaz
             return (dgvRelojes.CurrentRow.Cells[10].Value).ToString();
         }
         #endregion
+        #region Interfaz
         private bool ValidarConexion()
         {
             if ("Desconectado" == GetEstado())
@@ -350,15 +376,13 @@ namespace ZkManagement.Interfaz
         private void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            rtbLog.SelectionColor = Color.Black;
-            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje);
+            LogInforme(mensaje);
         }
 
         private void InformarError(string mensaje)
         {
             MessageBox.Show(mensaje, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
-            rtbLog.SelectionColor = Color.Red;
-            rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje);
+            LogError(mensaje);
         }
         private void LogInforme(string mensaje)
         {
@@ -370,24 +394,11 @@ namespace ZkManagement.Interfaz
             rtbLog.SelectionColor = Color.Red;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
         }
-        private void Borrado(int idReloj, int cant)
-        {
-            ControladorReloj cr = new ControladorReloj();
-            try
-            {
-                cr.ActualizarBorrado(idReloj, cant);
-            }
-            catch(Exception ex)
-            {
-                InformarError(ex.Message);
-            }            
-        }
-
         private void SetPermisos()
         {
             ControladorLogin cl = new ControladorLogin();
-            
-            if(cl.GetNivelUsr()<3)
+
+            if (cl.GetNivelUsr() < 3)
             {
                 btnBorrar.Enabled = true;
                 groupABM.Enabled = true;
@@ -395,14 +406,16 @@ namespace ZkManagement.Interfaz
             if (cl.GetNivelUsr() == 1)
             {
                 groupAvanzadas.Enabled = true;
-            }         
+            }
         }
-
+        #endregion
+        #region Rutinas
         public void RutinaBajarRegistros()
         {
             Cursor = Cursors.WaitCursor; //Cursor de espera
+            List<string> desconocidos = new List<string>();
             int total = 0;
-            Logica.Logger ca = new Logica.Logger();
+            Logger ca = new Logger();
             ControladorRegistros cr = new ControladorRegistros();
             ca.Rutina("Inicio", "Descarga de registros");
             LogInforme("Iniciando rutina de descarga de registros...");
@@ -417,7 +430,7 @@ namespace ZkManagement.Interfaz
                     r.Estado = true;
                     LogInforme("Descargando registros...");
                     regis = r.DescargarRegistros();
-                    cr.AgregarRegis(regis);
+                    desconocidos=cr.AgregarRegis(regis);
                     LogInforme("Se descargaron " + regis.Rows.Count.ToString() + " registros");
                     LogInforme("Borrando registros...");
                     r.BorrarRegistros();                  
@@ -433,6 +446,14 @@ namespace ZkManagement.Interfaz
                     LogError("Se produjo un error con reloj: " + r.Numero.ToString());
                     LogError("Error: " + ex.Message);
                     ca.Rutina("Fin", "Se produjo un error con reloj: " + r.Numero.ToString());
+                }
+            }
+            if (desconocidos.Count > 0)
+            {
+                LogError("ATENCION, se encontraron empleados desconocidos durante la descarga");
+                foreach(string l in desconocidos)
+                {
+                    LogError("Legajo: " + l);
                 }
             }
             ca.Rutina("Fin", "Descarga de registros");
@@ -470,26 +491,6 @@ namespace ZkManagement.Interfaz
                 LogError(ex.Message);
             }
         }
-
-        private void backgroundWorkerRutinaHora_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-        }
-
-        private void Relojes_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            foreach(Reloj r in relojes)
-            {
-                if (r.Estado == true)
-                {
-                    r.Desconectar();
-                    r.Estado = false;
-                }
-            }
-        }
+        #endregion
     }
 }

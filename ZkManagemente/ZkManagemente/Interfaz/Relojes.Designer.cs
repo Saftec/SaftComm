@@ -58,7 +58,6 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.groupAvanzadas = new System.Windows.Forms.GroupBox();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
-            this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
@@ -283,7 +282,7 @@
             this.groupABM.Controls.Add(this.btnEditar);
             this.groupABM.Controls.Add(this.btnAgregar);
             this.groupABM.Enabled = false;
-            this.groupABM.Location = new System.Drawing.Point(281, 347);
+            this.groupABM.Location = new System.Drawing.Point(560, 347);
             this.groupABM.Name = "groupABM";
             this.groupABM.Size = new System.Drawing.Size(290, 47);
             this.groupABM.TabIndex = 4;
@@ -331,9 +330,9 @@
             // 
             // btnReiniciar
             // 
-            this.btnReiniciar.Location = new System.Drawing.Point(19, 19);
+            this.btnReiniciar.Location = new System.Drawing.Point(21, 16);
             this.btnReiniciar.Name = "btnReiniciar";
-            this.btnReiniciar.Size = new System.Drawing.Size(123, 23);
+            this.btnReiniciar.Size = new System.Drawing.Size(116, 23);
             this.btnReiniciar.TabIndex = 8;
             this.btnReiniciar.Text = "Reiniciar Dispositivo";
             this.btnReiniciar.UseVisualStyleBackColor = true;
@@ -341,9 +340,9 @@
             // 
             // btnInicializar
             // 
-            this.btnInicializar.Location = new System.Drawing.Point(179, 19);
+            this.btnInicializar.Location = new System.Drawing.Point(179, 16);
             this.btnInicializar.Name = "btnInicializar";
-            this.btnInicializar.Size = new System.Drawing.Size(122, 23);
+            this.btnInicializar.Size = new System.Drawing.Size(115, 23);
             this.btnInicializar.TabIndex = 9;
             this.btnInicializar.Text = "Inicializar Dispositivo";
             this.btnInicializar.UseVisualStyleBackColor = true;
@@ -351,9 +350,9 @@
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Location = new System.Drawing.Point(335, 19);
+            this.btnAdmin.Location = new System.Drawing.Point(332, 16);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(122, 23);
+            this.btnAdmin.Size = new System.Drawing.Size(109, 23);
             this.btnAdmin.TabIndex = 10;
             this.btnAdmin.Text = "Eliminar Admins.";
             this.btnAdmin.UseVisualStyleBackColor = true;
@@ -365,24 +364,20 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(197, 396);
+            this.groupAvanzadas.Location = new System.Drawing.Point(54, 347);
             this.groupAvanzadas.Name = "groupAvanzadas";
-            this.groupAvanzadas.Size = new System.Drawing.Size(485, 54);
+            this.groupAvanzadas.Size = new System.Drawing.Size(457, 47);
             this.groupAvanzadas.TabIndex = 11;
             this.groupAvanzadas.TabStop = false;
             this.groupAvanzadas.Text = "Avanzadas";
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(216, 456);
+            this.rtbLog.Location = new System.Drawing.Point(197, 407);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(453, 89);
+            this.rtbLog.Size = new System.Drawing.Size(485, 134);
             this.rtbLog.TabIndex = 12;
             this.rtbLog.Text = "";
-            // 
-            // backgroundWorkerRutinaHora
-            // 
-            this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
             // 
             // Relojes
             // 
@@ -451,6 +446,5 @@
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.GroupBox groupAvanzadas;
         private System.Windows.Forms.RichTextBox rtbLog;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaHora;
     }
 }

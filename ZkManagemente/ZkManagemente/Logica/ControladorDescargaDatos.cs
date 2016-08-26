@@ -21,7 +21,6 @@ namespace ZkManagement.Logica
                 else
                 {
                     ce.Agregar(emp);
-                    emp.Id = ce.GetEmpId(emp.Legajo);
                 }
             }
             catch(Exception ex)

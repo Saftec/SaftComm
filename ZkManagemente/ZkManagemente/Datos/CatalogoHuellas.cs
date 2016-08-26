@@ -17,7 +17,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')", conn);
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)

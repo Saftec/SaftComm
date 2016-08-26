@@ -52,7 +52,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Relojes VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -130,13 +130,15 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Borrado VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "')",conn);
+                string query = "INSERT INTO Borrado (IdUsuario, IdReloj, Cantidad, Fecha) VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("dd-MM-yyyy hh:mm:ss") + "')";
+                SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
             {
                 logger.Error(sqlex.StackTrace);
-                throw new Exception("Error al actualizar la tabla borrado");
+                throw sqlex;
+                //throw new Exception("Error al actualizar la tabla borrado");
             }
             catch (Exception ex) 
             {

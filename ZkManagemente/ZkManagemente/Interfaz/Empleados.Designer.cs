@@ -29,7 +29,18 @@
         private void InitializeComponent()
         {
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
+            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupEmpleados = new System.Windows.Forms.GroupBox();
+            this.lblNivel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtPin = new System.Windows.Forms.TextBox();
@@ -50,14 +61,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.chckTodos = new System.Windows.Forms.CheckBox();
-            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,6 +68,7 @@
             // 
             // dgvEmpleados
             // 
+            this.dgvEmpleados.AllowDrop = true;
             this.dgvEmpleados.AllowUserToAddRows = false;
             this.dgvEmpleados.AllowUserToOrderColumns = true;
             this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -74,21 +78,95 @@
             this.Tarjeta,
             this.DNI,
             this.Pin,
+            this.Privilegio,
             this.Cant,
             this.Eliminar,
             this.EmpId});
-            this.dgvEmpleados.Location = new System.Drawing.Point(70, 75);
+            this.dgvEmpleados.Location = new System.Drawing.Point(75, 73);
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmpleados.Size = new System.Drawing.Size(657, 271);
+            this.dgvEmpleados.Size = new System.Drawing.Size(705, 271);
             this.dgvEmpleados.TabIndex = 1;
             this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
             this.dgvEmpleados.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpleados_ColumnHeaderMouseClick);
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged_1);
             // 
+            // Legajo
+            // 
+            this.Legajo.DataPropertyName = "Legajo";
+            this.Legajo.HeaderText = "Legajo";
+            this.Legajo.Name = "Legajo";
+            this.Legajo.ReadOnly = true;
+            this.Legajo.Width = 75;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.FillWeight = 150F;
+            this.Nombre.HeaderText = "Nombre y Apellido";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 150;
+            // 
+            // Tarjeta
+            // 
+            this.Tarjeta.DataPropertyName = "Tarjeta";
+            this.Tarjeta.HeaderText = "Tarjeta";
+            this.Tarjeta.Name = "Tarjeta";
+            this.Tarjeta.ReadOnly = true;
+            // 
+            // DNI
+            // 
+            this.DNI.DataPropertyName = "DNI";
+            this.DNI.HeaderText = "DNI";
+            this.DNI.Name = "DNI";
+            this.DNI.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 50;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegio";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Cant
+            // 
+            this.Cant.DataPropertyName = "Cant";
+            this.Cant.HeaderText = "Cant. Huellas";
+            this.Cant.Name = "Cant";
+            this.Cant.ReadOnly = true;
+            this.Cant.Width = 50;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.DataPropertyName = "(ninguno)";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 89;
+            // 
+            // EmpId
+            // 
+            this.EmpId.DataPropertyName = "IdEmpleado";
+            this.EmpId.HeaderText = "EmpId";
+            this.EmpId.Name = "EmpId";
+            this.EmpId.ReadOnly = true;
+            this.EmpId.Visible = false;
+            // 
             // groupEmpleados
             // 
+            this.groupEmpleados.Controls.Add(this.lblNivel);
+            this.groupEmpleados.Controls.Add(this.label7);
             this.groupEmpleados.Controls.Add(this.btnGuardar);
             this.groupEmpleados.Controls.Add(this.btnCancelar);
             this.groupEmpleados.Controls.Add(this.txtPin);
@@ -108,6 +186,25 @@
             this.groupEmpleados.TabIndex = 3;
             this.groupEmpleados.TabStop = false;
             this.groupEmpleados.Text = "Modificar Empleados";
+            // 
+            // lblNivel
+            // 
+            this.lblNivel.AutoSize = true;
+            this.lblNivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNivel.Location = new System.Drawing.Point(50, 67);
+            this.lblNivel.Name = "lblNivel";
+            this.lblNivel.Size = new System.Drawing.Size(14, 13);
+            this.lblNivel.TabIndex = 15;
+            this.lblNivel.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Nivel:";
             // 
             // btnGuardar
             // 
@@ -223,7 +320,7 @@
             // 
             this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(629, 352);
+            this.btnEliminar.Location = new System.Drawing.Point(697, 352);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(80, 23);
             this.btnEliminar.TabIndex = 4;
@@ -236,7 +333,7 @@
             // 
             this.btnNuevo.Image = global::ZkManagement.Properties.Resources._new;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(432, 352);
+            this.btnNuevo.Location = new System.Drawing.Point(461, 350);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(96, 38);
             this.btnNuevo.TabIndex = 5;
@@ -249,7 +346,7 @@
             // 
             this.btnEditar.Image = global::ZkManagement.Properties.Resources.edit;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditar.Location = new System.Drawing.Point(240, 352);
+            this.btnEditar.Location = new System.Drawing.Point(334, 350);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(96, 38);
             this.btnEditar.TabIndex = 6;
@@ -260,7 +357,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(322, 45);
+            this.txtBuscar.Location = new System.Drawing.Point(264, 45);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(193, 20);
             this.txtBuscar.TabIndex = 9;
@@ -271,7 +368,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(266, 48);
+            this.label2.Location = new System.Drawing.Point(208, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 10;
@@ -280,7 +377,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.search_grande;
-            this.pictureBox1.Location = new System.Drawing.Point(521, 43);
+            this.pictureBox1.Location = new System.Drawing.Point(461, 40);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(23, 26);
             this.pictureBox1.TabIndex = 11;
@@ -290,7 +387,7 @@
             // 
             this.button1.Image = global::ZkManagement.Properties.Resources.sinc2;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(733, 272);
+            this.button1.Location = new System.Drawing.Point(546, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 23);
             this.button1.TabIndex = 12;
@@ -302,76 +399,13 @@
             // chckTodos
             // 
             this.chckTodos.AutoSize = true;
-            this.chckTodos.Location = new System.Drawing.Point(655, 52);
+            this.chckTodos.Location = new System.Drawing.Point(721, 54);
             this.chckTodos.Name = "chckTodos";
             this.chckTodos.Size = new System.Drawing.Size(56, 17);
             this.chckTodos.TabIndex = 13;
             this.chckTodos.Text = "Todos";
             this.chckTodos.UseVisualStyleBackColor = true;
             this.chckTodos.CheckedChanged += new System.EventHandler(this.chckTodos_CheckedChanged);
-            // 
-            // Legajo
-            // 
-            this.Legajo.DataPropertyName = "Legajo";
-            this.Legajo.HeaderText = "Legajo";
-            this.Legajo.Name = "Legajo";
-            this.Legajo.ReadOnly = true;
-            this.Legajo.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.FillWeight = 150F;
-            this.Nombre.HeaderText = "Nombre y Apellido";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 150;
-            // 
-            // Tarjeta
-            // 
-            this.Tarjeta.DataPropertyName = "Tarjeta";
-            this.Tarjeta.HeaderText = "Tarjeta";
-            this.Tarjeta.Name = "Tarjeta";
-            this.Tarjeta.ReadOnly = true;
-            // 
-            // DNI
-            // 
-            this.DNI.DataPropertyName = "DNI";
-            this.DNI.HeaderText = "DNI";
-            this.DNI.Name = "DNI";
-            this.DNI.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 50;
-            // 
-            // Cant
-            // 
-            this.Cant.DataPropertyName = "Cant";
-            this.Cant.HeaderText = "Cant. Huellas";
-            this.Cant.Name = "Cant";
-            this.Cant.ReadOnly = true;
-            this.Cant.Width = 50;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.DataPropertyName = "(ninguno)";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Width = 89;
-            // 
-            // EmpId
-            // 
-            this.EmpId.DataPropertyName = "IdEmpleado";
-            this.EmpId.HeaderText = "EmpId";
-            this.EmpId.Name = "EmpId";
-            this.EmpId.ReadOnly = true;
-            this.EmpId.Visible = false;
             // 
             // Empleados
             // 
@@ -435,11 +469,14 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox chckTodos;
+        private System.Windows.Forms.Label lblNivel;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
         private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;

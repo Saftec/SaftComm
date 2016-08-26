@@ -103,7 +103,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "')",conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio) Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "')",conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -163,7 +163,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Registros VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "')", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("dd-MM-yyyy HH:mm:ss") + "')", conn);
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
