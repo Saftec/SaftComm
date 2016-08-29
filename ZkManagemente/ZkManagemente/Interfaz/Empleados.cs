@@ -31,7 +31,7 @@ namespace ZkManagement.Interfaz
         #region Formulario
         private void ActualizarFormulario()
         {
-            try
+            if(dgvEmpleados.CurrentRow != null)
             {
                 txtNombre.Text = dgvEmpleados.CurrentRow.Cells["Nombre"].Value.ToString();
                 txtDNI.Text = dgvEmpleados.CurrentRow.Cells["DNI"].Value.ToString();
@@ -39,11 +39,6 @@ namespace ZkManagement.Interfaz
                 txtTarjeta.Text = dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value.ToString();
                 txtPin.Text = dgvEmpleados.CurrentRow.Cells["Pin"].Value.ToString();
                 lblNivel.Text = dgvEmpleados.CurrentRow.Cells["Privilegio"].Value.ToString();
-            }
-            catch (NullReferenceException)
-            {
-                LimpiarTextBox();
-                NoEditable();
             }
         }
 
@@ -71,8 +66,13 @@ namespace ZkManagement.Interfaz
             txtTarjeta.Text = "";
         }
         #endregion
-
         #region Botones
+        //Botón de sincronización con dispositivo
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SincronizarDispositivo sin = new SincronizarDispositivo();
+            sin.Show();
+        }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!(base.ConsultarUsuario("Desea eliminar por completo el/los empleado/s seleccionado/s?", "Eliminar")))
@@ -158,7 +158,6 @@ namespace ZkManagement.Interfaz
             }
         }
         #endregion
-
         #region DataGridView
         private void DatosDGV()
         {
@@ -212,12 +211,6 @@ namespace ZkManagement.Interfaz
         }
         #endregion
 
-        private void linkCargar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            SincronizarDispositivo sin = new SincronizarDispositivo();
-            sin.Show();
-        }
-
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             //Problema con los valores int!
@@ -238,44 +231,7 @@ namespace ZkManagement.Interfaz
         }
 
         private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //CODIGO PARA ORDENAR DGV CUANDO SE HACE CLICK EN LA CABECERA
-            DataGridViewColumn newColumn = dgvEmpleados.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = dgvEmpleados.SortedColumn;
-            ListSortDirection direction;
-
-            // Si la columno es = null el dgv no se ordena.
-            if (oldColumn != null)
-            {
-                if (oldColumn == newColumn &&
-                    dgvEmpleados.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-
-            // Ordeno la columna saleccionada
-            dgvEmpleados.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SincronizarDispositivo sin = new SincronizarDispositivo();
-            sin.Show();
-            //DatosDGV();
-        }
-
+        {}
         private void chckTodos_CheckedChanged(object sender, EventArgs e)
         {
             if (chckTodos.Checked == true)
@@ -294,6 +250,11 @@ namespace ZkManagement.Interfaz
                     cellSeleccion.Value = false;
                 }
             }
+        }
+
+        private void CagarTV()
+        {
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿App:
 *Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
+
 *Definir otro append de log4net para nivel info
 
 Configuracion:
@@ -11,9 +12,9 @@ Relojes:
 Empleados:
 *Problemas con valores int en la búsqueda.
 *Treeview para deptos.
+
+Sincronizacion con disp.
 *Agregar progressbar en sincronización con equipos.
 
 Entidad Reloj:
 *Utilizar subida de datos en modo batch.
-
-----Revisar el click en los headers de los DGV's y los formularios---

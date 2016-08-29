@@ -59,8 +59,9 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSinc = new System.Windows.Forms.Button();
             this.chckTodos = new System.Windows.Forms.CheckBox();
+            this.tvDeptos = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -83,12 +84,12 @@
             this.Eliminar,
             this.EmpId});
             this.dgvEmpleados.Location = new System.Drawing.Point(119, 73);
+            this.dgvEmpleados.MultiSelect = false;
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpleados.Size = new System.Drawing.Size(705, 271);
             this.dgvEmpleados.TabIndex = 1;
-            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
             this.dgvEmpleados.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpleados_ColumnHeaderMouseClick);
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged_1);
             // 
@@ -98,6 +99,7 @@
             this.Legajo.HeaderText = "Legajo";
             this.Legajo.Name = "Legajo";
             this.Legajo.ReadOnly = true;
+            this.Legajo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Legajo.Width = 75;
             // 
             // Nombre
@@ -107,6 +109,7 @@
             this.Nombre.HeaderText = "Nombre y Apellido";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            this.Nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Nombre.Width = 150;
             // 
             // Tarjeta
@@ -115,6 +118,7 @@
             this.Tarjeta.HeaderText = "Tarjeta";
             this.Tarjeta.Name = "Tarjeta";
             this.Tarjeta.ReadOnly = true;
+            this.Tarjeta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // DNI
             // 
@@ -122,6 +126,7 @@
             this.DNI.HeaderText = "DNI";
             this.DNI.Name = "DNI";
             this.DNI.ReadOnly = true;
+            this.DNI.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // Pin
             // 
@@ -145,6 +150,7 @@
             this.Cant.HeaderText = "Cant. Huellas";
             this.Cant.Name = "Cant";
             this.Cant.ReadOnly = true;
+            this.Cant.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Cant.Width = 50;
             // 
             // Eliminar
@@ -383,18 +389,18 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnSinc
             // 
-            this.button1.Image = global::ZkManagement.Properties.Resources.sinc2;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(546, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Sinc. con Dispositivo";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSinc.Image = global::ZkManagement.Properties.Resources.sinc2;
+            this.btnSinc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSinc.Location = new System.Drawing.Point(546, 44);
+            this.btnSinc.Name = "btnSinc";
+            this.btnSinc.Size = new System.Drawing.Size(136, 23);
+            this.btnSinc.TabIndex = 12;
+            this.btnSinc.Text = "Sinc. con Dispositivo";
+            this.btnSinc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSinc.UseVisualStyleBackColor = true;
+            this.btnSinc.Click += new System.EventHandler(this.button1_Click);
             // 
             // chckTodos
             // 
@@ -407,13 +413,22 @@
             this.chckTodos.UseVisualStyleBackColor = true;
             this.chckTodos.CheckedChanged += new System.EventHandler(this.chckTodos_CheckedChanged);
             // 
+            // tvDeptos
+            // 
+            this.tvDeptos.Location = new System.Drawing.Point(12, 90);
+            this.tvDeptos.Name = "tvDeptos";
+            this.tvDeptos.Size = new System.Drawing.Size(75, 163);
+            this.tvDeptos.TabIndex = 14;
+            this.tvDeptos.Visible = false;
+            // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.tvDeptos);
             this.Controls.Add(this.chckTodos);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSinc);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
@@ -435,8 +450,9 @@
             this.Controls.SetChildIndex(this.txtBuscar, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btnSinc, 0);
             this.Controls.SetChildIndex(this.chckTodos, 0);
+            this.Controls.SetChildIndex(this.tvDeptos, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.groupEmpleados.ResumeLayout(false);
             this.groupEmpleados.PerformLayout();
@@ -467,7 +483,7 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSinc;
         private System.Windows.Forms.CheckBox chckTodos;
         private System.Windows.Forms.Label lblNivel;
         private System.Windows.Forms.Label label7;
@@ -480,5 +496,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
+        private System.Windows.Forms.TreeView tvDeptos;
     }
 }

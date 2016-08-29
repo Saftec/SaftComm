@@ -62,17 +62,12 @@ namespace ZkManagement.Interfaz
 
         private void ActualizarFormulario()
         {
-            try
+            if (dgvUsuarios.CurrentRow != null)
             {
                 txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usr"].Value.ToString();
                 txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
                 comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdPermisos"].Value)) - 1);
             }
-            catch(NullReferenceException)  //HAGO ESTE CATCH PORQUE CUANDO ORDENO EN LAS CABECERAS SE DISPARA ESTA EXCEPCION!
-            {
-                LimpiarTextBox();
-            }
-
         }
 
         private bool ValidarDatos()
