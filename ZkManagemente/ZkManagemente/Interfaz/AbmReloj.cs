@@ -8,6 +8,8 @@ namespace ZkManagement.Interfaz
     public partial class AbmReloj : Form
     {
         private int id;
+        private ControladorReloj cr;
+
         public AbmReloj()
         {
             InitializeComponent();
@@ -38,12 +40,12 @@ namespace ZkManagement.Interfaz
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            ControladorReloj cr = new ControladorReloj();
+            cr = new ControladorReloj();
             Reloj r = new Reloj(Convert.ToInt32(txtPuerto.Text), Convert.ToInt32(txtNro.Text), id, txtPsw.Text, txtDns.Text, txtIp.Text, txtNombre.Text);            
             try
             {
                 cr.ModifReloj(r);
-                MessageBox.Show("Cambios guardados");
+                MessageBox.Show("Cambios guardados correctamente", "Modificar Reloj");
             }
             catch (Exception ex)
             {

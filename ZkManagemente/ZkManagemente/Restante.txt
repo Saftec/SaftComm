@@ -1,12 +1,19 @@
 ﻿App:
 *Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
+*Definir otro append de log4net para nivel info
+
+Configuracion:
+*Cargar configuración de hora.
 
 Relojes:
 *Background para rutinas.
 
 Empleados:
 *Problemas con valores int en la búsqueda.
+*Treeview para deptos.
+*Agregar progressbar en sincronización con equipos.
 
 Entidad Reloj:
-*Definir otro append de log4net para nivel info.
-----Revisar el clicke en los headers de los DGV's y los formularios---
+*Utilizar subida de datos en modo batch.
+
+----Revisar el click en los headers de los DGV's y los formularios---

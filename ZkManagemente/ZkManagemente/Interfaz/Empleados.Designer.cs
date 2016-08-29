@@ -82,7 +82,7 @@
             this.Cant,
             this.Eliminar,
             this.EmpId});
-            this.dgvEmpleados.Location = new System.Drawing.Point(75, 73);
+            this.dgvEmpleados.Location = new System.Drawing.Point(119, 73);
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -320,7 +320,7 @@
             // 
             this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(697, 352);
+            this.btnEliminar.Location = new System.Drawing.Point(744, 355);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(80, 23);
             this.btnEliminar.TabIndex = 4;
@@ -399,7 +399,7 @@
             // chckTodos
             // 
             this.chckTodos.AutoSize = true;
-            this.chckTodos.Location = new System.Drawing.Point(721, 54);
+            this.chckTodos.Location = new System.Drawing.Point(768, 50);
             this.chckTodos.Name = "chckTodos";
             this.chckTodos.Size = new System.Drawing.Size(56, 17);
             this.chckTodos.TabIndex = 13;
@@ -422,7 +422,6 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.groupEmpleados);
             this.Controls.Add(this.dgvEmpleados);
-            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Empleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empleados";

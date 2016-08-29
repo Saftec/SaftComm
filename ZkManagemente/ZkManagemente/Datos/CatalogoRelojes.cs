@@ -86,7 +86,7 @@ namespace ZkManagement.Datos
             catch (SqlException sqlex)
             {
                 logger.Error(sqlex.StackTrace);
-                if (sqlex.Number == 2627)
+                if (sqlex.Number == 2601)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
                 }

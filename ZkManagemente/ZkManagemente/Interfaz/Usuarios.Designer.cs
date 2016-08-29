@@ -114,7 +114,7 @@
             this.btnEliminar.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(227, 277);
+            this.btnEliminar.Location = new System.Drawing.Point(512, 275);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(111, 35);
             this.btnEliminar.TabIndex = 4;
@@ -129,7 +129,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = global::ZkManagement.Properties.Resources.edit;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditar.Location = new System.Drawing.Point(381, 277);
+            this.btnEditar.Location = new System.Drawing.Point(238, 275);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(111, 35);
             this.btnEditar.TabIndex = 3;
@@ -246,7 +246,7 @@
             this.btnNuevo.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.Image = global::ZkManagement.Properties.Resources._new;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(524, 277);
+            this.btnNuevo.Location = new System.Drawing.Point(376, 275);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(111, 35);
             this.btnNuevo.TabIndex = 5;
@@ -266,7 +266,6 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.groupModificar);
             this.Controls.Add(this.dgvUsuarios);
-            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Usuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuarios";

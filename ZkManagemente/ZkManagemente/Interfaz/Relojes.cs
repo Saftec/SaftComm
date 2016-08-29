@@ -106,10 +106,10 @@ namespace ZkManagement.Interfaz
                 SetModelo(reloj.GetModelo());
                 SetCantRegis(reloj.GetCantidadRegistros().ToString());
             }
-            catch (AppException appex)
+            catch (Exception ex)
             {
-                base.InformarError(appex.Message);
-                LogError(appex.Message);
+                base.InformarError(ex.Message);
+                LogError(ex.Message);
             }
             Cursor = Cursors.Default;
         }
@@ -418,6 +418,7 @@ namespace ZkManagement.Interfaz
             if (cl.GetNivelUsr() == 1)
             {
                 btnBorrar.Enabled = true;
+                groupAvanzadas.Visible = true;
                 groupAvanzadas.Enabled = true;
             }
         }

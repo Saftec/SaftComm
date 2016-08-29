@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
@@ -8,7 +9,9 @@ namespace ZkManagement.Entidades
 {
     public class Reloj : zkemkeeper.CZKEMClass
     {
+        private ILog logger = LogManager.GetLogger(string.Empty);
         private Logica.Logger lg = new Logica.Logger();
+
         private int puerto;
         private int numero;
         private int id;
@@ -95,7 +98,6 @@ namespace ZkManagement.Entidades
         }
 
         #endregion
-
         #region Metodos
         public override bool Equals(object obj)
         {
@@ -108,7 +110,14 @@ namespace ZkManagement.Entidades
 
         public void Conectar()
         {
-            ActualizarIp(); //Obtengo la IP del DNS si tiene asignado un host.
+            try
+            {
+                ActualizarIp(); //Obtengo la IP del DNS si tiene asignado un host.
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }            
             bool estado;
             if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
             estado = base.Connect_Net(ip, puerto);
@@ -213,18 +222,21 @@ namespace ZkManagement.Entidades
         public DataTable DescargarRegistros()
         {
             lg.IniciaDescarga();
-            string sdwEnrollNumber = string.Empty;
+            //Estas 2 variables son necesarias para llamar al método pero no las utilizo.
             int idwVerifyMode = 0;
+            int idwWorkcode = 0;
+
+            string legajoEnReloj = string.Empty;            
             int tipoMov = 0;
             int año = 0;
             int mes = 0;
             int dia = 0;
             int hora = 0;
             int minutos = 0;
-            int segundos = 0;
-            int idwWorkcode = 0;
+            int segundos = 0;            
             int codError = 0;
             int idwErrorCode = 0;
+
             //Declaro estas 2 variables para controlar que se descargue el total de registros
             int cantRegs = 0;
             int count = 0;
@@ -239,20 +251,19 @@ namespace ZkManagement.Entidades
 
             base.EnableDevice(this.numero, false);//Bloqueo dispositivo
             cantRegs = GetCantidadRegistros();
-            if (base.ReadGeneralLogData(this.numero)) //Leo todos los registros del dispositivo
+            if (base.ReadGeneralLogData(this.numero)) //Trae todos los registros a la memoria de la pc
             {
-                while (base.SSR_GetGeneralLogData(this.numero, out sdwEnrollNumber, out idwVerifyMode,
-                           out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkcode) && codError == 0)//Obtengo los registros
+                while (base.SSR_GetGeneralLogData(this.numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkcode) && codError == 0)//Obtengo los registros
                 {
                     DataRow fila = regis.NewRow();
-                    fila["Legajo"] = sdwEnrollNumber;
+                    fila["Legajo"] = legajoEnReloj;
                     fila["Registro"] = new DateTime(año, mes, dia, hora, minutos, 00);
                     fila["Tipo"] = tipoMov;
                     fila["Reloj"] = Convert.ToInt32(this.Id);
                     regis.Rows.Add(fila);
 
                     count++;
-                    lg.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, sdwEnrollNumber);
+                    lg.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, legajoEnReloj);
                 }
             }
             if (count != cantRegs) { throw new AppException("No se descargo el total de registros"); }
@@ -279,6 +290,7 @@ namespace ZkManagement.Entidades
             int privilegio = 0;          //Este codigo fue copiado de la documentación. 
             bool bEnabled = false;       //Solo modifico el nombre de las variables que utilizo.
             //Hasta aca//
+            int codError = 0;
 
             DataTable usuariosDispositivo = new DataTable();
             usuariosDispositivo.Columns.Add("Legajo", typeof(string));
@@ -291,7 +303,7 @@ namespace ZkManagement.Entidades
 
             base.ReadAllUserID(this.numero);//Trae toda la información de usuario a la memoria.
 
-            while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled))//get all the users' information from the memory
+            while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled) && codError==0)
             {
                 string tarjeta = string.Empty;
                 DataRow fila = usuariosDispositivo.NewRow();
@@ -304,6 +316,11 @@ namespace ZkManagement.Entidades
                     fila["tarjeta"] = tarjeta;
                 }
                 usuariosDispositivo.Rows.Add(fila);
+            }
+            base.GetLastError(ref codError);
+            if (codError != 0)
+            {
+                throw new AppException("Error durante la descarga de datos de usuario, CodErro: " + codError.ToString());
             }
             base.EnableDevice(this.numero, true);
             return usuariosDispositivo;
@@ -319,13 +336,14 @@ namespace ZkManagement.Entidades
         {
             /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
              * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
-
+            int codError = 0;
             int tmpLenght = 0;
             int flag = 0;
             string template = string.Empty;
             List<Huella> huellas = new List<Huella>();
 
-            //Controlar errores!!//
+            base.EnableDevice(this.numero, false);
+
             for (int fingerIndex=0; fingerIndex<10; fingerIndex++)
             {
                 if(base.GetUserTmpExStr(this.numero, legajo, fingerIndex, out flag, out template, out tmpLenght))
@@ -334,6 +352,12 @@ namespace ZkManagement.Entidades
                     huellas.Add(huella);
                 }
             }
+            base.GetLastError(ref codError);
+            if (codError != 0)
+            {
+                throw new AppException("Error al descargar la huella del usuario: " + legajo + ". CodError: " + codError.ToString());
+            }
+            base.EnableDevice(this.numero, true);
             return huellas;
         }
         public void ActivarDispositivo()
@@ -343,6 +367,7 @@ namespace ZkManagement.Entidades
 
         public void AgregarHuellas(List<Huella> huellas)
         {
+            int codError = 0;
 
             base.EnableDevice(this.numero, false);
             foreach(Huella h in huellas)
@@ -350,7 +375,13 @@ namespace ZkManagement.Entidades
                 base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag ,h.Template.Trim());
             }
             base.RefreshData(this.numero);
-            
+            base.EnableDevice(this.numero, true);
+
+            base.GetLastError(ref codError);
+            if (codError != 0)
+            {
+                throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
+            }            
         }
         public void CargarInfoUsuario(List<Empleado> empleados)
         {
@@ -426,15 +457,24 @@ namespace ZkManagement.Entidades
             if (this.dns != string.Empty)
             {
                 IPHostEntry ipHost;
-                ipHost = Dns.GetHostEntry(dns);
-                if (ipHost.AddressList.Length > 0)
+                try
                 {
-                    this.ip = ipHost.AddressList[0].ToString();
+                    ipHost = Dns.GetHostEntry(dns);
+                    if (ipHost.AddressList.Length > 0)
+                    {
+                        this.ip = ipHost.AddressList[0].ToString();
+                    }
+                    else
+                    {
+                        throw new AppException("Error al intentar obtener ip del host");
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    throw new AppException("Error al intentar obtener ip del host");
+                    logger.Fatal(ex.StackTrace);
+                    throw new Exception("Error al consultar la ip del host DNS");
                 }
+
             }
         } 
             #endregion

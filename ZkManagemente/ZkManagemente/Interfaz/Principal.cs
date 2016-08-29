@@ -45,6 +45,7 @@ namespace ZkManagement.Interfaz
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
                 lblVersion.Text = "Version: " + ConfigurationManager.AppSettings["Version"].ToString();
+                lblVersionBD.Text = "Version BD: " + cc.GetConfig(1);
                 if (usuario.Nivel <= 2) { btnConfig.Enabled = true; }
                 if (usuario.Nivel == 1) { btnUsuarios.Enabled = true; }
             }
@@ -151,6 +152,7 @@ namespace ZkManagement.Interfaz
             //Hasta acá
             lblUsuario.Left = (this.Width) - (lblUsuario.Width + 50);
             lblVersion.Left = (this.Width) - (lblVersion.Width + 50);
+            lblVersionBD.Left = (this.Width) - (lblVersionBD.Width + 50);
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

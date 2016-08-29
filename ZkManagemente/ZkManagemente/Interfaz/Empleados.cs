@@ -11,7 +11,7 @@ namespace ZkManagement.Interfaz
     public partial class Empleados : GenericaPadre
     {
         private Empleado empleado = new Empleado();
-        private ControladorEmpleados ce = new ControladorEmpleados();
+        private ControladorEmpleados ce;
         private DataTable empleados = new DataTable();
         public Empleados()
         {
@@ -90,6 +90,7 @@ namespace ZkManagement.Interfaz
                     {
                         Empleado emp = new Empleado();
                         emp.Id = Convert.ToInt32(row.Cells["EmpId"].Value);
+                        ce = new ControladorEmpleados();
                         ce.BajaEmpleado(emp);
                         filas.Add(row);
                     }
@@ -140,6 +141,7 @@ namespace ZkManagement.Interfaz
             empleado.Privilegio = Convert.ToInt32(lblNivel.Text);
             try
             {
+                ce = new ControladorEmpleados();
                 ce.ActualizarEmpleado(empleado);
                 DatosDGV();              
                 LimpiarTextBox();
@@ -164,6 +166,7 @@ namespace ZkManagement.Interfaz
             dgvEmpleados.Refresh();      
             try
             {
+                ce = new ControladorEmpleados();
                 empleados = ce.GetEmpleados();
                 dgvEmpleados.DataSource = empleados;
                 dgvEmpleados.Refresh();

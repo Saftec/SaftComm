@@ -52,6 +52,7 @@ namespace ZkManagement.Logica
             {
                 using (StreamWriter l = File.AppendText("Log.txt"))
                     l.WriteLine(DateTime.Now.ToString() + linea);
+                //logger.Info(linea);
             }
             catch (IOException ioex)
             {

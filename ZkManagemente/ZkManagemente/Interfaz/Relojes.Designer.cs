@@ -282,12 +282,12 @@
             this.groupABM.Controls.Add(this.btnEditar);
             this.groupABM.Controls.Add(this.btnAgregar);
             this.groupABM.Enabled = false;
-            this.groupABM.Location = new System.Drawing.Point(560, 347);
+            this.groupABM.Location = new System.Drawing.Point(301, 347);
             this.groupABM.Name = "groupABM";
-            this.groupABM.Size = new System.Drawing.Size(290, 47);
+            this.groupABM.Size = new System.Drawing.Size(290, 54);
             this.groupABM.TabIndex = 4;
             this.groupABM.TabStop = false;
-            this.groupABM.Text = "Editar Equipos";
+            this.groupABM.Text = "Modificar Equipos";
             // 
             // btnEliminar
             // 
@@ -295,7 +295,7 @@
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.Location = new System.Drawing.Point(200, 17);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 31);
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -306,9 +306,9 @@
             // 
             this.btnEditar.Image = global::ZkManagement.Properties.Resources.edit;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(108, 17);
+            this.btnEditar.Location = new System.Drawing.Point(19, 16);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(64, 23);
+            this.btnEditar.Size = new System.Drawing.Size(68, 32);
             this.btnEditar.TabIndex = 1;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -319,9 +319,9 @@
             // 
             this.btnAgregar.Image = global::ZkManagement.Properties.Resources._new;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(6, 18);
+            this.btnAgregar.Location = new System.Drawing.Point(105, 16);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.Size = new System.Drawing.Size(75, 32);
             this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -330,7 +330,7 @@
             // 
             // btnReiniciar
             // 
-            this.btnReiniciar.Location = new System.Drawing.Point(21, 16);
+            this.btnReiniciar.Location = new System.Drawing.Point(6, 17);
             this.btnReiniciar.Name = "btnReiniciar";
             this.btnReiniciar.Size = new System.Drawing.Size(116, 23);
             this.btnReiniciar.TabIndex = 8;
@@ -340,7 +340,7 @@
             // 
             // btnInicializar
             // 
-            this.btnInicializar.Location = new System.Drawing.Point(179, 16);
+            this.btnInicializar.Location = new System.Drawing.Point(7, 70);
             this.btnInicializar.Name = "btnInicializar";
             this.btnInicializar.Size = new System.Drawing.Size(115, 23);
             this.btnInicializar.TabIndex = 9;
@@ -350,9 +350,9 @@
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Location = new System.Drawing.Point(332, 16);
+            this.btnAdmin.Location = new System.Drawing.Point(7, 121);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(109, 23);
+            this.btnAdmin.Size = new System.Drawing.Size(115, 23);
             this.btnAdmin.TabIndex = 10;
             this.btnAdmin.Text = "Eliminar Admins.";
             this.btnAdmin.UseVisualStyleBackColor = true;
@@ -364,12 +364,13 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(54, 347);
+            this.groupAvanzadas.Location = new System.Drawing.Point(12, 347);
             this.groupAvanzadas.Name = "groupAvanzadas";
-            this.groupAvanzadas.Size = new System.Drawing.Size(457, 47);
+            this.groupAvanzadas.Size = new System.Drawing.Size(134, 164);
             this.groupAvanzadas.TabIndex = 11;
             this.groupAvanzadas.TabStop = false;
             this.groupAvanzadas.Text = "Avanzadas";
+            this.groupAvanzadas.Visible = false;
             // 
             // rtbLog
             // 
@@ -392,7 +393,6 @@
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.gpbxRutinas);
             this.Controls.Add(this.dgvRelojes);
-            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Relojes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relojes";

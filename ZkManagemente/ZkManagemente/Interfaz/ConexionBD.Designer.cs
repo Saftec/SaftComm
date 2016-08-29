@@ -110,21 +110,27 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Image = global::ZkManagement.Properties.Resources.save;
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAceptar.Location = new System.Drawing.Point(236, 230);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(114, 38);
             this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Image = global::ZkManagement.Properties.Resources.cancel;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancelar.Location = new System.Drawing.Point(63, 230);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(114, 38);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
