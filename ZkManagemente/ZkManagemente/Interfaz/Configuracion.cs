@@ -6,13 +6,14 @@ namespace ZkManagement.Interfaz
 {
     public partial class Configuracion : GenericaPadre
     {
-        private ControladorConfiguraciones cc = new ControladorConfiguraciones();
+        private ControladorConfiguraciones cc;
         public Configuracion()
         {
             InitializeComponent();
         }
-            private void CargarConfigs()
+        private void CargarConfigs()
         {
+            cc = new ControladorConfiguraciones();
             string valor;
             txtPathRegs.Text = cc.GetConfig(2);
             txtMinRegs.Text = cc.GetConfig(5);
@@ -45,6 +46,7 @@ namespace ZkManagement.Interfaz
 
         private void btnGuardar_Click(object sender, System.EventArgs e)
         {
+            cc = new ControladorConfiguraciones();
             Cursor = Cursors.WaitCursor;
             try
             {
@@ -121,11 +123,6 @@ namespace ZkManagement.Interfaz
         private void Configuracion_Load(object sender, EventArgs e)
         {
             CargarConfigs();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void chckActivarHorarios_CheckedChanged(object sender, EventArgs e)

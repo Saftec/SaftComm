@@ -1,10 +1,12 @@
 ﻿App:
 *Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
-*Validar permisos interfaz. (Algunas pantallas ya están).
 
 Relojes:
 *Background para rutinas.
-*Obtener IP de dns.
 
 Empleados:
 *Problemas con valores int en la búsqueda.
+
+Entidad Reloj:
+*Definir otro append de log4net para nivel info.
+----Revisar el clicke en los headers de los DGV's y los formularios---

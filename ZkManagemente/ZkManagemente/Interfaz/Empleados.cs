@@ -45,7 +45,6 @@ namespace ZkManagement.Interfaz
                 LimpiarTextBox();
                 NoEditable();
             }
-
         }
 
         private bool ValidarDatos()
@@ -106,6 +105,7 @@ namespace ZkManagement.Interfaz
             {
                 dgvEmpleados.Rows.Remove(row);
             }
+            filas.Clear(); //Limpio el arregle de filas guardado en memoria.
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

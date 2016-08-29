@@ -55,6 +55,7 @@ namespace ZkManagement.Interfaz
                     r.Estado = false;
                 }
             }
+            relojes.Clear();
         }
         private void btnAdmin_Click(object sender, EventArgs e)
         {
@@ -205,7 +206,7 @@ namespace ZkManagement.Interfaz
             }
             Cursor = Cursors.Default;
         }
-                //DESPUES DE EDITAR O AGREGAR UN RELOJ NECESITO SI O SI VOLVER A CARGAR EL LIST<> ACTUALIZADO EN MEMORIA!
+                //DESPUES DE EDITAR O AGREGAR UN RELOJ NECESITO SI O SI VOLVER A CARGAR EL LIST<> ACTUALIZADO EN MEMORIA//
         private void btnEditar_Click(object sender, EventArgs e)
         {
             AbmReloj abm = new AbmReloj();
@@ -411,12 +412,12 @@ namespace ZkManagement.Interfaz
             ControladorLogin cl = new ControladorLogin();
 
             if (cl.GetNivelUsr() < 3)
-            {
-                btnBorrar.Enabled = true;
+            {                
                 groupABM.Enabled = true;
             }
             if (cl.GetNivelUsr() == 1)
             {
+                btnBorrar.Enabled = true;
                 groupAvanzadas.Enabled = true;
             }
         }

@@ -31,7 +31,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar en la tabla huellas");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }            
         }
 
         public bool Existe(Huella h, int id)
@@ -61,6 +64,10 @@ namespace ZkManagement.Datos
             {
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar la tabla huellas");
+            }
+            finally
+            {
+                conn.Close();
             }            
         }
 
@@ -83,6 +90,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla huellas");
             }
+            finally
+            {
+                conn.Close();
+            }
         }
         public List<Huella> GetHuellas(int id)
         {
@@ -90,7 +101,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Huellas WHERE IdEmpleado=" + id.ToString(),conn);
+                SqlCommand cmd = new SqlCommand("SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + id.ToString(),conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -112,7 +123,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla huellas");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }            
             return huellas;
         }
 
@@ -134,7 +148,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error no controlado al intentar eliminar las huellas");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }            
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Relojes;", conn);
+                SqlCommand cmd = new SqlCommand("SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero FROM Relojes;", conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net;
 using ZkManagement.Util;
 
 namespace ZkManagement.Entidades
@@ -107,6 +108,7 @@ namespace ZkManagement.Entidades
 
         public void Conectar()
         {
+            ActualizarIp(); //Obtengo la IP del DNS si tiene asignado un host.
             bool estado;
             if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
             estado = base.Connect_Net(ip, puerto);
@@ -416,6 +418,23 @@ namespace ZkManagement.Entidades
             if(!base.SSR_EnableUser(this.numero, legajo, false))
             {
                 throw new AppException("Error al inhabilitar usuario");
+            }
+        }
+        
+        private void ActualizarIp()
+        {
+            if (this.dns != string.Empty)
+            {
+                IPHostEntry ipHost;
+                ipHost = Dns.GetHostEntry(dns);
+                if (ipHost.AddressList.Length > 0)
+                {
+                    this.ip = ipHost.AddressList[0].ToString();
+                }
+                else
+                {
+                    throw new AppException("Error al intentar obtener ip del host");
+                }
             }
         } 
             #endregion

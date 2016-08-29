@@ -9,10 +9,10 @@ namespace ZkManagement.Interfaz
 {
     public partial class Login : Form
     {
-        ILog logger = LogManager.GetLogger("ALL");
+        private ControladorLogin cl;
+        private ILog logger = LogManager.GetLogger("ALL");
         public Login()
-        {
-            
+        {            
             InitializeComponent();
         }
 
@@ -23,9 +23,8 @@ namespace ZkManagement.Interfaz
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
             Usuario usuario = new Usuario();
-            ControladorLogin cl = new ControladorLogin();
+            cl = new ControladorLogin();
 
             usuario.Usr = textUsuario.Text;
             usuario.Pass = textContraseña.Text;
@@ -50,17 +49,15 @@ namespace ZkManagement.Interfaz
         {
             if (textContraseña.Text=="" | textUsuario.Text == "") { throw new AppException("Por favor, complete todos los campos"); }
         }
-
-        private void textUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Login_Load(object sender, EventArgs e)
         {
+            //Cuando inicio la APP chequeo la conexión a la BD.
+            //Sino funciona abro la ventana para modificar la connectionstring.
+
             log4net.Config.XmlConfigurator.Configure();
             bool estado = false;
-            ControladorLogin cl = new ControladorLogin();
+            cl = new ControladorLogin();
+
             try
             {
                 estado = cl.CheckConexion();

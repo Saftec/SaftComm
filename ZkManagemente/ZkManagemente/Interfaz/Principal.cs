@@ -36,12 +36,17 @@ namespace ZkManagement.Interfaz
         }
         internal void SetPermisos(Usuario usuario)
         {
+            /* Si es operador sólo puede utilizar la pestaña empleados y relojes.
+             * Si es supervisor puede acceder a la pantalla de configuraciones.
+             * El administrador es el UNICO que puede acceder a los usuarios.
+             */
             ControladorConfiguraciones cc = new ControladorConfiguraciones();
             try
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
                 lblVersion.Text = "Version: " + ConfigurationManager.AppSettings["Version"].ToString();
-                if (usuario.Nivel>2) { btnConfig.Enabled = false; }
+                if (usuario.Nivel <= 2) { btnConfig.Enabled = true; }
+                if (usuario.Nivel == 1) { btnUsuarios.Enabled = true; }
             }
             catch(Exception ex)
             {

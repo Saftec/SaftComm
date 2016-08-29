@@ -11,7 +11,7 @@ namespace ZkManagement.Datos
         private ILog logger = LogManager.GetLogger("CatalogoConfiguraciones");
 
         public string GetConfig(int id)
-        {
+        {         
             string valor;
             try
             {
@@ -32,7 +32,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
             return valor;
         }
 
@@ -54,7 +57,10 @@ namespace ZkManagement.Datos
                 logger.Error(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla configuracion");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

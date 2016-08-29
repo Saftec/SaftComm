@@ -121,8 +121,7 @@ namespace ZkManagement.Datos
             catch (Exception ex)
             {
                 logger.Fatal(ex.StackTrace);
-                throw ex;
-               // throw new Exception("Error desconocido al intentar agregar el empleado");
+                throw new Exception("Error desconocido al intentar agregar el empleado");
             }
             finally
             {
@@ -154,7 +153,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla empleados");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }            
             return id;
         }
 
@@ -176,7 +178,10 @@ namespace ZkManagement.Datos
                 logger.Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla registros");
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }            
         }
     }
 }

@@ -392,6 +392,7 @@
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.gpbxRutinas);
             this.Controls.Add(this.dgvRelojes);
+            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Relojes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relojes";

@@ -49,7 +49,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(44, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 13);
+            this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "IP:";
             // 
@@ -58,7 +58,7 @@
             this.txtIp.Location = new System.Drawing.Point(67, 75);
             this.txtIp.MaxLength = 15;
             this.txtIp.Name = "txtIp";
-            this.txtIp.Size = new System.Drawing.Size(123, 20);
+            this.txtIp.Size = new System.Drawing.Size(123, 22);
             this.txtIp.TabIndex = 1;
             this.txtIp.Text = "192.168.1.50";
             // 
@@ -67,7 +67,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nombre:";
             // 
@@ -76,7 +76,7 @@
             this.txtNombre.Location = new System.Drawing.Point(67, 30);
             this.txtNombre.MaxLength = 100;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.Size = new System.Drawing.Size(100, 22);
             this.txtNombre.TabIndex = 3;
             // 
             // label3
@@ -84,7 +84,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(227, 75);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Puerto";
             // 
@@ -93,7 +93,7 @@
             this.txtPuerto.Location = new System.Drawing.Point(271, 75);
             this.txtPuerto.MaxLength = 4;
             this.txtPuerto.Name = "txtPuerto";
-            this.txtPuerto.Size = new System.Drawing.Size(100, 20);
+            this.txtPuerto.Size = new System.Drawing.Size(100, 22);
             this.txtPuerto.TabIndex = 5;
             this.txtPuerto.Text = "4370";
             // 
@@ -102,7 +102,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(221, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Numero";
             // 
@@ -111,7 +111,7 @@
             this.txtNro.Location = new System.Drawing.Point(271, 30);
             this.txtNro.MaxLength = 3;
             this.txtNro.Name = "txtNro";
-            this.txtNro.Size = new System.Drawing.Size(42, 20);
+            this.txtNro.Size = new System.Drawing.Size(42, 22);
             this.txtNro.TabIndex = 7;
             // 
             // label5
@@ -119,7 +119,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(28, 122);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Llave:";
             // 
@@ -129,7 +129,7 @@
             this.txtPsw.MaxLength = 6;
             this.txtPsw.Name = "txtPsw";
             this.txtPsw.PasswordChar = '*';
-            this.txtPsw.Size = new System.Drawing.Size(100, 20);
+            this.txtPsw.Size = new System.Drawing.Size(100, 22);
             this.txtPsw.TabIndex = 9;
             // 
             // label6
@@ -137,7 +137,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(31, 163);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "DNS:";
             // 
@@ -146,7 +146,7 @@
             this.txtDns.Location = new System.Drawing.Point(67, 156);
             this.txtDns.MaxLength = 500;
             this.txtDns.Name = "txtDns";
-            this.txtDns.Size = new System.Drawing.Size(314, 20);
+            this.txtDns.Size = new System.Drawing.Size(314, 22);
             this.txtDns.TabIndex = 11;
             // 
             // btnCancelar
@@ -194,6 +194,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtIp);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AbmReloj";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

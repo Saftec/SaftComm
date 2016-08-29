@@ -202,7 +202,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(9, 67);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Nivel:";
             // 
@@ -237,7 +237,7 @@
             this.txtPin.Location = new System.Drawing.Point(547, 32);
             this.txtPin.MaxLength = 5;
             this.txtPin.Name = "txtPin";
-            this.txtPin.Size = new System.Drawing.Size(100, 20);
+            this.txtPin.Size = new System.Drawing.Size(100, 22);
             this.txtPin.TabIndex = 11;
             // 
             // label6
@@ -245,7 +245,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(509, 35);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(25, 13);
+            this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Pin:";
             // 
@@ -254,7 +254,7 @@
             this.txtDNI.Location = new System.Drawing.Point(547, 61);
             this.txtDNI.MaxLength = 12;
             this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(110, 20);
+            this.txtDNI.Size = new System.Drawing.Size(110, 22);
             this.txtDNI.TabIndex = 9;
             // 
             // label5
@@ -271,7 +271,7 @@
             this.txtLegajo.Location = new System.Drawing.Point(413, 32);
             this.txtLegajo.MaxLength = 20;
             this.txtLegajo.Name = "txtLegajo";
-            this.txtLegajo.Size = new System.Drawing.Size(79, 20);
+            this.txtLegajo.Size = new System.Drawing.Size(79, 22);
             this.txtLegajo.TabIndex = 4;
             // 
             // txtTarjeta
@@ -279,7 +279,7 @@
             this.txtTarjeta.Location = new System.Drawing.Point(387, 61);
             this.txtTarjeta.MaxLength = 10;
             this.txtTarjeta.Name = "txtTarjeta";
-            this.txtTarjeta.Size = new System.Drawing.Size(105, 20);
+            this.txtTarjeta.Size = new System.Drawing.Size(105, 22);
             this.txtTarjeta.TabIndex = 7;
             // 
             // label4
@@ -296,7 +296,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(365, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Legajo:";
             // 
@@ -304,7 +304,7 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(59, 32);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(280, 20);
+            this.txtNombre.Size = new System.Drawing.Size(280, 22);
             this.txtNombre.TabIndex = 1;
             // 
             // label1
@@ -312,7 +312,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
@@ -359,7 +359,7 @@
             // 
             this.txtBuscar.Location = new System.Drawing.Point(264, 45);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(193, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(193, 22);
             this.txtBuscar.TabIndex = 9;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -389,7 +389,7 @@
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(546, 44);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.Size = new System.Drawing.Size(136, 23);
             this.button1.TabIndex = 12;
             this.button1.Text = "Sinc. con Dispositivo";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -422,6 +422,7 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.groupEmpleados);
             this.Controls.Add(this.dgvEmpleados);
+            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Empleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empleados";

@@ -46,7 +46,7 @@
             // 
             this.txtServidor.Location = new System.Drawing.Point(86, 28);
             this.txtServidor.Name = "txtServidor";
-            this.txtServidor.Size = new System.Drawing.Size(119, 20);
+            this.txtServidor.Size = new System.Drawing.Size(119, 22);
             this.txtServidor.TabIndex = 0;
             // 
             // label1
@@ -54,7 +54,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(34, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Servidor";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -63,7 +63,7 @@
             // 
             this.txtBase.Location = new System.Drawing.Point(86, 67);
             this.txtBase.Name = "txtBase";
-            this.txtBase.Size = new System.Drawing.Size(119, 20);
+            this.txtBase.Size = new System.Drawing.Size(119, 22);
             this.txtBase.TabIndex = 2;
             // 
             // label2
@@ -71,7 +71,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(5, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Base de datos";
             // 
@@ -79,7 +79,7 @@
             // 
             this.txtUsuario.Location = new System.Drawing.Point(86, 120);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(119, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(119, 22);
             this.txtUsuario.TabIndex = 4;
             // 
             // label3
@@ -87,7 +87,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(37, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Usuario";
             // 
@@ -96,7 +96,7 @@
             this.txtPassword.Location = new System.Drawing.Point(86, 168);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(119, 20);
+            this.txtPassword.Size = new System.Drawing.Size(119, 22);
             this.txtPassword.TabIndex = 6;
             // 
             // label4
@@ -104,7 +104,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(19, 171);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Contraseña";
             // 
@@ -153,6 +153,7 @@
             this.Controls.Add(this.txtBase);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtServidor);
+            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ConexionBD";
             this.Text = "ConexionBD";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

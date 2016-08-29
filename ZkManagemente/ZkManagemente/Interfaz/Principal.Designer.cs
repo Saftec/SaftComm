@@ -35,7 +35,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnRelojes = new System.Windows.Forms.Button();
             this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
@@ -85,7 +85,7 @@
             // panelMenu
             // 
             this.panelMenu.Controls.Add(this.button2);
-            this.panelMenu.Controls.Add(this.button1);
+            this.panelMenu.Controls.Add(this.btnUsuarios);
             this.panelMenu.Controls.Add(this.btnConfig);
             this.panelMenu.Controls.Add(this.btnRelojes);
             this.panelMenu.Location = new System.Drawing.Point(153, 3);
@@ -98,7 +98,7 @@
             // 
             this.button2.Image = global::ZkManagement.Properties.Resources.group;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(462, 16);
+            this.button2.Location = new System.Drawing.Point(335, 16);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 47);
             this.button2.TabIndex = 1;
@@ -107,21 +107,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnUsuarios
             // 
-            this.button1.Image = global::ZkManagement.Properties.Resources.padlock;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(330, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 47);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Usuarios";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnUsuarios.Enabled = false;
+            this.btnUsuarios.Image = global::ZkManagement.Properties.Resources.padlock;
+            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUsuarios.Location = new System.Drawing.Point(473, 16);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(84, 47);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnConfig
             // 
+            this.btnConfig.Enabled = false;
             this.btnConfig.Image = global::ZkManagement.Properties.Resources.settings;
             this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnConfig.Location = new System.Drawing.Point(58, 16);
@@ -225,7 +227,7 @@
         private System.Windows.Forms.Button btnConfig;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NotifyIcon iconoBandeja;
         private System.Windows.Forms.Timer timerRutinaRegs;

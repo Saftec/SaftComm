@@ -31,7 +31,9 @@
             this.comboRelojes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
+            this.btnConectar = new System.Windows.Forms.Button();
             this.labelEstado = new System.Windows.Forms.Label();
+            this.btnMostrar = new System.Windows.Forms.Button();
             this.dgvLocal = new System.Windows.Forms.DataGridView();
             this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +45,12 @@
             this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvDispositivo = new System.Windows.Forms.DataGridView();
+            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.checkTodos = new System.Windows.Forms.CheckBox();
             this.checkTodosLocal = new System.Windows.Forms.CheckBox();
@@ -50,16 +58,8 @@
             this.rtbxLog = new System.Windows.Forms.RichTextBox();
             this.backgroundWorkerCargaDatos = new System.ComponentModel.BackgroundWorker();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.Leg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnDescargar = new System.Windows.Forms.Button();
             this.btnCargar = new System.Windows.Forms.Button();
-            this.btnConectar = new System.Windows.Forms.Button();
-            this.btnMostrar = new System.Windows.Forms.Button();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -80,7 +80,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(35, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Dispositivo:";
             // 
@@ -98,14 +98,40 @@
             this.groupSeleccion.TabStop = false;
             this.groupSeleccion.Text = "Seleccionar Dispositivo";
             // 
+            // btnConectar
+            // 
+            this.btnConectar.Image = global::ZkManagement.Properties.Resources.connect;
+            this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConectar.Location = new System.Drawing.Point(278, 48);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(118, 23);
+            this.btnConectar.TabIndex = 4;
+            this.btnConectar.Text = "Sólo conectar";
+            this.btnConectar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            // 
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
             this.labelEstado.Location = new System.Drawing.Point(462, 36);
             this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(77, 13);
+            this.labelEstado.Size = new System.Drawing.Size(80, 13);
             this.labelEstado.TabIndex = 3;
             this.labelEstado.Text = "Desconectado";
+            // 
+            // btnMostrar
+            // 
+            this.btnMostrar.Image = global::ZkManagement.Properties.Resources.view;
+            this.btnMostrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(118, 23);
+            this.btnMostrar.TabIndex = 2;
+            this.btnMostrar.Text = "Mostrar Usuarios";
+            this.btnMostrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // dgvLocal
             // 
@@ -195,7 +221,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(204, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.Size = new System.Drawing.Size(143, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Usuarios en base de datos";
             // 
@@ -219,12 +245,59 @@
             this.dgvDispositivo.TabIndex = 6;
             this.dgvDispositivo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDispositivo_CellContentClick);
             // 
+            // Leg
+            // 
+            this.Leg.DataPropertyName = "Legajo";
+            this.Leg.HeaderText = "Legajo";
+            this.Leg.Name = "Leg";
+            this.Leg.ReadOnly = true;
+            this.Leg.Width = 60;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nombre";
+            this.Nom.HeaderText = "Nombre";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 40;
+            // 
+            // RFID
+            // 
+            this.RFID.DataPropertyName = "Tarjeta";
+            this.RFID.HeaderText = "Tarjeta";
+            this.RFID.Name = "RFID";
+            this.RFID.ReadOnly = true;
+            this.RFID.Width = 50;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegios";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Seleccion
+            // 
+            this.Seleccion.HeaderText = "Seleccionar";
+            this.Seleccion.Name = "Seleccion";
+            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Seleccion.Width = 65;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(641, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.Size = new System.Drawing.Size(127, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Usuarios en dispositivo";
             // 
@@ -282,53 +355,6 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // Leg
-            // 
-            this.Leg.DataPropertyName = "Legajo";
-            this.Leg.HeaderText = "Legajo";
-            this.Leg.Name = "Leg";
-            this.Leg.ReadOnly = true;
-            this.Leg.Width = 60;
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "Nombre";
-            this.Nom.HeaderText = "Nombre";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 40;
-            // 
-            // RFID
-            // 
-            this.RFID.DataPropertyName = "Tarjeta";
-            this.RFID.HeaderText = "Tarjeta";
-            this.RFID.Name = "RFID";
-            this.RFID.ReadOnly = true;
-            this.RFID.Width = 50;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegios";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
-            // 
-            // Seleccion
-            // 
-            this.Seleccion.HeaderText = "Seleccionar";
-            this.Seleccion.Name = "Seleccion";
-            this.Seleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Seleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Seleccion.Width = 65;
-            // 
             // btnDescargar
             // 
             this.btnDescargar.Image = global::ZkManagement.Properties.Resources.download_2;
@@ -355,32 +381,6 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
-            // btnConectar
-            // 
-            this.btnConectar.Image = global::ZkManagement.Properties.Resources.connect;
-            this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConectar.Location = new System.Drawing.Point(278, 49);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(111, 23);
-            this.btnConectar.TabIndex = 4;
-            this.btnConectar.Text = "Sólo conectar";
-            this.btnConectar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
-            // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Image = global::ZkManagement.Properties.Resources.view;
-            this.btnMostrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(111, 23);
-            this.btnMostrar.TabIndex = 2;
-            this.btnMostrar.Text = "Mostrar Usuarios";
-            this.btnMostrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
-            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,7 +397,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvLocal);
             this.Controls.Add(this.groupSeleccion);
+            this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "SincronizarDispositivo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SincronizarDispositivo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SincronizarDispositivo_FormClosing);
             this.Load += new System.EventHandler(this.SincronizarDispositivo_Load);
