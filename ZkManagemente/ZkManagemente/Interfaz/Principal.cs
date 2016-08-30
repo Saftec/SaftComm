@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Globalization;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -8,7 +9,8 @@ namespace ZkManagement.Interfaz
 {
     public partial class btnEmpleados : Form
     {
-        Relojes relojesRutinas = new Relojes();
+        private Relojes relojes;
+        private ControladorConfiguraciones cc;
         public btnEmpleados()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace ZkManagement.Interfaz
              * Si es supervisor puede acceder a la pantalla de configuraciones.
              * El administrador es el UNICO que puede acceder a los usuarios.
              */
-            ControladorConfiguraciones cc = new ControladorConfiguraciones();
+            cc = new ControladorConfiguraciones();
             try
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
@@ -57,11 +59,10 @@ namespace ZkManagement.Interfaz
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            Relojes relojes = new Relojes();
-            ControladorLogin cl = new ControladorLogin();
+        {         
             try
             {
+                relojes = new Relojes();
                 relojes.ShowDialog(this);
             }
             catch(Exception ex)
@@ -95,18 +96,24 @@ namespace ZkManagement.Interfaz
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            relojesRutinas.RutinaBajarRegistros();
+            if (!ValidarHora())
+            {
+                return;
+            }
+            relojes = new Relojes();
+            relojes.CargarRelojes();
+            relojes.RutinaBajarRegistros();
         }
 
         private void InicializarTimer()
         {
-            ControladorConfiguraciones cc = new ControladorConfiguraciones();
-            if (cc.GetConfig(4) == "S")
+            cc = new ControladorConfiguraciones();
+            if (Convert.ToBoolean(cc.GetConfig(4)))
             {
                 timerRutinaRegs.Enabled = true;
                 timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
             }                             
-            if (cc.GetConfig(6) == "S")
+            if (Convert.ToBoolean(cc.GetConfig(6)))
             {
                 timerRutinaHora.Enabled = true;
                 timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
@@ -115,8 +122,9 @@ namespace ZkManagement.Interfaz
 
         private void timerRutinaHora_Tick(object sender, EventArgs e)
         {
-            ControladorConfiguraciones cc = new ControladorConfiguraciones();
-            relojesRutinas.RutinaSincronizarHora();
+            relojes = new Relojes();
+            relojes.CargarRelojes();
+            relojes.RutinaSincronizarHora();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -165,9 +173,40 @@ namespace ZkManagement.Interfaz
             timerHora.Interval = 1000; //se actualiza cada 1 segundo.
             timerHora.Enabled = true;
         }
+        //Este timer es el utilizado para el reloj, se actualiza cada 1 seg.
         private void timerHora_Tick(object sender, EventArgs e)
         {
             toolStriplabelHora.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        //Devuelve TRUE si está dentro del rango horario de ejecución de la rutina, FALSE de lo contrario.
+        private bool ValidarHora()
+         {
+            DateTime horaInicio;
+            DateTime horaFin;
+            cc = new ControladorConfiguraciones();
+            try
+            {
+                if (!Convert.ToBoolean(cc.GetConfig(16))) //Si no está activado el rango de horario devuelvo false.
+                {
+                    return false;
+                }
+                horaInicio = DateTime.ParseExact(cc.GetConfig(14), "HH:mm", CultureInfo.CurrentCulture);
+                horaFin = DateTime.ParseExact(cc.GetConfig(15), "HH:mm", CultureInfo.CurrentCulture);
+                if (horaInicio<DateTime.Now && horaFin > DateTime.Now)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }                        
         }
     }
 }

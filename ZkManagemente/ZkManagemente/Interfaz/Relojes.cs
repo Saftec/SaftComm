@@ -13,6 +13,7 @@ namespace ZkManagement.Interfaz
     {
         private Reloj reloj = new Reloj(); //Esta instancia la utilizo para ejecutar todas las operaciones.
         private List<Reloj> relojes = new List<Reloj>();
+        private ControladorReloj cr;
         public Relojes()
         {
             InitializeComponent();            
@@ -32,7 +33,7 @@ namespace ZkManagement.Interfaz
 
         private void Borrado(int idReloj, int cant)
         {
-            ControladorReloj cr = new ControladorReloj();
+            cr = new ControladorReloj();
             try
             {
                 cr.ActualizarBorrado(idReloj, cant);
@@ -230,7 +231,7 @@ namespace ZkManagement.Interfaz
             if (!base.ConsultarUsuario("Está seguro que desea eliminar el equipo?", "Eliminar equipo")) { return; }
             try
             {
-                ControladorReloj cr = new ControladorReloj();
+                cr = new ControladorReloj();
                 Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
                 base.InformarEvento("Equipo eliminado correctamente.", "Eliminar reloj");
@@ -239,7 +240,7 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                base.InformarError(ex.Message);
             }
         }
 
@@ -305,20 +306,30 @@ namespace ZkManagement.Interfaz
         private void dgvRelojes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
-        public void CargarDataGridView()
+
+        public void CargarRelojes()
         {
-            ControladorReloj cr = new ControladorReloj();
+            cr = new ControladorReloj();
             relojes.Clear();
-            dgvRelojes.Rows.Clear();
             try
             {
                 relojes = cr.TodosRelojes();
             }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void CargarDataGridView()
+        {
+            try
+            {
+                CargarRelojes();
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                base.InformarError(ex.Message);
             }
-
             foreach (Reloj reloj in relojes)
             {
                 dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id, reloj.Clave);

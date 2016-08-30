@@ -69,7 +69,7 @@
             this.groupArchivos.Controls.Add(this.txtPathRegs);
             this.groupArchivos.Location = new System.Drawing.Point(12, 110);
             this.groupArchivos.Name = "groupArchivos";
-            this.groupArchivos.Size = new System.Drawing.Size(417, 52);
+            this.groupArchivos.Size = new System.Drawing.Size(429, 52);
             this.groupArchivos.TabIndex = 0;
             this.groupArchivos.TabStop = false;
             this.groupArchivos.Text = "Archivo de Registros";
@@ -103,7 +103,7 @@
             // txtMinRegs
             // 
             this.txtMinRegs.Enabled = false;
-            this.txtMinRegs.Location = new System.Drawing.Point(301, 20);
+            this.txtMinRegs.Location = new System.Drawing.Point(315, 18);
             this.txtMinRegs.MaxLength = 2;
             this.txtMinRegs.Name = "txtMinRegs";
             this.txtMinRegs.Size = new System.Drawing.Size(38, 22);
@@ -126,7 +126,7 @@
             this.groupBox1.Controls.Add(this.txtMinRegs);
             this.groupBox1.Location = new System.Drawing.Point(12, 171);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 126);
+            this.groupBox1.Size = new System.Drawing.Size(435, 130);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Automatizacion Rutinas";
@@ -145,7 +145,7 @@
             // txtHSHasta
             // 
             this.txtHSHasta.Enabled = false;
-            this.txtHSHasta.Location = new System.Drawing.Point(296, 49);
+            this.txtHSHasta.Location = new System.Drawing.Point(288, 48);
             this.txtHSHasta.Name = "txtHSHasta";
             this.txtHSHasta.Size = new System.Drawing.Size(43, 22);
             this.txtHSHasta.TabIndex = 15;
@@ -153,7 +153,7 @@
             // txtHSDesde
             // 
             this.txtHSDesde.Enabled = false;
-            this.txtHSDesde.Location = new System.Drawing.Point(181, 50);
+            this.txtHSDesde.Location = new System.Drawing.Point(171, 48);
             this.txtHSDesde.Name = "txtHSDesde";
             this.txtHSDesde.Size = new System.Drawing.Size(43, 22);
             this.txtHSDesde.TabIndex = 14;
@@ -162,7 +162,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(230, 52);
+            this.label12.Location = new System.Drawing.Point(223, 51);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 13);
             this.label12.TabIndex = 13;
@@ -171,7 +171,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(101, 53);
+            this.label2.Location = new System.Drawing.Point(87, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 12;
@@ -202,7 +202,7 @@
             // txtMinHs
             // 
             this.txtMinHs.Enabled = false;
-            this.txtMinHs.Location = new System.Drawing.Point(318, 101);
+            this.txtMinHs.Location = new System.Drawing.Point(334, 101);
             this.txtMinHs.Name = "txtMinHs";
             this.txtMinHs.Size = new System.Drawing.Size(38, 22);
             this.txtMinHs.TabIndex = 9;
@@ -210,7 +210,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(83, 107);
+            this.label5.Location = new System.Drawing.Point(83, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(248, 13);
             this.label5.TabIndex = 8;
@@ -219,7 +219,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(362, 107);
+            this.label6.Location = new System.Drawing.Point(377, 104);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 6;
@@ -228,7 +228,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(346, 22);
+            this.label4.Location = new System.Drawing.Point(355, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 6;

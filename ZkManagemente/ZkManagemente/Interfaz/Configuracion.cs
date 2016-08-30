@@ -14,20 +14,16 @@ namespace ZkManagement.Interfaz
         private void CargarConfigs()
         {
             cc = new ControladorConfiguraciones();
-            string valor;
+
             txtPathRegs.Text = cc.GetConfig(2);
             txtMinRegs.Text = cc.GetConfig(5);
             txtMinHs.Text = cc.GetConfig(7);
             txtHSDesde.Text = cc.GetConfig(14);
             txtHSHasta.Text = cc.GetConfig(15);
-            valor = cc.GetConfig(4);
-            if (valor=="S") { chckActivaReg.Checked = true; }
-            valor = cc.GetConfig(6);
-            if (valor=="S") { chckActivaHora.Checked = true; }
-            valor = cc.GetConfig(16);
-            if(valor=="S") { chckActivarHorarios.Checked = true; }
-            valor = cc.GetConfig(8);          
-            if (valor == "S")
+            chckActivaReg.Checked = Convert.ToBoolean(cc.GetConfig(4));
+            chckActivaHora.Checked = Convert.ToBoolean(cc.GetConfig(6));
+            chckActivarHorarios.Checked = Convert.ToBoolean(cc.GetConfig(16));
+            if(Convert.ToBoolean(cc.GetConfig(8)))
             {
                 groupFtp.Enabled = true;
                 chckActivarFtp.Checked = true;
@@ -53,35 +49,12 @@ namespace ZkManagement.Interfaz
                 cc.SetConfig(2, txtPathRegs.Text);
                 cc.SetConfig(5, txtMinRegs.Text);
                 cc.SetConfig(7, txtMinHs.Text);
-                if (chckActivaHora.Checked == true)
-                {
-                    cc.SetConfig(8, "S");
-                }
-                else
-                {
-                    cc.SetConfig(8,"N");
-                }
-                if (chckActivaReg.Checked == true)
-                {
-                    cc.SetConfig(6, "S");
-                }
-                else
-                {
-                    cc.SetConfig(6, "N");
-                }
-                if (chckActivarFtp.Checked == true)
-                {
-                    cc.SetConfig(8, "S");
-                }               
-                else { cc.SetConfig(8, "N"); }
-                if (chckActivarHorarios.Checked == true)
-                {
-                    cc.SetConfig(16, "S");
-                    cc.SetConfig(14, txtHSDesde.Text);
-                    cc.SetConfig(15, txtHSHasta.Text);
-                }
-                else { cc.SetConfig(16, "N"); }
-
+                cc.SetConfig(6, chckActivaHora.Checked.ToString());
+                cc.SetConfig(4, chckActivaReg.Checked.ToString());
+                cc.SetConfig(8, chckActivarFtp.Checked.ToString());
+                cc.SetConfig(16, chckActivarHorarios.Checked.ToString());
+                cc.SetConfig(14, txtHSDesde.Text);
+                cc.SetConfig(15, txtHSHasta.Text);
                 base.InformarEvento("Configuraciones guardadas", "Configuraciones");
             }
             catch(Exception ex)
