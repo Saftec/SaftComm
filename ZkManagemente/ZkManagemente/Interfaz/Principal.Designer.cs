@@ -47,6 +47,7 @@
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.estadoEjecRutinas = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStriplabelHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerHora = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
@@ -171,6 +172,7 @@
             this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
             this.iconoBandeja.Text = "Saftec";
             this.iconoBandeja.Visible = true;
+            this.iconoBandeja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.iconoBandeja_MouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
@@ -214,6 +216,7 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.estadoEjecRutinas,
             this.toolStriplabelHora});
             this.statusStrip1.Location = new System.Drawing.Point(0, 692);
             this.statusStrip1.Name = "statusStrip1";
@@ -222,12 +225,17 @@
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
+            // estadoEjecRutinas
+            // 
+            this.estadoEjecRutinas.Name = "estadoEjecRutinas";
+            this.estadoEjecRutinas.Size = new System.Drawing.Size(0, 17);
+            // 
             // toolStriplabelHora
             // 
             this.toolStriplabelHora.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStriplabelHora.Name = "toolStriplabelHora";
-            this.toolStriplabelHora.Size = new System.Drawing.Size(123, 17);
-            this.toolStriplabelHora.Text = "toolStripStatusLabel1";
+            this.toolStriplabelHora.Size = new System.Drawing.Size(36, 17);
+            this.toolStriplabelHora.Text = "Reloj";
             // 
             // timerHora
             // 
@@ -282,5 +290,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel estadoEjecRutinas;
     }
 }

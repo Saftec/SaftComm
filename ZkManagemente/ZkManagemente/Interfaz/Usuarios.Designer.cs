@@ -244,7 +244,7 @@
             // 
             this.btnNuevo.BackColor = System.Drawing.SystemColors.Control;
             this.btnNuevo.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Image = global::ZkManagement.Properties.Resources._new;
+            this.btnNuevo.Image = global::ZkManagement.Properties.Resources.new1;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNuevo.Location = new System.Drawing.Point(376, 275);
             this.btnNuevo.Name = "btnNuevo";

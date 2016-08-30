@@ -63,16 +63,6 @@ namespace ZkManagement.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _new {
-            get {
-                object obj = ResourceManager.GetObject("new", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap BaseDatos {
             get {
                 object obj = ResourceManager.GetObject("BaseDatos", resourceCulture);
@@ -163,9 +153,9 @@ namespace ZkManagement.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap download_2 {
+        internal static System.Drawing.Bitmap download2 {
             get {
-                object obj = ResourceManager.GetObject("download-2", resourceCulture);
+                object obj = ResourceManager.GetObject("download2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +186,16 @@ namespace ZkManagement.Properties {
         internal static System.Drawing.Bitmap LogoPpal {
             get {
                 object obj = ResourceManager.GetObject("LogoPpal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap new1 {
+            get {
+                object obj = ResourceManager.GetObject("new1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

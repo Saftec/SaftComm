@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SincronizarDispositivo));
             this.comboRelojes = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupSeleccion = new System.Windows.Forms.GroupBox();
@@ -357,7 +358,7 @@
             // 
             // btnDescargar
             // 
-            this.btnDescargar.Image = global::ZkManagement.Properties.Resources.download_2;
+            this.btnDescargar.Image = global::ZkManagement.Properties.Resources.download2;
             this.btnDescargar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDescargar.Location = new System.Drawing.Point(586, 551);
             this.btnDescargar.Name = "btnDescargar";
@@ -398,6 +399,7 @@
             this.Controls.Add(this.dgvLocal);
             this.Controls.Add(this.groupSeleccion);
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SincronizarDispositivo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SincronizarDispositivo";

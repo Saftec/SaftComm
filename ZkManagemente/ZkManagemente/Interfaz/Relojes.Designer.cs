@@ -317,7 +317,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = global::ZkManagement.Properties.Resources._new;
+            this.btnAgregar.Image = global::ZkManagement.Properties.Resources.new1;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.Location = new System.Drawing.Point(105, 16);
             this.btnAgregar.Name = "btnAgregar";

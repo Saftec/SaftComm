@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConexionBD));
             this.txtServidor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBase = new System.Windows.Forms.TextBox();
@@ -160,6 +161,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtServidor);
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConexionBD";
             this.Text = "ConexionBD";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

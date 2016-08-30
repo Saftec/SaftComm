@@ -337,7 +337,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Image = global::ZkManagement.Properties.Resources._new;
+            this.btnNuevo.Image = global::ZkManagement.Properties.Resources.new1;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNuevo.Location = new System.Drawing.Point(461, 350);
             this.btnNuevo.Name = "btnNuevo";

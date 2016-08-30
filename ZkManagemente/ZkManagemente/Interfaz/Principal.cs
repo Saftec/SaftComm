@@ -87,6 +87,7 @@ namespace ZkManagement.Interfaz
             {
                 return;
             }
+            MostrarNotificacionEvento("Ejecutando rutina descarga registros..", "Rutinas");
             relojes = new Relojes();
             relojes.CargarRelojes();
             relojes.RutinaBajarRegistros();
@@ -103,12 +104,13 @@ namespace ZkManagement.Interfaz
             if (Convert.ToBoolean(cc.GetConfig(6)))
             {
                 timerRutinaHora.Enabled = true;
-                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
+                timerRutinaHora.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
             }            
         }
 
         private void timerRutinaHora_Tick(object sender, EventArgs e)
         {
+            MostrarNotificacionEvento("Ejecutando rutina...", "Rutinas");
             relojes = new Relojes();
             relojes.CargarRelojes();
             relojes.RutinaSincronizarHora();
@@ -201,6 +203,7 @@ namespace ZkManagement.Interfaz
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Show();
+            iconoBandeja.Visible = false;
         }
 
         private void btnEmpleados_SizeChanged(object sender, EventArgs e)
@@ -209,11 +212,21 @@ namespace ZkManagement.Interfaz
             {
                 this.Hide();
                 iconoBandeja.Visible = true;
-                iconoBandeja.BalloonTipTitle = "SAFTEC";
-                iconoBandeja.BalloonTipText = "El sistema continuará trabajando en segundo plano";
-                iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
-                iconoBandeja.ShowBalloonTip(5000);
+                MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SAFTEC");
             }
+        }
+
+        private void MostrarNotificacionEvento(string mensaje, string titulo)
+        {
+            iconoBandeja.BalloonTipTitle = titulo;
+            iconoBandeja.BalloonTipText = mensaje;
+            iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
+            iconoBandeja.ShowBalloonTip(5000);
+        }
+        private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            iconoBandeja.Visible = false;
         }
     }
 }
