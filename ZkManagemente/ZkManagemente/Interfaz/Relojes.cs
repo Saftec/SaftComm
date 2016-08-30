@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -410,13 +411,17 @@ namespace ZkManagement.Interfaz
         }
         private void LogInforme(string mensaje)
         {
+            ILog logger = LogManager.GetLogger("");
             rtbLog.SelectionColor = Color.Black;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
+            logger.Info(mensaje);
         }
         private void LogError(string mensaje)
         {
+            ILog logger = LogManager.GetLogger("");
             rtbLog.SelectionColor = Color.Red;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
+            logger.Info("ERROR: " + mensaje);
         }
         private void SetPermisos()
         {
@@ -440,9 +445,7 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.WaitCursor; //Cursor de espera
             List<string> desconocidos = new List<string>();
             int total = 0;
-            Logger ca = new Logger();
             ControladorRegistros cr = new ControladorRegistros();
-            ca.Rutina("Inicio", "Descarga de registros");
             LogInforme("Iniciando rutina de descarga de registros...");
             foreach (Reloj r in relojes)
             {
@@ -470,7 +473,6 @@ namespace ZkManagement.Interfaz
                 {
                     LogError("Se produjo un error con reloj: " + r.Numero.ToString());
                     LogError("Error: " + ex.Message);
-                    ca.Rutina("Fin", "Se produjo un error con reloj: " + r.Numero.ToString());
                 }
             }
             if (desconocidos.Count > 0)
@@ -481,18 +483,15 @@ namespace ZkManagement.Interfaz
                     LogError("Legajo: " + l);
                 }
             }
-            ca.Rutina("Fin", "Descarga de registros");
             LogInforme("Rutina de descarga de registros finalizada.");
             Cursor = Cursors.Default; //Cursor normal
         }
 
         public void RutinaSincronizarHora()
         {
-            Logger lg = new Logger();
             try
             {
                 LogInforme("Inicio rutina de sincronización de hora");
-                lg.Rutina("Inicio", "Rutina de sincronizacion de hora");
                 foreach (Reloj r in relojes)
                 {
                     LogInforme("Conectando a reloj :" + r.Numero.ToString());
@@ -506,12 +505,10 @@ namespace ZkManagement.Interfaz
                     r.Estado = false;
                     LogInforme("Reloj: " + r.Numero.ToString() + " desconectado.");
                 }
-                lg.Rutina("Fin", "Rutina de sincronizacion de hora");
                 LogInforme("Rutina de sincronización de hora finalizada");
             }
             catch (Exception ex)
             {
-                lg.Rutina("Fin", "Se produjo un error durante la rutina");
                 LogError("Se produjo un error durante la rutina");
                 LogError(ex.Message);
             }

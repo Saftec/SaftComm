@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using log4net;
+using System;
 using System.Data;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
@@ -8,14 +8,14 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
-    
+
     class ControladorLogin
-    {
+    {        
         private CatalogoUsuarios cu = new CatalogoUsuarios();
-        private static Usuario usr = new Usuario();
+        private static Usuario usr = new Usuario(); //---->La uso como variable de sesión
+        private ILog logger = LogManager.GetLogger("");
         public void ValidarUsuario(Usuario usuario)
         {                       
-            Logger ca = new Logger();
             try
             {
                 usr = cu.GetUsuario(usuario);
@@ -23,7 +23,8 @@ namespace ZkManagement.Logica
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
                 btnEmpleados ppal = new btnEmpleados();
-                ca.InicioSesion(usr.Usr);
+                logger.Info("-----------------------------------------------------------------\n");
+                logger.Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
                 ppal.SetPermisos(usr);
                 ppal.Show();                               
             }

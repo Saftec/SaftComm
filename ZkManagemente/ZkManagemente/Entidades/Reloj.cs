@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
+using ZkManagement.Logica;
 using ZkManagement.Util;
 
 namespace ZkManagement.Entidades
@@ -10,7 +11,6 @@ namespace ZkManagement.Entidades
     public class Reloj : zkemkeeper.CZKEMClass
     {
         private ILog logger = LogManager.GetLogger(string.Empty);
-        private Logica.Logger lg = new Logica.Logger();
 
         private int puerto;
         private int numero;
@@ -121,13 +121,11 @@ namespace ZkManagement.Entidades
             bool estado;
             if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
             estado = base.Connect_Net(ip, puerto);
-            lg.Conexion(this.numero);
             if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         public void Desconectar()
         {
-            lg.Desconectar(this.numero);
             base.Disconnect();
         }
         public int GetCantidadRegistros()
@@ -151,7 +149,6 @@ namespace ZkManagement.Entidades
             cant = GetCantidadRegistros();
             if (base.ClearGLog(this.numero))
             {
-                lg.BorradoRegistros(cant);
                 base.RefreshData(this.numero);     //los datos deben ser actualizados en el reloj
                 base.EnableDevice(this.numero, true);      //desbloqueo
             }
@@ -167,7 +164,6 @@ namespace ZkManagement.Entidades
             int codError = 0;
             if (base.SetDeviceTime(this.numero))
             {
-                lg.SincronizarHora(this.numero);
                 base.RefreshData(this.numero);     //actualizo datos en dispositivo
             }
             else
@@ -221,21 +217,12 @@ namespace ZkManagement.Entidades
         //DESCARGA DE REGISTROS!!//
         public DataTable DescargarRegistros()
         {
-            lg.IniciaDescarga();
-            //Estas 2 variables son necesarias para llamar al método pero no las utilizo.
-            int idwVerifyMode = 0;
-            int idwWorkcode = 0;
-
             string legajoEnReloj = string.Empty;            
-            int tipoMov = 0;
-            int año = 0;
-            int mes = 0;
-            int dia = 0;
-            int hora = 0;
-            int minutos = 0;
-            int segundos = 0;            
+            int tipoMov ,año, mes, dia, hora, minutos, segundos, idwVerifyMode, idwWorkCode = 0;          
             int codError = 0;
             int idwErrorCode = 0;
+
+            EscribirArchivo escritorArchivo = new EscribirArchivo(); 
 
             //Declaro estas 2 variables para controlar que se descargue el total de registros
             int cantRegs = 0;
@@ -253,7 +240,7 @@ namespace ZkManagement.Entidades
             cantRegs = GetCantidadRegistros();
             if (base.ReadGeneralLogData(this.numero)) //Trae todos los registros a la memoria de la pc
             {
-                while (base.SSR_GetGeneralLogData(this.numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkcode) && codError == 0)//Obtengo los registros
+                while (base.SSR_GetGeneralLogData(this.numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkCode) && codError == 0)//Obtengo los registros
                 {
                     DataRow fila = regis.NewRow();
                     fila["Legajo"] = legajoEnReloj;
@@ -263,7 +250,7 @@ namespace ZkManagement.Entidades
                     regis.Rows.Add(fila);
 
                     count++;
-                    lg.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, legajoEnReloj);
+                    escritorArchivo.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, legajoEnReloj);
                 }
             }
             if (count != cantRegs) { throw new AppException("No se descargo el total de registros"); }
@@ -276,7 +263,6 @@ namespace ZkManagement.Entidades
                     throw new AppException("Error durante la descarga de registros, codError: " + idwErrorCode);
                 }
             }
-            lg.DescargaRegistros(count);
             base.EnableDevice(this.numero, true);
             return regis;
         }

@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ZkManagement.Entidades
 {
     public class Usuario
@@ -54,6 +56,9 @@ namespace ZkManagement.Entidades
             set { _permisos = value; }
         }
 
-
+        internal string ToUpper()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

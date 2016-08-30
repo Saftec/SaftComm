@@ -23,19 +23,6 @@ namespace ZkManagement.Interfaz
             CentrarElementos();
             iconoBandeja.Visible = false;
         }
-
-        private void Principal_Resize(object sender, EventArgs e)
-        {
-            if (FormWindowState.Minimized == WindowState)  //SI MINIZO LA VENTANA, MUESTRO EL ÍCONO DE LA APP EN LA BANDEJA
-            {
-                Hide();
-                iconoBandeja.Visible = true;
-            }
-            else
-            {
-                iconoBandeja.Visible = false;
-            }
-        }
         internal void SetPermisos(Usuario usuario)
         {
             /* Si es operador sólo puede utilizar la pestaña empleados y relojes.
@@ -143,7 +130,6 @@ namespace ZkManagement.Interfaz
 
         private void btnEmpleados_FormClosing(object sender, FormClosingEventArgs e)
         {
-
         }
 
         private void CentrarElementos()
@@ -165,7 +151,6 @@ namespace ZkManagement.Interfaz
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
         }
 
         private void IniciarReloj()
@@ -207,6 +192,28 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show(ex.Message);
                 return false;
             }                        
+        }
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void btnEmpleados_SizeChanged(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)  //SI MINIZO LA VENTANA, MUESTRO EL ÍCONO DE LA APP EN LA BANDEJA
+            {
+                this.Hide();
+                iconoBandeja.Visible = true;
+                iconoBandeja.BalloonTipTitle = "SAFTEC";
+                iconoBandeja.BalloonTipText = "El sistema continuará trabajando en segundo plano";
+                iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
+                iconoBandeja.ShowBalloonTip(5000);
+            }
         }
     }
 }

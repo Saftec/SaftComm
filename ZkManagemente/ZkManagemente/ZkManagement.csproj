@@ -124,7 +124,7 @@
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\ControladorCargaDatos.cs" />
-    <Compile Include="Logica\Logger.cs" />
+    <Compile Include="Util\EscribirArchivo.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorEmpleados.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />

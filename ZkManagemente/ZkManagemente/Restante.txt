@@ -1,12 +1,4 @@
-﻿App:
-*Minizar a la bandeja tray. (Aparece ícono pero la aplicación sigue en barra tareas).
-
-*Definir otro append de log4net para nivel info
-
-Configuracion:
-*Cargar configuración de hora.
-
-Relojes:
+﻿Relojes:
 *Background para rutinas.
 
 Empleados:

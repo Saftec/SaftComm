@@ -54,7 +54,9 @@ namespace ZkManagement.Interfaz
             //Cuando inicio la APP chequeo la conexión a la BD.
             //Sino funciona abro la ventana para modificar la connectionstring.
 
+            //Cargo configuracion de log4net
             log4net.Config.XmlConfigurator.Configure();
+
             bool estado = false;
             cl = new ControladorLogin();
 
