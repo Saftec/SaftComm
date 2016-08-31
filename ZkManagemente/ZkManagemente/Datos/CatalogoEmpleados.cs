@@ -19,7 +19,7 @@ namespace ZkManagement.Datos
             {
                 conn = con.Conectar();
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio,COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.privilegio ORDER BY e.Nombre ASC";                 
+                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio,COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado WHERE e.Baja=0 GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.privilegio ORDER BY e.Nombre ASC";                 
                 SqlCommand cmd = new SqlCommand(consulta,conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(empleados);
