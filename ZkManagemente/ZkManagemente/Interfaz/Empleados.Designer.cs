@@ -99,7 +99,6 @@
             this.Legajo.HeaderText = "Legajo";
             this.Legajo.Name = "Legajo";
             this.Legajo.ReadOnly = true;
-            this.Legajo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Legajo.Width = 75;
             // 
             // Nombre
@@ -109,7 +108,6 @@
             this.Nombre.HeaderText = "Nombre y Apellido";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Nombre.Width = 150;
             // 
             // Tarjeta
@@ -118,7 +116,6 @@
             this.Tarjeta.HeaderText = "Tarjeta";
             this.Tarjeta.Name = "Tarjeta";
             this.Tarjeta.ReadOnly = true;
-            this.Tarjeta.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // DNI
             // 
@@ -126,7 +123,6 @@
             this.DNI.HeaderText = "DNI";
             this.DNI.Name = "DNI";
             this.DNI.ReadOnly = true;
-            this.DNI.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // Pin
             // 
@@ -150,7 +146,6 @@
             this.Cant.HeaderText = "Cant. Huellas";
             this.Cant.Name = "Cant";
             this.Cant.ReadOnly = true;
-            this.Cant.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Cant.Width = 50;
             // 
             // Eliminar
@@ -388,6 +383,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(23, 26);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnSinc
             // 
@@ -487,6 +483,7 @@
         private System.Windows.Forms.CheckBox chckTodos;
         private System.Windows.Forms.Label lblNivel;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TreeView tvDeptos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
@@ -496,6 +493,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
-        private System.Windows.Forms.TreeView tvDeptos;
     }
 }

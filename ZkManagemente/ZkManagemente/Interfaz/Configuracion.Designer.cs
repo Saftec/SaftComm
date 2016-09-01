@@ -29,6 +29,29 @@
         private void InitializeComponent()
         {
             this.groupArchivos = new System.Windows.Forms.GroupBox();
+            this.cbPosicionReloj = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtReloj = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cbPosicionLegajo = new System.Windows.Forms.ComboBox();
+            this.cbPosicionHora = new System.Windows.Forms.ComboBox();
+            this.cbPosicionFecha = new System.Windows.Forms.ComboBox();
+            this.cbPosicionMovimientos = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboFormatoHora = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtCompletarLegajo = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboFormatoFecha = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCodsalida = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCodEntrada = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPathRegs = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -65,14 +88,259 @@
             // 
             // groupArchivos
             // 
+            this.groupArchivos.Controls.Add(this.cbPosicionReloj);
+            this.groupArchivos.Controls.Add(this.label24);
+            this.groupArchivos.Controls.Add(this.txtReloj);
+            this.groupArchivos.Controls.Add(this.label23);
+            this.groupArchivos.Controls.Add(this.cbPosicionLegajo);
+            this.groupArchivos.Controls.Add(this.cbPosicionHora);
+            this.groupArchivos.Controls.Add(this.cbPosicionFecha);
+            this.groupArchivos.Controls.Add(this.cbPosicionMovimientos);
+            this.groupArchivos.Controls.Add(this.label22);
+            this.groupArchivos.Controls.Add(this.label21);
+            this.groupArchivos.Controls.Add(this.label20);
+            this.groupArchivos.Controls.Add(this.label19);
+            this.groupArchivos.Controls.Add(this.label18);
+            this.groupArchivos.Controls.Add(this.comboFormatoHora);
+            this.groupArchivos.Controls.Add(this.label17);
+            this.groupArchivos.Controls.Add(this.txtCompletarLegajo);
+            this.groupArchivos.Controls.Add(this.label16);
+            this.groupArchivos.Controls.Add(this.comboFormatoFecha);
+            this.groupArchivos.Controls.Add(this.label15);
+            this.groupArchivos.Controls.Add(this.txtCodsalida);
+            this.groupArchivos.Controls.Add(this.label14);
+            this.groupArchivos.Controls.Add(this.txtCodEntrada);
+            this.groupArchivos.Controls.Add(this.label13);
             this.groupArchivos.Controls.Add(this.label1);
             this.groupArchivos.Controls.Add(this.txtPathRegs);
             this.groupArchivos.Location = new System.Drawing.Point(12, 110);
             this.groupArchivos.Name = "groupArchivos";
-            this.groupArchivos.Size = new System.Drawing.Size(429, 52);
+            this.groupArchivos.Size = new System.Drawing.Size(414, 233);
             this.groupArchivos.TabIndex = 0;
             this.groupArchivos.TabStop = false;
             this.groupArchivos.Text = "Archivo de Registros";
+            // 
+            // cbPosicionReloj
+            // 
+            this.cbPosicionReloj.FormattingEnabled = true;
+            this.cbPosicionReloj.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbPosicionReloj.Location = new System.Drawing.Point(238, 194);
+            this.cbPosicionReloj.Name = "cbPosicionReloj";
+            this.cbPosicionReloj.Size = new System.Drawing.Size(38, 21);
+            this.cbPosicionReloj.TabIndex = 24;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(179, 196);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(53, 13);
+            this.label24.TabIndex = 23;
+            this.label24.Text = "Posición:";
+            // 
+            // txtReloj
+            // 
+            this.txtReloj.Location = new System.Drawing.Point(115, 194);
+            this.txtReloj.Name = "txtReloj";
+            this.txtReloj.Size = new System.Drawing.Size(56, 22);
+            this.txtReloj.TabIndex = 22;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 195);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(92, 13);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "Completar Reloj:";
+            // 
+            // cbPosicionLegajo
+            // 
+            this.cbPosicionLegajo.FormattingEnabled = true;
+            this.cbPosicionLegajo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbPosicionLegajo.Location = new System.Drawing.Point(238, 164);
+            this.cbPosicionLegajo.Name = "cbPosicionLegajo";
+            this.cbPosicionLegajo.Size = new System.Drawing.Size(38, 21);
+            this.cbPosicionLegajo.TabIndex = 20;
+            // 
+            // cbPosicionHora
+            // 
+            this.cbPosicionHora.FormattingEnabled = true;
+            this.cbPosicionHora.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbPosicionHora.Location = new System.Drawing.Point(266, 133);
+            this.cbPosicionHora.Name = "cbPosicionHora";
+            this.cbPosicionHora.Size = new System.Drawing.Size(38, 21);
+            this.cbPosicionHora.TabIndex = 19;
+            // 
+            // cbPosicionFecha
+            // 
+            this.cbPosicionFecha.FormattingEnabled = true;
+            this.cbPosicionFecha.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbPosicionFecha.Location = new System.Drawing.Point(334, 96);
+            this.cbPosicionFecha.Name = "cbPosicionFecha";
+            this.cbPosicionFecha.Size = new System.Drawing.Size(38, 21);
+            this.cbPosicionFecha.TabIndex = 18;
+            // 
+            // cbPosicionMovimientos
+            // 
+            this.cbPosicionMovimientos.FormattingEnabled = true;
+            this.cbPosicionMovimientos.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbPosicionMovimientos.Location = new System.Drawing.Point(334, 61);
+            this.cbPosicionMovimientos.Name = "cbPosicionMovimientos";
+            this.cbPosicionMovimientos.Size = new System.Drawing.Size(38, 21);
+            this.cbPosicionMovimientos.TabIndex = 17;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(179, 172);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(53, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Posición:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(207, 135);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(53, 13);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Posición:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(279, 99);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 14;
+            this.label20.Text = "Posición:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(279, 63);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 13);
+            this.label19.TabIndex = 13;
+            this.label19.Text = "Posición:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 196);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(0, 13);
+            this.label18.TabIndex = 12;
+            // 
+            // comboFormatoHora
+            // 
+            this.comboFormatoHora.FormattingEnabled = true;
+            this.comboFormatoHora.Location = new System.Drawing.Point(115, 127);
+            this.comboFormatoHora.Name = "comboFormatoHora";
+            this.comboFormatoHora.Size = new System.Drawing.Size(81, 21);
+            this.comboFormatoHora.TabIndex = 11;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 136);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 13);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Formato de Hora";
+            // 
+            // txtCompletarLegajo
+            // 
+            this.txtCompletarLegajo.Location = new System.Drawing.Point(115, 164);
+            this.txtCompletarLegajo.Name = "txtCompletarLegajo";
+            this.txtCompletarLegajo.Size = new System.Drawing.Size(56, 22);
+            this.txtCompletarLegajo.TabIndex = 9;
+            this.txtCompletarLegajo.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 167);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(100, 13);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "Completar Legajo:";
+            // 
+            // comboFormatoFecha
+            // 
+            this.comboFormatoFecha.FormattingEnabled = true;
+            this.comboFormatoFecha.Location = new System.Drawing.Point(115, 96);
+            this.comboFormatoFecha.Name = "comboFormatoFecha";
+            this.comboFormatoFecha.Size = new System.Drawing.Size(145, 21);
+            this.comboFormatoFecha.TabIndex = 7;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(9, 99);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(100, 13);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Formato de fecha:";
+            // 
+            // txtCodsalida
+            // 
+            this.txtCodsalida.Location = new System.Drawing.Point(222, 60);
+            this.txtCodsalida.Name = "txtCodsalida";
+            this.txtCodsalida.Size = new System.Drawing.Size(42, 22);
+            this.txtCodsalida.TabIndex = 5;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(151, 63);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(65, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Cod Salida:";
+            // 
+            // txtCodEntrada
+            // 
+            this.txtCodEntrada.Location = new System.Drawing.Point(89, 60);
+            this.txtCodEntrada.Name = "txtCodEntrada";
+            this.txtCodEntrada.Size = new System.Drawing.Size(40, 22);
+            this.txtCodEntrada.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 63);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(74, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Cod Entrada:";
             // 
             // label1
             // 
@@ -92,7 +360,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(370, 433);
+            this.btnGuardar.Location = new System.Drawing.Point(392, 495);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(140, 30);
             this.btnGuardar.TabIndex = 2;
@@ -124,7 +392,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMinRegs);
-            this.groupBox1.Location = new System.Drawing.Point(12, 171);
+            this.groupBox1.Location = new System.Drawing.Point(12, 356);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(435, 130);
             this.groupBox1.TabIndex = 4;
@@ -256,9 +524,9 @@
             this.groupFtp.Controls.Add(this.txtServidor);
             this.groupFtp.Controls.Add(this.label7);
             this.groupFtp.Enabled = false;
-            this.groupFtp.Location = new System.Drawing.Point(471, 110);
+            this.groupFtp.Location = new System.Drawing.Point(460, 110);
             this.groupFtp.Name = "groupFtp";
-            this.groupFtp.Size = new System.Drawing.Size(392, 139);
+            this.groupFtp.Size = new System.Drawing.Size(403, 139);
             this.groupFtp.TabIndex = 5;
             this.groupFtp.TabStop = false;
             this.groupFtp.Text = "FTP";
@@ -418,5 +686,28 @@
         private System.Windows.Forms.TextBox txtHSHasta;
         private System.Windows.Forms.TextBox txtHSDesde;
         private System.Windows.Forms.CheckBox chckActivarHorarios;
+        private System.Windows.Forms.TextBox txtCompletarLegajo;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboFormatoFecha;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtCodsalida;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtCodEntrada;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbPosicionLegajo;
+        private System.Windows.Forms.ComboBox cbPosicionHora;
+        private System.Windows.Forms.ComboBox cbPosicionFecha;
+        private System.Windows.Forms.ComboBox cbPosicionMovimientos;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboFormatoHora;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbPosicionReloj;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtReloj;
+        private System.Windows.Forms.Label label23;
     }
 }

@@ -7,10 +7,12 @@ namespace ZkManagement.Logica
 {
     class ControladorEmpleados
     {
-        private CatalogoEmpleados ce = new CatalogoEmpleados();
+        private CatalogoEmpleados ce; 
         public DataTable GetEmpleados()
         {
-            DataTable empleados = new DataTable();           
+            ce = new CatalogoEmpleados();
+            DataTable empleados = new DataTable();      
+                 
             try
             {
                 empleados = ce.Empleados();
@@ -24,7 +26,9 @@ namespace ZkManagement.Logica
 
         public void BajaEmpleado(Empleado emp)
         {
+            ce = new CatalogoEmpleados();
             CatalogoHuellas ch = new CatalogoHuellas();
+
             try
             {
                 ce.Eliminar(emp);
@@ -38,23 +42,29 @@ namespace ZkManagement.Logica
 
         public void ActualizarEmpleado(Empleado emp)
         {
+            ce = new CatalogoEmpleados();
+
             try
             {
-                if (emp.Id > 0)
-                {
-                    ce.Actualizar(emp);
-                }
-                else
-                {
-                    ce.Agregar(emp);
-                }
+                ce.Actualizar(emp);
             }
             catch(Exception ex)
             {
                 throw ex;
             }
+        }
+        public void AgregarEmpleado(Empleado emp)
+        {
+            ce = new CatalogoEmpleados();
 
-
+            try
+            {
+                ce.Agregar(emp);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

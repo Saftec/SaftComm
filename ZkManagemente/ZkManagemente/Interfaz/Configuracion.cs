@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Specialized;
+using System.Configuration;
 using System.Windows.Forms;
 using ZkManagement.Logica;
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -35,6 +38,36 @@ namespace ZkManagement.Interfaz
             }
         }
 
+        private void LeerDeArchivo()
+        {
+            Config config = new Config();
+            txtCodEntrada.Text = config.Read("Movimientos", "CodEntrada");
+            txtCodsalida.Text = config.Read("Movimientos", "CodSalida");
+            cbPosicionMovimientos.SelectedIndex = Convert.ToInt32(config.Read("Movimientos", "Posicion")) - 1;
+            comboFormatoFecha.Text = config.Read("Fecha", "Formato");
+            cbPosicionFecha.SelectedIndex = Convert.ToInt32(config.Read("Fecha", "Posicion")) - 1;
+            comboFormatoHora.Text = config.Read("Hora", "Formato");
+            cbPosicionHora.SelectedIndex = Convert.ToInt32(config.Read("Hora", "Posicion")) - 1;
+            txtCompletarLegajo.Text = config.Read("Legajo", "Completar");
+            cbPosicionLegajo.SelectedIndex = Convert.ToInt32(config.Read("Legajo", "Posicion")) - 1;
+            txtReloj.Text = config.Read("Reloj", "Completar");
+            cbPosicionReloj.SelectedIndex = Convert.ToInt32(config.Read("Reloj", "Posicion")) - 1;
+        }
+        private void GrabarEnArchivo()
+        {
+            Config config = new Config();
+            config.Write("Movimientos", "CodEntrada", txtCodEntrada.Text);
+            config.Write("Movimientos", "CodSalida", txtCodsalida.Text);
+            config.Write("Movimientos", "Posicion", (cbPosicionMovimientos.SelectedIndex + 1).ToString());
+            config.Write("Fecha", "Formato", comboFormatoFecha.Text);
+            config.Write("Fecha", "Posicion", (cbPosicionFecha.SelectedIndex+1).ToString());
+            config.Write("Hora", "Formato", comboFormatoHora.Text);
+            config.Write("Hora", "Posicion", (cbPosicionHora.SelectedIndex + 1).ToString());
+            config.Write("Legajo", "Completar", txtCompletarLegajo.Text);
+            config.Write("Legajo", "Posicion", (cbPosicionLegajo.SelectedIndex + 1).ToString());
+            config.Write("Reloj", "Completar", txtReloj.Text);
+            config.Write("Reloj", "Posicion", (cbPosicionReloj.SelectedIndex + 1).ToString());
+        }
         private void btnClose_Click(object sender, System.EventArgs e)
         {
             Close();
@@ -55,6 +88,8 @@ namespace ZkManagement.Interfaz
                 cc.SetConfig(16, chckActivarHorarios.Checked.ToString());
                 cc.SetConfig(14, txtHSDesde.Text);
                 cc.SetConfig(15, txtHSHasta.Text);
+
+                GrabarEnArchivo();
                 base.InformarEvento("Configuraciones guardadas", "Configuraciones");
             }
             catch(Exception ex)
@@ -95,6 +130,7 @@ namespace ZkManagement.Interfaz
 
         private void Configuracion_Load(object sender, EventArgs e)
         {
+            LeerDeArchivo();
             CargarConfigs();
         }
 
@@ -122,6 +158,11 @@ namespace ZkManagement.Interfaz
             {
                 txtMinHs.Enabled = false;
             }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            ConfigurationManager.GetSection("Registros");
         }
     }
 }

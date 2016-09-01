@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
@@ -142,8 +143,16 @@ namespace ZkManagement.Interfaz
             try
             {
                 ce = new ControladorEmpleados();
-                ce.ActualizarEmpleado(empleado);
-                DatosDGV();              
+                if (empleado.Id > 0)
+                {
+                    ActualizarFila(empleado);
+                    ce.ActualizarEmpleado(empleado);
+                }
+                else
+                {
+                    ce.AgregarEmpleado(empleado);
+                    DatosDGV();
+                }              
                 LimpiarTextBox();
                 NoEditable();
                 base.InformarEvento("Empleado actualizado correctamente", "Modificar usuarios");
@@ -175,6 +184,15 @@ namespace ZkManagement.Interfaz
                 base.InformarError(ex.Message);
             }
 
+        }
+        private void ActualizarFila(Empleado emp)
+        {
+            dgvEmpleados.CurrentRow.Cells["Legajo"].Value = empleado.Legajo;
+            dgvEmpleados.CurrentRow.Cells["Nombre"].Value = empleado.Nombre;
+            dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value = empleado.Tarjeta;
+            dgvEmpleados.CurrentRow.Cells["DNI"].Value = empleado.Dni;
+            dgvEmpleados.CurrentRow.Cells["Pin"].Value = empleado.Pin.ToString();
+            dgvEmpleados.CurrentRow.Cells["Privilegio"].Value = empleado.Privilegio.ToString();
         }
 
         private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -213,21 +231,10 @@ namespace ZkManagement.Interfaz
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            //Problema con los valores int!
-            try
-            {
-                string fieldName = string.Concat("[", empleados.Columns[1].ColumnName, "]");
-                empleados.DefaultView.Sort = fieldName;
-                DataView view = empleados.DefaultView;
-                view.RowFilter = string.Empty;
-                if (txtBuscar.Text != string.Empty)
-                    view.RowFilter = fieldName + " LIKE '%" + txtBuscar.Text + "%'";
-                dgvEmpleados.DataSource = view;
-            }
-            catch(Exception ex)
-            {
-                base.InformarError(ex.Message);
-            }
+            DataView dv = empleados.DefaultView;
+
+            dv.RowFilter = string.Format("Nombre like '%{0}%'", txtBuscar);
+            dgvEmpleados.DataSource = dv.ToTable();
         }
 
         private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -255,6 +262,10 @@ namespace ZkManagement.Interfaz
         private void CagarTV()
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
