@@ -46,12 +46,15 @@ namespace ZkManagement.Interfaz
             cbPosicionMovimientos.SelectedIndex = Convert.ToInt32(config.Read("Movimientos", "Posicion")) - 1;
             comboFormatoFecha.Text = config.Read("Fecha", "Formato");
             cbPosicionFecha.SelectedIndex = Convert.ToInt32(config.Read("Fecha", "Posicion")) - 1;
+            cbSeparadorFecha.Text = config.Read("Fecha", "Separador");
             comboFormatoHora.Text = config.Read("Hora", "Formato");
             cbPosicionHora.SelectedIndex = Convert.ToInt32(config.Read("Hora", "Posicion")) - 1;
+            cbSeparadorHora.Text = config.Read("Hora", "Separador");
             txtCompletarLegajo.Text = config.Read("Legajo", "Completar");
             cbPosicionLegajo.SelectedIndex = Convert.ToInt32(config.Read("Legajo", "Posicion")) - 1;
             txtReloj.Text = config.Read("Reloj", "Completar");
             cbPosicionReloj.SelectedIndex = Convert.ToInt32(config.Read("Reloj", "Posicion")) - 1;
+            cbSeparadorCampos.Text = config.Read("General", "Separador");
         }
         private void GrabarEnArchivo()
         {
@@ -61,12 +64,15 @@ namespace ZkManagement.Interfaz
             config.Write("Movimientos", "Posicion", (cbPosicionMovimientos.SelectedIndex + 1).ToString());
             config.Write("Fecha", "Formato", comboFormatoFecha.Text);
             config.Write("Fecha", "Posicion", (cbPosicionFecha.SelectedIndex+1).ToString());
+            config.Write("Fecha", "Separador", cbSeparadorFecha.Text);
             config.Write("Hora", "Formato", comboFormatoHora.Text);
             config.Write("Hora", "Posicion", (cbPosicionHora.SelectedIndex + 1).ToString());
+            config.Write("Hora", "Separador", cbSeparadorHora.Text);
             config.Write("Legajo", "Completar", txtCompletarLegajo.Text);
             config.Write("Legajo", "Posicion", (cbPosicionLegajo.SelectedIndex + 1).ToString());
             config.Write("Reloj", "Completar", txtReloj.Text);
             config.Write("Reloj", "Posicion", (cbPosicionReloj.SelectedIndex + 1).ToString());
+            config.Write("General", "Separador", cbSeparadorCampos.Text);
         }
         private void btnClose_Click(object sender, System.EventArgs e)
         {
@@ -163,6 +169,11 @@ namespace ZkManagement.Interfaz
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             ConfigurationManager.GetSection("Registros");
+        }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
