@@ -332,9 +332,9 @@
             // 
             // rtbxLog
             // 
-            this.rtbxLog.Location = new System.Drawing.Point(277, 599);
+            this.rtbxLog.Location = new System.Drawing.Point(265, 595);
             this.rtbxLog.Name = "rtbxLog";
-            this.rtbxLog.Size = new System.Drawing.Size(426, 96);
+            this.rtbxLog.Size = new System.Drawing.Size(453, 96);
             this.rtbxLog.TabIndex = 15;
             this.rtbxLog.Text = "";
             // 

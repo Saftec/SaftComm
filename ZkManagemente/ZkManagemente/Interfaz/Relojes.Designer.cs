@@ -376,7 +376,7 @@
             // 
             this.rtbLog.Location = new System.Drawing.Point(197, 407);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(485, 134);
+            this.rtbLog.Size = new System.Drawing.Size(603, 134);
             this.rtbLog.TabIndex = 12;
             this.rtbLog.Text = "";
             // 

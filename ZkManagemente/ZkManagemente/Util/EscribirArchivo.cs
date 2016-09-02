@@ -15,11 +15,7 @@ namespace ZkManagement.Logica
         {
             string path = cc.GetConfig(2); //Obtengo path de descarga de registros
 
-            string linea;
-            string hora;
-            string tipoMov;
-            string fecha;            
-            string reloj;            
+            string linea, hora, tipoMov, fecha, reloj;         
 
             hora = FormatoHora(horas, minuto);
             fecha = FormatoFecha(año, mes, dia);
@@ -31,8 +27,7 @@ namespace ZkManagement.Logica
             try
             {
                 using (StreamWriter w = File.AppendText(path))
-                  w.WriteLine(linea);
-                
+                  w.WriteLine(linea);                
             }
 
             catch (Exception ex)

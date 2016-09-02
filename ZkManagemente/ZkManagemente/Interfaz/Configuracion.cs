@@ -84,25 +84,24 @@ namespace ZkManagement.Interfaz
             cc = new ControladorConfiguraciones();
             Cursor = Cursors.WaitCursor;
             try
-            {
-                cc.SetConfig(2, txtPathRegs.Text);
+            {                
                 cc.SetConfig(5, txtMinRegs.Text);
                 cc.SetConfig(7, txtMinHs.Text);
                 cc.SetConfig(6, chckActivaHora.Checked.ToString());
-                cc.SetConfig(4, chckActivaReg.Checked.ToString());
-                cc.SetConfig(8, chckActivarFtp.Checked.ToString());
+                cc.SetConfig(4, chckActivaReg.Checked.ToString());               
                 cc.SetConfig(16, chckActivarHorarios.Checked.ToString());
                 cc.SetConfig(14, txtHSDesde.Text);
                 cc.SetConfig(15, txtHSHasta.Text);
-
-                GrabarEnArchivo();
-                base.InformarEvento("Configuraciones guardadas", "Configuraciones");
+                base.InformarEvento("Configuraciones guardadas correctamente", "Configuraciones");
             }
             catch(Exception ex)
             {
                 base.InformarError(ex.Message);
             }
-            Cursor = Cursors.Default;
+            finally
+            {
+                Cursor = Cursors.Default;
+            }            
         }
 
         private void chckActivaReg_CheckedChanged(object sender, EventArgs e)
@@ -173,6 +172,46 @@ namespace ZkManagement.Interfaz
 
         private void label25_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnGuardarFTP_Click(object sender, EventArgs e)
+        {
+            cc = new ControladorConfiguraciones();
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                cc.SetConfig(8, chckActivarFtp.Checked.ToString());
+                InformarEvento("Configuraciones guardadas correctamente", "Guardar Configuraciones");
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnGuardarRegs_Click(object sender, EventArgs e)
+        {
+            cc = new ControladorConfiguraciones();
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                cc.SetConfig(2, txtPathRegs.Text);
+                GrabarEnArchivo();
+                InformarEvento("Configuraciones guardadas correctamente", "Guardar Configuraciones");
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
 
         }
     }

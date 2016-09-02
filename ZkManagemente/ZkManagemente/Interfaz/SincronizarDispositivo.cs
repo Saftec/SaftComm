@@ -22,7 +22,6 @@ namespace ZkManagement.Interfaz
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void SincronizarDispositivo_Load(object sender, EventArgs e)
@@ -30,7 +29,33 @@ namespace ZkManagement.Interfaz
             LlenarComboBox();
             LlenarDgvLocal();
         }
+        private void comboRelojes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
 
+        private void LlenarDgvLocal()
+        {
+            dgvLocal.Rows.Clear();
+            dgvLocal.AutoGenerateColumns = false;
+            ControladorEmpleados ce = new ControladorEmpleados();
+            DataTable empleados = new DataTable();
+            try
+            {
+                empleados = ce.GetEmpleados();
+                dgvLocal.DataSource = empleados;
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+        }
+        private void SincronizarDispositivo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (reloj.Estado) //Lo desconecto sino cuando vuelvo a abrir el form se traba.
+            {
+                reloj.Desconectar();
+            }
+        }
         private void LlenarComboBox()
         {
             ControladorReloj cr = new ControladorReloj();           
@@ -146,6 +171,33 @@ namespace ZkManagement.Interfaz
 
         #endregion
         #region Botones
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            List<string> legajos = new List<string>();
+            try
+            {
+                foreach (DataGridViewRow fila in dgvDispositivo.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        legajos.Add(fila.Cells["Leg"].Value.ToString());
+                    }
+                }
+                //Valido que haya seleccionado al menos 1
+                if (legajos.Count == 0) { throw new AppException("Debe seleccionar al menos 1 usuarios a eliminar"); }
+                //Pregunto si realmente quiere hacer la acción
+                if (MessageBox.Show("Esta seguro que desea eliminar los empleados seleccionados?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                { return; }
+
+                reloj.EliminarUsuarios(legajos);
+                InformarUsuario(legajos.Count.ToString() + " usuarios eliminados correctamente", "Baja de usuarios");
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+        }
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             if (comboRelojes.SelectedIndex == -1)
@@ -217,7 +269,30 @@ namespace ZkManagement.Interfaz
             {
                 InformarError(ex.Message);
             }
-
+        }
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+            if (comboRelojes.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor seleccione un dispositivo", "Error");
+                return;
+            }
+            Cursor = Cursors.WaitCursor;
+            reloj = relojes[comboRelojes.SelectedIndex];
+            try
+            {
+                reloj.Conectar();
+                reloj.Estado = true;
+                labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
         #endregion
         #region Interfaz
@@ -243,34 +318,7 @@ namespace ZkManagement.Interfaz
         }
 
         #endregion
-        private void comboRelojes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void LlenarDgvLocal()
-        {
-            dgvLocal.Rows.Clear();
-            dgvLocal.AutoGenerateColumns = false;
-            ControladorEmpleados ce = new ControladorEmpleados();
-            DataTable empleados = new DataTable();
-            try
-            {
-                empleados = ce.GetEmpleados();
-                dgvLocal.DataSource = empleados;
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message);
-            }
-        }
-        private void SincronizarDispositivo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (reloj.Estado) //Lo desconecto sino cuando vuelvo a abrir el form se traba.
-            {
-                reloj.Desconectar();
-            }
-        }
-
+        #region bakcgroundWorkers
         //BACKGROUND WORKER PARA DESCARGA DE DATOS///
         private void backgroundWorkerSincronizacion_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -292,7 +340,7 @@ namespace ZkManagement.Interfaz
             try
             {                           
                 foreach (DataGridViewRow fila in dgvDispositivo.Rows)
-                {                  
+                {                
                     DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
                     if (Convert.ToBoolean(cellSeleccion.Value))
                     {
@@ -306,10 +354,11 @@ namespace ZkManagement.Interfaz
                         legajos.Add(emp.Legajo);
                     }
                 }
+                if (legajos.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
             }
             catch (Exception ex)
             {
-                InformarError(ex.Message);
+                throw ex;
             }
             //HASTA ACA//
 
@@ -321,7 +370,7 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                InformarError(ex.Message);   
+                throw ex;   
             }
         }
 
@@ -361,6 +410,7 @@ namespace ZkManagement.Interfaz
                         empleados.Add(emp);
                     }
                 }
+                if (empleados.Count == 0) { throw new AppException("Por favor, seleccione al menos 1 empleado"); }
                 ccd.CargarDatos(empleados, reloj);
             }
             catch(Exception ex)
@@ -373,58 +423,6 @@ namespace ZkManagement.Interfaz
         {
             InformarUsuario("Carga de datos finalizada correctamente", "Carga de datos");
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        { 
-            List<string> legajos = new List<string>();
-            try
-            {
-                foreach (DataGridViewRow fila in dgvDispositivo.Rows)
-                {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(cellSeleccion.Value))
-                    {
-                        legajos.Add(fila.Cells["Leg"].Value.ToString());
-                    }
-                }
-                //Valido que haya seleccionado al menos 1
-                if (legajos.Count==0) { throw new AppException("Debe seleccionar al menos 1 usuarios a eliminar");}
-                //Pregunto si realmente quiere hacer la acción
-                if (MessageBox.Show("Esta seguro que desea eliminar los empleados seleccionados?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                { return; }
-
-                reloj.EliminarUsuarios(legajos);
-                InformarUsuario(legajos.Count.ToString() + " usuarios eliminados correctamente", "Baja de usuarios");
-            } 
-            catch(Exception ex)
-            {
-                InformarError(ex.Message);
-            }
-        }
-
-        private void btnConectar_Click(object sender, EventArgs e)
-        {
-            if (comboRelojes.SelectedIndex == -1)
-            {
-                MessageBox.Show("Por favor seleccione un dispositivo", "Error");
-                return;
-            }
-            Cursor = Cursors.WaitCursor;
-            reloj = relojes[comboRelojes.SelectedIndex];
-            try
-            {
-                reloj.Conectar();
-                reloj.Estado = true;
-                labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
-            }
-            catch(Exception ex)
-            {
-                InformarError(ex.Message);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
-        }
+        #endregion
     }
 }

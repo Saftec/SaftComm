@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupArchivos = new System.Windows.Forms.GroupBox();
+            this.cbSeparadorCampos = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.cbSeparadorHora = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -59,7 +60,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPathRegs = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnGuardarRutinas = new System.Windows.Forms.Button();
             this.txtMinRegs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chckActivarHorarios = new System.Windows.Forms.CheckBox();
@@ -86,10 +87,19 @@
             this.txtServidor = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.chckActivarFtp = new System.Windows.Forms.CheckBox();
-            this.cbSeparadorCampos = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnGuardarRegs = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnGuardarFTP = new System.Windows.Forms.Button();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupFtp.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupArchivos
@@ -125,12 +135,29 @@
             this.groupArchivos.Controls.Add(this.label13);
             this.groupArchivos.Controls.Add(this.label1);
             this.groupArchivos.Controls.Add(this.txtPathRegs);
-            this.groupArchivos.Location = new System.Drawing.Point(12, 39);
+            this.groupArchivos.Location = new System.Drawing.Point(121, 26);
             this.groupArchivos.Name = "groupArchivos";
-            this.groupArchivos.Size = new System.Drawing.Size(597, 239);
+            this.groupArchivos.Size = new System.Drawing.Size(628, 241);
             this.groupArchivos.TabIndex = 0;
             this.groupArchivos.TabStop = false;
             this.groupArchivos.Text = "Archivo de Registros";
+            // 
+            // cbSeparadorCampos
+            // 
+            this.cbSeparadorCampos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSeparadorCampos.FormattingEnabled = true;
+            this.cbSeparadorCampos.Items.AddRange(new object[] {
+            "ninguno",
+            ",",
+            ":",
+            ";",
+            "-",
+            "tab",
+            "espacio"});
+            this.cbSeparadorCampos.Location = new System.Drawing.Point(266, 204);
+            this.cbSeparadorCampos.Name = "cbSeparadorCampos";
+            this.cbSeparadorCampos.Size = new System.Drawing.Size(106, 21);
+            this.cbSeparadorCampos.TabIndex = 30;
             // 
             // label27
             // 
@@ -215,6 +242,7 @@
             // txtReloj
             // 
             this.txtReloj.Location = new System.Drawing.Point(394, 169);
+            this.txtReloj.MaxLength = 3;
             this.txtReloj.Name = "txtReloj";
             this.txtReloj.Size = new System.Drawing.Size(56, 22);
             this.txtReloj.TabIndex = 22;
@@ -356,6 +384,7 @@
             // txtCompletarLegajo
             // 
             this.txtCompletarLegajo.Location = new System.Drawing.Point(115, 164);
+            this.txtCompletarLegajo.MaxLength = 3;
             this.txtCompletarLegajo.Name = "txtCompletarLegajo";
             this.txtCompletarLegajo.Size = new System.Drawing.Size(56, 22);
             this.txtCompletarLegajo.TabIndex = 9;
@@ -396,6 +425,7 @@
             // txtCodsalida
             // 
             this.txtCodsalida.Location = new System.Drawing.Point(222, 60);
+            this.txtCodsalida.MaxLength = 10;
             this.txtCodsalida.Name = "txtCodsalida";
             this.txtCodsalida.Size = new System.Drawing.Size(42, 22);
             this.txtCodsalida.TabIndex = 5;
@@ -412,6 +442,7 @@
             // txtCodEntrada
             // 
             this.txtCodEntrada.Location = new System.Drawing.Point(89, 60);
+            this.txtCodEntrada.MaxLength = 10;
             this.txtCodEntrada.Name = "txtCodEntrada";
             this.txtCodEntrada.Size = new System.Drawing.Size(40, 22);
             this.txtCodEntrada.TabIndex = 3;
@@ -437,19 +468,20 @@
             // txtPathRegs
             // 
             this.txtPathRegs.Location = new System.Drawing.Point(104, 21);
+            this.txtPathRegs.MaxLength = 100;
             this.txtPathRegs.Name = "txtPathRegs";
             this.txtPathRegs.Size = new System.Drawing.Size(299, 22);
             this.txtPathRegs.TabIndex = 0;
             // 
-            // btnGuardar
+            // btnGuardarRutinas
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(327, 472);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(140, 30);
-            this.btnGuardar.TabIndex = 2;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardarRutinas.Location = new System.Drawing.Point(355, 345);
+            this.btnGuardarRutinas.Name = "btnGuardarRutinas";
+            this.btnGuardarRutinas.Size = new System.Drawing.Size(140, 33);
+            this.btnGuardarRutinas.TabIndex = 2;
+            this.btnGuardarRutinas.Text = "Guardar";
+            this.btnGuardarRutinas.UseVisualStyleBackColor = true;
+            this.btnGuardarRutinas.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // txtMinRegs
             // 
@@ -475,9 +507,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtMinRegs);
-            this.groupBox1.Location = new System.Drawing.Point(12, 305);
+            this.groupBox1.Location = new System.Drawing.Point(141, 64);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 130);
+            this.groupBox1.Size = new System.Drawing.Size(515, 163);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Automatizacion Rutinas";
@@ -497,6 +529,7 @@
             // 
             this.txtHSHasta.Enabled = false;
             this.txtHSHasta.Location = new System.Drawing.Point(288, 48);
+            this.txtHSHasta.MaxLength = 5;
             this.txtHSHasta.Name = "txtHSHasta";
             this.txtHSHasta.Size = new System.Drawing.Size(43, 22);
             this.txtHSHasta.TabIndex = 15;
@@ -505,6 +538,7 @@
             // 
             this.txtHSDesde.Enabled = false;
             this.txtHSDesde.Location = new System.Drawing.Point(171, 48);
+            this.txtHSDesde.MaxLength = 5;
             this.txtHSDesde.Name = "txtHSDesde";
             this.txtHSDesde.Size = new System.Drawing.Size(43, 22);
             this.txtHSDesde.TabIndex = 14;
@@ -554,6 +588,7 @@
             // 
             this.txtMinHs.Enabled = false;
             this.txtMinHs.Location = new System.Drawing.Point(334, 101);
+            this.txtMinHs.MaxLength = 2;
             this.txtMinHs.Name = "txtMinHs";
             this.txtMinHs.Size = new System.Drawing.Size(38, 22);
             this.txtMinHs.TabIndex = 9;
@@ -607,7 +642,7 @@
             this.groupFtp.Controls.Add(this.txtServidor);
             this.groupFtp.Controls.Add(this.label7);
             this.groupFtp.Enabled = false;
-            this.groupFtp.Location = new System.Drawing.Point(460, 305);
+            this.groupFtp.Location = new System.Drawing.Point(182, 131);
             this.groupFtp.Name = "groupFtp";
             this.groupFtp.Size = new System.Drawing.Size(403, 139);
             this.groupFtp.TabIndex = 5;
@@ -698,7 +733,7 @@
             // chckActivarFtp
             // 
             this.chckActivarFtp.AutoSize = true;
-            this.chckActivarFtp.Location = new System.Drawing.Point(638, 282);
+            this.chckActivarFtp.Location = new System.Drawing.Point(348, 108);
             this.chckActivarFtp.Name = "chckActivarFtp";
             this.chckActivarFtp.Size = new System.Drawing.Size(60, 17);
             this.chckActivarFtp.TabIndex = 0;
@@ -706,51 +741,97 @@
             this.chckActivarFtp.UseVisualStyleBackColor = true;
             this.chckActivarFtp.CheckedChanged += new System.EventHandler(this.chckActivarFtp_CheckedChanged);
             // 
-            // cbSeparadorCampos
+            // tabControl1
             // 
-            this.cbSeparadorCampos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSeparadorCampos.FormattingEnabled = true;
-            this.cbSeparadorCampos.Items.AddRange(new object[] {
-            "ninguno",
-            ",",
-            ":",
-            ";",
-            "-",
-            "tab",
-            "espacio"});
-            this.cbSeparadorCampos.Location = new System.Drawing.Point(266, 204);
-            this.cbSeparadorCampos.Name = "cbSeparadorCampos";
-            this.cbSeparadorCampos.Size = new System.Drawing.Size(106, 21);
-            this.cbSeparadorCampos.TabIndex = 30;
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(0, 47);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(863, 500);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnGuardarRegs);
+            this.tabPage2.Controls.Add(this.groupArchivos);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(855, 474);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Fichero de Registros";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardarRegs
+            // 
+            this.btnGuardarRegs.Location = new System.Drawing.Point(314, 335);
+            this.btnGuardarRegs.Name = "btnGuardarRegs";
+            this.btnGuardarRegs.Size = new System.Drawing.Size(139, 33);
+            this.btnGuardarRegs.TabIndex = 8;
+            this.btnGuardarRegs.Text = "Guardar";
+            this.btnGuardarRegs.UseVisualStyleBackColor = true;
+            this.btnGuardarRegs.Click += new System.EventHandler(this.btnGuardarRegs_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Controls.Add(this.btnGuardarRutinas);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(855, 474);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Rutinas";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnGuardarFTP);
+            this.tabPage1.Controls.Add(this.groupFtp);
+            this.tabPage1.Controls.Add(this.chckActivarFtp);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(855, 474);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Servidor FTP";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardarFTP
+            // 
+            this.btnGuardarFTP.Location = new System.Drawing.Point(316, 332);
+            this.btnGuardarFTP.Name = "btnGuardarFTP";
+            this.btnGuardarFTP.Size = new System.Drawing.Size(139, 33);
+            this.btnGuardarFTP.TabIndex = 6;
+            this.btnGuardarFTP.Text = "Guardar";
+            this.btnGuardarFTP.UseVisualStyleBackColor = true;
+            this.btnGuardarFTP.Click += new System.EventHandler(this.btnGuardarFTP_Click);
             // 
             // Configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
-            this.Controls.Add(this.groupFtp);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.groupArchivos);
-            this.Controls.Add(this.chckActivarFtp);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Configuracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuracion";
             this.Load += new System.EventHandler(this.Configuracion_Load);
+            this.Controls.SetChildIndex(this.tabControl1, 0);
             this.Controls.SetChildIndex(this.btnCerrar, 0);
-            this.Controls.SetChildIndex(this.chckActivarFtp, 0);
-            this.Controls.SetChildIndex(this.groupArchivos, 0);
-            this.Controls.SetChildIndex(this.btnGuardar, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.groupFtp, 0);
             this.groupArchivos.ResumeLayout(false);
             this.groupArchivos.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupFtp.ResumeLayout(false);
             this.groupFtp.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -759,7 +840,7 @@
         private System.Windows.Forms.GroupBox groupArchivos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPathRegs;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnGuardarRutinas;
         private System.Windows.Forms.TextBox txtMinRegs;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtMinHs;
@@ -815,5 +896,11 @@
         private System.Windows.Forms.ComboBox cbSeparadorFecha;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbSeparadorCampos;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnGuardarFTP;
+        private System.Windows.Forms.Button btnGuardarRegs;
     }
 }

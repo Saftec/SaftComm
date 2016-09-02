@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Configuration;
+using System.Runtime.InteropServices;
 using System.Text;
 
 
@@ -7,7 +8,7 @@ namespace ZkManagement.Util
     class Config
     {
         private static Config _config;
-        private string filePath = @"C:\Users\Sergio\Source\Repos\ZkManagement\ZkManagemente\ZkManagemente\bin\Debug\exportar.ini";
+        private string filePath = ConfigurationManager.AppSettings["Path"].ToString() + @"\exportar.ini";
 
         public static Config Instance()  // PATRON SINGLETON!
         {
@@ -32,13 +33,13 @@ namespace ZkManagement.Util
 
         public void Write(string section, string key, string value)
         {
-            WritePrivateProfileString(section, key, value.ToLower(), this.filePath);
+            WritePrivateProfileString(section, key, value.ToLower(), filePath);            
         }
 
         public string Read(string section, string key)
         {
             StringBuilder SB = new StringBuilder(255);
-            int i = GetPrivateProfileString(section, key, "", SB, 255, this.filePath);
+            int i = GetPrivateProfileString(section, key, "", SB, 255, filePath);
             return SB.ToString();
         }
 

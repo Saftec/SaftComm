@@ -297,7 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reloj.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
