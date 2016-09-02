@@ -389,7 +389,7 @@
             // 
             this.btnSinc.Image = global::ZkManagement.Properties.Resources.sinc2;
             this.btnSinc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSinc.Location = new System.Drawing.Point(546, 44);
+            this.btnSinc.Location = new System.Drawing.Point(608, 44);
             this.btnSinc.Name = "btnSinc";
             this.btnSinc.Size = new System.Drawing.Size(136, 23);
             this.btnSinc.TabIndex = 12;

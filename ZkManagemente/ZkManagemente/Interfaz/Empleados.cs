@@ -231,12 +231,16 @@ namespace ZkManagement.Interfaz
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            DataView dv = empleados.DefaultView;
-
-            dv.RowFilter = string.Format("Nombre like '%{0}%'", txtBuscar);
-            dgvEmpleados.DataSource = dv.ToTable();
+            //Filtro el datagridview por Nombre, DNI y Legajo//
+            try
+            {
+                ((DataTable)dgvEmpleados.DataSource).DefaultView.RowFilter = string.Format("Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%'", txtBuscar.Text.Trim().Replace("'", "''"));
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message);
+            }
         }
-
         private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {}
         private void chckTodos_CheckedChanged(object sender, EventArgs e)
@@ -266,6 +270,18 @@ namespace ZkManagement.Interfaz
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            foreach(DataGridViewRow fila in dgvEmpleados.Rows)
+            {
+                if (fila.Cells["Nombre"].Value.ToString() == txtBuscar.Text)
+                {
+                    fila.Selected = true;
+                }
+            }
         }
     }
 }

@@ -2,11 +2,10 @@
 *Background para rutinas.
 
 Empleados:
-*Problemas con valores int en la búsqueda.
 *Treeview para deptos.
 
 Sincronizacion con disp.
 *Agregar progressbar en sincronización con equipos.
 
 Entidad Reloj:
-*Utilizar subida de datos en modo batch.
+*Implementar subida de datos en modo batch.

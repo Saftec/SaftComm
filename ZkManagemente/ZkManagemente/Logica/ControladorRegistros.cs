@@ -14,31 +14,40 @@ namespace ZkManagement.Logica
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         public List<string> AgregarRegis(DataTable regis)
         {
+            EscribirArchivo writer = new EscribirArchivo();
             List<string> desconocidos = new List<string>(); 
            foreach(DataRow fila in regis.Rows)
             {
                 int id;
                 int tipoMov;
                 int reloj;
-                DateTime fecha;
-                reloj = Convert.ToInt32(fila["Reloj"]);
+                int dia, mes, año;
+                int hora, minutos, segundos;
+                string legajo;
+
+                legajo = fila["Legajo"].ToString();
                 try
                 {
-                    id = ce.GetEmpId(fila["Legajo"].ToString());
+                    id = ce.GetEmpId(legajo);
                     if (id < 1)
                     {
                         desconocidos.Add(fila["Legajo"].ToString());
                         break;
                     }
-
-                        fecha = Convert.ToDateTime(fila["Registro"]);
-                        tipoMov = Convert.ToInt32(fila["Tipo"]);
-                        string tipo = "Desconocida"; 
+                    reloj = Convert.ToInt32(fila["Reloj"]);
+                    dia = Convert.ToInt32(fila["Dia"]);
+                    mes = Convert.ToInt32(fila["Mes"]);
+                    año = Convert.ToInt32(fila["Año"]);
+                    hora = Convert.ToInt32(fila["Hora"]);
+                    minutos = Convert.ToInt32(fila["Minutos"]);
+                    segundos = Convert.ToInt32(fila["Segundos"]);
+                    tipoMov = Convert.ToInt32(fila["Tipo"]);
+                    string tipo = "Desconocida"; 
            /*            1-->Salida
                          0-->Entrada
                          4-->Entrada T.E.
                          5-->Salida T.E.        */
-                        switch (tipoMov)
+                    switch (tipoMov)
                         {
                             case 0:
                                 tipo = "Entrada";
@@ -53,7 +62,8 @@ namespace ZkManagement.Logica
                                 tipo = "Salida TE";
                                 break;
                         }
-                            ce.InsertarRegis(id, fecha, tipo , reloj);
+                    writer.EscribirRegistros(reloj, tipoMov, año, mes, dia, hora, minutos, legajo);
+                    ce.InsertarRegis(id, new DateTime(año, mes, dia, hora, minutos, segundos), tipo , reloj);
                 }
                 catch(Exception ex)
                 {
@@ -61,9 +71,9 @@ namespace ZkManagement.Logica
                 }              
             }
             return desconocidos;
-            /* string destino = "Regs-" + (DateTime.Now).ToString("yyyyMMdd-hhMM") + ".txt";
-             SubirArchivoFTP(cc.GetConfig(2), destino);*/
         }
+
+        //Subir archivo a FTP
         public bool SubirArchivoFTP(string origen, string destino)
         {
             string server = cc.GetConfig(9);

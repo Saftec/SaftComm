@@ -222,8 +222,6 @@ namespace ZkManagement.Entidades
             int codError = 0;
             int idwErrorCode = 0;
 
-            EscribirArchivo escritorArchivo = new EscribirArchivo(); 
-
             //Declaro estas 2 variables para controlar que se descargue el total de registros
             int cantRegs = 0;
             int count = 0;
@@ -231,7 +229,12 @@ namespace ZkManagement.Entidades
             //DECLARO DATATABLE PARA ALMACENAR LAS REGISTRACIONES
             DataTable regis = new DataTable();
             DataColumn legajo = regis.Columns.Add("Legajo", typeof(string));
-            regis.Columns.Add("Registro", typeof(DateTime));
+            regis.Columns.Add("Dia", typeof(int));
+            regis.Columns.Add("Mes", typeof(int));
+            regis.Columns.Add("Año", typeof(int));
+            regis.Columns.Add("Hora", typeof(int));
+            regis.Columns.Add("Minutos", typeof(int));
+            regis.Columns.Add("Segundos", typeof(int));
             regis.Columns.Add("Tipo", typeof(String));
             regis.Columns.Add("Reloj", typeof(Int32));
             //HASTA ACA
@@ -244,13 +247,16 @@ namespace ZkManagement.Entidades
                 {
                     DataRow fila = regis.NewRow();
                     fila["Legajo"] = legajoEnReloj;
-                    fila["Registro"] = new DateTime(año, mes, dia, hora, minutos, 00);
+                    fila["Dia"] = dia;
+                    fila["Mes"] = mes;
+                    fila["Año"] = año;
+                    fila["Hora"] = hora;
+                    fila["Minutos"] = minutos;
+                    fila["Segundos"] = segundos;
                     fila["Tipo"] = tipoMov;
                     fila["Reloj"] = Convert.ToInt32(this.Id);
                     regis.Rows.Add(fila);
-
                     count++;
-                    escritorArchivo.EscribirRegistros(this.numero, tipoMov, año, mes, dia, hora, minutos, legajoEnReloj);
                 }
             }
             if (count != cantRegs) { throw new AppException("No se descargo el total de registros"); }
@@ -306,7 +312,7 @@ namespace ZkManagement.Entidades
             base.GetLastError(ref codError);
             if (codError != 0)
             {
-                throw new AppException("Error durante la descarga de datos de usuario, CodErro: " + codError.ToString());
+                throw new AppException("Error durante la descarga de datos de usuario, CodError: " + codError.ToString());
             }
             base.EnableDevice(this.numero, true);
             return usuariosDispositivo;
@@ -314,8 +320,14 @@ namespace ZkManagement.Entidades
 
         public void LeerTodasLasHuellas()
         {
+            int codError = 0;
             base.EnableDevice(this.numero, false);
             base.ReadAllTemplate(this.numero);
+            base.GetLastError(ref codError);
+            if (codError != 0)
+            {
+                throw new AppException("Error durante la lectura de huellas, CodError: " + codError.ToString());
+            }
         }
 
         public List<Huella> ObtenerHuella (string legajo)
