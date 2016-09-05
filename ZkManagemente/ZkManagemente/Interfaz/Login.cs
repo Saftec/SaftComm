@@ -22,7 +22,7 @@ namespace ZkManagement.Interfaz
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
-        {
+        {           
             Usuario usuario = new Usuario();
             cl = new ControladorLogin();
 
@@ -47,7 +47,9 @@ namespace ZkManagement.Interfaz
 
         private void ValidarDatos()
         {
-            if (textContraseña.Text=="" | textUsuario.Text == "") { throw new AppException("Por favor, complete todos los campos"); }
+            Validate validate = new Validate();
+            string[] textos = { textContraseña.Text, textUsuario.Text };
+            if (!validate.IsEmpty(textos)) { throw new AppException("Por favor, complete todos los campos"); }
         }
         private void Login_Load(object sender, EventArgs e)
         {

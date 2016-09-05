@@ -9,6 +9,7 @@
         private string _pin;
         private string _dni;
         private int _privilegio;
+        private int _baja;
 
         //Propiedades//
         public string Nombre
@@ -45,6 +46,11 @@
         {
             get { return _privilegio; }
             set { _privilegio = value; }
+        }
+        public int Baja
+        {
+            get { return _baja; }
+            set { _baja = value; }
         }
 
     }

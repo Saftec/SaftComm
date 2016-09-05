@@ -322,10 +322,9 @@ namespace ZkManagement.Entidades
         {
             int codError = 0;
             base.EnableDevice(this.numero, false);
-            base.ReadAllTemplate(this.numero);
-            base.GetLastError(ref codError);
-            if (codError != 0)
+            if (!base.ReadAllTemplate(this.numero))
             {
+                base.GetLastError(ref codError);
                 throw new AppException("Error durante la lectura de huellas, CodError: " + codError.ToString());
             }
         }
@@ -350,11 +349,11 @@ namespace ZkManagement.Entidades
                     huellas.Add(huella);
                 }
             }
-            base.GetLastError(ref codError);
-            if (codError != 0)
+           // base.GetLastError(ref codError);
+           /* if (codError != 1)
             {
                 throw new AppException("Error al descargar la huella del usuario: " + legajo + ". CodError: " + codError.ToString());
-            }
+            }*/
             base.EnableDevice(this.numero, true);
             return huellas;
         }
@@ -370,16 +369,14 @@ namespace ZkManagement.Entidades
             base.EnableDevice(this.numero, false);
             foreach(Huella h in huellas)
             {
-                base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag ,h.Template.Trim());
+                if(!base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
+                {
+                    base.GetLastError(ref codError);
+                    throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
+                }
             }
             base.RefreshData(this.numero);
-            base.EnableDevice(this.numero, true);
-
-            base.GetLastError(ref codError);
-            if (codError != 0)
-            {
-                throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
-            }            
+            base.EnableDevice(this.numero, true);          
         }
         public void CargarInfoUsuario(List<Empleado> empleados)
         {
@@ -448,6 +445,28 @@ namespace ZkManagement.Entidades
             {
                 throw new AppException("Error al inhabilitar usuario");
             }
+        }
+
+        public void IniciarBatch()
+        {
+            int codError = 0;
+            base.EnableDevice(this.numero, false);
+            if(!base.BeginBatchUpdate(this.numero, 1))
+            {
+                base.GetLastError(ref codError);
+                throw new AppException("Error al intentar iniciar subida en modo batch, CodError= " + codError.ToString());
+            }
+        }
+
+        public void EjecutarBatch()
+        {
+            int codError = 0;
+            if (!base.BatchUpdate(this.numero))
+            {
+                base.GetLastError(ref codError);
+                throw new AppException("Error al intentar ejecutar la subida en modo batch, CodError= " + codError.ToString());
+            }
+            base.EnableDevice(this.numero, true);
         }
         
         private void ActualizarIp()

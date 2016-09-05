@@ -61,6 +61,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnDescargar = new System.Windows.Forms.Button();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.chckBatch = new System.Windows.Forms.CheckBox();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -115,7 +116,7 @@
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(462, 36);
+            this.labelEstado.Location = new System.Drawing.Point(445, 36);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(80, 13);
             this.labelEstado.TabIndex = 3;
@@ -382,11 +383,22 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
+            // chckBatch
+            // 
+            this.chckBatch.AutoSize = true;
+            this.chckBatch.Location = new System.Drawing.Point(415, 559);
+            this.chckBatch.Name = "chckBatch";
+            this.chckBatch.Size = new System.Drawing.Size(128, 17);
+            this.chckBatch.TabIndex = 17;
+            this.chckBatch.Text = "Utilizar Modo Batch";
+            this.chckBatch.UseVisualStyleBackColor = true;
+            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 698);
+            this.Controls.Add(this.chckBatch);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.rtbxLog);
             this.Controls.Add(this.checkTodosLocal);
@@ -448,5 +460,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
+        private System.Windows.Forms.CheckBox chckBatch;
     }
 }

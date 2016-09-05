@@ -40,6 +40,8 @@ namespace ZkManagement.Interfaz
                 txtTarjeta.Text = dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value.ToString();
                 txtPin.Text = dgvEmpleados.CurrentRow.Cells["Pin"].Value.ToString();
                 lblNivel.Text = dgvEmpleados.CurrentRow.Cells["Privilegio"].Value.ToString();
+                if ((Convert.ToInt32(dgvEmpleados.CurrentRow.Cells["Baja"].Value)==1)) { chckBaja.Checked = true; }
+                else { chckBaja.Checked = false; }
             }
         }
 
@@ -140,6 +142,8 @@ namespace ZkManagement.Interfaz
             if (txtPin.Text != null) { empleado.Pin = txtPin.Text; }
             empleado.Tarjeta = txtTarjeta.Text;
             empleado.Privilegio = Convert.ToInt32(lblNivel.Text);
+            if (chckBaja.Checked==true) { empleado.Baja = 1; }
+            else { empleado.Baja = 0; }
             try
             {
                 ce = new ControladorEmpleados();
@@ -177,6 +181,7 @@ namespace ZkManagement.Interfaz
                 ce = new ControladorEmpleados();
                 empleados = ce.GetEmpleados();
                 dgvEmpleados.DataSource = empleados;
+                FiltrarActivos();
                 dgvEmpleados.Refresh();
             }
             catch (Exception ex)
@@ -184,6 +189,17 @@ namespace ZkManagement.Interfaz
                 base.InformarError(ex.Message);
             }
 
+        }
+        private void FiltrarActivos()
+        {
+            try
+            {
+                ((DataTable)dgvEmpleados.DataSource).DefaultView.RowFilter = string.Format("Baja = 0");
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message);
+            }
         }
         private void ActualizarFila(Empleado emp)
         {
@@ -282,6 +298,28 @@ namespace ZkManagement.Interfaz
                     fila.Selected = true;
                 }
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbBajas_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DataTable)dgvEmpleados.DataSource).DefaultView.RowFilter = string.Format("Baja = 1");
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message);
+            }
+        }
+
+        private void rbActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrarActivos();
         }
     }
 }

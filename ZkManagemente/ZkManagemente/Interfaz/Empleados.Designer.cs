@@ -39,6 +39,7 @@
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupEmpleados = new System.Windows.Forms.GroupBox();
+            this.chckBaja = new System.Windows.Forms.CheckBox();
             this.lblNivel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -62,9 +63,13 @@
             this.btnSinc = new System.Windows.Forms.Button();
             this.chckTodos = new System.Windows.Forms.CheckBox();
             this.tvDeptos = new System.Windows.Forms.TreeView();
+            this.rbActivos = new System.Windows.Forms.RadioButton();
+            this.rbBajas = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEmpleados
@@ -166,6 +171,7 @@
             // 
             // groupEmpleados
             // 
+            this.groupEmpleados.Controls.Add(this.chckBaja);
             this.groupEmpleados.Controls.Add(this.lblNivel);
             this.groupEmpleados.Controls.Add(this.label7);
             this.groupEmpleados.Controls.Add(this.btnGuardar);
@@ -187,6 +193,16 @@
             this.groupEmpleados.TabIndex = 3;
             this.groupEmpleados.TabStop = false;
             this.groupEmpleados.Text = "Modificar Empleados";
+            // 
+            // chckBaja
+            // 
+            this.chckBaja.AutoSize = true;
+            this.chckBaja.Location = new System.Drawing.Point(125, 66);
+            this.chckBaja.Name = "chckBaja";
+            this.chckBaja.Size = new System.Drawing.Size(48, 17);
+            this.chckBaja.TabIndex = 16;
+            this.chckBaja.Text = "Baja";
+            this.chckBaja.UseVisualStyleBackColor = true;
             // 
             // lblNivel
             // 
@@ -358,7 +374,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(264, 45);
+            this.txtBuscar.Location = new System.Drawing.Point(305, 44);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(193, 22);
             this.txtBuscar.TabIndex = 9;
@@ -369,7 +385,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(208, 48);
+            this.label2.Location = new System.Drawing.Point(246, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 10;
@@ -378,7 +394,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.search_grande;
-            this.pictureBox1.Location = new System.Drawing.Point(461, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(504, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(23, 26);
             this.pictureBox1.TabIndex = 11;
@@ -411,17 +427,55 @@
             // 
             // tvDeptos
             // 
-            this.tvDeptos.Location = new System.Drawing.Point(12, 90);
+            this.tvDeptos.Location = new System.Drawing.Point(12, 73);
             this.tvDeptos.Name = "tvDeptos";
-            this.tvDeptos.Size = new System.Drawing.Size(75, 163);
+            this.tvDeptos.Size = new System.Drawing.Size(101, 163);
             this.tvDeptos.TabIndex = 14;
             this.tvDeptos.Visible = false;
+            // 
+            // rbActivos
+            // 
+            this.rbActivos.AutoSize = true;
+            this.rbActivos.Checked = true;
+            this.rbActivos.Location = new System.Drawing.Point(9, 37);
+            this.rbActivos.Name = "rbActivos";
+            this.rbActivos.Size = new System.Drawing.Size(61, 17);
+            this.rbActivos.TabIndex = 15;
+            this.rbActivos.TabStop = true;
+            this.rbActivos.Text = "Activos";
+            this.rbActivos.UseVisualStyleBackColor = true;
+            this.rbActivos.CheckedChanged += new System.EventHandler(this.rbActivos_CheckedChanged);
+            // 
+            // rbBajas
+            // 
+            this.rbBajas.AutoSize = true;
+            this.rbBajas.Location = new System.Drawing.Point(9, 16);
+            this.rbBajas.Name = "rbBajas";
+            this.rbBajas.Size = new System.Drawing.Size(64, 17);
+            this.rbBajas.TabIndex = 16;
+            this.rbBajas.TabStop = true;
+            this.rbBajas.Text = "De baja";
+            this.rbBajas.UseVisualStyleBackColor = true;
+            this.rbBajas.CheckedChanged += new System.EventHandler(this.rbBajas_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbBajas);
+            this.groupBox1.Controls.Add(this.rbActivos);
+            this.groupBox1.Location = new System.Drawing.Point(144, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(91, 59);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Empleados";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // Empleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 550);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tvDeptos);
             this.Controls.Add(this.chckTodos);
             this.Controls.Add(this.btnSinc);
@@ -449,10 +503,13 @@
             this.Controls.SetChildIndex(this.btnSinc, 0);
             this.Controls.SetChildIndex(this.chckTodos, 0);
             this.Controls.SetChildIndex(this.tvDeptos, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.groupEmpleados.ResumeLayout(false);
             this.groupEmpleados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,5 +550,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
+        private System.Windows.Forms.RadioButton rbActivos;
+        private System.Windows.Forms.RadioButton rbBajas;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chckBaja;
     }
 }

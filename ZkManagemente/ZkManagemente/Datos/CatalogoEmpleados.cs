@@ -19,7 +19,7 @@ namespace ZkManagement.Datos
             {
                 conn = con.Conectar();
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio,COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado WHERE e.Baja=0 GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.privilegio ORDER BY e.Nombre ASC";                 
+                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
                 SqlCommand cmd = new SqlCommand(consulta,conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(empleados);
@@ -72,7 +72,7 @@ namespace ZkManagement.Datos
             {
                 conn = con.Conectar();
                 SqlCommand cmd = new SqlCommand("UPDATE Empleados SET DNI='"+emp.Dni+"', Legajo='"+emp.Legajo+"', Nombre='"+emp.Nombre+"', Pin='"+emp.Pin+"', Tarjeta='"+emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() +"' WHERE IdEmpleado="+emp.Id.ToString(), conn);
+                    "', Privilegio='" + emp.Privilegio.ToString() +"', Baja='" + emp.Baja.ToString() +"' WHERE IdEmpleado="+emp.Id.ToString(), conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -103,7 +103,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio) Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "')",conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "', '" + emp.Baja + "' )",conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)

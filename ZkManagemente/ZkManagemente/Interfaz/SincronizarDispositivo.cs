@@ -26,6 +26,7 @@ namespace ZkManagement.Interfaz
 
         private void SincronizarDispositivo_Load(object sender, EventArgs e)
         {
+            backgroundWorkerSincronizacion.WorkerReportsProgress = true;
             LlenarComboBox();
             LlenarDgvLocal();
         }
@@ -244,6 +245,7 @@ namespace ZkManagement.Interfaz
 
             try
             {
+                if (chckBatch.Checked == true) { reloj.IniciarBatch(); }
                 LoguearInforme("Iniciando carga de datos");
                 backgroundWorkerCargaDatos.RunWorkerAsync();                
             }
@@ -262,6 +264,7 @@ namespace ZkManagement.Interfaz
             }
             try
             {
+                if(chckBatch.Checked==true) { reloj.IniciarBatch(); }
                 LoguearInforme("Iniciando descarga de datos de usuarios...");
                 backgroundWorkerSincronizacion.RunWorkerAsync();
             }
@@ -334,7 +337,7 @@ namespace ZkManagement.Interfaz
                 Sino-->Agrego.
             *****************************************************/
             
-            List<string> legajos = new List<string>();
+            List<Empleado> emps = new List<Empleado>();
             ControladorDescargaDatos cdd = new ControladorDescargaDatos();
             //DESCARGA DE LA INFO (Sin huellas)
             try
@@ -350,11 +353,15 @@ namespace ZkManagement.Interfaz
                         emp.Pin = fila.Cells["Pin"].Value.ToString();
                         emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
                         emp.Tarjeta = fila.Cells["RFID"].Value.ToString();
-                        cdd.DescargarInfo(emp);
-                        legajos.Add(emp.Legajo);
+                        emp.Baja = 0;
+                        emps.Add(emp);
                     }
+                }              
+                if (emps.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
+                foreach(Empleado e in emps)
+                {
+                    cdd.DescargarInfo(e);
                 }
-                if (legajos.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
             }
             catch (Exception ex)
             {
@@ -385,6 +392,7 @@ namespace ZkManagement.Interfaz
 
         private void backgroundWorkerSincronizacion_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            if(chckBatch.Checked==true) { reloj.EjecutarBatch(); }
             InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
             LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
         }
@@ -421,6 +429,7 @@ namespace ZkManagement.Interfaz
 
         private void backgroundWorkerCargaDatos_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            if (chckBatch.Checked == true) { reloj.EjecutarBatch(); }
             InformarUsuario("Carga de datos finalizada correctamente", "Carga de datos");
         }
         #endregion

@@ -41,9 +41,6 @@ namespace ZkManagement.Interfaz
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            {
-                MessageBox.Show("La dirección IP ingresada no es válida");                
-            }
             cr = new ControladorReloj();
             Reloj r = new Reloj(Convert.ToInt32(txtPuerto.Text), Convert.ToInt32(txtNro.Text), id, txtPsw.Text, txtDns.Text, txtIp.Text, txtNombre.Text);            
             try
