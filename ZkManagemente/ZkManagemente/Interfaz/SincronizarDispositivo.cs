@@ -19,11 +19,6 @@ namespace ZkManagement.Interfaz
         {
             InitializeComponent();
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void SincronizarDispositivo_Load(object sender, EventArgs e)
         {
             backgroundWorkerSincronizacion.WorkerReportsProgress = true;
@@ -31,26 +26,7 @@ namespace ZkManagement.Interfaz
             LlenarComboBox();
             LlenarDgvLocal();
         }
-        private void comboRelojes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
 
-        private void LlenarDgvLocal()
-        {
-            dgvLocal.Rows.Clear();
-            dgvLocal.AutoGenerateColumns = false;
-            ControladorEmpleados ce = new ControladorEmpleados();
-            DataTable empleados = new DataTable();
-            try
-            {
-                empleados = ce.GetEmpleados();
-                dgvLocal.DataSource = empleados;
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message);
-            }
-        }
         private void SincronizarDispositivo_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (reloj.Estado) //Lo desconecto sino cuando vuelvo a abrir el form se traba.
@@ -76,6 +52,22 @@ namespace ZkManagement.Interfaz
             
         }
         #region DataGridView
+        private void LlenarDgvLocal()
+        {
+            dgvLocal.Rows.Clear();
+            dgvLocal.AutoGenerateColumns = false;
+            ControladorEmpleados ce = new ControladorEmpleados();
+            DataTable empleados = new DataTable();
+            try
+            {
+                empleados = ce.GetEmpleados();
+                dgvLocal.DataSource = empleados;
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message);
+            }
+        }
         private void dgvLocal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Como el datagridview tiene la propieda ReadOnly activada, no me permite seleccionar el checkbox.
@@ -441,12 +433,11 @@ namespace ZkManagement.Interfaz
             lblProgreso.Text = "0%";
             LoguearInforme("Se cargaron: " + total.ToString() + " usuarios.");
         }
-        #endregion
-
         private void backgroundWorkerCargaDatos_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             progressBarSinc.Value = e.ProgressPercentage;
             lblProgreso.Text = e.ProgressPercentage.ToString() + "%";
         }
+        #endregion
     }
 }

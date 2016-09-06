@@ -150,9 +150,10 @@ namespace ZkManagement.Logica
         }
 
         private string FormatoReloj(int reloj)
-        {
-            string relojFormateado = reloj.ToString();
+        {         
+            string cadena = config.Read("Reloj", "Cadena");            
             int total = Convert.ToInt32(config.Read("Reloj", "Completar"));
+            string relojFormateado = cadena + reloj.ToString();
             if (total > 0)
             {
                 relojFormateado=reloj.ToString().PadLeft(total, '0');                

@@ -77,7 +77,6 @@
             this.comboRelojes.Name = "comboRelojes";
             this.comboRelojes.Size = new System.Drawing.Size(153, 21);
             this.comboRelojes.TabIndex = 0;
-            this.comboRelojes.SelectedIndexChanged += new System.EventHandler(this.comboRelojes_SelectedIndexChanged);
             // 
             // label1
             // 

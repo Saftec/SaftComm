@@ -55,6 +55,7 @@ namespace ZkManagement.Interfaz
             txtReloj.Text = config.Read("Reloj", "Completar");
             cbPosicionReloj.SelectedIndex = Convert.ToInt32(config.Read("Reloj", "Posicion")) - 1;
             cbSeparadorCampos.Text = config.Read("General", "Separador");
+            txtAnteponer.Text = config.Read("Reloj", "Cadena");
         }
         private void GrabarEnArchivo()
         {
@@ -73,6 +74,7 @@ namespace ZkManagement.Interfaz
             config.Write("Reloj", "Completar", txtReloj.Text);
             config.Write("Reloj", "Posicion", (cbPosicionReloj.SelectedIndex + 1).ToString());
             config.Write("General", "Separador", cbSeparadorCampos.Text);
+            config.Write("Reloj", "Cadena", txtAnteponer.Text);
         }
         private void btnClose_Click(object sender, System.EventArgs e)
         {
@@ -212,6 +214,11 @@ namespace ZkManagement.Interfaz
             {
                 Cursor = Cursors.Default;
             }
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
 
         }
     }

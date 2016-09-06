@@ -4,9 +4,5 @@
 Empleados:
 *Treeview para deptos.
 
-Sincronizacion con disp.
-*Agregar progressbar en sincronización con equipos.
-*Control de errores en background. Tira expcecion pero no funciona el catch.
-
 Entidad Reloj:
 *Implementar subida de datos en modo batch.
