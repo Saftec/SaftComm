@@ -62,6 +62,8 @@
             this.btnDescargar = new System.Windows.Forms.Button();
             this.btnCargar = new System.Windows.Forms.Button();
             this.chckBatch = new System.Windows.Forms.CheckBox();
+            this.progressBarSinc = new System.Windows.Forms.ProgressBar();
+            this.lblProgreso = new System.Windows.Forms.Label();
             this.groupSeleccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDispositivo)).BeginInit();
@@ -342,6 +344,7 @@
             // backgroundWorkerCargaDatos
             // 
             this.backgroundWorkerCargaDatos.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerCargaDatos_DoWork);
+            this.backgroundWorkerCargaDatos.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerCargaDatos_ProgressChanged);
             this.backgroundWorkerCargaDatos.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerCargaDatos_RunWorkerCompleted);
             // 
             // btnEliminar
@@ -393,11 +396,29 @@
             this.chckBatch.Text = "Utilizar Modo Batch";
             this.chckBatch.UseVisualStyleBackColor = true;
             // 
+            // progressBarSinc
+            // 
+            this.progressBarSinc.Location = new System.Drawing.Point(265, 698);
+            this.progressBarSinc.Name = "progressBarSinc";
+            this.progressBarSinc.Size = new System.Drawing.Size(453, 23);
+            this.progressBarSinc.TabIndex = 18;
+            // 
+            // lblProgreso
+            // 
+            this.lblProgreso.AutoSize = true;
+            this.lblProgreso.Location = new System.Drawing.Point(485, 703);
+            this.lblProgreso.Name = "lblProgreso";
+            this.lblProgreso.Size = new System.Drawing.Size(22, 13);
+            this.lblProgreso.TabIndex = 19;
+            this.lblProgreso.Text = "0%";
+            // 
             // SincronizarDispositivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 698);
+            this.ClientSize = new System.Drawing.Size(978, 730);
+            this.Controls.Add(this.lblProgreso);
+            this.Controls.Add(this.progressBarSinc);
             this.Controls.Add(this.chckBatch);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.rtbxLog);
@@ -461,5 +482,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccion;
         private System.Windows.Forms.CheckBox chckBatch;
+        private System.Windows.Forms.ProgressBar progressBarSinc;
+        private System.Windows.Forms.Label lblProgreso;
     }
 }

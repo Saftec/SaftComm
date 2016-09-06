@@ -8,22 +8,19 @@ namespace ZkManagement.Logica
     class ControladorCargaDatos
     {
 
-        public void CargarDatos(List<Empleado> empleados, Reloj reloj)
+        public void CargarDatos(Empleado emp, Reloj reloj)
         {
             CatalogoHuellas ch = new CatalogoHuellas();
             List<Huella> huellas = new List<Huella>();
             try
             {
-                reloj.CargarInfoUsuario(empleados);
-                foreach (Empleado emp in empleados)
-                {
-                    huellas = ch.GetHuellas(emp.Id);
-                    foreach(Huella h in huellas)
+                reloj.CargarInfoUsuario(emp);
+                huellas = ch.GetHuellas(emp.Id);
+                foreach(Huella h in huellas)
                     {
                         h.Legajo = emp.Legajo;
                     }
-                    reloj.AgregarHuellas(huellas);
-                }
+                reloj.AgregarHuellas(huellas);                
                 reloj.ActivarDispositivo();
             }
             catch (Exception ex)

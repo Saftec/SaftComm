@@ -378,12 +378,10 @@ namespace ZkManagement.Entidades
             base.RefreshData(this.numero);
             base.EnableDevice(this.numero, true);          
         }
-        public void CargarInfoUsuario(List<Empleado> empleados)
+        public void CargarInfoUsuario(Empleado emp)
         {
             int codErrror = 0;
             base.EnableDevice(this.numero, false);
-            foreach(Empleado emp in empleados)
-            {
                 if (emp.Tarjeta != null)
                 {
                     base.SetStrCardNumber(emp.Tarjeta.PadLeft(10, '0'));
@@ -403,9 +401,7 @@ namespace ZkManagement.Entidades
                         base.GetLastError(ref codErrror);
                         throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
                     }
-                }
-               
-            }
+                }                           
         }
 
         public void EnviarMensaje(int idSMS, string legajo)  //Se debe indicar el ID al mensaje que DEBE ESTAR guardado en el equipo.

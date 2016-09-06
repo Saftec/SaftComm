@@ -28,7 +28,7 @@ namespace ZkManagement.Logica
                 throw ex;
             }                       
         }
-        public int AgregarHuella(List<string> legajos, Reloj reloj)
+        public int AgregarHuella(Empleado emp, Reloj reloj)
         {
             /*Recibo todos los legajos seleccionados en el dgv junto con el reloj.
              * Por cada legajo obtengo una list con todas las huellas que tenga en el equipo.
@@ -40,26 +40,22 @@ namespace ZkManagement.Logica
             try
             {
                 reloj.LeerTodasLasHuellas();
-                for(int i=0; i<legajos.Count; i++)
+                List<Huella> huellas = new List<Huella>();
+                huellas = reloj.ObtenerHuella(emp.Legajo);
+                total += huellas.Count;
+                foreach (Huella h in huellas)
                 {
-                    List<Huella> huellas = new List<Huella>();
-                    huellas = reloj.ObtenerHuella(legajos[i]);
-                    total += huellas.Count;
-                    foreach(Huella h in huellas)
+                    int id = ce.GetEmpId(h.Legajo);
+                    if (!ch.Existe(h, id))
                     {
-                        int id = ce.GetEmpId(h.Legajo);
-                        if (!ch.Existe(h, id))
-                        {
-                            ch.InsertarHuella(h, id);                            
-                        }
-                        else
-                        {
-                            ch.ActualizarHuella(h, id);
-                        }                     
-                    }                                
-                }
-                reloj.ActivarDispositivo();
-            }
+                        ch.InsertarHuella(h, id);
+                    }
+                    else
+                    {
+                        ch.ActualizarHuella(h, id);
+                    }
+                }                             
+             }
             catch(Exception ex)
             {
                 throw ex;

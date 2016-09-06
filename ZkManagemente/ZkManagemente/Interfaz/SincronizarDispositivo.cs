@@ -27,6 +27,7 @@ namespace ZkManagement.Interfaz
         private void SincronizarDispositivo_Load(object sender, EventArgs e)
         {
             backgroundWorkerSincronizacion.WorkerReportsProgress = true;
+            backgroundWorkerCargaDatos.WorkerReportsProgress = true;
             LlenarComboBox();
             LlenarDgvLocal();
         }
@@ -319,7 +320,27 @@ namespace ZkManagement.Interfaz
             rtbxLog.SelectionColor = Color.Red;
             rtbxLog.AppendText(DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + " " + mensaje + "\n");
         }
-
+        private List<Empleado> ObtenerSeleccionados()
+        {
+            List<Empleado> emps = new List<Empleado>();
+            foreach (DataGridViewRow fila in dgvDispositivo.Rows)
+            {
+                DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(cellSeleccion.Value))
+                {
+                    Empleado emp = new Empleado();
+                    emp.Legajo = fila.Cells["Leg"].Value.ToString();
+                    emp.Nombre = fila.Cells["Nom"].Value.ToString();
+                    emp.Pin = fila.Cells["Pin"].Value.ToString();
+                    emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
+                    emp.Tarjeta = fila.Cells["RFID"].Value.ToString();
+                    emp.Baja = 0;
+                    emps.Add(emp);
+                }
+            }
+            return emps;
+        }
+    
         #endregion
         #region bakcgroundWorkers
         //BACKGROUND WORKER PARA DESCARGA DE DATOS///
@@ -335,65 +356,50 @@ namespace ZkManagement.Interfaz
                 El FI no puede ser mayuor a 10.
                 Si para un empid ya tengo una huella con el mismo FI-->Reemplazo.
                 Sino-->Agrego.
-            *****************************************************/
-            
+            *****************************************************/         
             List<Empleado> emps = new List<Empleado>();
             ControladorDescargaDatos cdd = new ControladorDescargaDatos();
-            //DESCARGA DE LA INFO (Sin huellas)
-            try
-            {                           
-                foreach (DataGridViewRow fila in dgvDispositivo.Rows)
-                {                
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(cellSeleccion.Value))
-                    {
-                        Empleado emp = new Empleado();
-                        emp.Legajo = fila.Cells["Leg"].Value.ToString();
-                        emp.Nombre = fila.Cells["Nom"].Value.ToString();
-                        emp.Pin = fila.Cells["Pin"].Value.ToString();
-                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
-                        emp.Tarjeta = fila.Cells["RFID"].Value.ToString();
-                        emp.Baja = 0;
-                        emps.Add(emp);
-                    }
-                }              
-                if (emps.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
-                foreach(Empleado e in emps)
-                {
-                    cdd.DescargarInfo(e);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            //HASTA ACA//
 
-            //Comienzo la descarga de huellas!
             try
             {
+                emps = ObtenerSeleccionados();                        
+                if (emps.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
                 total = 0;
-                total=cdd.AgregarHuella(legajos, reloj); //LA VARIABLE TOTAL ME INFORMA LA CANTIDAD DE FP DESCARGADAS.
+                foreach(Empleado emp in emps)
+                {
+                    cdd.DescargarInfo(emp);  //Descargo la info del usuario
+                    cdd.AgregarHuella(emp, reloj); //Descargo la huella
+                    total++;
+                    backgroundWorkerSincronizacion.ReportProgress((total * 100) / emps.Count);
+                }
+                reloj.ActivarDispositivo();
+                backgroundWorkerSincronizacion.ReportProgress(100);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;   
+                backgroundWorkerSincronizacion.CancelAsync();
             }
         }
 
-        //ESTE EVENTO NO SE EJECUTA
         private void backgroundWorkerSincronizacion_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            InformarUsuario("Porcentaje:" + e.ProgressPercentage.ToString(), "Prueba");
-            DateTime time = Convert.ToDateTime(e.UserState);
-            rtbxLog.AppendText(time.ToLongTimeString());
-            rtbxLog.AppendText(Environment.NewLine);
+            progressBarSinc.Value = e.ProgressPercentage;
+            lblProgreso.Text = e.ProgressPercentage.ToString() + "%"; 
         }
 
         private void backgroundWorkerSincronizacion_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if(chckBatch.Checked==true) { reloj.EjecutarBatch(); }
-            InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
+          //  if(chckBatch.Checked==true) { reloj.EjecutarBatch(); }
+            if (progressBarSinc.Value < 100)
+            {
+                InformarError("Se produjo un error durante la descarga");                
+            }
+            else
+            {
+                InformarUsuario("Descarga de datos exitosa", "Sincronizacion de datos");
+            }
+            progressBarSinc.Value = 0;
+            lblProgreso.Text = "0%";
             LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
         }
 
@@ -403,35 +409,44 @@ namespace ZkManagement.Interfaz
             ControladorCargaDatos ccd = new ControladorCargaDatos();
             try
             {
-                foreach (DataGridViewRow fila in dgvLocal.Rows)
-                {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(cellSeleccion.Value))
-                    {
-                        Empleado emp = new Empleado();
-                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
-                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
-                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
-                        emp.Pin = fila.Cells["Clave"].Value.ToString();
-                        emp.Tarjeta = fila.Cells["Tarjeta"].Value.ToString();
-                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegios"].Value);
-                        empleados.Add(emp);
-                    }
-                }
+                empleados = ObtenerSeleccionados();
                 if (empleados.Count == 0) { throw new AppException("Por favor, seleccione al menos 1 empleado"); }
-                ccd.CargarDatos(empleados, reloj);
+                total = 0;
+                foreach(Empleado emp in empleados)
+                {
+                    ccd.CargarDatos(emp, reloj);
+                    backgroundWorkerCargaDatos.ReportProgress((total * 100) / empleados.Count);
+                    total++;
+                }
+                backgroundWorkerCargaDatos.ReportProgress(100);                
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw ex;
+                backgroundWorkerCargaDatos.CancelAsync();
             }
         }
 
         private void backgroundWorkerCargaDatos_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (chckBatch.Checked == true) { reloj.EjecutarBatch(); }
-            InformarUsuario("Carga de datos finalizada correctamente", "Carga de datos");
+            // if (chckBatch.Checked == true) { reloj.EjecutarBatch(); }
+            if (progressBarSinc.Value < 100)
+            {
+                InformarError("Se produjo un error durante la carga de datos");
+            }
+            else
+            {
+                InformarUsuario("Carga de datos finalizada correctamente","Carga de datos");
+            }
+            progressBarSinc.Value = 0;
+            lblProgreso.Text = "0%";
+            LoguearInforme("Se cargaron: " + total.ToString() + " usuarios.");
         }
         #endregion
+
+        private void backgroundWorkerCargaDatos_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            progressBarSinc.Value = e.ProgressPercentage;
+            lblProgreso.Text = e.ProgressPercentage.ToString() + "%";
+        }
     }
 }
