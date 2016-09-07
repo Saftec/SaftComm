@@ -252,7 +252,7 @@
             // txtPin
             // 
             this.txtPin.Location = new System.Drawing.Point(547, 32);
-            this.txtPin.MaxLength = 5;
+            this.txtPin.MaxLength = 6;
             this.txtPin.Name = "txtPin";
             this.txtPin.Size = new System.Drawing.Size(100, 22);
             this.txtPin.TabIndex = 11;
@@ -286,7 +286,7 @@
             // txtLegajo
             // 
             this.txtLegajo.Location = new System.Drawing.Point(413, 32);
-            this.txtLegajo.MaxLength = 20;
+            this.txtLegajo.MaxLength = 12;
             this.txtLegajo.Name = "txtLegajo";
             this.txtLegajo.Size = new System.Drawing.Size(79, 22);
             this.txtLegajo.TabIndex = 4;
@@ -320,6 +320,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(59, 32);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(280, 22);
             this.txtNombre.TabIndex = 1;

@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -72,8 +73,16 @@ namespace ZkManagement.Interfaz
 
         private bool ValidarDatos()
         {
-            if (txtContraseña.Text == string.Empty || txtUsuario.Text == string.Empty || comboPermisos.SelectedIndex == -1) { return false; }
-            else { return true; }
+            Validate validate = new Validate();
+            string[] notNull = { txtContraseña.Text, txtUsuario.Text };
+            if (!validate.IsEmpty(notNull) || comboPermisos.SelectedIndex==-1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }            
         }
         #endregion
 

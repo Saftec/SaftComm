@@ -21,7 +21,6 @@ namespace ZkManagement.Logica
                         h.Legajo = emp.Legajo;
                     }
                 reloj.AgregarHuellas(huellas);                
-                reloj.ActivarDispositivo();
             }
             catch (Exception ex)
             {

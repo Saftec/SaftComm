@@ -46,6 +46,7 @@
             // txtServidor
             // 
             this.txtServidor.Location = new System.Drawing.Point(86, 28);
+            this.txtServidor.MaxLength = 500;
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(119, 22);
             this.txtServidor.TabIndex = 0;
@@ -63,6 +64,7 @@
             // txtBase
             // 
             this.txtBase.Location = new System.Drawing.Point(86, 67);
+            this.txtBase.MaxLength = 100;
             this.txtBase.Name = "txtBase";
             this.txtBase.Size = new System.Drawing.Size(119, 22);
             this.txtBase.TabIndex = 2;
@@ -79,6 +81,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Location = new System.Drawing.Point(86, 120);
+            this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(119, 22);
             this.txtUsuario.TabIndex = 4;
@@ -95,6 +98,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(86, 168);
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(119, 22);

@@ -62,6 +62,7 @@
             // textUsuario
             // 
             this.textUsuario.Location = new System.Drawing.Point(83, 52);
+            this.textUsuario.MaxLength = 25;
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.Size = new System.Drawing.Size(186, 20);
             this.textUsuario.TabIndex = 2;
@@ -69,6 +70,7 @@
             // textContraseña
             // 
             this.textContraseña.Location = new System.Drawing.Point(83, 102);
+            this.textContraseña.MaxLength = 30;
             this.textContraseña.Name = "textContraseña";
             this.textContraseña.PasswordChar = '*';
             this.textContraseña.ShortcutsEnabled = false;

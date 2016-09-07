@@ -401,15 +401,31 @@ namespace ZkManagement.Interfaz
             ControladorCargaDatos ccd = new ControladorCargaDatos();
             try
             {
-                empleados = ObtenerSeleccionados();
+                foreach (DataGridViewRow fila in dgvLocal.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
+                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
+                        emp.Pin = fila.Cells["Clave"].Value.ToString();
+                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegios"].Value);
+                        emp.Tarjeta = fila.Cells["Tarjeta"].Value.ToString();
+                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
+                        empleados.Add(emp);
+                    }
+                }
                 if (empleados.Count == 0) { throw new AppException("Por favor, seleccione al menos 1 empleado"); }
                 total = 0;
+                reloj.Deshabilitar();
                 foreach(Empleado emp in empleados)
                 {
                     ccd.CargarDatos(emp, reloj);
                     backgroundWorkerCargaDatos.ReportProgress((total * 100) / empleados.Count);
                     total++;
                 }
+                reloj.ActivarDispositivo();
                 backgroundWorkerCargaDatos.ReportProgress(100);                
             }
             catch(Exception)

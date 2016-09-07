@@ -366,7 +366,6 @@ namespace ZkManagement.Entidades
         {
             int codError = 0;
 
-            base.EnableDevice(this.numero, false);
             foreach(Huella h in huellas)
             {
                 if(!base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
@@ -375,13 +374,11 @@ namespace ZkManagement.Entidades
                     throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
                 }
             }
-            base.RefreshData(this.numero);
-            base.EnableDevice(this.numero, true);          
+            base.RefreshData(this.numero);         
         }
         public void CargarInfoUsuario(Empleado emp)
         {
             int codErrror = 0;
-            base.EnableDevice(this.numero, false);
                 if (emp.Tarjeta != null)
                 {
                     base.SetStrCardNumber(emp.Tarjeta.PadLeft(10, '0'));
@@ -435,12 +432,9 @@ namespace ZkManagement.Entidades
             }
             
         }
-        public void Deshabilitar(string legajo)
+        public void Deshabilitar()
         {
-            if(!base.SSR_EnableUser(this.numero, legajo, false))
-            {
-                throw new AppException("Error al inhabilitar usuario");
-            }
+            base.EnableDevice(this.numero, false);
         }
 
         public void IniciarBatch()
