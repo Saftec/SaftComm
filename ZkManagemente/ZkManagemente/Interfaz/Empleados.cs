@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -47,7 +46,9 @@ namespace ZkManagement.Interfaz
 
         private bool ValidarDatos()
         {
-            if(txtLegajo.Text==string.Empty || txtNombre.Text==string.Empty) { return false; }
+            Validate validate = new Validate();
+            string[] notNulls = { txtLegajo.Text, txtNombre.Text };
+            if(!validate.IsEmpty(notNulls)) { return false; }
             else { return true; }
         }
         private void Editable()
@@ -69,6 +70,7 @@ namespace ZkManagement.Interfaz
             txtTarjeta.Text = "";
         }
         #endregion
+
         #region Botones
         //Botón de sincronización con dispositivo
         private void button1_Click(object sender, EventArgs e)
@@ -115,6 +117,7 @@ namespace ZkManagement.Interfaz
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             empleado.Id = 0;
+            empleado.Baja = 0;
             LimpiarTextBox();
             Editable();
         }
@@ -139,7 +142,8 @@ namespace ZkManagement.Interfaz
             empleado.Dni = txtDNI.Text;
             empleado.Legajo = txtLegajo.Text;
             empleado.Nombre = txtNombre.Text;
-            if (txtPin.Text != null) { empleado.Pin = txtPin.Text; }
+            if (txtPin.Text == string.Empty) { empleado.Pin = "NULL"; }
+            else { empleado.Pin = txtPin.Text; }            
             empleado.Tarjeta = txtTarjeta.Text;
             empleado.Privilegio = Convert.ToInt32(lblNivel.Text);
             if (chckBaja.Checked==true) { empleado.Baja = 1; }
@@ -171,7 +175,27 @@ namespace ZkManagement.Interfaz
             }
         }
         #endregion
+
         #region DataGridView
+        private void chckTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckTodos.Checked == true)
+            {
+                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+                    cellSeleccion.Value = true;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+                    cellSeleccion.Value = false;
+                }
+            }
+        }
         private void DatosDGV()
         {
             dgvEmpleados.DataSource = null;
@@ -207,7 +231,8 @@ namespace ZkManagement.Interfaz
             dgvEmpleados.CurrentRow.Cells["Nombre"].Value = empleado.Nombre;
             dgvEmpleados.CurrentRow.Cells["Tarjeta"].Value = empleado.Tarjeta;
             dgvEmpleados.CurrentRow.Cells["DNI"].Value = empleado.Dni;
-            dgvEmpleados.CurrentRow.Cells["Pin"].Value = empleado.Pin.ToString();
+            if (empleado.Pin == "NULL") { dgvEmpleados.CurrentRow.Cells["Pin"].Value = string.Empty; }
+            else { dgvEmpleados.CurrentRow.Cells["Pin"].Value = empleado.Pin; }                       
             dgvEmpleados.CurrentRow.Cells["Privilegio"].Value = empleado.Privilegio.ToString();
         }
 
@@ -245,6 +270,7 @@ namespace ZkManagement.Interfaz
         }
         #endregion
 
+        //BUSQUEDA//
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             //Filtro el datagridview por Nombre, DNI y Legajo//
@@ -256,53 +282,6 @@ namespace ZkManagement.Interfaz
             {
                 base.InformarError(ex.Message);
             }
-        }
-        private void dgvEmpleados_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {}
-        private void chckTodos_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chckTodos.Checked == true)
-            {
-                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
-                {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
-                    cellSeleccion.Value = true;
-                }
-            }
-            else
-            {
-                foreach (DataGridViewRow fila in dgvEmpleados.Rows)
-                {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
-                    cellSeleccion.Value = false;
-                }
-            }
-        }
-
-        private void CagarTV()
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-            foreach(DataGridViewRow fila in dgvEmpleados.Rows)
-            {
-                if (fila.Cells["Nombre"].Value.ToString() == txtBuscar.Text)
-                {
-                    fila.Selected = true;
-                }
-            }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void rbBajas_CheckedChanged(object sender, EventArgs e)
@@ -320,6 +299,29 @@ namespace ZkManagement.Interfaz
         private void rbActivos_CheckedChanged(object sender, EventArgs e)
         {
             FiltrarActivos();
+        }
+
+        private void dgvEmpleados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
+
+            if (dgvEmpleados.Columns[e.ColumnIndex].Name == "Eliminar")
+            {
+                DataGridViewRow row = dgvEmpleados.Rows[e.RowIndex];
+
+                DataGridViewCheckBoxCell cellSeleccion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+
+                //Verifico si está tildado
+                if (Convert.ToBoolean(cellSeleccion.Value))
+                {
+                    cellSeleccion.Value = false;
+                }
+                else
+                {
+                    cellSeleccion.Value = true;
+                }
+            }
         }
     }
 }

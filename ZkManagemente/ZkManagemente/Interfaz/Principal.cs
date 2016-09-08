@@ -1,17 +1,20 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
 
+
 namespace ZkManagement.Interfaz
 {
-    public partial class btnEmpleados : Form
+    public partial class principal : Form
     {
+        private ILog logger = LogManager.GetLogger("");
         private Relojes relojes;
         private ControladorConfiguraciones cc;
-        public btnEmpleados()
+        public principal()
         {
             InitializeComponent();
         }
@@ -44,43 +47,83 @@ namespace ZkManagement.Interfaz
             }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {         
-            try
-            {
-                relojes = new Relojes();
-                relojes.ShowDialog(this);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         protected override void OnClosed(EventArgs e)
         {
             iconoBandeja.Visible = false;
             Application.Exit(); //CIERRA LA APLICACION POR COMPLETO AL CERRAR EL FORM PRINCIPAL
         }
 
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        #region Menu
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                relojes = new Relojes();
+                relojes.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                MessageBox.Show("Se produjo un error no controlado.");
+            }
         }
-
         private void btnConfig_Click(object sender, EventArgs e)
         {
             Configuracion config = new Configuracion();
-            config.ShowDialog(this);
+            try
+            {
+                config.ShowDialog(this);
+            }
+            catch(Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                MessageBox.Show("Se produjo un error no controlado");
+            }
+            
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             Usuarios usuarios = new Usuarios();
-            usuarios.ShowDialog(this);
+            try
+            {
+                usuarios.ShowDialog(this);
+            }
+            catch(Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                MessageBox.Show("se produjo un error no controlado");
+            }
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Empleados emp = new Empleados();
+            try
+            {
+                emp.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.StackTrace);
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
 
+        #region Timers
+        private void InicializarTimer()
+        {
+            cc = new ControladorConfiguraciones();
+            if (Convert.ToBoolean(cc.GetConfig(4)))
+            {
+                timerRutinaRegs.Enabled = true;
+                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
+            }
+            if (Convert.ToBoolean(cc.GetConfig(6)))
+            {
+                timerRutinaHora.Enabled = true;
+                timerRutinaHora.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
+            }
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!ValidarHora())
@@ -92,22 +135,6 @@ namespace ZkManagement.Interfaz
             relojes.CargarRelojes();
             relojes.RutinaBajarRegistros();
         }
-
-        private void InicializarTimer()
-        {
-            cc = new ControladorConfiguraciones();
-            if (Convert.ToBoolean(cc.GetConfig(4)))
-            {
-                timerRutinaRegs.Enabled = true;
-                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
-            }                             
-            if (Convert.ToBoolean(cc.GetConfig(6)))
-            {
-                timerRutinaHora.Enabled = true;
-                timerRutinaHora.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
-            }            
-        }
-
         private void timerRutinaHora_Tick(object sender, EventArgs e)
         {
             MostrarNotificacionEvento("Ejecutando rutina...", "Rutinas");
@@ -115,24 +142,48 @@ namespace ZkManagement.Interfaz
             relojes.CargarRelojes();
             relojes.RutinaSincronizarHora();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void IniciarReloj()
         {
-            Empleados emp = new Empleados();
-            try
-            {
-                emp.ShowDialog(this);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
+            timerHora.Interval = 1000; //se actualiza cada 1 segundo.
+            timerHora.Enabled = true;
+        }
+        private void timerHora_Tick(object sender, EventArgs e)
+        {
+            toolStriplabelHora.Text = DateTime.Now.ToLongTimeString();
         }
 
-        private void btnEmpleados_FormClosing(object sender, FormClosingEventArgs e)
+        #endregion
+
+        #region Bandeja
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Application.Exit();
         }
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            iconoBandeja.Visible = false;
+        }
+        private void MostrarNotificacionEvento(string mensaje, string titulo)
+        {
+            iconoBandeja.BalloonTipTitle = titulo;
+            iconoBandeja.BalloonTipText = mensaje;
+            iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
+            iconoBandeja.ShowBalloonTip(5000);
+        }
+        private void MostrarNotificacionError(string mensaje, string titulo)
+        {
+            iconoBandeja.BalloonTipTitle = titulo;
+            iconoBandeja.BalloonTipText = mensaje;
+            iconoBandeja.BalloonTipIcon = ToolTipIcon.Error;
+            iconoBandeja.ShowBalloonTip(5000);
+        }
+        private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            iconoBandeja.Visible = false;
+        }
+        #endregion
 
         private void CentrarElementos()
         {
@@ -149,21 +200,6 @@ namespace ZkManagement.Interfaz
             lblUsuario.Left = (this.Width) - (lblUsuario.Width + 50);
             lblVersion.Left = (this.Width) - (lblVersion.Width + 50);
             lblVersionBD.Left = (this.Width) - (lblVersionBD.Width + 50);
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-        }
-
-        private void IniciarReloj()
-        {
-            timerHora.Interval = 1000; //se actualiza cada 1 segundo.
-            timerHora.Enabled = true;
-        }
-        //Este timer es el utilizado para el reloj, se actualiza cada 1 seg.
-        private void timerHora_Tick(object sender, EventArgs e)
-        {
-            toolStriplabelHora.Text = DateTime.Now.ToLongTimeString();
         }
 
         //Devuelve TRUE si está dentro del rango horario de ejecución de la rutina, FALSE de lo contrario.
@@ -195,38 +231,15 @@ namespace ZkManagement.Interfaz
                 return false;
             }                        
         }
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Show();
-            iconoBandeja.Visible = false;
-        }
-
+        //ESTE ES EL EVENTO QUE MINIMIZA LA APP A LA BANDEJA
         private void btnEmpleados_SizeChanged(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState)  //SI MINIZO LA VENTANA, MUESTRO EL ÍCONO DE LA APP EN LA BANDEJA
+            if (FormWindowState.Minimized == WindowState) 
             {
                 this.Hide();
                 iconoBandeja.Visible = true;
                 MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SAFTEC");
             }
-        }
-
-        private void MostrarNotificacionEvento(string mensaje, string titulo)
-        {
-            iconoBandeja.BalloonTipTitle = titulo;
-            iconoBandeja.BalloonTipText = mensaje;
-            iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
-            iconoBandeja.ShowBalloonTip(5000);
-        }
-        private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.Show();
-            iconoBandeja.Visible = false;
         }
     }
 }

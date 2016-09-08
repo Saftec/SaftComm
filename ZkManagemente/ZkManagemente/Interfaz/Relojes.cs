@@ -15,6 +15,7 @@ namespace ZkManagement.Interfaz
         private Reloj reloj = new Reloj(); //Esta instancia la utilizo para ejecutar todas las operaciones.
         private List<Reloj> relojes = new List<Reloj>();
         private ControladorReloj cr;
+        private ILog logger = LogManager.GetLogger("Relojes");
         public Relojes()
         {
             InitializeComponent();            
@@ -29,9 +30,10 @@ namespace ZkManagement.Interfaz
         private Reloj BuscarEquipo(int id)
         {
             Reloj r = new Reloj(id);
-            return (relojes[relojes.IndexOf(r)]);
+            return (relojes[relojes.IndexOf(r)]);  //Puedo realizar la busqueda así porque dentro de Reloj tengo definido un Override a "Equals"
         }
 
+        //Inserta un registro en la tabla borrado//
         private void Borrado(int idReloj, int cant)
         {
             cr = new ControladorReloj();

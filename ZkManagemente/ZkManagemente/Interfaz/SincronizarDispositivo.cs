@@ -51,10 +51,12 @@ namespace ZkManagement.Interfaz
             }
             
         }
+
         #region DataGridView
         private void LlenarDgvLocal()
         {
-            dgvLocal.Rows.Clear();
+            dgvLocal.DataSource = null;
+            dgvLocal.Refresh();
             dgvLocal.AutoGenerateColumns = false;
             ControladorEmpleados ce = new ControladorEmpleados();
             DataTable empleados = new DataTable();
@@ -117,6 +119,8 @@ namespace ZkManagement.Interfaz
         }
         private void LlenarDgvDispositivo()
         {
+            dgvDispositivo.DataSource = null;
+            dgvDispositivo.Refresh();
             dgvDispositivo.AutoGenerateColumns = false;
             dgvDispositivo.DataSource = usuariosEnDisp;
             dgvDispositivo.Refresh();
@@ -164,6 +168,7 @@ namespace ZkManagement.Interfaz
 
 
         #endregion
+
         #region Botones
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -198,6 +203,11 @@ namespace ZkManagement.Interfaz
             {
                 MessageBox.Show("Por favor seleccione un dispositivo", "Error");
                 return;
+            }
+            if (reloj.Estado)
+            {
+                reloj.Desconectar();
+                reloj.Estado = false;
             }
             Cursor = Cursors.WaitCursor;
             reloj = relojes[comboRelojes.SelectedIndex];           
@@ -273,13 +283,18 @@ namespace ZkManagement.Interfaz
                 MessageBox.Show("Por favor seleccione un dispositivo", "Error");
                 return;
             }
+            if (reloj.Estado) //Si hay otro equipo conectado, lo desconecto antes de conectar el seleccionado
+            {
+                reloj.Desconectar();
+                reloj.Estado = false;
+            }
             Cursor = Cursors.WaitCursor;
             reloj = relojes[comboRelojes.SelectedIndex];
             try
             {
                 reloj.Conectar();
                 reloj.Estado = true;
-                labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
+                labelEstado.Text = "Conectado a dispostivo : " + reloj.Nombre;
             }
             catch (Exception ex)
             {
@@ -291,6 +306,7 @@ namespace ZkManagement.Interfaz
             }
         }
         #endregion
+
         #region Interfaz
         private void InformarUsuario(string mensaje, string titulo)
         {
@@ -334,6 +350,7 @@ namespace ZkManagement.Interfaz
         }
     
         #endregion
+
         #region bakcgroundWorkers
         //BACKGROUND WORKER PARA DESCARGA DE DATOS///
         private void backgroundWorkerSincronizacion_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -392,6 +409,7 @@ namespace ZkManagement.Interfaz
             }
             progressBarSinc.Value = 0;
             lblProgreso.Text = "0%";
+            LlenarDgvLocal();
             LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
         }
 
@@ -455,5 +473,7 @@ namespace ZkManagement.Interfaz
             lblProgreso.Text = e.ProgressPercentage.ToString() + "%";
         }
         #endregion
+
+
     }
 }

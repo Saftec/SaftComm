@@ -19,7 +19,7 @@ namespace ZkManagement.Datos
             {
                 conn = con.Conectar();
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
+                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
                 SqlCommand cmd = new SqlCommand(consulta,conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(empleados);
@@ -71,7 +71,7 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Empleados SET DNI='"+emp.Dni+"', Legajo='"+emp.Legajo+"', Nombre='"+emp.Nombre+"', Pin='"+emp.Pin+"', Tarjeta='"+emp.Tarjeta +
+                SqlCommand cmd = new SqlCommand("UPDATE Empleados SET DNI='"+emp.Dni+"', Legajo='"+emp.Legajo+"', Nombre='"+emp.Nombre+"', Pin="+emp.Pin+", Tarjeta='"+emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() +"', Baja='" + emp.Baja.ToString() +"' WHERE IdEmpleado="+emp.Id.ToString(), conn);
                 cmd.ExecuteNonQuery();
             }

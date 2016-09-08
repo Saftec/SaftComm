@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
-            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupEmpleados = new System.Windows.Forms.GroupBox();
             this.chckBaja = new System.Windows.Forms.CheckBox();
             this.lblNivel = new System.Windows.Forms.Label();
@@ -66,6 +57,16 @@
             this.rbActivos = new System.Windows.Forms.RadioButton();
             this.rbBajas = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Baja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.groupEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,6 +88,7 @@
             this.Privilegio,
             this.Cant,
             this.Eliminar,
+            this.Baja,
             this.EmpId});
             this.dgvEmpleados.Location = new System.Drawing.Point(119, 73);
             this.dgvEmpleados.MultiSelect = false;
@@ -95,79 +97,8 @@
             this.dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpleados.Size = new System.Drawing.Size(705, 271);
             this.dgvEmpleados.TabIndex = 1;
-            this.dgvEmpleados.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpleados_ColumnHeaderMouseClick);
+            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick_1);
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged_1);
-            // 
-            // Legajo
-            // 
-            this.Legajo.DataPropertyName = "Legajo";
-            this.Legajo.HeaderText = "Legajo";
-            this.Legajo.Name = "Legajo";
-            this.Legajo.ReadOnly = true;
-            this.Legajo.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.FillWeight = 150F;
-            this.Nombre.HeaderText = "Nombre y Apellido";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 150;
-            // 
-            // Tarjeta
-            // 
-            this.Tarjeta.DataPropertyName = "Tarjeta";
-            this.Tarjeta.HeaderText = "Tarjeta";
-            this.Tarjeta.Name = "Tarjeta";
-            this.Tarjeta.ReadOnly = true;
-            // 
-            // DNI
-            // 
-            this.DNI.DataPropertyName = "DNI";
-            this.DNI.HeaderText = "DNI";
-            this.DNI.Name = "DNI";
-            this.DNI.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            this.Pin.Width = 50;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegio";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
-            // 
-            // Cant
-            // 
-            this.Cant.DataPropertyName = "Cant";
-            this.Cant.HeaderText = "Cant. Huellas";
-            this.Cant.Name = "Cant";
-            this.Cant.ReadOnly = true;
-            this.Cant.Width = 50;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.DataPropertyName = "(ninguno)";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Width = 89;
-            // 
-            // EmpId
-            // 
-            this.EmpId.DataPropertyName = "IdEmpleado";
-            this.EmpId.HeaderText = "EmpId";
-            this.EmpId.Name = "EmpId";
-            this.EmpId.ReadOnly = true;
-            this.EmpId.Visible = false;
             // 
             // groupEmpleados
             // 
@@ -197,7 +128,7 @@
             // chckBaja
             // 
             this.chckBaja.AutoSize = true;
-            this.chckBaja.Location = new System.Drawing.Point(125, 66);
+            this.chckBaja.Location = new System.Drawing.Point(214, 63);
             this.chckBaja.Name = "chckBaja";
             this.chckBaja.Size = new System.Drawing.Size(48, 17);
             this.chckBaja.TabIndex = 16;
@@ -400,7 +331,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(23, 26);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnSinc
             // 
@@ -418,7 +348,7 @@
             // chckTodos
             // 
             this.chckTodos.AutoSize = true;
-            this.chckTodos.Location = new System.Drawing.Point(768, 50);
+            this.chckTodos.Location = new System.Drawing.Point(770, 51);
             this.chckTodos.Name = "chckTodos";
             this.chckTodos.Size = new System.Drawing.Size(56, 17);
             this.chckTodos.TabIndex = 13;
@@ -430,7 +360,7 @@
             // 
             this.tvDeptos.Location = new System.Drawing.Point(12, 73);
             this.tvDeptos.Name = "tvDeptos";
-            this.tvDeptos.Size = new System.Drawing.Size(101, 163);
+            this.tvDeptos.Size = new System.Drawing.Size(101, 271);
             this.tvDeptos.TabIndex = 14;
             this.tvDeptos.Visible = false;
             // 
@@ -438,7 +368,7 @@
             // 
             this.rbActivos.AutoSize = true;
             this.rbActivos.Checked = true;
-            this.rbActivos.Location = new System.Drawing.Point(9, 37);
+            this.rbActivos.Location = new System.Drawing.Point(6, 15);
             this.rbActivos.Name = "rbActivos";
             this.rbActivos.Size = new System.Drawing.Size(61, 17);
             this.rbActivos.TabIndex = 15;
@@ -450,7 +380,7 @@
             // rbBajas
             // 
             this.rbBajas.AutoSize = true;
-            this.rbBajas.Location = new System.Drawing.Point(9, 16);
+            this.rbBajas.Location = new System.Drawing.Point(6, 35);
             this.rbBajas.Name = "rbBajas";
             this.rbBajas.Size = new System.Drawing.Size(64, 17);
             this.rbBajas.TabIndex = 16;
@@ -469,7 +399,85 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Empleados";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // Legajo
+            // 
+            this.Legajo.DataPropertyName = "Legajo";
+            this.Legajo.HeaderText = "Legajo";
+            this.Legajo.Name = "Legajo";
+            this.Legajo.ReadOnly = true;
+            this.Legajo.Width = 75;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.FillWeight = 150F;
+            this.Nombre.HeaderText = "Nombre y Apellido";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 150;
+            // 
+            // Tarjeta
+            // 
+            this.Tarjeta.DataPropertyName = "Tarjeta";
+            this.Tarjeta.HeaderText = "Tarjeta";
+            this.Tarjeta.Name = "Tarjeta";
+            this.Tarjeta.ReadOnly = true;
+            // 
+            // DNI
+            // 
+            this.DNI.DataPropertyName = "DNI";
+            this.DNI.HeaderText = "DNI";
+            this.DNI.Name = "DNI";
+            this.DNI.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            this.Pin.Width = 50;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegio";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            this.Privilegio.Width = 50;
+            // 
+            // Cant
+            // 
+            this.Cant.DataPropertyName = "Cant";
+            this.Cant.HeaderText = "Cant. Huellas";
+            this.Cant.Name = "Cant";
+            this.Cant.ReadOnly = true;
+            this.Cant.Width = 50;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.DataPropertyName = "(ninguno)";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 89;
+            // 
+            // Baja
+            // 
+            this.Baja.DataPropertyName = "Baja";
+            this.Baja.HeaderText = "Baja";
+            this.Baja.Name = "Baja";
+            this.Baja.ReadOnly = true;
+            this.Baja.Visible = false;
+            // 
+            // EmpId
+            // 
+            this.EmpId.DataPropertyName = "IdEmpleado";
+            this.EmpId.HeaderText = "EmpId";
+            this.EmpId.Name = "EmpId";
+            this.EmpId.ReadOnly = true;
+            this.EmpId.Visible = false;
             // 
             // Empleados
             // 
@@ -542,6 +550,10 @@
         private System.Windows.Forms.Label lblNivel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TreeView tvDeptos;
+        private System.Windows.Forms.RadioButton rbActivos;
+        private System.Windows.Forms.RadioButton rbBajas;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chckBaja;
         private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
@@ -550,10 +562,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Privilegio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Baja;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmpId;
-        private System.Windows.Forms.RadioButton rbActivos;
-        private System.Windows.Forms.RadioButton rbBajas;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chckBaja;
     }
 }

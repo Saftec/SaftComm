@@ -73,7 +73,7 @@
             // 
             this.comboRelojes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRelojes.FormattingEnabled = true;
-            this.comboRelojes.Location = new System.Drawing.Point(102, 33);
+            this.comboRelojes.Location = new System.Drawing.Point(102, 21);
             this.comboRelojes.Name = "comboRelojes";
             this.comboRelojes.Size = new System.Drawing.Size(153, 21);
             this.comboRelojes.TabIndex = 0;
@@ -81,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 36);
+            this.label1.Location = new System.Drawing.Point(29, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 1;
@@ -94,9 +94,9 @@
             this.groupSeleccion.Controls.Add(this.comboRelojes);
             this.groupSeleccion.Controls.Add(this.btnMostrar);
             this.groupSeleccion.Controls.Add(this.label1);
-            this.groupSeleccion.Location = new System.Drawing.Point(227, 14);
+            this.groupSeleccion.Location = new System.Drawing.Point(207, 14);
             this.groupSeleccion.Name = "groupSeleccion";
-            this.groupSeleccion.Size = new System.Drawing.Size(631, 80);
+            this.groupSeleccion.Size = new System.Drawing.Size(651, 80);
             this.groupSeleccion.TabIndex = 3;
             this.groupSeleccion.TabStop = false;
             this.groupSeleccion.Text = "Seleccionar Dispositivo";
@@ -105,7 +105,7 @@
             // 
             this.btnConectar.Image = global::ZkManagement.Properties.Resources.connect;
             this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConectar.Location = new System.Drawing.Point(278, 48);
+            this.btnConectar.Location = new System.Drawing.Point(298, 48);
             this.btnConectar.Name = "btnConectar";
             this.btnConectar.Size = new System.Drawing.Size(118, 23);
             this.btnConectar.TabIndex = 4;
@@ -117,7 +117,7 @@
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(445, 36);
+            this.labelEstado.Location = new System.Drawing.Point(102, 53);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(80, 13);
             this.labelEstado.TabIndex = 3;
@@ -127,7 +127,7 @@
             // 
             this.btnMostrar.Image = global::ZkManagement.Properties.Resources.view;
             this.btnMostrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMostrar.Location = new System.Drawing.Point(278, 19);
+            this.btnMostrar.Location = new System.Drawing.Point(298, 19);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(118, 23);
             this.btnMostrar.TabIndex = 2;
