@@ -1,6 +1,6 @@
 ﻿namespace ZkManagement.Interfaz
 {
-    partial class principal
+    partial class Principal
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(principal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblVersionBD = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
@@ -59,7 +58,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblVersionBD);
             this.panel1.Controls.Add(this.lblUsuario);
             this.panel1.Controls.Add(this.lblVersion);
             this.panel1.Controls.Add(this.panelMenu);
@@ -69,22 +67,12 @@
             this.panel1.Size = new System.Drawing.Size(1048, 78);
             this.panel1.TabIndex = 0;
             // 
-            // lblVersionBD
-            // 
-            this.lblVersionBD.AutoSize = true;
-            this.lblVersionBD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersionBD.Location = new System.Drawing.Point(954, 26);
-            this.lblVersionBD.Name = "lblVersionBD";
-            this.lblVersionBD.Size = new System.Drawing.Size(57, 13);
-            this.lblVersionBD.TabIndex = 3;
-            this.lblVersionBD.Text = "VersionBD";
-            // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Lucida Sans Unicode", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblUsuario.Location = new System.Drawing.Point(916, 43);
+            this.lblUsuario.Location = new System.Drawing.Point(915, 27);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(56, 15);
             this.lblUsuario.TabIndex = 2;
@@ -239,7 +227,7 @@
             // 
             this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
             // 
-            // principal
+            // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -248,7 +236,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "principal";
+            this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -283,7 +271,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStriplabelHora;
         private System.Windows.Forms.Timer timerHora;
-        private System.Windows.Forms.Label lblVersionBD;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;

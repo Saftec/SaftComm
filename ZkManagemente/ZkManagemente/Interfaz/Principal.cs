@@ -9,12 +9,12 @@ using ZkManagement.Logica;
 
 namespace ZkManagement.Interfaz
 {
-    public partial class principal : Form
+    public partial class Principal : Form
     {
         private ILog logger = LogManager.GetLogger("");
         private Relojes relojes;
-        private ControladorConfiguraciones cc;
-        public principal()
+        private ControladorConfigRutinas ccr;
+        public Principal()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace ZkManagement.Interfaz
         private void Principal_Load(object sender, EventArgs e)
         {
             IniciarReloj();
-            InicializarTimer();
+            InicializarTimers();
             CentrarElementos();
             iconoBandeja.Visible = false;
         }
@@ -31,13 +31,11 @@ namespace ZkManagement.Interfaz
             /* Si es operador sólo puede utilizar la pestaña empleados y relojes.
              * Si es supervisor puede acceder a la pantalla de configuraciones.
              * El administrador es el UNICO que puede acceder a los usuarios.
-             */
-            cc = new ControladorConfiguraciones();
+             */            
             try
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
                 lblVersion.Text = "Version: " + ConfigurationManager.AppSettings["Version"].ToString();
-                lblVersionBD.Text = "Version BD: " + cc.GetConfig(1);
                 if (usuario.Nivel <= 2) { btnConfig.Enabled = true; }
                 if (usuario.Nivel == 1) { btnUsuarios.Enabled = true; }
             }
@@ -110,18 +108,18 @@ namespace ZkManagement.Interfaz
         #endregion
 
         #region Timers
-        private void InicializarTimer()
+        public void InicializarTimers()
         {
-            cc = new ControladorConfiguraciones();
-            if (Convert.ToBoolean(cc.GetConfig(4)))
+            ccr = new ControladorConfigRutinas();
+            if (Convert.ToBoolean(ccr.GetConfig(4)))
             {
                 timerRutinaRegs.Enabled = true;
-                timerRutinaRegs.Interval = Convert.ToInt32(cc.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
+                timerRutinaRegs.Interval = Convert.ToInt32(ccr.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
             }
-            if (Convert.ToBoolean(cc.GetConfig(6)))
+            if (Convert.ToBoolean(ccr.GetConfig(6)))
             {
                 timerRutinaHora.Enabled = true;
-                timerRutinaHora.Interval = Convert.ToInt32(cc.GetConfig(7)) * 60000;
+                timerRutinaHora.Interval = Convert.ToInt32(ccr.GetConfig(7)) * 60000;
             }
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -210,12 +208,12 @@ namespace ZkManagement.Interfaz
             cc = new ControladorConfiguraciones();
             try
             {
-                if (!Convert.ToBoolean(cc.GetConfig(16))) //Si no está activado el rango de horario devuelvo false.
+                if (!Convert.ToBoolean(ccr.GetConfig(10))) //Si no está activado el rango de horario devuelvo false.
                 {
                     return false;
                 }
-                horaInicio = DateTime.ParseExact(cc.GetConfig(14), "HH:mm", CultureInfo.CurrentCulture);
-                horaFin = DateTime.ParseExact(cc.GetConfig(15), "HH:mm", CultureInfo.CurrentCulture);
+                horaInicio = DateTime.ParseExact(ccr.GetConfig(8), "HH:mm", CultureInfo.CurrentCulture);
+                horaFin = DateTime.ParseExact(ccr.GetConfig(9), "HH:mm", CultureInfo.CurrentCulture);
                 if (horaInicio<DateTime.Now && horaFin > DateTime.Now)
                 {
                     return true;
