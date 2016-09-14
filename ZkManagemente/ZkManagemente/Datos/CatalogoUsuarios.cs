@@ -1,5 +1,4 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
@@ -11,7 +10,6 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
-        private ILog logger = LogManager.GetLogger("");
         public Usuario GetUsuario(Usuario usuario)
         {
             Usuario usr = new Usuario();
@@ -34,12 +32,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar datos de usuario");
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);            
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);            
                throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
@@ -59,12 +57,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar los datos de usuario");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                throw new Exception("Error desconocido al consultar los datos de usuario");
             }
             conn.Close();
@@ -76,17 +74,17 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO (Usuario, Password, IdPermisos) Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')", conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar dar de alta el empelado");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar dar de alta el empelado");
             }
             conn.Close();
@@ -102,12 +100,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar modificar usuario");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar modificar usuario");
             }
             conn.Close();
@@ -123,12 +121,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar el usuario");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el usuario");
             }
             conn.Close();

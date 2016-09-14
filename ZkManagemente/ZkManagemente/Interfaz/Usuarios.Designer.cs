@@ -66,7 +66,7 @@
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(449, 150);
+            this.dgvUsuarios.Size = new System.Drawing.Size(449, 189);
             this.dgvUsuarios.TabIndex = 1;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             this.dgvUsuarios.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
@@ -114,7 +114,7 @@
             this.btnEliminar.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = global::ZkManagement.Properties.Resources.delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(512, 275);
+            this.btnEliminar.Location = new System.Drawing.Point(528, 323);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(111, 35);
             this.btnEliminar.TabIndex = 4;
@@ -129,7 +129,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = global::ZkManagement.Properties.Resources.edit;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditar.Location = new System.Drawing.Point(238, 275);
+            this.btnEditar.Location = new System.Drawing.Point(228, 323);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(111, 35);
             this.btnEditar.TabIndex = 3;
@@ -157,7 +157,7 @@
             this.groupModificar.Controls.Add(this.label2);
             this.groupModificar.Controls.Add(this.label1);
             this.groupModificar.Controls.Add(this.txtUsuario);
-            this.groupModificar.Location = new System.Drawing.Point(179, 328);
+            this.groupModificar.Location = new System.Drawing.Point(178, 375);
             this.groupModificar.Name = "groupModificar";
             this.groupModificar.Size = new System.Drawing.Size(503, 185);
             this.groupModificar.TabIndex = 4;
@@ -248,7 +248,7 @@
             this.btnNuevo.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.Image = global::ZkManagement.Properties.Resources.new1;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(376, 275);
+            this.btnNuevo.Location = new System.Drawing.Point(374, 323);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(111, 35);
             this.btnNuevo.TabIndex = 5;
@@ -262,7 +262,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(875, 550);
+            this.ClientSize = new System.Drawing.Size(900, 650);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);

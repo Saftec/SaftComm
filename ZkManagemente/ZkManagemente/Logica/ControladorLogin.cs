@@ -1,5 +1,4 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Data;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
@@ -13,7 +12,6 @@ namespace ZkManagement.Logica
     {        
         private CatalogoUsuarios cu = new CatalogoUsuarios();
         private static Usuario usr = new Usuario(); //---->La uso como variable de sesión
-        private ILog logger = LogManager.GetLogger("");
         public void ValidarUsuario(Usuario usuario)
         {                       
             try
@@ -23,8 +21,8 @@ namespace ZkManagement.Logica
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
                 Principal ppal = new Principal();
-                logger.Info("-----------------------------------------------------------------\n");
-                logger.Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
+                Logger.GetInfoLogger().Info("-----------------------------------------------------------------\n");
+                Logger.GetInfoLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
                 ppal.SetPermisos(usr);
                 ppal.Show();                               
             }
@@ -33,60 +31,6 @@ namespace ZkManagement.Logica
                 throw ex;
             }
         }
-
-        public DataTable GetUsuarios()
-        {
-            DataTable usuarios = new DataTable();
-            try
-            {
-                usuarios = cu.GetUsuarios();
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            return usuarios;
-        }
-
-        public void ModificarUsuario(Usuario usuario)
-        {
-            if (usuario.Id==0)
-            {
-                try
-                {
-                    cu.AltaUsuario(usuario);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            else
-            {
-                try
-                {
-                    cu.ModifUsuario(usuario);
-                }
-                catch(Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            
-        }
-
-        public void EliminarUsuario(Usuario usuario)
-        {
-            try
-            {
-                cu.EliminarUsuario(usuario);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public bool CheckConexion()
         {
             Conexion con = new Conexion();

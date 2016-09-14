@@ -141,6 +141,7 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\ControladorABMUsuarios.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
     <Compile Include="Util\Config.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AppException.cs" />
+    <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\Validate.cs" />
     <EmbeddedResource Include="Interfaz\AbmReloj.resx">
       <DependentUpon>AbmReloj.cs</DependentUpon>

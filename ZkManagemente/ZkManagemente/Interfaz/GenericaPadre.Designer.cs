@@ -34,7 +34,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Image = global::ZkManagement.Properties.Resources.cerrar;
-            this.btnCerrar.Location = new System.Drawing.Point(834, 1);
+            this.btnCerrar.Location = new System.Drawing.Point(860, 0);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(40, 40);
             this.btnCerrar.TabIndex = 1;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 550);
+            this.ClientSize = new System.Drawing.Size(900, 650);
             this.Controls.Add(this.btnCerrar);
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

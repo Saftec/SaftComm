@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
-using log4net;
 using System.Collections.Generic;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -10,7 +10,6 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
-        private ILog logger = LogManager.GetLogger("");
 
         public void InsertarHuella(Huella h, int id)
         {
@@ -22,13 +21,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
-                throw (sqlEx);
-              //  throw new Exception("Error al insertar registros en la tabla huellas");
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                throw new Exception("Error al insertar registros en la tabla huellas");
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar en la tabla huellas");
             }
             finally
@@ -57,12 +55,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar la tabla de huellas");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar la tabla huellas");
             }
             finally
@@ -82,12 +80,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al actualizar la tabla de huellas");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla huellas");
             }
             finally
@@ -115,12 +113,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar la tabla huellas");
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla huellas");
             }
             finally
@@ -140,12 +138,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar las huellas");
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error no controlado al intentar eliminar las huellas");
             }
             finally

@@ -1,17 +1,13 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
-using ZkManagement.Logica;
 using ZkManagement.Util;
 
 namespace ZkManagement.Entidades
 {
     public class Reloj : zkemkeeper.CZKEMClass
     {
-        private ILog logger = LogManager.GetLogger(string.Empty);
-
         private int puerto;
         private int numero;
         private int id;
@@ -333,7 +329,6 @@ namespace ZkManagement.Entidades
         {
             /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
              * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
-            int codError = 0;
             int tmpLenght = 0;
             int flag = 0;
             string template = string.Empty;
@@ -478,7 +473,7 @@ namespace ZkManagement.Entidades
                 }
                 catch(Exception ex)
                 {
-                    logger.Fatal(ex.StackTrace);
+                    Logger.GetErrorLogger().Fatal(ex.StackTrace);
                     throw new Exception("Error al consultar la ip del host DNS");
                 }
 

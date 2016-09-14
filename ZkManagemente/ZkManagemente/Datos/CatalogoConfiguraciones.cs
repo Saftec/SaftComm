@@ -1,6 +1,6 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Data.SqlClient;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -8,28 +8,30 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
-        private ILog logger = LogManager.GetLogger("CatalogoConfiguraciones");
 
         public string GetConfig(int id)
         {         
             string valor;
+            SqlCommand cmd;
+            SqlDataReader dr;
             try
             {
+                                
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString(),conn);
-                SqlDataReader dr = cmd.ExecuteReader();
+                cmd = new SqlCommand("SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString(),conn);
+                dr = cmd.ExecuteReader();
                 dr.Read();
                 valor = dr["Valor"].ToString();
                 dr.Close();
             }
             catch(SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx);
                 throw new Exception("Error al consulta el valor de configuracion: " + id.ToString());
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
             }
             finally
@@ -49,12 +51,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al actualizar la tabla configuracion");
             }
             catch(Exception ex)
             {
-                logger.Error(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla configuracion");
             }
             finally

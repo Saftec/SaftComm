@@ -6,6 +6,3 @@ Empleados:
 
 Entidad Reloj:
 *Implementar subida de datos en modo batch.
-
-Configuraciones:
-*Actualizar los timers luego de modificar las configs.

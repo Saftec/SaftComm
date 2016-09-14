@@ -1,13 +1,12 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
     class Conexion
     {
-        ILog logger = LogManager.GetLogger("Conexion.cs");
         public SqlConnection Conectar()
         {         
             SqlConnection conn = new SqlConnection();
@@ -18,12 +17,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {               
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw sqlex;
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw ex;
             }
             return conn;
@@ -39,7 +38,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al conectar con la base de datos");
             }
             if (conn.State==System.Data.ConnectionState.Open) { return true; }

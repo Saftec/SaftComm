@@ -1,8 +1,8 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -10,7 +10,6 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
-        private ILog logger = LogManager.GetLogger("");
 
         public DataTable Empleados()
         {
@@ -27,12 +26,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar consultar los datos de los empleados");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar los datos de los empleados");
             }
             finally
@@ -52,12 +51,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar eliminar empleado de la base de datos");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el empleado");
             }
             finally
@@ -77,7 +76,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
                 if (sqlEx.Number == 2627)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -89,7 +88,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del empleado");
             }
             finally
@@ -103,12 +102,12 @@ namespace ZkManagement.Datos
             try
             {
                 conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" +emp.Nombre +"', '"+emp.Pin.ToString()+"', '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "', '" + emp.Baja + "' )",conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" +emp.Nombre +"', "+emp.Pin.ToString()+", '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )",conn);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
             {
-                logger.Error(sqlEx.StackTrace);
+                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
                 if (sqlEx.Number == 2601)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -120,7 +119,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar agregar el empleado");
             }
             finally
@@ -145,12 +144,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar consultar la tabla empleados");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla empleados");
             }
             finally
@@ -170,12 +169,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar insertar en la tabla registros");
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla registros");
             }
             finally

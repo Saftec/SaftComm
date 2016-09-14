@@ -1,8 +1,8 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
@@ -10,7 +10,6 @@ namespace ZkManagement.Datos
     {
         private Conexion con = new Conexion();
         private SqlConnection conn = new SqlConnection();
-        private ILog logger = LogManager.GetLogger("");
         public List<Reloj> GetRelojes()
         {
             List<Reloj> relojes = new List<Reloj>();
@@ -35,12 +34,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar datos de los relojes");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar datos de los relojes");
             }
             conn.Close();
@@ -57,7 +56,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 if (sqlex.Number == 2627)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -69,7 +68,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar agregar el reloj");
             }
             conn.Close();
@@ -85,7 +84,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 if (sqlex.Number == 2601)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -97,7 +96,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex) 
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del reloj");
             }
             conn.Close();
@@ -113,12 +112,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar el reloj");
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el reloj");
             }
             conn.Close();
@@ -136,13 +135,13 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                logger.Error(sqlex.StackTrace);
+                Logger.GetErrorLogger().Error(sqlex.StackTrace);
                 throw sqlex;
                 //throw new Exception("Error al actualizar la tabla borrado");
             }
             catch (Exception ex) 
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetErrorLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
             }
                 conn.Close();

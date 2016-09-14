@@ -16,6 +16,7 @@ namespace ZkManagement.Interfaz
         public Empleados()
         {
             InitializeComponent();
+            groupBox1.Visible = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

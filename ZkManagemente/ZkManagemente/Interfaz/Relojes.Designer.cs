@@ -86,11 +86,11 @@
             this.DNS,
             this.Id,
             this.Clave});
-            this.dgvRelojes.Location = new System.Drawing.Point(24, 126);
+            this.dgvRelojes.Location = new System.Drawing.Point(47, 140);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRelojes.Size = new System.Drawing.Size(839, 215);
+            this.dgvRelojes.Size = new System.Drawing.Size(839, 253);
             this.dgvRelojes.TabIndex = 0;
             this.dgvRelojes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRelojes_CellContentClick);
             // 
@@ -282,7 +282,7 @@
             this.groupABM.Controls.Add(this.btnEditar);
             this.groupABM.Controls.Add(this.btnAgregar);
             this.groupABM.Enabled = false;
-            this.groupABM.Location = new System.Drawing.Point(301, 347);
+            this.groupABM.Location = new System.Drawing.Point(348, 399);
             this.groupABM.Name = "groupABM";
             this.groupABM.Size = new System.Drawing.Size(290, 54);
             this.groupABM.TabIndex = 4;
@@ -364,7 +364,7 @@
             this.groupAvanzadas.Controls.Add(this.btnAdmin);
             this.groupAvanzadas.Controls.Add(this.btnInicializar);
             this.groupAvanzadas.Enabled = false;
-            this.groupAvanzadas.Location = new System.Drawing.Point(12, 347);
+            this.groupAvanzadas.Location = new System.Drawing.Point(12, 445);
             this.groupAvanzadas.Name = "groupAvanzadas";
             this.groupAvanzadas.Size = new System.Drawing.Size(134, 164);
             this.groupAvanzadas.TabIndex = 11;
@@ -374,9 +374,9 @@
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(197, 407);
+            this.rtbLog.Location = new System.Drawing.Point(182, 462);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(603, 134);
+            this.rtbLog.Size = new System.Drawing.Size(603, 176);
             this.rtbLog.TabIndex = 12;
             this.rtbLog.Text = "";
             // 
@@ -384,7 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 550);
+            this.ClientSize = new System.Drawing.Size(900, 650);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.groupAvanzadas);
             this.Controls.Add(this.groupABM);

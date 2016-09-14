@@ -197,7 +197,6 @@ namespace ZkManagement.Interfaz
             //Hasta acá
             lblUsuario.Left = (this.Width) - (lblUsuario.Width + 50);
             lblVersion.Left = (this.Width) - (lblVersion.Width + 50);
-            lblVersionBD.Left = (this.Width) - (lblVersionBD.Width + 50);
         }
 
         //Devuelve TRUE si está dentro del rango horario de ejecución de la rutina, FALSE de lo contrario.
@@ -205,7 +204,6 @@ namespace ZkManagement.Interfaz
          {
             DateTime horaInicio;
             DateTime horaFin;
-            cc = new ControladorConfiguraciones();
             try
             {
                 if (!Convert.ToBoolean(ccr.GetConfig(10))) //Si no está activado el rango de horario devuelvo false.

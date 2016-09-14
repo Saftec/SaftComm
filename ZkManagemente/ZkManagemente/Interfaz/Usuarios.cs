@@ -11,6 +11,7 @@ namespace ZkManagement.Interfaz
     public partial class Usuarios : GenericaPadre
     {
         Usuario usuario = new Usuario();
+        ControladorABMUsuarios abm;
         public Usuarios()
         {
             InitializeComponent();
@@ -94,13 +95,13 @@ namespace ZkManagement.Interfaz
                 base.InformarError("Por favor complete todos los datos.");
                 return;
             }
-            ControladorLogin cl = new ControladorLogin();
+            abm = new ControladorABMUsuarios();
             usuario.Nivel = comboPermisos.SelectedIndex + 1;
             usuario.Pass = txtContraseña.Text;
             usuario.Usr = txtUsuario.Text;
             try
             {
-                cl.ModificarUsuario(usuario);
+                abm.ModificarUsuario(usuario);
                 LimpiarTextBox();
                 NoEditable();
                 CargarDGV();
@@ -136,12 +137,12 @@ namespace ZkManagement.Interfaz
             {
                 return;
             }
-            ControladorLogin cl = new ControladorLogin();
+            abm = new ControladorABMUsuarios();
             try
             {
                 Usuario usr = new Usuario();
                 usr.Id = GetId();
-                cl.EliminarUsuario(usr);
+                abm.EliminarUsuario(usr);
                 dgvUsuarios.Rows.RemoveAt(dgvUsuarios.CurrentRow.Index);
                 base.InformarEvento("Usuario eliminado correctamente.", "Baja");
             }
@@ -163,12 +164,12 @@ namespace ZkManagement.Interfaz
         private void CargarDGV()
         {
             DataTable usuarios = new DataTable();
-            ControladorLogin cl = new ControladorLogin();
+            abm = new ControladorABMUsuarios();
             dgvUsuarios.AutoGenerateColumns = false;
             dgvUsuarios.Rows.Clear();
             try
             {
-                usuarios = cl.GetUsuarios();
+                usuarios = abm.GetUsuarios();
                 dgvUsuarios.DataSource = usuarios;
                 dgvUsuarios.Refresh();
             }
