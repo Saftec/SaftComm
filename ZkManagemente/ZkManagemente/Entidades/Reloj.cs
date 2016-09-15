@@ -473,7 +473,7 @@ namespace ZkManagement.Entidades
                 }
                 catch(Exception ex)
                 {
-                    Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                    Logger.GetLogger().Fatal(ex.StackTrace);
                     throw new Exception("Error al consultar la ip del host DNS");
                 }
 

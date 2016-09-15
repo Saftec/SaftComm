@@ -26,12 +26,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx);
+                Logger.GetLogger().Error(sqlEx);
                 throw new Exception("Error al consulta el valor de configuracion: " + id.ToString());
             }
             catch(Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
             }
             finally
@@ -51,12 +51,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al actualizar la tabla configuracion");
             }
             catch(Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al actualizar la tabla configuracion");
             }
             finally

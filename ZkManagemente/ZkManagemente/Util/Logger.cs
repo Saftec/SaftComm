@@ -4,25 +4,24 @@ namespace ZkManagement.Util
 {
     class Logger
     {
-        private static ILog error_logger=null;
-        private static ILog info_logger=null;
+        private static ILog _logger;
 
-        public static ILog GetErrorLogger()
+        public static ILog GetLogger()
         {
-            if (error_logger == null)
+            if (_logger == null)
             {
-                error_logger = LogManager.GetLogger("FileAppender");
+                _logger = LogManager.GetLogger("root");
             }
-            return error_logger;
+            return _logger;
         }
 
-        public static ILog GetInfoLogger()
+        /*public static ILog GetInfoLogger()
         {
             if (info_logger == null)
             {
-                info_logger = LogManager.GetLogger("InfoAppender");
+                info_logger = LogManager.GetLogger("info");
             }
             return info_logger;
-        }
+        }*/
     }
 }

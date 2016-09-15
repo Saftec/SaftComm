@@ -95,7 +95,7 @@
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmpleados.Size = new System.Drawing.Size(705, 354);
+            this.dgvEmpleados.Size = new System.Drawing.Size(740, 354);
             this.dgvEmpleados.TabIndex = 1;
             this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick_1);
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged_1);
@@ -111,11 +111,11 @@
             // Nombre
             // 
             this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.FillWeight = 150F;
+            this.Nombre.FillWeight = 170F;
             this.Nombre.HeaderText = "Nombre y Apellido";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 150;
+            this.Nombre.Width = 170;
             // 
             // Tarjeta
             // 
@@ -145,7 +145,7 @@
             this.Privilegio.HeaderText = "Privilegio";
             this.Privilegio.Name = "Privilegio";
             this.Privilegio.ReadOnly = true;
-            this.Privilegio.Width = 50;
+            this.Privilegio.Width = 60;
             // 
             // Cant
             // 
@@ -428,7 +428,7 @@
             // chckTodos
             // 
             this.chckTodos.AutoSize = true;
-            this.chckTodos.Location = new System.Drawing.Point(770, 51);
+            this.chckTodos.Location = new System.Drawing.Point(805, 54);
             this.chckTodos.Name = "chckTodos";
             this.chckTodos.Size = new System.Drawing.Size(56, 17);
             this.chckTodos.TabIndex = 13;

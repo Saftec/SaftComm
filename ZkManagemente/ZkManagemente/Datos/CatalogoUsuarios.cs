@@ -32,12 +32,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar datos de usuario");
             }
             catch(Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);            
+                Logger.GetLogger().Fatal(ex.StackTrace);            
                throw new Exception("Error desconocido al consultar datos de usuario");
             }
             conn.Close();
@@ -57,12 +57,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al consultar los datos de usuario");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                throw new Exception("Error desconocido al consultar los datos de usuario");
             }
             conn.Close();
@@ -79,12 +79,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar dar de alta el empelado");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar dar de alta el empelado");
             }
             conn.Close();
@@ -100,12 +100,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar modificar usuario");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar modificar usuario");
             }
             conn.Close();
@@ -121,12 +121,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar eliminar el usuario");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el usuario");
             }
             conn.Close();

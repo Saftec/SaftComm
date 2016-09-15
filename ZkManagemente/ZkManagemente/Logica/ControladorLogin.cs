@@ -21,8 +21,8 @@ namespace ZkManagement.Logica
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
                 Principal ppal = new Principal();
-                Logger.GetInfoLogger().Info("-----------------------------------------------------------------\n");
-                Logger.GetInfoLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
+                Logger.GetLogger().Info("-----------------------------------------------------------------\n");
+                Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
                 ppal.SetPermisos(usr);
                 ppal.Show();                               
             }

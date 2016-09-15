@@ -1,5 +1,4 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -15,7 +14,6 @@ namespace ZkManagement.Interfaz
         private Reloj reloj = new Reloj(); //Esta instancia la utilizo para ejecutar todas las operaciones.
         private List<Reloj> relojes = new List<Reloj>();
         private ControladorReloj cr;
-        private ILog logger = LogManager.GetLogger("Relojes");
         public Relojes()
         {
             InitializeComponent();            
@@ -413,17 +411,15 @@ namespace ZkManagement.Interfaz
         }
         private void LogInforme(string mensaje)
         {
-            ILog logger = LogManager.GetLogger("");
             rtbLog.SelectionColor = Color.Black;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
-            logger.Info(mensaje);
+            Logger.GetLogger().Info(mensaje);
         }
         private void LogError(string mensaje)
         {
-            ILog logger = LogManager.GetLogger("");
             rtbLog.SelectionColor = Color.Red;
             rtbLog.AppendText(DateTime.Now.ToString() + " " + mensaje + "\n");
-            logger.Info("ERROR: " + mensaje);
+            Logger.GetLogger().Info("ERROR: " + mensaje);
         }
         private void SetPermisos()
         {

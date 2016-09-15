@@ -26,12 +26,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar consultar los datos de los empleados");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar los datos de los empleados");
             }
             finally
@@ -51,12 +51,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar eliminar empleado de la base de datos");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el empleado");
             }
             finally
@@ -76,7 +76,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 if (sqlEx.Number == 2627)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -88,7 +88,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del empleado");
             }
             finally
@@ -107,7 +107,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlEx)
             {
-                Logger.GetErrorLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 if (sqlEx.Number == 2601)
                 {
                     throw new Exception("Este valor no puede estar duplicado");
@@ -119,7 +119,7 @@ namespace ZkManagement.Datos
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar agregar el empleado");
             }
             finally
@@ -144,12 +144,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar consultar la tabla empleados");
             }
             catch (Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar consultar la tabla empleados");
             }
             finally
@@ -169,12 +169,12 @@ namespace ZkManagement.Datos
             }
             catch(SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al intentar insertar en la tabla registros");
             }
             catch(Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla registros");
             }
             finally

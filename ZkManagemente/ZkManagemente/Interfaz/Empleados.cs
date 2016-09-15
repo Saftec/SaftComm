@@ -197,17 +197,22 @@ namespace ZkManagement.Interfaz
                 }
             }
         }
+        private void LoadInfoEmpleados()
+        {
+
+        }
         private void DatosDGV()
         {
-            dgvEmpleados.DataSource = null;
-            dgvEmpleados.Refresh();      
+            ce = new ControladorEmpleados();
             try
             {
-                ce = new ControladorEmpleados();
+                empleados.Clear();
                 empleados = ce.GetEmpleados();
-                dgvEmpleados.DataSource = empleados;
-                FiltrarActivos();
-                dgvEmpleados.Refresh();
+                if (empleados.Rows.Count > 0)
+                {
+                    dgvEmpleados.DataSource = empleados;
+                }
+                else { throw new AppException("No hay empleados cargados"); }
             }
             catch (Exception ex)
             {

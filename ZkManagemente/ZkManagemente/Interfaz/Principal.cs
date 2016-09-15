@@ -1,17 +1,15 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
-
+using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
     public partial class Principal : Form
     {
-        private ILog logger = LogManager.GetLogger("");
         private Relojes relojes;
         private ControladorConfigRutinas ccr;
         public Principal()
@@ -61,7 +59,7 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 MessageBox.Show("Se produjo un error no controlado.");
             }
         }
@@ -74,7 +72,7 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 MessageBox.Show("Se produjo un error no controlado");
             }
             
@@ -88,7 +86,7 @@ namespace ZkManagement.Interfaz
             }
             catch(Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 MessageBox.Show("se produjo un error no controlado");
             }
         }
@@ -101,7 +99,7 @@ namespace ZkManagement.Interfaz
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 MessageBox.Show(ex.Message);
             }
         }

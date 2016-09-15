@@ -17,12 +17,12 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {               
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw sqlex;
             }
             catch(Exception ex)
             {
-                Logger.GetErrorLogger().Fatal(ex.StackTrace);
+                Logger.GetLogger().Fatal(ex.StackTrace);
                 throw ex;
             }
             return conn;
@@ -38,7 +38,7 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetErrorLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al conectar con la base de datos");
             }
             if (conn.State==System.Data.ConnectionState.Open) { return true; }
