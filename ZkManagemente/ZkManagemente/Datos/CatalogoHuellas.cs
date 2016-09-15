@@ -8,15 +8,14 @@ namespace ZkManagement.Datos
 {
     class CatalogoHuellas
     {
-        private Conexion con = new Conexion();
-        private SqlConnection conn = new SqlConnection();
-
+        private string query = string.Empty;
         public void InsertarHuella(Huella h, int id)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')", conn);
+                query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -31,25 +30,31 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public bool Existe(Huella h, int id)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='"+id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'" , conn);
+                query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
-                {
-                    conn.Close();
+                {                    
                     return true;
                 }
                 else
                 {
-                    conn.Close();
                     return false;                  
                 }
             }
@@ -65,17 +70,26 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void ActualizarHuella(Huella h, int id)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() + 
-                    "' WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'", conn);
+                query = "UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() +
+                    "' WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
+
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -90,16 +104,24 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
         public List<Huella> GetHuellas(int id)
         {
             List<Huella> huellas = new List<Huella>();
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + id.ToString(),conn);
+                query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + id.ToString();
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -123,17 +145,25 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return huellas;
         }
 
         public void EliminarHuella(int id)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Huellas WHERE IdEmpleado=" + id.ToString(), conn);
+                query = "DELETE FROM Huellas WHERE IdEmpleado=" + id.ToString();
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -148,8 +178,15 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

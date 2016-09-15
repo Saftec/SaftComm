@@ -7,41 +7,82 @@ namespace ZkManagement.Datos
 {
     class Conexion
     {
-        public SqlConnection Conectar()
-        {         
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString;
+        private static int cantConn;
+        private static SqlConnection instancia;
+
+        private static SqlConnection GetInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new SqlConnection();
+                instancia.ConnectionString = ConfigurationManager.ConnectionStrings["cnsSQL"].ConnectionString;
+            }
+            return instancia;
+        }
+        public static SqlConnection OpenConn()
+        {
             try
             {
-                conn.Open();
+                cantConn++;
+                GetInstancia().Open();
             }
-            catch (SqlException sqlex)
-            {               
+            catch(SqlException sqlex)
+            {
                 Logger.GetLogger().Error(sqlex.StackTrace);
-                throw sqlex;
+                throw new Exception("Error al intentar conectar a la base de datos");
             }
             catch(Exception ex)
             {
                 Logger.GetLogger().Fatal(ex.StackTrace);
-                throw ex;
+                throw new Exception("Error no controlado al intentar conectar a la base de datos");
             }
-            return conn;
+            return GetInstancia();
         }
 
-        public bool TestConexion()
+        public static void ReleaseConn()
         {
-            Conexion con = new Conexion();
-            SqlConnection conn = new SqlConnection();
             try
             {
-                conn = con.Conectar();
+                cantConn--;                
+                if (cantConn == 0)
+                {
+                    instancia.Close();
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                Logger.GetLogger().Error(sqlex.StackTrace);
+                throw new Exception("Error al intentar cerrar la conexión a la base de datos");
+            }
+            catch (Exception ex)
+            {
+                Logger.GetLogger().Fatal(ex.StackTrace);
+                throw new Exception("Error no controlado al intentar cerrar la conexión a la base de datos");
+            }
+        }
+        public bool TestConexion()
+        {
+            try
+            {
+                OpenConn();
             }
             catch (SqlException sqlex)
             {
                 Logger.GetLogger().Error(sqlex.StackTrace);
                 throw new Exception("Error al conectar con la base de datos");
             }
-            if (conn.State==System.Data.ConnectionState.Open) { return true; }
+            if (GetInstancia().State == System.Data.ConnectionState.Open)
+            {
+                try
+                {
+                    ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return true;
+            }
             else { return false; }
         }
     }

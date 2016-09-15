@@ -6,8 +6,7 @@ namespace ZkManagement.Datos
 {
     class CatalogoConfiguraciones
     {
-        private Conexion con = new Conexion();
-        private SqlConnection conn = new SqlConnection();
+        private string query = string.Empty;
 
         public string GetConfig(int id)
         {         
@@ -16,9 +15,9 @@ namespace ZkManagement.Datos
             SqlDataReader dr;
             try
             {
-                                
-                conn = con.Conectar();
-                cmd = new SqlCommand("SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString(),conn);
+
+                query = "SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString();
+                cmd = new SqlCommand(query,Conexion.OpenConn());
                 dr = cmd.ExecuteReader();
                 dr.Read();
                 valor = dr["Valor"].ToString();
@@ -36,7 +35,14 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return valor;
         }
@@ -45,8 +51,8 @@ namespace ZkManagement.Datos
         {
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Configuracion SET Valor='"+valor+"' WHERE ConfigId=" + id,conn);
+                query = "UPDATE Configuracion SET Valor='" + valor + "' WHERE ConfigId=" + id.ToString();
+                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -61,7 +67,14 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
     }

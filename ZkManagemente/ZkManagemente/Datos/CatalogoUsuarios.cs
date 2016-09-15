@@ -8,16 +8,16 @@ namespace ZkManagement.Datos
 {
     class CatalogoUsuarios
     {
-        private Conexion con = new Conexion();
-        private SqlConnection conn = new SqlConnection();
+        private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
         {
             Usuario usr = new Usuario();
+            SqlDataReader dr;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';", conn);
-                SqlDataReader dr = cmd.ExecuteReader();
+                query = "SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';";
+                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                dr = cmd.ExecuteReader();
                 dr.Read();
                 usr.Usr = (dr["Usuario"].ToString());
                 usr.Pass = (dr["Password"].ToString());
@@ -40,18 +40,30 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);            
                throw new Exception("Error desconocido al consultar datos de usuario");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return usr;
         }
 
         public DataTable GetUsuarios()
         {
             DataTable usuarios = new DataTable();
+            SqlDataAdapter da;
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos", conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
+                da = new SqlDataAdapter(cmd);
                 da.Fill(usuarios);
                 da.Dispose();
             }
@@ -63,9 +75,19 @@ namespace ZkManagement.Datos
             catch (Exception ex)
             {
                 Logger.GetLogger().Fatal(ex.StackTrace);
-               throw new Exception("Error desconocido al consultar los datos de usuario");
+                throw new Exception("Error desconocido al consultar los datos de usuario");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return usuarios;
         }
 
@@ -73,8 +95,8 @@ namespace ZkManagement.Datos
         {
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO (Usuario, Password, IdPermisos) Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')", conn);
+                query = "INSERT INTO (Usuario, Password, IdPermisos) Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
+                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -87,15 +109,26 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar dar de alta el empelado");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void ModifUsuario(Usuario usr)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString(),conn);
+                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -108,15 +141,25 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar modificar usuario");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                     Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void EliminarUsuario(Usuario usr)
         {
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id,conn);
+                query = "DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id;
+                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -129,7 +172,17 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el usuario");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

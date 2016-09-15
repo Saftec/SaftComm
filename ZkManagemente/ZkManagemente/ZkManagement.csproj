@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
+    <Compile Include="Datos\CatalogoDepartamentos.cs" />
     <Compile Include="Datos\CatalogoEmpleados.cs" />
     <Compile Include="Datos\CatalogoHuellas.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />

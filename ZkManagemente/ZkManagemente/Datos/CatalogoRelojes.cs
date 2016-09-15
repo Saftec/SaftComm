@@ -8,15 +8,14 @@ namespace ZkManagement.Datos
 {
     class CatalogoRelojes
     {
-        private Conexion con = new Conexion();
-        private SqlConnection conn = new SqlConnection();
+        private string query = string.Empty;
         public List<Reloj> GetRelojes()
         {
             List<Reloj> relojes = new List<Reloj>();
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero FROM Relojes;", conn);
+                query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero FROM Relojes;";
+                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -42,16 +41,27 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al consultar datos de los relojes");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return relojes;           
         }
 
         public void AgregarReloj(Reloj r)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")", conn);
+                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -71,15 +81,26 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar agregar el reloj");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void ActualizarReloj(Reloj r)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + r.Clave + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id, conn);
+                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + r.Clave + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -99,15 +120,26 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar los datos del reloj");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void EliminarReloj(Reloj r)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Relojes WHERE IdReloj="+r.Id , conn);
+                query = "DELETE FROM Relojes WHERE IdReloj=" + r.Id;
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -120,17 +152,26 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar eliminar el reloj");
             }
-            conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public void SetBorrado(int idUsuario, int idReloj, int cantidad, DateTime fecha)
         {
-
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                string query = "INSERT INTO Borrado (IdUsuario, IdReloj, Cantidad, Fecha) VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("dd-MM-yyyy hh:mm:ss") + "')";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                query = "INSERT INTO Borrado (IdUsuario, IdReloj, Cantidad, Fecha) VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("dd-MM-yyyy hh:mm:ss") + "')";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -144,7 +185,17 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
             }
-                conn.Close();
+            finally
+            {
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

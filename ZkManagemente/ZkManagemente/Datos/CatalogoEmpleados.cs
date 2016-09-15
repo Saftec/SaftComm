@@ -8,18 +8,17 @@ namespace ZkManagement.Datos
 {
     class CatalogoEmpleados
     {
-        private Conexion con = new Conexion();
-        private SqlConnection conn = new SqlConnection();
+        private string query = string.Empty;
 
         public DataTable Empleados()
         {
+            SqlCommand cmd;
             DataTable empleados = new DataTable();
             try
-            {
-                conn = con.Conectar();
+            { 
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string consulta = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
-                SqlCommand cmd = new SqlCommand(consulta,conn);
+                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(empleados);
                 da.Dispose();
@@ -36,17 +35,25 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return empleados;
         }
 
         public void Eliminar(Empleado emp)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString(),conn);
+                query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -61,17 +68,26 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public void Actualizar(Empleado emp)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("UPDATE Empleados SET DNI='"+emp.Dni+"', Legajo='"+emp.Legajo+"', Nombre='"+emp.Nombre+"', Pin="+emp.Pin+", Tarjeta='"+emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() +"', Baja='" + emp.Baja.ToString() +"' WHERE IdEmpleado="+emp.Id.ToString(), conn);
+                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
+                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
+
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -93,16 +109,26 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public void Agregar(Empleado emp)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" +emp.Nombre +"', "+emp.Pin.ToString()+", '"+emp.Tarjeta+"', '"+emp.Legajo+"', '"+emp.Dni+"', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )",conn);
+                query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
+                    "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
+
+                cmd = new SqlCommand(query, Conexion.OpenConn()); ;
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -124,17 +150,25 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
         public int GetEmpId(string legajo)
         {
-            int id = 0; //El simbolo "?" indica que la variable puede tomar el valor NULL
+            int id = 0;
+            SqlCommand cmd; 
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + legajo + "'", conn);
+                query = "SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + legajo + "'";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -154,17 +188,25 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return id;
         }
 
         public void InsertarRegis(int id, DateTime fecha, string modo, int reloj)
         {
+            SqlCommand cmd;
             try
             {
-                conn = con.Conectar();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("dd-MM-yyyy HH:mm:ss") + "')", conn);
+                query = "INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("dd-MM-yyyy HH:mm:ss") + "')";
+                cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -179,8 +221,15 @@ namespace ZkManagement.Datos
             }
             finally
             {
-                conn.Close();
-            }            
+                try
+                {
+                    Conexion.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

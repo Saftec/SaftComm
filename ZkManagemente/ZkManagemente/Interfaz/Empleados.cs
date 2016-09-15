@@ -178,6 +178,29 @@ namespace ZkManagement.Interfaz
         #endregion
 
         #region DataGridView
+        //Con este método manejo los checkboxs de la columna elimiar//
+        private void dgvEmpleados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+            { return; }
+
+            if (dgvEmpleados.Columns[e.ColumnIndex].Name == "Eliminar")
+            {
+                DataGridViewRow row = dgvEmpleados.Rows[e.RowIndex];
+
+                DataGridViewCheckBoxCell cellSeleccion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+
+                //Verifico si está tildado
+                if (Convert.ToBoolean(cellSeleccion.Value))
+                {
+                    cellSeleccion.Value = false;
+                }
+                else
+                {
+                    cellSeleccion.Value = true;
+                }
+            }
+        }
         private void chckTodos_CheckedChanged(object sender, EventArgs e)
         {
             if (chckTodos.Checked == true)
@@ -307,27 +330,6 @@ namespace ZkManagement.Interfaz
             FiltrarActivos();
         }
 
-        private void dgvEmpleados_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1)
-                return;
 
-            if (dgvEmpleados.Columns[e.ColumnIndex].Name == "Eliminar")
-            {
-                DataGridViewRow row = dgvEmpleados.Rows[e.RowIndex];
-
-                DataGridViewCheckBoxCell cellSeleccion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
-
-                //Verifico si está tildado
-                if (Convert.ToBoolean(cellSeleccion.Value))
-                {
-                    cellSeleccion.Value = false;
-                }
-                else
-                {
-                    cellSeleccion.Value = true;
-                }
-            }
-        }
     }
 }
