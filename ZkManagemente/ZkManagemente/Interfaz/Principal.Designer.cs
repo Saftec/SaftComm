@@ -103,9 +103,9 @@
             // 
             this.button2.Image = global::ZkManagement.Properties.Resources.group;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(335, 16);
+            this.button2.Location = new System.Drawing.Point(335, 9);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 47);
+            this.button2.Size = new System.Drawing.Size(90, 54);
             this.button2.TabIndex = 1;
             this.button2.Text = "Empleados";
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -117,9 +117,9 @@
             this.btnUsuarios.Enabled = false;
             this.btnUsuarios.Image = global::ZkManagement.Properties.Resources.padlock;
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUsuarios.Location = new System.Drawing.Point(473, 16);
+            this.btnUsuarios.Location = new System.Drawing.Point(467, 9);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(84, 47);
+            this.btnUsuarios.Size = new System.Drawing.Size(90, 54);
             this.btnUsuarios.TabIndex = 2;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -131,9 +131,9 @@
             this.btnConfig.Enabled = false;
             this.btnConfig.Image = global::ZkManagement.Properties.Resources.settings;
             this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConfig.Location = new System.Drawing.Point(58, 16);
+            this.btnConfig.Location = new System.Drawing.Point(58, 9);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(84, 47);
+            this.btnConfig.Size = new System.Drawing.Size(89, 54);
             this.btnConfig.TabIndex = 1;
             this.btnConfig.Text = "Configuracion";
             this.btnConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -144,9 +144,9 @@
             // 
             this.btnRelojes.Image = global::ZkManagement.Properties.Resources.clock;
             this.btnRelojes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRelojes.Location = new System.Drawing.Point(196, 16);
+            this.btnRelojes.Location = new System.Drawing.Point(196, 9);
             this.btnRelojes.Name = "btnRelojes";
-            this.btnRelojes.Size = new System.Drawing.Size(84, 47);
+            this.btnRelojes.Size = new System.Drawing.Size(90, 54);
             this.btnRelojes.TabIndex = 0;
             this.btnRelojes.Text = "Relojes";
             this.btnRelojes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
