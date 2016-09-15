@@ -31,27 +31,26 @@ namespace ZkManagement.Logica
         public void ModificarUsuario(Usuario usuario)
         {
             cu = new CatalogoUsuarios();
-            if (usuario.Id == 0)
+            try
             {
-                try
-                {
-                    cu.AltaUsuario(usuario);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                cu.ModifUsuario(usuario);
             }
-            else
+            catch(Exception ex)
             {
-                try
-                {
-                    cu.ModifUsuario(usuario);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                throw ex;
+            }
+        }
+
+        public void AgregarUsuario(Usuario usuario)
+        {
+            cu = new CatalogoUsuarios();
+            try
+            {
+                cu.AltaUsuario(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
         }

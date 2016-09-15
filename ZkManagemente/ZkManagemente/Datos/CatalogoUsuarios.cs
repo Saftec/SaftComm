@@ -25,7 +25,6 @@ namespace ZkManagement.Datos
                 usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                 dr.Close();
             }
-
            catch(InvalidOperationException)  //Si cacheo esto es porque la consulta no devolvió nada
             {
                 throw new AppException("Usuario incorrecto");
@@ -95,7 +94,7 @@ namespace ZkManagement.Datos
         {
             try
             {
-                query = "INSERT INTO (Usuario, Password, IdPermisos) Usuarios VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
+                query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
                 SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
                 cmd.ExecuteNonQuery();
             }

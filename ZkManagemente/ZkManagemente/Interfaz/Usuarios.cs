@@ -100,7 +100,27 @@ namespace ZkManagement.Interfaz
             usuario.Usr = txtUsuario.Text;
             try
             {
-                abm.ModificarUsuario(usuario);
+                if (usuario.Id > 0)
+                {
+                    try
+                    {
+                        abm.ModificarUsuario(usuario);
+                    }
+                    catch(Exception ex)
+                    {
+                        base.InformarError(ex.Message);
+                    }
+                }   else
+                {
+                    try
+                    {
+                        abm.AgregarUsuario(usuario);
+                    }
+                    catch(Exception ex)
+                    {
+                        base.InformarError(ex.Message);
+                    }
+                }
                 LimpiarTextBox();
                 NoEditable();
                 CargarDGV();
@@ -165,7 +185,8 @@ namespace ZkManagement.Interfaz
             DataTable usuarios = new DataTable();
             abm = new ControladorABMUsuarios();
             dgvUsuarios.AutoGenerateColumns = false;
-            dgvUsuarios.Rows.Clear();
+            usuarios.Clear();
+            dgvUsuarios.DataSource = usuarios;
             try
             {
                 usuarios = abm.GetUsuarios();
