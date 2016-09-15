@@ -220,10 +220,6 @@ namespace ZkManagement.Interfaz
                 }
             }
         }
-        private void LoadInfoEmpleados()
-        {
-
-        }
         private void DatosDGV()
         {
             ce = new ControladorEmpleados();

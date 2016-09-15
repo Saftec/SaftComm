@@ -323,6 +323,8 @@ namespace ZkManagement.Interfaz
         }
         private void CargarDataGridView()
         {
+            dgvRelojes.Rows.Clear();
+            dgvRelojes.Refresh();
             try
             {
                 CargarRelojes();
@@ -336,8 +338,6 @@ namespace ZkManagement.Interfaz
                 dgvRelojes.Rows.Add(reloj.Numero, reloj.Nombre, reloj.Ip, reloj.Puerto, "Desconectado", "0", string.Empty, string.Empty, reloj.DNS, reloj.Id, reloj.Clave);
             }
             dgvRelojes.Refresh();
-            dgvRelojes.Update();
-
         }
         private string GetNombre()
         {

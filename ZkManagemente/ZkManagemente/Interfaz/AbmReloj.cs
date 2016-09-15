@@ -52,16 +52,20 @@ namespace ZkManagement.Interfaz
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
+                return;
             }
-            Close();
-            Cursor = Cursors.Default;
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+            Close();            
         }
 
         private void ValidarDatos()
         {
             Validate validate = new Validate();
             string[] notNulls = { txtNombre.Text, txtNro.Text };
-            string[] numeros = { txtPsw.Text, txtPuerto.Text, txtNro.Text };
+            string[] numeros = { txtPuerto.Text, txtNro.Text };
             if (!validate.IsEmpty(txtIp.Text) && !validate.IsEmpty(txtDns.Text))
             {
                 throw new AppException("Debe ingresar una dirección IP o un host DNS");
@@ -78,10 +82,10 @@ namespace ZkManagement.Interfaz
             {
                 throw new AppException("Estos campos no pueden estar vacíos");
             }
-            if (!validate.NumerosEnteros(numeros))
+          /*  if (!validate.NumerosEnteros(numeros))
             {
                 throw new AppException("Estos campos deben contener sólo números");
-            } 
+            } */
         }
     }
 }

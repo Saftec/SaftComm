@@ -1,5 +1,6 @@
 ﻿Relojes:
 *Background para rutinas.
+*Actualización de DGV despues de ABM.
 
 Empleados:
 *Treeview para deptos.
