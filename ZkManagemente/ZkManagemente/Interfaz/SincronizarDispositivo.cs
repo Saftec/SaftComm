@@ -53,6 +53,12 @@ namespace ZkManagement.Interfaz
         }
 
         #region DataGridView
+
+        private void LimpiarDgv(DataGridView dgv)
+        {
+            dgv.DataSource = null;
+            dgv.Refresh();
+        }
         private void LlenarDgvLocal()
         {
             dgvLocal.DataSource = null;
@@ -209,6 +215,7 @@ namespace ZkManagement.Interfaz
                 reloj.Desconectar();
                 reloj.Estado = false;
             }
+            LimpiarDgv(dgvDispositivo);
             Cursor = Cursors.WaitCursor;
             reloj = relojes[comboRelojes.SelectedIndex];           
             try
@@ -288,6 +295,7 @@ namespace ZkManagement.Interfaz
                 reloj.Desconectar();
                 reloj.Estado = false;
             }
+            LimpiarDgv(dgvDispositivo);
             Cursor = Cursors.WaitCursor;
             reloj = relojes[comboRelojes.SelectedIndex];
             try

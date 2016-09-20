@@ -16,8 +16,7 @@ namespace ZkManagement.Datos
         {
             if (_instancia == null)
             {
-                _instancia = new Conexion();
-                
+                _instancia = new Conexion();                
             }
             return _instancia;
         }
@@ -65,7 +64,7 @@ namespace ZkManagement.Datos
         public bool TestConexion()
         {
             try
-            {
+            {                
                 GetConn();
             }
             catch (SqlException sqlex)

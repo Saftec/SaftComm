@@ -40,6 +40,9 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtTimeOut = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +83,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(86, 120);
+            this.txtUsuario.Location = new System.Drawing.Point(86, 103);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(119, 22);
@@ -89,7 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 123);
+            this.label3.Location = new System.Drawing.Point(33, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 5;
@@ -97,7 +100,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(86, 168);
+            this.txtPassword.Location = new System.Drawing.Point(86, 142);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -107,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 171);
+            this.label4.Location = new System.Drawing.Point(18, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 7;
@@ -148,12 +151,42 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // txtTimeOut
+            // 
+            this.txtTimeOut.Location = new System.Drawing.Point(86, 179);
+            this.txtTimeOut.Name = "txtTimeOut";
+            this.txtTimeOut.Size = new System.Drawing.Size(34, 22);
+            this.txtTimeOut.TabIndex = 11;
+            this.txtTimeOut.Text = "15";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Timeout:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(131, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "segundos";
+            // 
             // ConexionBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(468, 290);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtTimeOut);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -188,5 +221,8 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtTimeOut;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

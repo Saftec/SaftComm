@@ -394,6 +394,7 @@
             this.chckBatch.TabIndex = 17;
             this.chckBatch.Text = "Utilizar Modo Batch";
             this.chckBatch.UseVisualStyleBackColor = true;
+            this.chckBatch.Visible = false;
             // 
             // progressBarSinc
             // 
