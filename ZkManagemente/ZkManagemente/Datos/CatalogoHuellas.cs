@@ -15,7 +15,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -32,7 +32,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -47,7 +47,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {                    
@@ -72,7 +72,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -89,7 +89,7 @@ namespace ZkManagement.Datos
                 query = "UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() +
                     "' WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
 
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -106,7 +106,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -121,7 +121,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + id.ToString();
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -147,7 +147,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -163,7 +163,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "DELETE FROM Huellas WHERE IdEmpleado=" + id.ToString();
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -180,7 +180,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {

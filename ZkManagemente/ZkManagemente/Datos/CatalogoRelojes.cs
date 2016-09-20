@@ -15,7 +15,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero FROM Relojes;";
-                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -45,7 +45,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +61,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -85,7 +85,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -100,7 +100,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + r.Clave + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -124,7 +124,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -139,7 +139,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "DELETE FROM Relojes WHERE IdReloj=" + r.Id;
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -156,7 +156,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -171,7 +171,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Borrado (IdUsuario, IdReloj, Cantidad, Fecha) VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("dd-MM-yyyy hh:mm:ss") + "')";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -189,7 +189,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {

@@ -17,7 +17,7 @@ namespace ZkManagement.Datos
             {
 
                 query = "SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString();
-                cmd = new SqlCommand(query,Conexion.OpenConn());
+                cmd = new SqlCommand(query,Conexion.GetInstancia().GetConn());
                 dr = cmd.ExecuteReader();
                 dr.Read();
                 valor = dr["Valor"].ToString();
@@ -37,7 +37,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -52,7 +52,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "UPDATE Configuracion SET Valor='" + valor + "' WHERE ConfigId=" + id.ToString();
-                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -69,7 +69,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {

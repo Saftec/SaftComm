@@ -16,7 +16,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';";
-                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 dr = cmd.ExecuteReader();
                 dr.Read();
                 usr.Usr = (dr["Usuario"].ToString());
@@ -43,7 +43,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +61,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 da = new SqlDataAdapter(cmd);
                 da.Fill(usuarios);
                 da.Dispose();
@@ -80,7 +80,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
-                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -112,7 +112,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -127,7 +127,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -144,7 +144,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                     Conexion.ReleaseConn();
+                     Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -158,7 +158,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id;
-                SqlCommand cmd = new SqlCommand(query, Conexion.OpenConn());
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -175,7 +175,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {

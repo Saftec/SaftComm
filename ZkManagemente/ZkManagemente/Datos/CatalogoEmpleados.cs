@@ -18,7 +18,7 @@ namespace ZkManagement.Datos
             { 
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
                 string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(empleados);
                 da.Dispose();
@@ -37,7 +37,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +53,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -70,7 +70,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -87,7 +87,7 @@ namespace ZkManagement.Datos
                 query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -111,7 +111,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -128,7 +128,7 @@ namespace ZkManagement.Datos
                 query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
-                cmd = new SqlCommand(query, Conexion.OpenConn()); ;
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn()); 
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -152,7 +152,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -168,7 +168,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + legajo + "'";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -190,7 +190,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -206,7 +206,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("dd-MM-yyyy HH:mm:ss") + "')";
-                cmd = new SqlCommand(query, Conexion.OpenConn());
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -223,7 +223,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.ReleaseConn();
+                    Conexion.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {

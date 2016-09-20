@@ -33,10 +33,9 @@ namespace ZkManagement.Logica
         }
         public bool CheckConexion()
         {
-            Conexion con = new Conexion();
             try
             {
-                return (con.TestConexion());
+                return (Conexion.GetInstancia().TestConexion());
             }
             catch (Exception ex)
             {
