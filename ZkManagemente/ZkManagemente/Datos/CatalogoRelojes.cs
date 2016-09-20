@@ -8,6 +8,19 @@ namespace ZkManagement.Datos
 {
     class CatalogoRelojes
     {
+        // Patrón SINGLETON //
+        private static CatalogoRelojes _instancia;
+
+        public static CatalogoRelojes GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new CatalogoRelojes();
+            }
+            return _instancia;
+        }
+        // HASTA ACÁ //
+
         private string query = string.Empty;
         public List<Reloj> GetRelojes()
         {

@@ -8,6 +8,17 @@ namespace ZkManagement.Datos
 {
     class CatalogoEmpleados
     {
+        private static CatalogoEmpleados _instancia;
+
+        public static CatalogoEmpleados GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new CatalogoEmpleados();
+            }
+            return _instancia;
+        }
+
         private string query = string.Empty;
 
         public DataTable Empleados()

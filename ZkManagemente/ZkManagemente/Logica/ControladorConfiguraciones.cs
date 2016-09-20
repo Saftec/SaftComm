@@ -5,13 +5,12 @@ namespace ZkManagement.Logica
 {
     class ControladorConfiguraciones
     {
-        private CatalogoConfiguraciones cc = new CatalogoConfiguraciones();
         public string GetConfig(int id)
         {            
             string valor;
             try
             {
-                valor = cc.GetConfig(id);
+                valor = CatalogoConfiguraciones.GetInstancia().GetConfig(id);
             }
             catch (Exception ex)
             {
@@ -25,7 +24,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                cc.SetConfig(id, valor);
+                CatalogoConfiguraciones.GetInstancia().SetConfig(id, valor);
             }
             catch(Exception ex)
             {

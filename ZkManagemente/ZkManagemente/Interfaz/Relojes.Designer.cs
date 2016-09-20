@@ -29,17 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvRelojes = new System.Windows.Forms.DataGridView();
-            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantRegis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DNS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbxRutinas = new System.Windows.Forms.GroupBox();
             this.btnRutinaHora = new System.Windows.Forms.Button();
             this.btnRutinaBajar = new System.Windows.Forms.Button();
@@ -58,6 +47,17 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.groupAvanzadas = new System.Windows.Forms.GroupBox();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantRegis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DNS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelojes)).BeginInit();
             this.gpbxRutinas.SuspendLayout();
             this.groupManuales.SuspendLayout();
@@ -86,86 +86,13 @@
             this.DNS,
             this.Id,
             this.Clave});
-            this.dgvRelojes.Location = new System.Drawing.Point(47, 140);
+            this.dgvRelojes.Location = new System.Drawing.Point(41, 140);
             this.dgvRelojes.MultiSelect = false;
             this.dgvRelojes.Name = "dgvRelojes";
             this.dgvRelojes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRelojes.Size = new System.Drawing.Size(839, 253);
+            this.dgvRelojes.Size = new System.Drawing.Size(845, 253);
             this.dgvRelojes.TabIndex = 0;
             this.dgvRelojes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRelojes_CellContentClick);
-            // 
-            // Numero
-            // 
-            this.Numero.HeaderText = "Numero";
-            this.Numero.Name = "Numero";
-            this.Numero.ReadOnly = true;
-            this.Numero.Width = 50;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 80;
-            // 
-            // IP
-            // 
-            this.IP.HeaderText = "IP V4";
-            this.IP.Name = "IP";
-            this.IP.ReadOnly = true;
-            this.IP.Width = 80;
-            // 
-            // Puerto
-            // 
-            this.Puerto.HeaderText = "Puerto";
-            this.Puerto.Name = "Puerto";
-            this.Puerto.ReadOnly = true;
-            this.Puerto.Width = 50;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            // 
-            // CantRegis
-            // 
-            this.CantRegis.HeaderText = "Cantidad Registros";
-            this.CantRegis.Name = "CantRegis";
-            this.CantRegis.ReadOnly = true;
-            this.CantRegis.Width = 55;
-            // 
-            // Modelo
-            // 
-            this.Modelo.HeaderText = "Modelo";
-            this.Modelo.Name = "Modelo";
-            this.Modelo.ReadOnly = true;
-            // 
-            // Mac
-            // 
-            this.Mac.HeaderText = "Mac Address";
-            this.Mac.Name = "Mac";
-            this.Mac.ReadOnly = true;
-            // 
-            // DNS
-            // 
-            this.DNS.HeaderText = "DNS";
-            this.DNS.Name = "DNS";
-            this.DNS.Width = 180;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Clave
-            // 
-            this.Clave.HeaderText = "Clave";
-            this.Clave.Name = "Clave";
-            this.Clave.ReadOnly = true;
-            this.Clave.Visible = false;
             // 
             // gpbxRutinas
             // 
@@ -380,6 +307,79 @@
             this.rtbLog.TabIndex = 12;
             this.rtbLog.Text = "";
             // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            this.Numero.Width = 50;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 80;
+            // 
+            // IP
+            // 
+            this.IP.HeaderText = "IP V4";
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            this.IP.Width = 80;
+            // 
+            // Puerto
+            // 
+            this.Puerto.HeaderText = "Puerto";
+            this.Puerto.Name = "Puerto";
+            this.Puerto.ReadOnly = true;
+            this.Puerto.Width = 50;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // CantRegis
+            // 
+            this.CantRegis.HeaderText = "Cantidad Registros";
+            this.CantRegis.Name = "CantRegis";
+            this.CantRegis.ReadOnly = true;
+            this.CantRegis.Width = 60;
+            // 
+            // Modelo
+            // 
+            this.Modelo.HeaderText = "Modelo";
+            this.Modelo.Name = "Modelo";
+            this.Modelo.ReadOnly = true;
+            // 
+            // Mac
+            // 
+            this.Mac.HeaderText = "Mac Address";
+            this.Mac.Name = "Mac";
+            this.Mac.ReadOnly = true;
+            // 
+            // DNS
+            // 
+            this.DNS.HeaderText = "DNS";
+            this.DNS.Name = "DNS";
+            this.DNS.Width = 180;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Visible = false;
+            // 
             // Relojes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,6 +431,11 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Button btnInicializar;
+        private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.GroupBox groupAvanzadas;
+        private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn IP;
@@ -442,10 +447,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DNS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
-        private System.Windows.Forms.Button btnReiniciar;
-        private System.Windows.Forms.Button btnInicializar;
-        private System.Windows.Forms.Button btnAdmin;
-        private System.Windows.Forms.GroupBox groupAvanzadas;
-        private System.Windows.Forms.RichTextBox rtbLog;
     }
 }

@@ -8,6 +8,16 @@ namespace ZkManagement.Datos
 {
     class CatalogoUsuarios
     {
+        private static CatalogoUsuarios _instancia;
+
+        public static CatalogoUsuarios GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new CatalogoUsuarios();
+            }
+            return _instancia;
+        }
         private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
         {

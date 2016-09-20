@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
     class ControladorABMUsuarios
-    {
-        private CatalogoUsuarios cu;
-        public DataTable GetUsuarios()
+    {        public DataTable GetUsuarios()
         {
             DataTable usuarios = new DataTable();
-            cu = new CatalogoUsuarios();
             try
             {
-                usuarios = cu.GetUsuarios();
+                usuarios = CatalogoUsuarios.GetInstancia().GetUsuarios();
             }
             catch (Exception ex)
             {
@@ -30,10 +23,9 @@ namespace ZkManagement.Logica
         #region ABM
         public void ModificarUsuario(Usuario usuario)
         {
-            cu = new CatalogoUsuarios();
             try
             {
-                cu.ModifUsuario(usuario);
+                CatalogoUsuarios.GetInstancia().ModifUsuario(usuario);
             }
             catch(Exception ex)
             {
@@ -43,10 +35,9 @@ namespace ZkManagement.Logica
 
         public void AgregarUsuario(Usuario usuario)
         {
-            cu = new CatalogoUsuarios();
             try
             {
-                cu.AltaUsuario(usuario);
+                CatalogoUsuarios.GetInstancia().AltaUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -57,10 +48,9 @@ namespace ZkManagement.Logica
 
         public void EliminarUsuario(Usuario usuario)
         {
-            cu = new CatalogoUsuarios();
             try
             {
-                cu.EliminarUsuario(usuario);
+                CatalogoUsuarios.GetInstancia().EliminarUsuario(usuario);
             }
             catch (Exception ex)
             {

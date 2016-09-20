@@ -388,7 +388,7 @@
             // 
             this.txtBuscar.Location = new System.Drawing.Point(305, 44);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(193, 22);
+            this.txtBuscar.Size = new System.Drawing.Size(222, 22);
             this.txtBuscar.TabIndex = 9;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
@@ -397,7 +397,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(246, 47);
+            this.label2.Location = new System.Drawing.Point(248, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 10;
@@ -406,7 +406,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.search_grande;
-            this.pictureBox1.Location = new System.Drawing.Point(504, 41);
+            this.pictureBox1.Location = new System.Drawing.Point(533, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(23, 26);
             this.pictureBox1.TabIndex = 11;

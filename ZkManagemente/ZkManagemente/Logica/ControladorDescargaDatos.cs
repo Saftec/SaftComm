@@ -7,20 +7,22 @@ namespace ZkManagement.Logica
 {
     class ControladorDescargaDatos
     {
-        private CatalogoEmpleados ce = new CatalogoEmpleados();
         public void DescargarInfo(Empleado emp)
         {
-                   
+            if (emp.Pin==string.Empty)
+            {
+                emp.Pin = "NULL";
+            }                   
             try
             {
-                emp.Id = ce.GetEmpId(emp.Legajo);
+                emp.Id = CatalogoEmpleados.GetInstancia().GetEmpId(emp.Legajo);
                 if (emp.Id > 0)
                 {
-                    ce.Actualizar(emp);              
+                    CatalogoEmpleados.GetInstancia().Actualizar(emp);              
                 }
                 else
                 {
-                    ce.Agregar(emp);
+                    CatalogoEmpleados.GetInstancia().Agregar(emp);
                 }
             }
             catch(Exception ex)
@@ -45,7 +47,7 @@ namespace ZkManagement.Logica
                 total += huellas.Count;
                 foreach (Huella h in huellas)
                 {
-                    int id = ce.GetEmpId(h.Legajo);
+                    int id = CatalogoEmpleados.GetInstancia().GetEmpId(h.Legajo);
                     if (!ch.Existe(h, id))
                     {
                         ch.InsertarHuella(h, id);

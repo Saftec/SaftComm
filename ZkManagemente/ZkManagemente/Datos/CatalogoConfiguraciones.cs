@@ -6,6 +6,19 @@ namespace ZkManagement.Datos
 {
     class CatalogoConfiguraciones
     {
+        // Patrón Singleton //
+        private static CatalogoConfiguraciones _instancia;
+        public static CatalogoConfiguraciones GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new CatalogoConfiguraciones();
+            }
+            return _instancia;
+        }
+
+        // Hasta acá //
+
         private string query = string.Empty;
 
         public string GetConfig(int id)

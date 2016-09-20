@@ -79,5 +79,19 @@ namespace ZkManagement.Util
             return band;
         }
 
+        public bool MaxLength(string[] textos, int min, int max)
+        {
+            bool band = true;
+            
+            foreach(string t in textos)
+            {
+                if (t.Length<min || t.Length > max)
+                {
+                    band = false;
+                }
+            }
+            return band;
+        }
+
     }
 }

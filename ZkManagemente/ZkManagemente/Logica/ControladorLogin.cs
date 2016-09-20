@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 using ZkManagement.Interfaz;
@@ -10,13 +9,12 @@ namespace ZkManagement.Logica
 
     class ControladorLogin
     {        
-        private CatalogoUsuarios cu = new CatalogoUsuarios();
         private static Usuario usr = new Usuario(); //---->La uso como variable de sesión
         public void ValidarUsuario(Usuario usuario)
         {                       
             try
             {
-                usr = cu.GetUsuario(usuario);
+                usr = CatalogoUsuarios.GetInstancia().GetUsuario(usuario);
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
