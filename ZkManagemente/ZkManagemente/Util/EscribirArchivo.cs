@@ -9,11 +9,10 @@ namespace ZkManagement.Logica
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         private Config config = new Config();
-        private ILog logger = LogManager.GetLogger("");
 
         public void EscribirRegistros(int nroDispositivo, int ioModo, int año, int mes, int dia, int horas, int minuto, string legajo)
         {
-            string path = cc.GetConfig(2); //Obtengo path de descarga de registros
+            string path = config.Read("General","Path"); //Obtengo path de descarga de registros
 
             string linea, hora, tipoMov, fecha, reloj;         
 
@@ -32,7 +31,7 @@ namespace ZkManagement.Logica
 
             catch (Exception ex)
             {
-                logger.Fatal(ex.Message);
+                Logger.GetLogger().Error(ex.Message);
                 throw new Exception("Error al intentar escribir el archivo de registros");               
             }
         }

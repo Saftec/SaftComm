@@ -27,13 +27,7 @@ namespace ZkManagement.Logica
 
                 legajo = fila["Legajo"].ToString();
                 try
-                {
-                    id = ce.GetEmpId(legajo);
-                    if (id < 1)
-                    {
-                        desconocidos.Add(fila["Legajo"].ToString());
-                        break;
-                    }
+                {                   
                     reloj = Convert.ToInt32(fila["Reloj"]);
                     dia = Convert.ToInt32(fila["Dia"]);
                     mes = Convert.ToInt32(fila["Mes"]);
@@ -63,6 +57,12 @@ namespace ZkManagement.Logica
                                 break;
                         }
                     writer.EscribirRegistros(reloj, tipoMov, año, mes, dia, hora, minutos, legajo);
+                    id = ce.GetEmpId(legajo);
+                    if (id < 1)
+                    {
+                        desconocidos.Add(fila["Legajo"].ToString());
+                        continue;
+                    }
                     ce.InsertarRegis(id, new DateTime(año, mes, dia, hora, minutos, segundos), tipo , reloj);
                 }
                 catch(Exception ex)

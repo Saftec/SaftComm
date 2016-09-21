@@ -193,8 +193,8 @@ namespace ZkManagement.Interfaz
                         LogError("Legajo: " + l);
                     }
                 }
-                base.InformarEvento("Se descargaron: " + (regis.Rows.Count-desconocidos.Count).ToString() + " registros", "Descarga de registros");
-                LogInforme("Se descargaron: " + (regis.Rows.Count - desconocidos.Count).ToString() + " registros");
+                base.InformarEvento("Se descargaron: " + (regis.Rows.Count).ToString() + " registros", "Descarga de registros");
+                LogInforme("Se descargaron: " + (regis.Rows.Count).ToString() + " registros");
             }
             catch (AppException appex)
             {
