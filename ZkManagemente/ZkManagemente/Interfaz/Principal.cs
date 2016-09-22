@@ -10,6 +10,17 @@ namespace ZkManagement.Interfaz
 {
     public partial class Principal : Form
     {
+        private static Principal _instancia;
+        
+        public static Principal GetInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new Principal();
+            }
+            return _instancia;
+        }
+
         private Relojes relojes;
         private ControladorConfigRutinas ccr;
         public Principal()
@@ -22,7 +33,6 @@ namespace ZkManagement.Interfaz
             IniciarReloj();
             InicializarTimers();
             CentrarElementos();
-            iconoBandeja.Visible = false;
         }
         internal void SetPermisos(Usuario usuario)
         {

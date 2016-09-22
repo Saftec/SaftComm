@@ -158,7 +158,6 @@
             this.iconoBandeja.ContextMenuStrip = this.contextMenuStrip1;
             this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
             this.iconoBandeja.Text = "Saftec";
-            this.iconoBandeja.Visible = true;
             this.iconoBandeja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.iconoBandeja_MouseDoubleClick);
             // 
             // contextMenuStrip1

@@ -18,11 +18,10 @@ namespace ZkManagement.Logica
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
                 if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
 
-                Principal ppal = new Principal();
                 Logger.GetLogger().Info("-----------------------------------------------------------------\n");
                 Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
-                ppal.SetPermisos(usr);
-                ppal.Show();                               
+                Principal.GetInstancia().SetPermisos(usr);
+                Principal.GetInstancia().Show();                               
             }
             catch  (Exception ex)
             {
