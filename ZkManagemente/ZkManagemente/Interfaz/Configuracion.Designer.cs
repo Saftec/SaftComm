@@ -57,6 +57,8 @@
             this.btnGuardarRutinas = new System.Windows.Forms.Button();
             this.txtMinRegs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.chckActivarHorarios = new System.Windows.Forms.CheckBox();
             this.txtHSHasta = new System.Windows.Forms.TextBox();
             this.txtHSDesde = new System.Windows.Forms.TextBox();
@@ -100,8 +102,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnGuardarFTP = new System.Windows.Forms.Button();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupFtp.SuspendLayout();
@@ -437,6 +437,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Automatizacion Rutinas";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label30.Location = new System.Drawing.Point(289, 70);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(42, 13);
+            this.label30.TabIndex = 18;
+            this.label30.Text = "hh:mm";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label29.Location = new System.Drawing.Point(171, 70);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(42, 13);
+            this.label29.TabIndex = 17;
+            this.label29.Text = "hh:mm";
+            // 
             // chckActivarHorarios
             // 
             this.chckActivarHorarios.AutoSize = true;
@@ -677,6 +699,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox4);
@@ -690,7 +713,6 @@
             this.tabPage2.Size = new System.Drawing.Size(855, 474);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Fichero de Registros";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -861,6 +883,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.btnGuardarRutinas);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -868,10 +891,10 @@
             this.tabPage3.Size = new System.Drawing.Size(855, 474);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rutinas";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.tabPage1.Controls.Add(this.btnGuardarFTP);
             this.tabPage1.Controls.Add(this.groupFtp);
             this.tabPage1.Controls.Add(this.chckActivarFtp);
@@ -881,7 +904,6 @@
             this.tabPage1.Size = new System.Drawing.Size(855, 474);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Servidor FTP";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnGuardarFTP
             // 
@@ -892,28 +914,6 @@
             this.btnGuardarFTP.Text = "Guardar";
             this.btnGuardarFTP.UseVisualStyleBackColor = true;
             this.btnGuardarFTP.Click += new System.EventHandler(this.btnGuardarFTP_Click);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label29.Location = new System.Drawing.Point(171, 70);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(42, 13);
-            this.label29.TabIndex = 17;
-            this.label29.Text = "hh:mm";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label30.Location = new System.Drawing.Point(289, 70);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(42, 13);
-            this.label30.TabIndex = 18;
-            this.label30.Text = "hh:mm";
             // 
             // Configuracion
             // 

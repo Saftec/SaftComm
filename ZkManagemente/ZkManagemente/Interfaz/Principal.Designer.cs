@@ -195,7 +195,7 @@
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.LogoPpal;
             this.pictureBox1.Location = new System.Drawing.Point(12, 105);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(630, 128);
+            this.pictureBox1.Size = new System.Drawing.Size(621, 404);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -230,7 +230,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.ClientSize = new System.Drawing.Size(1048, 714);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox1);

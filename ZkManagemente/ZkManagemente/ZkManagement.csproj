@@ -146,6 +146,7 @@
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
     <Compile Include="Util\Config.cs" />
+    <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\EscribirArchivo.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\ControladorEmpleados.cs" />
