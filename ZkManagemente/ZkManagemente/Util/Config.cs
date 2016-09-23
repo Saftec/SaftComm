@@ -1,7 +1,6 @@
-﻿using System.Configuration;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Text;
-
+using System.Configuration;
 
 namespace ZkManagement.Util
 {
@@ -9,6 +8,7 @@ namespace ZkManagement.Util
     {
         private static Config _config;
         private string filePath = ConfigurationManager.AppSettings["Path"].ToString() + @"\exportar.ini";
+        //private string filePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\exportar.ini";
 
         public static Config Instance()  // PATRON SINGLETON!
         {
@@ -22,7 +22,7 @@ namespace ZkManagement.Util
         string key,
         string val,
         string filePath);
-
+        
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section,
         string key,

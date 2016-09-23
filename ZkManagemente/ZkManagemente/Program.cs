@@ -1,5 +1,4 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace ZkManagement

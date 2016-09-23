@@ -450,7 +450,7 @@ namespace ZkManagement.Interfaz
                 try
                 {
                     DataTable regis = new DataTable();
-                    LogInforme("Conectado a reloj: " + r.Numero.ToString());
+                    LogInforme("Conectando a reloj: " + r.Numero.ToString() + "...");
                     r.Conectar();
                     LogInforme("Conexion correcta con reloj: " + r.Numero.ToString());
                     r.Estado = true;
@@ -470,7 +470,7 @@ namespace ZkManagement.Interfaz
                 catch (Exception ex)
                 {
                     LogError("****Se produjo un error con reloj: " + r.Numero.ToString() + " durante la rutina de bajada de registros*****");
-                    LogError("ERROR: " + ex.Message);
+                    LogError(ex.Message);
                 }
             }
             if (desconocidos.Count > 0)
