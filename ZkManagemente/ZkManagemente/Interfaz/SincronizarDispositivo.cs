@@ -14,7 +14,7 @@ namespace ZkManagement.Interfaz
         private List<Reloj> relojes = new List<Reloj>();
         private DataTable usuariosEnDisp = new DataTable();
         private Reloj reloj = new Reloj();      
-        private int total;
+        private int cantHuellas;
         public SincronizarDispositivo()
         {
             InitializeComponent();
@@ -274,7 +274,7 @@ namespace ZkManagement.Interfaz
             }
             try
             {
-                if(chckBatch.Checked==true) { reloj.IniciarBatch(); }
+                if(chckBatch.Checked==true) { reloj.IniciarBatch(); } //Controlar el modo batch
                 LoguearInforme("Iniciando descarga de datos de usuarios...");
                 backgroundWorkerSincronizacion.RunWorkerAsync();
             }
@@ -381,12 +381,13 @@ namespace ZkManagement.Interfaz
             {
                 emps = ObtenerSeleccionados();                        
                 if (emps.Count==0) { throw new AppException("Por favor, seleccione al menos un empleado"); }
-                total = 0;
+                int total = 0;
+                cantHuellas = 0;
                 foreach(Empleado emp in emps)
                 {
                     cdd.DescargarInfo(emp);  //Descargo la info del usuario
-                    cdd.AgregarHuella(emp, reloj); //Descargo la huella
-                    total++;
+                    cantHuellas += cdd.AgregarHuella(emp, reloj); //Descargo las huellas
+                    total++;                    
                     backgroundWorkerSincronizacion.ReportProgress((total * 100) / emps.Count);
                 }
                 reloj.ActivarDispositivo();
@@ -418,7 +419,7 @@ namespace ZkManagement.Interfaz
             progressBarSinc.Value = 0;
             lblProgreso.Text = "0%";
             LlenarDgvLocal();
-            LoguearInforme("Se descargaron " + total.ToString() + " huellas.");
+            LoguearInforme("Se descargaron " + cantHuellas.ToString() + " huellas.");
         }
 
         private void backgroundWorkerCargaDatos_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -443,7 +444,7 @@ namespace ZkManagement.Interfaz
                     }
                 }
                 if (empleados.Count == 0) { throw new AppException("Por favor, seleccione al menos 1 empleado"); }
-                total = 0;
+                int total = 0;
                 reloj.Deshabilitar();
                 foreach(Empleado emp in empleados)
                 {
@@ -473,7 +474,7 @@ namespace ZkManagement.Interfaz
             }
             progressBarSinc.Value = 0;
             lblProgreso.Text = "0%";
-            LoguearInforme("Se cargaron: " + total.ToString() + " usuarios.");
+           // LoguearInforme("Se cargaron: " + total.ToString() + " usuarios.");
         }
         private void backgroundWorkerCargaDatos_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {

@@ -44,7 +44,7 @@ namespace ZkManagement.Logica
                 reloj.LeerTodasLasHuellas();
                 List<Huella> huellas = new List<Huella>();
                 huellas = reloj.ObtenerHuella(emp.Legajo);
-                total += huellas.Count;
+                total = huellas.Count;
                 foreach (Huella h in huellas)
                 {
                     int id = CatalogoEmpleados.GetInstancia().GetEmpId(h.Legajo);
