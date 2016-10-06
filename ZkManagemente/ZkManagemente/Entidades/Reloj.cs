@@ -115,7 +115,11 @@ namespace ZkManagement.Entidades
                 throw ex;
             }            
             bool estado;
-            if (this.clave != string.Empty) { base.SetCommPassword(Convert.ToInt32(clave)); }
+            if (this.clave != string.Empty)
+            {
+                int psw = Convert.ToInt32(Encrypt.DesEncriptar(this.clave));
+                base.SetCommPassword(psw);
+            }
             estado = base.Connect_Net(ip, puerto);
             if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }

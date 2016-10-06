@@ -73,7 +73,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd;
             try
             {
-                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + r.Clave + "', " + r.Puerto + ", " + r.Numero + ")";
+                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + Encrypt.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ")";
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
@@ -112,7 +112,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd;
             try
             {
-                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + r.Clave + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
+                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + Encrypt.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }

@@ -66,7 +66,7 @@ namespace ZkManagement.Interfaz
             if (dgvUsuarios.CurrentRow != null)
             {
                 txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Usr"].Value.ToString();
-                txtContraseña.Text = dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString();
+                txtContraseña.Text = Encrypt.DesEncriptar((dgvUsuarios.CurrentRow.Cells["Password"].Value.ToString()));
                 comboPermisos.SelectedIndex = ((Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdPermisos"].Value)) - 1);
             }
         }
@@ -96,7 +96,7 @@ namespace ZkManagement.Interfaz
             }
             abm = new ControladorABMUsuarios();
             usuario.Nivel = comboPermisos.SelectedIndex + 1;
-            usuario.Pass = txtContraseña.Text;
+            usuario.Pass = Encrypt.Encriptar(txtContraseña.Text);
             usuario.Usr = txtUsuario.Text;
             try
             {

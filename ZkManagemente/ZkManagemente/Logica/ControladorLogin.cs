@@ -16,7 +16,7 @@ namespace ZkManagement.Logica
             {
                 usr = CatalogoUsuarios.GetInstancia().GetUsuario(usuario);
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
-                if (usr.Pass!=usuario.Pass) { throw new AppException("Password invalida"); }
+                if (Encrypt.DesEncriptar(usr.Pass)!=usuario.Pass) { throw new AppException("Password invalida"); }
                 CatalogoUsuarios.GetInstancia().SetUltimLogin(usr);
                 Logger.GetLogger().Info("-----------------------------------------------------------------\n");
                 Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
