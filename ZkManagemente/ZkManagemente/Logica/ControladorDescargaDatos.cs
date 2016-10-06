@@ -7,7 +7,7 @@ namespace ZkManagement.Logica
 {
     class ControladorDescargaDatos
     {
-        public void DescargarInfo(Empleado emp)
+        public void ActualizarInfo(Empleado emp)
         {
             if (emp.Pin==string.Empty)
             {

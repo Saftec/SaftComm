@@ -193,5 +193,36 @@ namespace ZkManagement.Datos
                 }
             }
         }
+
+        public void SetUltimLogin(Usuario usr)
+        {
+            try
+            {
+                query = "UPDATE Usuarios SET UltimoInicio='" + DateTime.Now + "' WHERE IdUsuario=" + usr.Id.ToString();
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException sqlex)
+            {
+                Logger.GetLogger().Error(sqlex.StackTrace);
+                throw new Exception("Error al intentar actualizar la tabla usuarios");
+            }
+            catch (Exception ex)
+            {
+                Logger.GetLogger().Fatal(ex.StackTrace);
+                throw new Exception("Error no controlado al intentar actualizar la tabla usuario");
+            }
+            finally
+            {
+                try
+                {
+                    Conexion.GetInstancia().ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

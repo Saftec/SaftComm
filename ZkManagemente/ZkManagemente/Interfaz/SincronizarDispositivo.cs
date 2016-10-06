@@ -385,7 +385,7 @@ namespace ZkManagement.Interfaz
                 cantHuellas = 0;
                 foreach(Empleado emp in emps)
                 {
-                    cdd.DescargarInfo(emp);  //Descargo la info del usuario
+                    cdd.ActualizarInfo(emp);  //Descargo la info del usuario
                     cantHuellas += cdd.AgregarHuella(emp, reloj); //Descargo las huellas
                     total++;                    
                     backgroundWorkerSincronizacion.ReportProgress((total * 100) / emps.Count);

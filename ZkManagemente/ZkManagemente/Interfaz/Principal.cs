@@ -44,6 +44,7 @@ namespace ZkManagement.Interfaz
             {
                 lblUsuario.Text = "Usuario: " + usuario.Usr;
                 lblVersion.Text = "Version: " + ConfigurationManager.AppSettings["Version"].ToString();
+                //Permisos de usuario
                 if (usuario.Nivel <= 2) { btnConfig.Enabled = true; }
                 if (usuario.Nivel == 1) { btnUsuarios.Enabled = true; }
             }
@@ -119,15 +120,15 @@ namespace ZkManagement.Interfaz
         public void InicializarTimers()
         {
             ccr = new ControladorConfigRutinas();
-            if (Convert.ToBoolean(ccr.GetConfig(4)))
+            if (Convert.ToBoolean(ccr.GetEstadoRutinaRegs()))
             {
                 timerRutinaRegs.Enabled = true;
-                timerRutinaRegs.Interval = Convert.ToInt32(ccr.GetConfig(5)) * 60000; //Convierto los minutos en milisegundos
+                timerRutinaRegs.Interval = Convert.ToInt32(ccr.GetIntervaloRegs()) * 60000; //Convierto los minutos en milisegundos
             }
-            if (Convert.ToBoolean(ccr.GetConfig(6)))
+            if (Convert.ToBoolean(ccr.GetEstadoRutinaHs()))
             {
                 timerRutinaHora.Enabled = true;
-                timerRutinaHora.Interval = Convert.ToInt32(ccr.GetConfig(7)) * 60000;
+                timerRutinaHora.Interval = Convert.ToInt32(ccr.GetIntervaloHs()) * 60000;
             }
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -214,12 +215,12 @@ namespace ZkManagement.Interfaz
             DateTime horaFin;
             try
             {
-                if (!Convert.ToBoolean(ccr.GetConfig(10))) //Si no está activado el rango de horario devuelvo false.
+                if (!Convert.ToBoolean(ccr.GetEstadoRango())) //Si no está activado el rango de horario devuelvo false.
                 {
                     return false;
                 }
-                horaInicio = DateTime.ParseExact(ccr.GetConfig(8), "HH:mm", CultureInfo.CurrentCulture);
-                horaFin = DateTime.ParseExact(ccr.GetConfig(9), "HH:mm", CultureInfo.CurrentCulture);
+                horaInicio = DateTime.ParseExact(ccr.GetHoraInicioRango(), "HH:mm", CultureInfo.CurrentCulture);
+                horaFin = DateTime.ParseExact(ccr.GetHoraFinRango(), "HH:mm", CultureInfo.CurrentCulture);
                 if (horaInicio<DateTime.Now && horaFin > DateTime.Now)
                 {
                     return true;

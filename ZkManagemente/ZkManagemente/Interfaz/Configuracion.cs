@@ -18,14 +18,14 @@ namespace ZkManagement.Interfaz
             ccr = new ControladorConfigRutinas();
                     //FICHERO DE REGISTROS//
             LeerDeArchivo();
-                    //RUTINAS//
-            txtMinRegs.Text = ccr.GetConfig(5);
-            txtMinHs.Text = ccr.GetConfig(7);
-            txtHSDesde.Text = ccr.GetConfig(8);
-            txtHSHasta.Text = ccr.GetConfig(9);
-            chckActivaReg.Checked = Convert.ToBoolean(ccr.GetConfig(4));
-            chckActivaHora.Checked = Convert.ToBoolean(ccr.GetConfig(6));
-            chckActivarHorarios.Checked = Convert.ToBoolean(ccr.GetConfig(10));
+            //RUTINAS//
+            txtMinRegs.Text = ccr.GetIntervaloRegs();
+            txtMinHs.Text = ccr.GetIntervaloHs();
+            txtHSDesde.Text = ccr.GetHoraInicioRango();
+            txtHSHasta.Text = ccr.GetHoraFinRango();
+            chckActivaReg.Checked = Convert.ToBoolean(ccr.GetEstadoRutinaRegs());
+            chckActivaHora.Checked = Convert.ToBoolean(ccr.GetEstadoRutinaHs());
+            chckActivarHorarios.Checked = Convert.ToBoolean(ccr.GetEstadoRango());
                     //FTP//
            /* if(Convert.ToBoolean(cc.GetConfig(8)))
             {
@@ -104,11 +104,16 @@ namespace ZkManagement.Interfaz
         {
             ControladorConfigRutinas ccr = new ControladorConfigRutinas();
             Cursor = Cursors.WaitCursor;
-            string[] valores = { chckActivaReg.Checked.ToString(), txtMinRegs.Text, chckActivaHora.Checked.ToString(), txtMinHs.Text, txtHSDesde.Text, txtHSHasta.Text, chckActivarHorarios.Checked.ToString() };
 
             try
             {
-                ccr.ActualizarConfigs(valores);                            
+                ccr.SetEstadoRango(chckActivarHorarios.Checked.ToString());
+                ccr.SetEstadoRutinaHs(chckActivaHora.Checked.ToString());
+                ccr.SetEstadoRutinaRegs(chckActivaReg.Checked.ToString());
+                ccr.SetFinRango(txtHSHasta.Text);
+                ccr.SetInicioRango(txtHSDesde.Text);
+                ccr.SetIntervaloHs(txtMinHs.Text);
+                ccr.SetIntervaloRegs(txtMinRegs.Text);                            
                 base.InformarEvento("Configuraciones guardadas correctamente", "Configuraciones");
             }
             catch(Exception ex)
