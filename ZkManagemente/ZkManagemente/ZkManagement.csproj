@@ -81,6 +81,7 @@
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Datos\ConnectionSaftime.cs" />
     <Compile Include="Entidades\Huella.cs" />
     <Compile Include="Entidades\Reloj.cs" />
     <Compile Include="Entidades\Empleado.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Logica\ControladorABMUsuarios.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
+    <Compile Include="Logica\LogicConfigExport.cs" />
     <Compile Include="Util\Config.cs" />
     <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\EscribirArchivo.cs" />

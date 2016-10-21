@@ -69,25 +69,25 @@ namespace ZkManagement.Interfaz
         }
         private void GrabarEnArchivo()
         {
-            Config config = new Config();
+            LogicConfigExport lce = new LogicConfigExport();
             try
             {
-                config.Write("Movimientos", "CodEntrada", txtCodEntrada.Text);
-                config.Write("Movimientos", "CodSalida", txtCodsalida.Text);
-                config.Write("Movimientos", "Posicion", (cbPosicionMovimientos.SelectedIndex + 1).ToString());
-                config.Write("Fecha", "Formato", comboFormatoFecha.Text);
-                config.Write("Fecha", "Posicion", (cbPosicionFecha.SelectedIndex + 1).ToString());
-                config.Write("Fecha", "Separador", cbSeparadorFecha.Text);
-                config.Write("Hora", "Formato", comboFormatoHora.Text);
-                config.Write("Hora", "Posicion", (cbPosicionHora.SelectedIndex + 1).ToString());
-                config.Write("Hora", "Separador", cbSeparadorHora.Text);
-                config.Write("Legajo", "Completar", txtCompletarLegajo.Text);
-                config.Write("Legajo", "Posicion", (cbPosicionLegajo.SelectedIndex + 1).ToString());
-                config.Write("Reloj", "Completar", txtReloj.Text);
-                config.Write("Reloj", "Posicion", (cbPosicionReloj.SelectedIndex + 1).ToString());
-                config.Write("General", "Separador", cbSeparadorCampos.Text);
-                config.Write("General", "Path", txtPathRegs.Text);
-                config.Write("Reloj", "Cadena", txtAnteponer.Text);
+                lce.SetCodEntrada(txtCodEntrada.Text);
+                lce.SetCodSalida(txtCodsalida.Text);
+                lce.SetPosMov((cbPosicionMovimientos.SelectedIndex + 1).ToString());
+                lce.SetFormatoFecha(comboFormatoFecha.Text);
+                lce.SetPosFecha((cbPosicionFecha.SelectedIndex + 1).ToString());
+                lce.SetSeparadorFecha(cbSeparadorFecha.Text);
+                lce.SetFormatoHora(comboFormatoHora.Text);
+                lce.SetPosHora((cbPosicionHora.SelectedIndex + 1).ToString());
+                lce.SetSeparadorHora(cbSeparadorHora.Text);
+                lce.SetLongitudLegajo(txtCompletarLegajo.Text);
+                lce.SetPosLegajo((cbPosicionLegajo.SelectedIndex + 1).ToString());
+                lce.SetPrefijoReloj(txtAnteponer.Text);
+                lce.SetPosReloj((cbPosicionReloj.SelectedIndex + 1).ToString());
+                lce.SetSeparadorCampos(cbSeparadorCampos.Text);
+                lce.SetPathDescarga(txtPathRegs.Text);
+                lce.SetLongitudReloj(txtReloj.Text);
             }
             catch(Exception ex)
             {
