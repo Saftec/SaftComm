@@ -7,6 +7,216 @@ namespace ZkManagement.Logica
     {
         Config config = new Config();
 
+        #region Getters
+        public string GetCodEntrada()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor=config.Read("Movimientos", "CodEntrada");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetCodSalida()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Movimientos", "CodSalida");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPosMov()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Movimientos", "Posicion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+         public string GetPosFecha()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Fecha", "Posicion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetSeparadorFecha()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Fecha", "Separador");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPosHora()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Hora", "Posicion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetSeparadorHora()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Hora", "Separador");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetFormatoFecha()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Fecha", "Formato");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetFormatoHora()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Hora", "Formato");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetLongitudLegajo()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Legajo", "Completar");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPosLegajo()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Legajo", "Posicion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetLongitudReloj()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Reloj", "Completar");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPosReloj()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Reloj", "Posicion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetSeparadorCampos()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("General", "Separador");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPath()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("General", "Path");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public string GetPrefijoReloj()
+        {
+            string valor = string.Empty;
+            try
+            {
+                valor = config.Read("Reloj", "Cadena");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        #endregion
         #region Setters
         public void SetCodEntrada(string cod)
         {

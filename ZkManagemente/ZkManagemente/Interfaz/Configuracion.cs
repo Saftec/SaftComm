@@ -9,6 +9,7 @@ namespace ZkManagement.Interfaz
     public partial class Configuracion : GenericaPadre
     {
         private ControladorConfigRutinas ccr;
+        private LogicConfigExport lce;
         public Configuracion()
         {
             InitializeComponent();
@@ -16,6 +17,7 @@ namespace ZkManagement.Interfaz
         private void CargarConfigs()
         {
             ccr = new ControladorConfigRutinas();
+            
                     //FICHERO DE REGISTROS//
             LeerDeArchivo();
             //RUTINAS//
@@ -41,25 +43,25 @@ namespace ZkManagement.Interfaz
 
         private void LeerDeArchivo()
         {
-            Config config = new Config();
+            lce = new LogicConfigExport();
             try
             {
-                txtCodEntrada.Text = config.Read("Movimientos", "CodEntrada");
-                txtCodsalida.Text = config.Read("Movimientos", "CodSalida");
-                cbPosicionMovimientos.SelectedIndex = Convert.ToInt32(config.Read("Movimientos", "Posicion")) - 1;
-                comboFormatoFecha.Text = config.Read("Fecha", "Formato");
-                cbPosicionFecha.SelectedIndex = Convert.ToInt32(config.Read("Fecha", "Posicion")) - 1;
-                cbSeparadorFecha.Text = config.Read("Fecha", "Separador");
-                comboFormatoHora.Text = config.Read("Hora", "Formato");
-                cbPosicionHora.SelectedIndex = Convert.ToInt32(config.Read("Hora", "Posicion")) - 1;
-                cbSeparadorHora.Text = config.Read("Hora", "Separador");
-                txtCompletarLegajo.Text = config.Read("Legajo", "Completar");
-                cbPosicionLegajo.SelectedIndex = Convert.ToInt32(config.Read("Legajo", "Posicion")) - 1;
-                txtReloj.Text = config.Read("Reloj", "Completar");
-                cbPosicionReloj.SelectedIndex = Convert.ToInt32(config.Read("Reloj", "Posicion")) - 1;
-                cbSeparadorCampos.Text = config.Read("General", "Separador");
-                txtPathRegs.Text = config.Read("General", "Path");
-                txtAnteponer.Text = config.Read("Reloj", "Cadena");
+                txtCodEntrada.Text = lce.GetCodEntrada();
+                txtCodsalida.Text = lce.GetCodSalida();
+                cbPosicionMovimientos.SelectedIndex = Convert.ToInt32(lce.GetPosMov()) - 1;
+                comboFormatoFecha.Text = lce.GetFormatoFecha();
+                cbPosicionFecha.SelectedIndex = Convert.ToInt32(lce.GetPosFecha()) - 1;
+                cbSeparadorFecha.Text = lce.GetSeparadorFecha();
+                comboFormatoHora.Text = lce.GetFormatoHora();
+                cbPosicionHora.SelectedIndex = Convert.ToInt32(lce.GetPosHora()) - 1;
+                cbSeparadorHora.Text = lce.GetSeparadorHora();
+                txtCompletarLegajo.Text = lce.GetLongitudLegajo();
+                cbPosicionLegajo.SelectedIndex = Convert.ToInt32(lce.GetPosLegajo()) - 1;
+                txtReloj.Text = lce.GetLongitudReloj();
+                cbPosicionReloj.SelectedIndex = Convert.ToInt32(lce.GetPosReloj()) - 1;
+                cbSeparadorCampos.Text = lce.GetSeparadorCampos();
+                txtPathRegs.Text = lce.GetPath();
+                txtAnteponer.Text = lce.GetPrefijoReloj();
             }
             catch(Exception ex)
             {
@@ -69,7 +71,7 @@ namespace ZkManagement.Interfaz
         }
         private void GrabarEnArchivo()
         {
-            LogicConfigExport lce = new LogicConfigExport();
+            lce = new LogicConfigExport();
             try
             {
                 lce.SetCodEntrada(txtCodEntrada.Text);
