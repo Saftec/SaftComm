@@ -30,8 +30,12 @@ namespace ZkManagement.Interfaz
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            ccr = new ControladorConfigRutinas();
             IniciarReloj();
-            InicializarTimers();
+            if (ccr.IsDescarga())
+            {
+                InicializarTimers();
+            }            
             CentrarElementos();
         }
         internal void SetPermisos(Usuario usuario)
@@ -120,12 +124,12 @@ namespace ZkManagement.Interfaz
         public void InicializarTimers()
         {
             ccr = new ControladorConfigRutinas();
-            if (Convert.ToBoolean(ccr.GetEstadoRutinaRegs()))
+            if (ccr.GetEstadoRutinaRegs())
             {
                 timerRutinaRegs.Enabled = true;
                 timerRutinaRegs.Interval = Convert.ToInt32(ccr.GetIntervaloRegs()) * 60000; //Convierto los minutos en milisegundos
             }
-            if (Convert.ToBoolean(ccr.GetEstadoRutinaHs()))
+            if (ccr.GetEstadoRutinaHs())
             {
                 timerRutinaHora.Enabled = true;
                 timerRutinaHora.Interval = Convert.ToInt32(ccr.GetIntervaloHs()) * 60000;
@@ -215,7 +219,7 @@ namespace ZkManagement.Interfaz
             DateTime horaFin;
             try
             {
-                if (!Convert.ToBoolean(ccr.GetEstadoRango())) //Si no está activado el rango de horario devuelvo false.
+                if (!ccr.GetEstadoRango()) //Si no está activado el rango de horario devuelvo false.
                 {
                     return false;
                 }

@@ -1,32 +1,60 @@
 ﻿using System;
+using System.Configuration;
 using ZkManagement.Datos;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
     class ControladorConfigRutinas
     {
         #region GettersConfigs
-        public string GetEstadoRutinaRegs()
+        public bool IsDescarga()
         {
+            bool valor = false;
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(4);
+                if (Boolean.TryParse(ConfigurationManager.AppSettings["Descarga"].ToString(), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");
+                }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
+            return valor;
         }
-        public string GetEstadoRutinaHs()
+        public bool GetEstadoRutinaRegs()
         {
+            bool valor = false;
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(6);
+                if(!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(4), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");                    
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
+        public bool GetEstadoRutinaHs()
+        {
+            bool valor = false;
+            try
+            {
+                if (!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(6), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return valor;
         }
         public string GetIntervaloRegs()
         {
@@ -50,16 +78,21 @@ namespace ZkManagement.Logica
                 throw ex;
             }
         }
-        public string GetEstadoRango()
+        public bool GetEstadoRango()
         {
+            bool valor = false;
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(10);
+                if (!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(10), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return valor;
         }
         public string GetHoraInicioRango()
         {
@@ -85,6 +118,18 @@ namespace ZkManagement.Logica
         }
         #endregion
         #region SettersConfigs
+
+        public void SetDescarga(bool valor)
+        {
+            try
+            {
+                ConfigurationManager.AppSettings["Descarga"] = valor.ToString();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al intentar guardar configuración en archivo de configuraciones");
+            }
+        }
         public void SetEstadoRutinaRegs(string valor)
         {
             try

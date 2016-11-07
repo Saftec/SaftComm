@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Windows.Forms;
 using ZkManagement.Logica;
-using ZkManagement.Util;
 
 namespace ZkManagement.Interfaz
 {
@@ -19,15 +18,16 @@ namespace ZkManagement.Interfaz
             ccr = new ControladorConfigRutinas();
             
                     //FICHERO DE REGISTROS//
-            LeerDeArchivo();
+            LoadExportar();
             //RUTINAS//
             txtMinRegs.Text = ccr.GetIntervaloRegs();
             txtMinHs.Text = ccr.GetIntervaloHs();
             txtHSDesde.Text = ccr.GetHoraInicioRango();
             txtHSHasta.Text = ccr.GetHoraFinRango();
-            chckActivaReg.Checked = Convert.ToBoolean(ccr.GetEstadoRutinaRegs());
-            chckActivaHora.Checked = Convert.ToBoolean(ccr.GetEstadoRutinaHs());
-            chckActivarHorarios.Checked = Convert.ToBoolean(ccr.GetEstadoRango());
+            chckActivaReg.Checked = ccr.GetEstadoRutinaRegs();
+            chckActivaHora.Checked = ccr.GetEstadoRutinaHs();
+            chckActivarHorarios.Checked = ccr.GetEstadoRango();
+            chckDescarga.Checked = ccr.IsDescarga();
                     //FTP//
            /* if(Convert.ToBoolean(cc.GetConfig(8)))
             {
@@ -41,7 +41,7 @@ namespace ZkManagement.Interfaz
             }*/
         }
 
-        private void LeerDeArchivo()
+        private void LoadExportar()
         {
             lce = new LogicConfigExport();
             try
@@ -115,7 +115,8 @@ namespace ZkManagement.Interfaz
                 ccr.SetFinRango(txtHSHasta.Text);
                 ccr.SetInicioRango(txtHSDesde.Text);
                 ccr.SetIntervaloHs(txtMinHs.Text);
-                ccr.SetIntervaloRegs(txtMinRegs.Text);                            
+                ccr.SetIntervaloRegs(txtMinRegs.Text);
+                ccr.SetDescarga(chckDescarga.Checked);                        
                 base.InformarEvento("Configuraciones guardadas correctamente", "Configuraciones");
             }
             catch(Exception ex)

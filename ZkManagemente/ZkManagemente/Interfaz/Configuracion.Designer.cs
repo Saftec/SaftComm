@@ -102,6 +102,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnGuardarFTP = new System.Windows.Forms.Button();
+            this.chckDescarga = new System.Windows.Forms.CheckBox();
             this.groupArchivos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupFtp.SuspendLayout();
@@ -407,7 +408,7 @@
             // txtMinRegs
             // 
             this.txtMinRegs.Enabled = false;
-            this.txtMinRegs.Location = new System.Drawing.Point(315, 18);
+            this.txtMinRegs.Location = new System.Drawing.Point(315, 47);
             this.txtMinRegs.MaxLength = 2;
             this.txtMinRegs.Name = "txtMinRegs";
             this.txtMinRegs.Size = new System.Drawing.Size(38, 22);
@@ -415,6 +416,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chckDescarga);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.chckActivarHorarios);
@@ -442,7 +444,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label30.Location = new System.Drawing.Point(289, 70);
+            this.label30.Location = new System.Drawing.Point(289, 99);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(42, 13);
             this.label30.TabIndex = 18;
@@ -453,7 +455,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label29.Location = new System.Drawing.Point(171, 70);
+            this.label29.Location = new System.Drawing.Point(171, 99);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(42, 13);
             this.label29.TabIndex = 17;
@@ -462,7 +464,7 @@
             // chckActivarHorarios
             // 
             this.chckActivarHorarios.AutoSize = true;
-            this.chckActivarHorarios.Location = new System.Drawing.Point(21, 50);
+            this.chckActivarHorarios.Location = new System.Drawing.Point(21, 79);
             this.chckActivarHorarios.Name = "chckActivarHorarios";
             this.chckActivarHorarios.Size = new System.Drawing.Size(60, 17);
             this.chckActivarHorarios.TabIndex = 16;
@@ -473,7 +475,7 @@
             // txtHSHasta
             // 
             this.txtHSHasta.Enabled = false;
-            this.txtHSHasta.Location = new System.Drawing.Point(288, 48);
+            this.txtHSHasta.Location = new System.Drawing.Point(288, 77);
             this.txtHSHasta.MaxLength = 5;
             this.txtHSHasta.Name = "txtHSHasta";
             this.txtHSHasta.Size = new System.Drawing.Size(43, 22);
@@ -482,7 +484,7 @@
             // txtHSDesde
             // 
             this.txtHSDesde.Enabled = false;
-            this.txtHSDesde.Location = new System.Drawing.Point(171, 48);
+            this.txtHSDesde.Location = new System.Drawing.Point(171, 77);
             this.txtHSDesde.MaxLength = 5;
             this.txtHSDesde.Name = "txtHSDesde";
             this.txtHSDesde.Size = new System.Drawing.Size(43, 22);
@@ -492,7 +494,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(223, 51);
+            this.label12.Location = new System.Drawing.Point(223, 80);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 13);
             this.label12.TabIndex = 13;
@@ -501,7 +503,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(87, 53);
+            this.label2.Location = new System.Drawing.Point(87, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 12;
@@ -510,7 +512,7 @@
             // chckActivaHora
             // 
             this.chckActivaHora.AutoSize = true;
-            this.chckActivaHora.Location = new System.Drawing.Point(21, 103);
+            this.chckActivaHora.Location = new System.Drawing.Point(21, 132);
             this.chckActivaHora.Name = "chckActivaHora";
             this.chckActivaHora.Size = new System.Drawing.Size(56, 17);
             this.chckActivaHora.TabIndex = 11;
@@ -521,7 +523,7 @@
             // chckActivaReg
             // 
             this.chckActivaReg.AutoSize = true;
-            this.chckActivaReg.Location = new System.Drawing.Point(21, 20);
+            this.chckActivaReg.Location = new System.Drawing.Point(21, 49);
             this.chckActivaReg.Name = "chckActivaReg";
             this.chckActivaReg.Size = new System.Drawing.Size(56, 17);
             this.chckActivaReg.TabIndex = 10;
@@ -532,7 +534,7 @@
             // txtMinHs
             // 
             this.txtMinHs.Enabled = false;
-            this.txtMinHs.Location = new System.Drawing.Point(334, 101);
+            this.txtMinHs.Location = new System.Drawing.Point(334, 130);
             this.txtMinHs.MaxLength = 2;
             this.txtMinHs.Name = "txtMinHs";
             this.txtMinHs.Size = new System.Drawing.Size(38, 22);
@@ -541,7 +543,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(83, 104);
+            this.label5.Location = new System.Drawing.Point(83, 133);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(248, 13);
             this.label5.TabIndex = 8;
@@ -550,7 +552,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(377, 104);
+            this.label6.Location = new System.Drawing.Point(377, 133);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 6;
@@ -559,7 +561,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(355, 22);
+            this.label4.Location = new System.Drawing.Point(355, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 6;
@@ -568,7 +570,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 22);
+            this.label3.Location = new System.Drawing.Point(83, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(230, 13);
             this.label3.TabIndex = 5;
@@ -915,6 +917,16 @@
             this.btnGuardarFTP.UseVisualStyleBackColor = true;
             this.btnGuardarFTP.Click += new System.EventHandler(this.btnGuardarFTP_Click);
             // 
+            // chckDescarga
+            // 
+            this.chckDescarga.AutoSize = true;
+            this.chckDescarga.Location = new System.Drawing.Point(132, 21);
+            this.chckDescarga.Name = "chckDescarga";
+            this.chckDescarga.Size = new System.Drawing.Size(156, 17);
+            this.chckDescarga.TabIndex = 19;
+            this.chckDescarga.Text = "Ejecutar rutina en esta pc";
+            this.chckDescarga.UseVisualStyleBackColor = true;
+            // 
             // Configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1028,5 +1040,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.CheckBox chckDescarga;
     }
 }

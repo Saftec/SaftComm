@@ -10,6 +10,7 @@ namespace ZkManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Application.Run(new Interfaz.Login());
             Application.Run(new Interfaz.Login());
         }
     }
