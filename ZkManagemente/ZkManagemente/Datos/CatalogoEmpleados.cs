@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
+using System.Collections.Generic;
 
 namespace ZkManagement.Datos
 {
@@ -21,18 +22,31 @@ namespace ZkManagement.Datos
 
         private string query = string.Empty;
 
-        public DataTable Empleados()
+        public List<Empleado> Empleados()
         {
             SqlCommand cmd;
-            DataTable empleados = new DataTable();
+            List<Empleado> empleados = new List<Empleado>();
             try
             { 
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
                 string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(empleados);
-                da.Dispose();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Empleado e = new Empleado();
+                    e.Legajo = dr["Legajo"].ToString();
+                    e.Id = Convert.ToInt32(dr["IdEmpleado"]);
+                    e.Nombre = dr["Nombre"].ToString();
+                    e.Tarjeta = dr["Tarjeta"].ToString();
+                    e.Dni = dr["DNI"].ToString();
+                    e.Pin = dr["Pin"].ToString();
+                    e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
+                    e.Baja = Convert.ToInt32(dr["Baja"]);
+                    //Busco las huellas y lo guardo
+                    e.Huellas = GetHuellas(e);
+                    empleados.Add(e);
+                }
             }
             catch (SqlException sqlEx)
             {
@@ -172,7 +186,7 @@ namespace ZkManagement.Datos
             }
         }
 
-        public int GetEmpId(string legajo)
+        public int GetIdByLegajo(string legajo)
         {
             int id = 0;
             SqlCommand cmd; 
@@ -241,6 +255,48 @@ namespace ZkManagement.Datos
                     throw ex;
                 }
             }
+        }
+        private List<Huella> GetHuellas(Empleado emp)
+        {
+            string query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + emp.Id.ToString();
+            SqlCommand cmd;
+            List<Huella> huellas = new List<Huella>();
+            try
+            {
+                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Huella h = new Huella();
+                    h.FingerIndex = Convert.ToInt32(dr["FingerIndex"]);
+                    h.Lengh = Convert.ToInt32(dr["Lengh"]);
+                    h.Template = dr["Template"].ToString();
+                    h.Flag = Convert.ToInt32(dr["Flag"]);
+                    huellas.Add(h);
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                Logger.GetLogger().Error(sqlex.StackTrace);
+                throw new Exception("Error al consultar la tabla huellas");
+            }
+            catch (Exception ex)
+            {
+                Logger.GetLogger().Fatal(ex.StackTrace);
+                throw new Exception("Error desconocido al intentar consultar la tabla huellas");
+            }
+            finally
+            {
+                try
+                {
+                    Conexion.GetInstancia().ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return huellas;
         }
     }
 }

@@ -19,9 +19,7 @@ namespace ZkManagement.Entidades
             _huellas = new List<Huella>();
         }
         //Propiedades//
-        private List<Huella> Huellas;
-
-        public List<Huella> MyProperty
+        public List<Huella> Huellas
         {
             get { return _huellas; }
             set { _huellas = value; }
