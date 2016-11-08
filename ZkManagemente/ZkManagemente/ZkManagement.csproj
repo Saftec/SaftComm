@@ -162,6 +162,12 @@
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
     <Compile Include="Logica\LogicConfigExport.cs" />
+    <Compile Include="NewUI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\Config.cs" />
     <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\EscribirArchivo.cs" />
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

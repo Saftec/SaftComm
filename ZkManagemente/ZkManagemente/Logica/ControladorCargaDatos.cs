@@ -18,7 +18,7 @@ namespace ZkManagement.Logica
                 huellas = ch.GetHuellas(emp.Id);
                 foreach(Huella h in huellas)
                     {
-                        h.Legajo = emp.Legajo;
+                        h.Empleado = emp;
                     }
                 reloj.AgregarHuellas(huellas);                
             }

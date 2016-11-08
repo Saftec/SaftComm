@@ -367,7 +367,7 @@ namespace ZkManagement.Entidades
 
             foreach(Huella h in huellas)
             {
-                if(!base.SetUserTmpExStr(this.numero, h.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
+                if(!base.SetUserTmpExStr(this.numero, h.Empleado.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
                 {
                     base.GetLastError(ref codError);
                     throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
