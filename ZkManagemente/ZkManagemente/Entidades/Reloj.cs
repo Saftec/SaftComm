@@ -361,13 +361,13 @@ namespace ZkManagement.Entidades
             base.EnableDevice(this.numero, true);
         }
 
-        public void AgregarHuellas(List<Huella> huellas)
+        public void AgregarHuellas(Empleado emp)
         {
             int codError = 0;
 
-            foreach(Huella h in huellas)
+            foreach(Huella h in emp.Huellas)
             {
-                if(!base.SetUserTmpExStr(this.numero, h.Empleado.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
+                if(!base.SetUserTmpExStr(this.numero, emp.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
                 {
                     base.GetLastError(ref codError);
                     throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());

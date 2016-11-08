@@ -114,55 +114,12 @@ namespace ZkManagement.Datos
                 }
             }
         }
-        public List<Huella> GetHuellas(int id)
-        {
-            List<Huella> huellas = new List<Huella>();
-            SqlCommand cmd;
-            try
-            {
-                query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + id.ToString();
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    Huella h = new Huella();
-                    h.FingerIndex = Convert.ToInt32(dr["FingerIndex"]);
-                    h.Lengh = Convert.ToInt32(dr["Lengh"]);
-                    h.Template = dr["Template"].ToString();
-                    h.Flag = Convert.ToInt32(dr["Flag"]);
-                    huellas.Add(h);
-                }
-            }
-            catch(SqlException sqlex)
-            {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al consultar la tabla huellas");
-            }
-            catch(Exception ex)
-            {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar la tabla huellas");
-            }
-            finally
-            {
-                try
-                {
-                    Conexion.GetInstancia().ReleaseConn();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            return huellas;
-        }
-
-        public void EliminarHuella(int id)
+        public void EliminarHuella(Huella h)
         {
             SqlCommand cmd;
             try
             {
-                query = "DELETE FROM Huellas WHERE IdEmpleado=" + id.ToString();
+                query = "DELETE FROM Huellas WHERE IdEmpleado=" + h.Empleado.Id.ToString();
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }

@@ -15,7 +15,7 @@ namespace ZkManagement.Logica
             }                   
             try
             {
-                emp.Id = CatalogoEmpleados.GetInstancia().GetEmpId(emp.Legajo);
+                emp.Id = CatalogoEmpleados.GetInstancia().GetIdByLegajo(emp.Legajo);
                 if (emp.Id > 0)
                 {
                     CatalogoEmpleados.GetInstancia().Actualizar(emp);              
@@ -47,7 +47,7 @@ namespace ZkManagement.Logica
                 total = huellas.Count;
                 foreach (Huella h in huellas)
                 {
-                    h.Empleado.Id = CatalogoEmpleados.GetInstancia().GetEmpId(h.Empleado.Legajo);
+                    h.Empleado.Id = CatalogoEmpleados.GetInstancia().GetIdByLegajo(h.Empleado.Legajo);
                     if (!ch.Existe(h))
                     {
                         ch.InsertarHuella(h);

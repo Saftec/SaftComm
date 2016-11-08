@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 
@@ -7,9 +7,9 @@ namespace ZkManagement.Logica
 {
     class ControladorEmpleados
     {
-        public DataTable GetEmpleados()
+        public List<Empleado> GetEmpleados()
         {
-            DataTable empleados = new DataTable();      
+            List<Empleado> empleados = new List<Empleado>();      
                  
             try
             {
@@ -29,7 +29,9 @@ namespace ZkManagement.Logica
             try
             {
                 CatalogoEmpleados.GetInstancia().Eliminar(emp);
-                ch.EliminarHuella(emp.Id);
+                Huella h = new Huella();
+                h.Empleado = emp;
+                ch.EliminarHuella(h);
             }
             catch(Exception ex)
             {

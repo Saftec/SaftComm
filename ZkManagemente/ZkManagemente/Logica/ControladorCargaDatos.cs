@@ -15,12 +15,7 @@ namespace ZkManagement.Logica
             try
             {
                 reloj.CargarInfoUsuario(emp);
-                huellas = ch.GetHuellas(emp.Id);
-                foreach(Huella h in huellas)
-                    {
-                        h.Empleado = emp;
-                    }
-                reloj.AgregarHuellas(huellas);                
+                reloj.AgregarHuellas(emp);                
             }
             catch (Exception ex)
             {
