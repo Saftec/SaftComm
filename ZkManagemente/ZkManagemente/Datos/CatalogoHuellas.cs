@@ -9,12 +9,12 @@ namespace ZkManagement.Datos
     class CatalogoHuellas
     {
         private string query = string.Empty;
-        public void InsertarHuella(Huella h, int id)
+        public void InsertarHuella(Huella h)
         {
             SqlCommand cmd;
             try
             {
-                query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + id.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
+                query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + h.Empleado.Legajo.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
@@ -41,12 +41,12 @@ namespace ZkManagement.Datos
             }
         }
 
-        public bool Existe(Huella h, int id)
+        public bool Existe(Huella h)
         {
             SqlCommand cmd;
             try
             {
-                query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
+                query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -81,13 +81,13 @@ namespace ZkManagement.Datos
             }
         }
 
-        public void ActualizarHuella(Huella h, int id)
+        public void ActualizarHuella(Huella h)
         {
             SqlCommand cmd;
             try
             {
                 query = "UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() +
-                    "' WHERE IdEmpleado='" + id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
+                    "' WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
 
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();

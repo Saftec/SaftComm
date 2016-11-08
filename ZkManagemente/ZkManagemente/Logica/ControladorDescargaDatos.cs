@@ -43,18 +43,18 @@ namespace ZkManagement.Logica
             {
                 reloj.LeerTodasLasHuellas();
                 List<Huella> huellas = new List<Huella>();
-                huellas = reloj.ObtenerHuella(emp.Legajo);
+                huellas = reloj.ObtenerHuella(emp);
                 total = huellas.Count;
                 foreach (Huella h in huellas)
                 {
-                    int id = CatalogoEmpleados.GetInstancia().GetEmpId(h.Legajo);
-                    if (!ch.Existe(h, id))
+                    h.Empleado.Id = CatalogoEmpleados.GetInstancia().GetEmpId(h.Empleado.Legajo);
+                    if (!ch.Existe(h))
                     {
-                        ch.InsertarHuella(h, id);
+                        ch.InsertarHuella(h);
                     }
                     else
                     {
-                        ch.ActualizarHuella(h, id);
+                        ch.ActualizarHuella(h);
                     }
                 }                             
              }

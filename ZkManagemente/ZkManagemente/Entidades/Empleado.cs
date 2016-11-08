@@ -1,4 +1,6 @@
-﻿namespace ZkManagement.Entidades
+﻿using System.Collections.Generic;
+
+namespace ZkManagement.Entidades
 {
     public class Empleado
     {
@@ -10,8 +12,21 @@
         private string _dni;
         private int _privilegio;
         private int _baja;
+        private List<Huella> _huellas;
 
+        public Empleado()
+        {
+            _huellas = new List<Huella>();
+        }
         //Propiedades//
+        private List<Huella> Huellas;
+
+        public List<Huella> MyProperty
+        {
+            get { return _huellas; }
+            set { _huellas = value; }
+        }
+
         public string Nombre
         {
             get { return _nombre; }

@@ -1,39 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ZkManagement.Entidades
 {
     public class Huella
     {
         private string _huella;
-        private string _legajo;
         private int _lengh;
         private int _fingerIndex;
         private int _flag;
+        private Empleado _emp;
 
-        public Huella() { }
-
-        public Huella(string template, string legajo, int fingerIndex, int lengh, int flag)
+        public Huella()
         {
+            _emp = new Empleado();
+        }
+
+        public Huella(string template, Empleado emp, int fingerIndex, int lengh, int flag)
+        {
+            Empleado = emp;
             Template = template;
-            Legajo = legajo;
             FingerIndex = fingerIndex;
             Lengh = lengh;
             Flag = flag;
         }
         #region Propiedades
+        public Empleado Empleado
+        {
+            get { return _emp; }
+            set { _emp = value; }
+        }
+
         public string Template
         {
             get { return _huella; }
             set { _huella = value; }
-        }
-        public string Legajo
-        {
-            get { return _legajo; }
-            set { _legajo = value; }
         }
         public int Lengh
         {

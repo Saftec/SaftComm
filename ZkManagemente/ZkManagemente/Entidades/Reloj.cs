@@ -329,7 +329,7 @@ namespace ZkManagement.Entidades
             }
         }
 
-        public List<Huella> ObtenerHuella (string legajo)
+        public List<Huella> ObtenerHuella (Empleado emp)
         {
             /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
              * No se que fingerindex trae asignado y no la puedo leer si no recorro todos. */
@@ -342,9 +342,9 @@ namespace ZkManagement.Entidades
 
             for (int fingerIndex=0; fingerIndex<10; fingerIndex++)
             {
-                if(base.GetUserTmpExStr(this.numero, legajo, fingerIndex, out flag, out template, out tmpLenght))
+                if(base.GetUserTmpExStr(this.numero, emp.Legajo, fingerIndex, out flag, out template, out tmpLenght))
                 {
-                    Huella huella = new Huella(template, legajo, fingerIndex, tmpLenght, flag);
+                    Huella huella = new Huella(template, emp, fingerIndex, tmpLenght, flag);
                     huellas.Add(huella);
                 }
             }
