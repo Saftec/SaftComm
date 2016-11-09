@@ -29,7 +29,7 @@ namespace ZkManagement.Datos
             try
             { 
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'Cant' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado = h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
+                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -42,10 +42,13 @@ namespace ZkManagement.Datos
                     e.Dni = dr["DNI"].ToString();
                     e.Pin = dr["Pin"].ToString();
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
-                    e.Baja = Convert.ToInt32(dr["Baja"]);
-                    //Busco las huellas y lo guardo
-                    e.Huellas = GetHuellas(e);
+                    e.Baja = Convert.ToInt32(dr["Baja"]);             
                     empleados.Add(e);
+                }
+                Conexion.GetInstancia().ReleaseConn();
+                foreach(Empleado e in empleados)
+                {
+                    e.Huellas = SetHuellas(e);
                 }
             }
             catch (SqlException sqlEx)
@@ -256,13 +259,13 @@ namespace ZkManagement.Datos
                 }
             }
         }
-        private List<Huella> GetHuellas(Empleado emp)
-        {
-            string query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + emp.Id.ToString();
+        public List<Huella> SetHuellas(Empleado e)
+        {          
             SqlCommand cmd;
+            string query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + e.Id.ToString();
             List<Huella> huellas = new List<Huella>();
             try
-            {
+            {               
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())

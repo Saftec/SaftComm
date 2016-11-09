@@ -327,30 +327,36 @@ namespace ZkManagement.Interfaz
             FiltrarActivos();
         }
 
-        //Este metodo recibe una list y devuelve una DataTable
-        private DataTable ConvertToDatatable<T>(List<T> data) 
+        private DataTable ConvertToDatatable(List<Empleado> empleados)
         {
-            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(T));
-            DataTable table = new DataTable();
-            for (int i = 0; i < props.Count; i++)
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Legajo");
+            dt.Columns.Add("Nombre");            
+            dt.Columns.Add("IdEmpleado");
+            dt.Columns.Add("Tarjeta");
+            dt.Columns.Add("DNI");
+            dt.Columns.Add("Pin");
+            dt.Columns.Add("Privilegio");
+            dt.Columns.Add("Baja");
+            dt.Columns.Add("Cant");
+            foreach (Empleado e in empleados)
             {
-                PropertyDescriptor prop = props[i];
-                if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                    table.Columns.Add(prop.Name, prop.PropertyType.GetGenericArguments()[0]);
-                else
-                    table.Columns.Add(prop.Name, prop.PropertyType);
+                DataRow row = dt.NewRow();
+                row["Nombre"] = e.Nombre;
+                row["Legajo"] = e.Legajo;
+                row["IdEmpleado"] = e.Id;
+                row["Tarjeta"] = e.Tarjeta;
+                row["DNI"] = e.Dni;
+                row["Pin"] = e.Pin;
+                row["Privilegio"] = e.Privilegio;
+                row["Baja"] = e.Baja;
+                row["Cant"] = e.Huellas.Count;
+                dt.Rows.Add(row);
             }
-            object[] values = new object[props.Count];
-            foreach (T item in data)
-            {
-                for (int i = 0; i < values.Length; i++)
-                {
-                    values[i] = props[i].GetValue(item);
-                }
-                table.Rows.Add(values);
-            }
-            return table;
+            return dt;
         }
+
 
     }
 }

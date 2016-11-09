@@ -13,7 +13,7 @@ namespace ZkManagement.Logica
             bool valor = false;
             try
             {
-                if (Boolean.TryParse(ConfigurationManager.AppSettings["Descarga"].ToString(), out valor))
+                if (!Boolean.TryParse(ConfigurationManager.AppSettings["Descarga"].ToString(), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
