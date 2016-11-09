@@ -5,6 +5,7 @@ using ZkManagement.Entidades;
 using ZkManagement.Util;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Configuration;
 
 namespace ZkManagement.Datos
 {
@@ -27,14 +28,16 @@ namespace ZkManagement.Datos
         {
             SqlCommand cmd;
             List<Empleado> empleados = new List<Empleado>();
+            string dbype00 = string.Empty;
             try
             {
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
                 //string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
                 //cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                //SqlDataReader dr = cmd.ExecuteReader();
-
-                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
+                //SqlDataReader dr = cmd.ExecuteReader();      
+                        
+                dbype00 = SetDbType("Saftime");
+                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
                 DbDataReader dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
                 while (dr.Read())
                 {
@@ -66,6 +69,10 @@ namespace ZkManagement.Datos
                 {
                     //Conexion.GetInstancia().ReleaseConn();
                     FactoryConnection.GetInstancia().ReleaseConn();
+                    if (dbype00 != string.Empty)
+                    {
+                        SetDbType(dbype00);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -300,6 +307,25 @@ namespace ZkManagement.Datos
                 }
             }
             return huellas;
+        }
+
+        private string SetDbType(string dbType)
+        {
+            string original = string.Empty;
+            try
+            {
+                if (Boolean.Parse(CatalogoConfiguraciones.GetInstancia().GetConfig(17)))
+                {
+                    original = ConfigurationManager.AppSettings["DatabaseType"].ToString();
+                    ConfigurationManager.AppSettings["DatabaseType"] = dbType;
+                }
+                    
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return original;
         }
     }
 }
