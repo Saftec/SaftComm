@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Util;
 
@@ -20,6 +21,8 @@ namespace ZkManagement.Datos
             }
             return _instancia;
         }
+
+
         public SqlConnection GetConn()
         {
             try

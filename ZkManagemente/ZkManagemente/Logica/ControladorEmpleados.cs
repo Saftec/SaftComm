@@ -14,6 +14,10 @@ namespace ZkManagement.Logica
             try
             {
                 empleados = CatalogoEmpleados.GetInstancia().Empleados();
+                foreach(Empleado e in empleados)
+                {
+                    e.Huellas = CatalogoEmpleados.GetInstancia().SetHuellas(e);
+                }
             }
             catch(Exception ex)
             {

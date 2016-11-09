@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace ZkManagement.Datos
 {
@@ -27,11 +28,14 @@ namespace ZkManagement.Datos
             SqlCommand cmd;
             List<Empleado> empleados = new List<Empleado>();
             try
-            { 
+            {
                 //Ya lo traigo ordenado alfabeticamente desde la BD.
-                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";                 
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataReader dr = cmd.ExecuteReader();
+                //string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
+                //cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                //SqlDataReader dr = cmd.ExecuteReader();
+
+                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
+                DbDataReader dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
@@ -44,11 +48,6 @@ namespace ZkManagement.Datos
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     e.Baja = Convert.ToInt32(dr["Baja"]);             
                     empleados.Add(e);
-                }
-                Conexion.GetInstancia().ReleaseConn();
-                foreach(Empleado e in empleados)
-                {
-                    e.Huellas = SetHuellas(e);
                 }
             }
             catch (SqlException sqlEx)
@@ -65,7 +64,8 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    //Conexion.GetInstancia().ReleaseConn();
+                    FactoryConnection.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
