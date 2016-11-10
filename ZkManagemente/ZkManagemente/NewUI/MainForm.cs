@@ -13,5 +13,10 @@ namespace ZkManagement.NewUI
         {
 
         }
+
+        private void metroPanel1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+
+        }
     }
 }
