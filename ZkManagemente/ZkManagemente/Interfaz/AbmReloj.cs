@@ -66,15 +66,15 @@ namespace ZkManagement.Interfaz
             Validate validate = new Validate();
             string[] notNulls = { txtNombre.Text, txtNro.Text };
             string[] numeros = { txtPuerto.Text, txtNro.Text };
-            if (!validate.IsEmpty(txtIp.Text) && !validate.IsEmpty(txtDns.Text))
+            if (!validate.IsEmpty(new string[] { txtIp.Text }) && !validate.IsEmpty(new string[] { txtDns.Text }))
             {
                 throw new AppException("Debe ingresar una dirección IP o un host DNS");
             }
-            if (validate.IsEmpty(txtIp.Text) && !validate.DireccionIP(txtIp.Text))
+            if (validate.IsEmpty(new string[] { txtIp.Text }) && !validate.DireccionIP(new string[] { txtIp.Text }))
             {
                 throw new AppException("La dirección IP ingresada es inválida");
             }
-            if (validate.IsEmpty(txtIp.Text) && !validate.IsEmpty(txtPuerto.Text))
+            if (validate.IsEmpty(new string[] { txtIp.Text }) && !validate.IsEmpty(new string[] { txtPuerto.Text }))
             {
                 throw new AppException("Debe ingresar un número de puerto");
             }

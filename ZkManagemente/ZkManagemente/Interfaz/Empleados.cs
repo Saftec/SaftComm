@@ -12,7 +12,7 @@ namespace ZkManagement.Interfaz
     public partial class Empleados : GenericaPadre
     {
         private Empleado empleado = new Empleado();
-        private ControladorEmpleados ce;
+        private LogicEmpleado ce;
         private DataTable empleados = new DataTable();
         public Empleados()
         {
@@ -97,7 +97,7 @@ namespace ZkManagement.Interfaz
                     {
                         Empleado emp = new Empleado();
                         emp.Id = Convert.ToInt32(row.Cells["EmpId"].Value);
-                        ce = new ControladorEmpleados();
+                        ce = new LogicEmpleado();
                         ce.BajaEmpleado(emp);
                         filas.Add(row);
                     }
@@ -152,7 +152,7 @@ namespace ZkManagement.Interfaz
             else { empleado.Baja = 0; }
             try
             {
-                ce = new ControladorEmpleados();
+                ce = new LogicEmpleado();
                 if (empleado.Id > 0)
                 {
                     ActualizarFila(empleado);
@@ -223,7 +223,7 @@ namespace ZkManagement.Interfaz
         }
         private void DatosDGV()
         {
-            ce = new ControladorEmpleados();
+            ce = new LogicEmpleado();
             try
             {
                 empleados.Clear();

@@ -9,14 +9,15 @@ namespace ZkManagement.NewUI
             InitializeComponent();
         }
 
-        private void metroLabel1_Click(object sender, System.EventArgs e)
+        private void metroPanel1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
 
         }
 
-        private void metroPanel1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        private void linkPersonal_Click(object sender, System.EventArgs e)
         {
-
+            PanelPersonal.GetInstancia().RefreshData();
+            MainPanel.Controls.Add(PanelPersonal.GetInstancia());
         }
     }
 }

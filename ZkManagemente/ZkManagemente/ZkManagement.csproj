@@ -163,17 +163,47 @@
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
     <Compile Include="Logica\LogicConfigExport.cs" />
+    <Compile Include="NewUI\EditEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\EditEmpleado.Designer.cs">
+      <DependentUpon>EditEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\Generic\GenericAbm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\Generic\GenericAbm.Designer.cs">
+      <DependentUpon>GenericAbm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\Generic\GenericPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\Generic\GenericPanel.Designer.cs">
+      <DependentUpon>GenericPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelEquipos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelEquipos.Designer.cs">
+      <DependentUpon>PanelEquipos.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelPersonal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelPersonal.Designer.cs">
+      <DependentUpon>PanelPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\Config.cs" />
     <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\EscribirArchivo.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
-    <Compile Include="Logica\ControladorEmpleados.cs" />
+    <Compile Include="Logica\LogicEmpleado.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />
     <Compile Include="Logica\ControladorReloj.cs" />
@@ -213,8 +243,23 @@
     <EmbeddedResource Include="Interfaz\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\EditEmpleado.resx">
+      <DependentUpon>EditEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\Generic\GenericAbm.resx">
+      <DependentUpon>GenericAbm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\Generic\GenericPanel.resx">
+      <DependentUpon>GenericPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelEquipos.resx">
+      <DependentUpon>PanelEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelPersonal.resx">
+      <DependentUpon>PanelPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

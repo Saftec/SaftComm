@@ -17,15 +17,6 @@ namespace ZkManagement.Util
             }
             return band;
         }
-        public bool IsEmpty(string texto)
-        {
-            bool band = true;
-            if (texto == string.Empty)
-            {
-                band = false;
-            }
-            return band;
-        }
 
         public bool NumerosEnteros(string[] textos)
         {
@@ -51,16 +42,6 @@ namespace ZkManagement.Util
                 {
                     band = false;
                 }
-            }
-            return band;
-        }
-        public bool DireccionIP(string texto)
-        {
-            bool band = true;
-            IPAddress ip = new IPAddress(new byte[] { 0, 0, 0, 0 });
-            if (!IPAddress.TryParse(texto, out ip))
-            {
-                band = false;
             }
             return band;
         }

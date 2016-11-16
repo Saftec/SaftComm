@@ -26,7 +26,6 @@ namespace ZkManagement.Datos
 
         public List<Empleado> Empleados()
         {
-            SqlCommand cmd;
             List<Empleado> empleados = new List<Empleado>();
             string dbype00 = string.Empty;
             try
@@ -119,7 +118,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd;
             try
             {
-                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
+                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin='" + emp.Pin + "', Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
                 cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());

@@ -65,7 +65,7 @@ namespace ZkManagement.Interfaz
             dgvLocal.DataSource = null;
             dgvLocal.Refresh();
             dgvLocal.AutoGenerateColumns = false;
-            ControladorEmpleados ce = new ControladorEmpleados();
+            LogicEmpleado ce = new LogicEmpleado();
             DataTable empleados = new DataTable();
             try
             {

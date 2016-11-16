@@ -5,7 +5,7 @@ using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
-    class ControladorEmpleados
+    class LogicEmpleado
     {
         public List<Empleado> GetEmpleados()
         {
