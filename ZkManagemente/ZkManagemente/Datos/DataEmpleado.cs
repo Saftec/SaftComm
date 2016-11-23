@@ -5,19 +5,18 @@ using ZkManagement.Entidades;
 using ZkManagement.Util;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Configuration;
 
 namespace ZkManagement.Datos
 {
-    class CatalogoEmpleados
+    class DataEmpleado
     {
-        private static CatalogoEmpleados _instancia;
+        private static DataEmpleado _instancia;
 
-        public static CatalogoEmpleados GetInstancia()
+        public static DataEmpleado GetInstancia()
         {
             if (_instancia == null)
             {
-                _instancia = new CatalogoEmpleados();
+                _instancia = new DataEmpleado();
             }
             return _instancia;
         }
@@ -27,17 +26,12 @@ namespace ZkManagement.Datos
         public List<Empleado> Empleados()
         {
             List<Empleado> empleados = new List<Empleado>();
-            string dbype00 = string.Empty;
+            DbDataReader dr = null;
+
             try
-            {
-                //Ya lo traigo ordenado alfabeticamente desde la BD.
-                //string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, CAST(e.Pin AS varchar(6)) as 'Pin', e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
-                //cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                //SqlDataReader dr = cmd.ExecuteReader();      
-                        
-                dbype00 = SetDbType("Saftime");
+            {                            
                 string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
-                DbDataReader dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
+                dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
@@ -52,9 +46,9 @@ namespace ZkManagement.Datos
                     empleados.Add(e);
                 }
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(dbEx.StackTrace);
                 throw new Exception("Error al intentar consultar los datos de los empleados");
             }
             catch (Exception ex)
@@ -66,33 +60,45 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    //Conexion.GetInstancia().ReleaseConn();
-                    FactoryConnection.GetInstancia().ReleaseConn();
-                    if (dbype00 != string.Empty)
+                    if (dr != null)
                     {
-                        SetDbType(dbype00);
+                        dr.Close();
                     }
+                    FactoryConnection.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
             }
+
+            // RECUPERO LAS HUELLAS //
+            try
+            {
+                foreach(Empleado e in empleados)
+                {
+                    e.Huellas = SetHuellas(e);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             return empleados;
         }
 
         public void Eliminar(Empleado emp)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
+                Logger.GetLogger().Error(dbEx.StackTrace);
                 throw new Exception("Error al intentar eliminar empleado de la base de datos");
             }
             catch (Exception ex)
@@ -104,7 +110,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -115,26 +125,19 @@ namespace ZkManagement.Datos
 
         public void Actualizar(Empleado emp)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin='" + emp.Pin + "', Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                if (sqlEx.Number == 2627)
-                {
-                    throw new Exception("Este valor no puede estar duplicado");
-                }
-                else
-                {
-                    throw new Exception("Error al intentar actualizar los datos en la tabla empleados");
-                }
+                Logger.GetLogger().Error(dbEx.StackTrace);
+                throw new Exception("Error al intentar actualizar los datos en la tabla empleados");
             }
             catch (Exception ex)
             {
@@ -145,7 +148,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -265,15 +272,17 @@ namespace ZkManagement.Datos
                 }
             }
         }
-        public List<Huella> SetHuellas(Empleado e)
+
+        //Este método lo utilizo sólo desde la misma clase para setearle las huellas al list de empleados
+        private List<Huella> SetHuellas(Empleado e)
         {          
-            SqlCommand cmd;
             string query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + e.Id.ToString();
             List<Huella> huellas = new List<Huella>();
+            DbDataReader dr = null;
+
             try
-            {               
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataReader dr = cmd.ExecuteReader();
+            {
+                dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
                 while (dr.Read())
                 {
                     Huella h = new Huella();
@@ -284,9 +293,9 @@ namespace ZkManagement.Datos
                     huellas.Add(h);
                 }
             }
-            catch (SqlException sqlex)
+            catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(dbEx.StackTrace);
                 throw new Exception("Error al consultar la tabla huellas");
             }
             catch (Exception ex)
@@ -298,7 +307,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -306,25 +319,6 @@ namespace ZkManagement.Datos
                 }
             }
             return huellas;
-        }
-
-        private string SetDbType(string dbType)
-        {
-            string original = string.Empty;
-            try
-            {
-                if (Boolean.Parse(CatalogoConfiguraciones.GetInstancia().GetConfig(17)))
-                {
-                    original = ConfigurationManager.AppSettings["DatabaseType"].ToString();
-                    ConfigurationManager.AppSettings["DatabaseType"] = dbType;
-                }
-                    
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            return original;
         }
     }
 }

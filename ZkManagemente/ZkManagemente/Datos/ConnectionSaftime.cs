@@ -28,12 +28,12 @@ namespace ZkManagement.Datos
             catch (SqlException sqlex)
             {
                 Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar conectar a la base de datos");
+                throw new Exception("Error al intentar conectar a la base de datos Saftime");
             }
             catch (Exception ex)
             {
                 Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar conectar a la base de datos");
+                throw new Exception("Error no controlado al intentar conectar a la base de datos de Saftime");
             }
             return _conn;
         }
@@ -47,12 +47,12 @@ namespace ZkManagement.Datos
             catch (SqlException sqlex)
             {
                 Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar cerrar la conexión a la base de datos");
+                throw new Exception("Error al intentar cerrar la conexión a la base de datos de Saftime");
             }
             catch (Exception ex)
             {
                 Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar cerrar la conexión a la base de datos");
+                throw new Exception("Error no controlado al intentar cerrar la conexión a la base de datos de Saftime");
             }
         }
         public bool TestConexion()

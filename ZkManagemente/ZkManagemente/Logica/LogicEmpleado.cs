@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -9,14 +11,22 @@ namespace ZkManagement.Logica
     {
         public List<Empleado> GetEmpleados()
         {
-            List<Empleado> empleados = new List<Empleado>();      
+            List<Empleado> empleados = new List<Empleado>();
+            bool saftime = false;      
                  
             try
             {
-                empleados = CatalogoEmpleados.GetInstancia().Empleados();
-                foreach(Empleado e in empleados)
+                if(!Boolean.TryParse(ConfigurationManager.AppSettings["Saftime"], out saftime))
                 {
-                    e.Huellas = CatalogoEmpleados.GetInstancia().SetHuellas(e);
+                    throw new AppException("Error al intentar leer la configuración de Saftime"); 
+                }
+                if (saftime)
+                {
+                    empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
+                }
+                else
+                {
+                    empleados = DataEmpleado.GetInstancia().Empleados();
                 }
             }
             catch(Exception ex)
@@ -32,7 +42,7 @@ namespace ZkManagement.Logica
 
             try
             {
-                CatalogoEmpleados.GetInstancia().Eliminar(emp);
+                DataEmpleado.GetInstancia().Eliminar(emp);
                 Huella h = new Huella();
                 h.Empleado = emp;
                 ch.EliminarHuella(h);
@@ -47,7 +57,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoEmpleados.GetInstancia().Actualizar(emp);
+                DataEmpleado.GetInstancia().Actualizar(emp);
             }
             catch(Exception ex)
             {
@@ -59,7 +69,7 @@ namespace ZkManagement.Logica
 
             try
             {
-                CatalogoEmpleados.GetInstancia().Agregar(emp);
+                DataEmpleado.GetInstancia().Agregar(emp);
             }
             catch(Exception ex)
             {

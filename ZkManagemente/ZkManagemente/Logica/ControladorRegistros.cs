@@ -10,7 +10,7 @@ namespace ZkManagement.Logica
 {
     class ControladorRegistros
     {
-        private CatalogoEmpleados ce = new CatalogoEmpleados();
+        private DataEmpleado ce = new DataEmpleado();
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         public List<string> AgregarRegis(DataTable regis)
         {

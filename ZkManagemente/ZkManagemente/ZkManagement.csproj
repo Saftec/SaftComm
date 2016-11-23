@@ -88,12 +88,13 @@
   <ItemGroup>
     <Compile Include="Datos\CatalogoConfiguraciones.cs" />
     <Compile Include="Datos\CatalogoDepartamentos.cs" />
-    <Compile Include="Datos\CatalogoEmpleados.cs" />
+    <Compile Include="Datos\DataEmpleado.cs" />
     <Compile Include="Datos\CatalogoHuellas.cs" />
     <Compile Include="Datos\CatalogoRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\ConnectionSaftime.cs" />
+    <Compile Include="Datos\DataEmpleadoSaftime.cs" />
     <Compile Include="Datos\FactoryConnection.cs" />
     <Compile Include="Entidades\Huella.cs" />
     <Compile Include="Entidades\Reloj.cs" />

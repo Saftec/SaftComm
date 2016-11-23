@@ -27,8 +27,7 @@ namespace ZkManagement.Datos
         public enum DBType
         {
             SQL,
-            Access,
-            Saftime
+            Access         
         }
         public IDbConnection GetConnection()
         {
@@ -43,10 +42,6 @@ namespace ZkManagement.Datos
                         break;
                     case DBType.SQL:
                         cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["CNS"].ConnectionString);
-                        cnn.Open();
-                        break;
-                    case DBType.Saftime:
-                        cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["SaftimeDB"].ConnectionString);
                         cnn.Open();
                         break;
                     default:
@@ -85,9 +80,6 @@ namespace ZkManagement.Datos
                         cmd = new SqlCommand(command, (SqlConnection)cnn);
                         break;
 
-                    case DBType.Saftime:
-                        cmd = new SqlCommand(command, (SqlConnection)cnn);
-                        break;
                     default:
                         cmd = new SqlCommand(command, (SqlConnection)cnn);
                         break;
@@ -126,10 +118,6 @@ namespace ZkManagement.Datos
                         dr = (SqlDataReader)cmd.ExecuteReader();
                         break;
 
-                    case DBType.Saftime:
-                        cmd = new SqlCommand(command, (SqlConnection)cnn);
-                        dr = (SqlDataReader)cmd.ExecuteReader();
-                        break;
                     default:
                         cmd = new SqlCommand(command, (SqlConnection)cnn);
                         dr = (SqlDataReader)cmd.ExecuteReader();
