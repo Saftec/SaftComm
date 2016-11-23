@@ -11,18 +11,17 @@ namespace ZkManagement.Logica
     {
         public List<Empleado> GetEmpleados()
         {
-            List<Empleado> empleados = new List<Empleado>();
-            bool saftime = false;      
+            List<Empleado> empleados = new List<Empleado>();     
                  
             try
             {
-                if(!Boolean.TryParse(ConfigurationManager.AppSettings["Saftime"], out saftime))
-                {
-                    throw new AppException("Error al intentar leer la configuración de Saftime"); 
-                }
-                if (saftime)
+                if (VerificarSaftime())
                 {
                     empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
+                    foreach (Empleado e in empleados)
+                    {
+                        e.Huellas=DataEmpleado.GetInstancia().SetHuellas(e);
+                    }
                 }
                 else
                 {
@@ -42,7 +41,14 @@ namespace ZkManagement.Logica
 
             try
             {
-                DataEmpleado.GetInstancia().Eliminar(emp);
+                if (VerificarSaftime())
+                {
+                    DataEmpleadoSaftime.GetInstancia().Eliminar(emp);
+                }
+                else
+                {
+                    DataEmpleado.GetInstancia().Eliminar(emp);
+                }
                 Huella h = new Huella();
                 h.Empleado = emp;
                 ch.EliminarHuella(h);
@@ -57,7 +63,14 @@ namespace ZkManagement.Logica
         {
             try
             {
-                DataEmpleado.GetInstancia().Actualizar(emp);
+                if (VerificarSaftime())
+                {
+                    DataEmpleadoSaftime.GetInstancia().Actualizar(emp);
+                }
+                else
+                {
+                    DataEmpleado.GetInstancia().Actualizar(emp);
+                }
             }
             catch(Exception ex)
             {
@@ -69,12 +82,30 @@ namespace ZkManagement.Logica
 
             try
             {
-                DataEmpleado.GetInstancia().Agregar(emp);
+                if (VerificarSaftime())
+                {
+                    DataEmpleadoSaftime.GetInstancia().Agregar(emp);
+                }
+                else
+                {
+                    DataEmpleado.GetInstancia().Agregar(emp);
+                }                
             }
             catch(Exception ex)
             {
                 throw ex;
             }
+        }
+
+        //VERIFICA SI TENGO QUE TRABAJAR CON LA BD DE SAFTIME
+        private bool VerificarSaftime()
+        {
+            bool resul=false;
+            if (!Boolean.TryParse(ConfigurationManager.AppSettings["Saftime"], out resul))
+            {
+                throw new AppException("Error al intentar leer la configuración de Saftime");
+            }
+            return resul;
         }
     }
 }

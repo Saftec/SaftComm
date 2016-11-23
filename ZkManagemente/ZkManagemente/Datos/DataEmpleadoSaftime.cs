@@ -21,35 +21,35 @@ namespace ZkManagement.Datos
 
         private string query = string.Empty;
 
-        public new List<Empleado> Empleados()
+        public List<Empleado> Empleados()
         {
             List<Empleado> empleados = new List<Empleado>();
             SqlDataReader dr = null;
             SqlCommand cmd = null;
+
             try
-            {    
-                string query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";
-               // ConnectionSaftime.GetInstancia().GetConn();
-                //cmd = new SqlCommand(query, ConnectionSaftime.)
-                //dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
+            {
+                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc, FROM Empleados e GROUP BY e.EmpId, e.Nombre, e.tarjeta, e.legajo, e.nroDoc ORDER BY e.Nombre ASC";
+                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
-                    e.Legajo = dr["Legajo"].ToString();
-                    e.Id = Convert.ToInt32(dr["IdEmpleado"]);
+                    e.Legajo = dr["legajo"].ToString();
+                    e.Id = Convert.ToInt32(dr["EmpId"]);
                     e.Nombre = dr["Nombre"].ToString();
-                    e.Tarjeta = dr["Tarjeta"].ToString();
-                    e.Dni = dr["DNI"].ToString();
-                    e.Pin = dr["Pin"].ToString();
-                    e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
-                    e.Baja = Convert.ToInt32(dr["Baja"]);
+                    e.Tarjeta = dr["tarjeta"].ToString();
+                    e.Dni = dr["nroDoc"].ToString();
+                    e.Pin = string.Empty;
+                    e.Privilegio = 0;
+                    e.Baja = 0;
                     empleados.Add(e);
                 }
             }
             catch (SqlException sqlEx)
             {
                 Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar consultar los datos de los empleados");
+                throw new Exception("Error al intentar consultar los datos de los empleados de Saftime");
             }
             catch (Exception ex)
             {
@@ -60,6 +60,14 @@ namespace ZkManagement.Datos
             {
                 try
                 {
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
                     ConnectionSaftime.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
@@ -70,19 +78,19 @@ namespace ZkManagement.Datos
             return empleados;
         }
 
-        public new void Eliminar(Empleado emp)
+        public void Eliminar(Empleado emp)
         {
-            SqlCommand cmd;
+            SqlCommand cmd = null;
             try
             {
-                query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
+                query = "DELETE FROM Empleados WHERE EmpId=" + emp.Id.ToString();
                 cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
             {
                 Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar eliminar empleado de la base de datos");
+                throw new Exception("Error al intentar eliminar empleado de la base de datos de Saftime");
             }
             catch (Exception ex)
             {
@@ -93,6 +101,10 @@ namespace ZkManagement.Datos
             {
                 try
                 {
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
                     ConnectionSaftime.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
@@ -102,13 +114,12 @@ namespace ZkManagement.Datos
             }
         }
 
-        public new void Actualizar(Empleado emp)
+        public void Actualizar(Empleado emp)
         {
-            SqlCommand cmd;
+            SqlCommand cmd = null;
             try
             {
-                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin='" + emp.Pin + "', Tarjeta='" + emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
+                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo + "', tarjeta='" + emp.Tarjeta + "' WHERE EmpId=" + emp.Id.ToString();
 
                 cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
@@ -116,14 +127,7 @@ namespace ZkManagement.Datos
             catch (SqlException sqlEx)
             {
                 Logger.GetLogger().Error(sqlEx.StackTrace);
-                if (sqlEx.Number == 2627)
-                {
-                    throw new Exception("Este valor no puede estar duplicado");
-                }
-                else
-                {
-                    throw new Exception("Error al intentar actualizar los datos en la tabla empleados");
-                }
+                throw new Exception("Error al intentar actualizar los datos en la tabla empleados de Saftime");
             }
             catch (Exception ex)
             {
@@ -134,6 +138,10 @@ namespace ZkManagement.Datos
             {
                 try
                 {
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
                     ConnectionSaftime.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
@@ -143,9 +151,9 @@ namespace ZkManagement.Datos
             }
         }
 
-        public new void Agregar(Empleado emp)
+        public void Agregar(Empleado emp)
         {
-            SqlCommand cmd;
+            SqlCommand cmd = null;
             try
             {
                 query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
@@ -157,14 +165,7 @@ namespace ZkManagement.Datos
             catch (SqlException sqlEx)
             {
                 Logger.GetLogger().Error(sqlEx.StackTrace);
-                if (sqlEx.Number == 2601)
-                {
-                    throw new Exception("Este valor no puede estar duplicado");
-                }
-                else
-                {
-                    throw new Exception("Error al intentar agregar el empleado en la tabla empleados");
-                }
+                throw new Exception("Error al actualizar la tabla empleados");
             }
             catch (Exception ex)
             {
@@ -175,6 +176,10 @@ namespace ZkManagement.Datos
             {
                 try
                 {
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
                     ConnectionSaftime.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
@@ -184,24 +189,30 @@ namespace ZkManagement.Datos
             }
         }
 
-        public new int GetIdByLegajo(string legajo)
+        public Empleado GetIdByLegajo(string legajo)
         {
-            int id = 0;
-            SqlCommand cmd;
+            SqlDataReader dr = null;
+            SqlCommand cmd = null;
+            Empleado emp = new Empleado();
             try
             {
-                query = "SELECT IdEmpleado FROM Empleados e WHERE e.Legajo='" + legajo + "'";
+                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + legajo + "'";
                 cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
-                cmd.ExecuteNonQuery();
-                SqlDataReader dr = cmd.ExecuteReader();
+                dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    id = Convert.ToInt32(dr["IdEmpleado"]);
+                    emp.Id = Convert.ToInt32(dr["EmpId"]);
+                    emp.Nombre = dr["Nombre"].ToString();
+                    emp.Tarjeta = dr["tarjeta"].ToString();
+                    emp.Dni = dr["nroDoc"].ToString();
+                    emp.Pin = string.Empty;
+                    emp.Privilegio = 0;
+                    emp.Baja = 0;
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException sqlEx)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
+                Logger.GetLogger().Error(sqlEx.StackTrace);
                 throw new Exception("Error al intentar consultar la tabla empleados");
             }
             catch (Exception ex)
@@ -213,6 +224,14 @@ namespace ZkManagement.Datos
             {
                 try
                 {
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
                     ConnectionSaftime.GetInstancia().ReleaseConn();
                 }
                 catch (Exception ex)
@@ -220,7 +239,8 @@ namespace ZkManagement.Datos
                     throw ex;
                 }
             }
-            return id;
+            return emp;
         }
+
     }
 }
