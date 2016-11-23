@@ -45,10 +45,7 @@ namespace ZkManagement.Logica
                 {
                     empleados = DataEmpleado.GetInstancia().Empleados();
                 }
-                foreach (Empleado e in empleados)
-                {
-                    e.Huellas = DataEmpleado.GetInstancia().SetHuellas(e);
-                }
+                empleados = DataEmpleado.GetInstancia().SetHuellas(empleados);
             }
             catch (Exception ex)
             {

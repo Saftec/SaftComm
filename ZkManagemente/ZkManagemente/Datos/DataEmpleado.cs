@@ -26,7 +26,7 @@ namespace ZkManagement.Datos
         public List<Empleado> Empleados()
         {
             List<Empleado> empleados = new List<Empleado>();
-            DbDataReader dr = null;
+            IDataReader dr = null;
 
             try
             {                            
@@ -184,7 +184,7 @@ namespace ZkManagement.Datos
 
         public Empleado GetIdByLegajo(string legajo)
         {
-            DbDataReader dr = null;
+            IDataReader dr = null;
             Empleado emp = new Empleado();
             try
             {
@@ -266,23 +266,32 @@ namespace ZkManagement.Datos
         }
 
         //Este método lo utilizo para setearle las huellas al list de empleados
-        public List<Huella> SetHuellas(Empleado e)
-        {          
-            query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado=" + e.Id.ToString();
-            List<Huella> huellas = new List<Huella>();
-            DbDataReader dr = null;
+        public List<Empleado> SetHuellas(List<Empleado> empleados)
+        {
+            query = "SELECT FingerIndex, Template, Lengh, Flag FROM Huellas WHERE IdEmpleado = @Id";
+            IDataReader dr = null;
+            IDbCommand cmd = null;
 
             try
             {
-                dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
-                while (dr.Read())
+                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                foreach (Empleado e in empleados)
                 {
-                    Huella h = new Huella();
-                    h.FingerIndex = Convert.ToInt32(dr["FingerIndex"]);
-                    h.Lengh = Convert.ToInt32(dr["Lengh"]);
-                    h.Template = dr["Template"].ToString();
-                    h.Flag = Convert.ToInt32(dr["Flag"]);
-                    huellas.Add(h);
+                    var parameter = cmd.CreateParameter();
+                    parameter.ParameterName = "@Id";
+                    parameter.Value = e.Id;
+                    cmd.Parameters.Add(parameter);
+
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        Huella h = new Huella();
+                        h.FingerIndex = Convert.ToInt32(dr["FingerIndex"]);
+                        h.Lengh = Convert.ToInt32(dr["Lengh"]);
+                        h.Template = dr["Template"].ToString();
+                        h.Flag = Convert.ToInt32(dr["Flag"]);
+                        e.Huellas.Add(h);
+                    }
                 }
             }
             catch (DbException dbEx)
@@ -310,7 +319,7 @@ namespace ZkManagement.Datos
                     throw ex;
                 }
             }
-            return huellas;
+            return empleados;
         }
     }
 }

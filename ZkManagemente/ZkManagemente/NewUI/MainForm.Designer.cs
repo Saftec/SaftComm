@@ -44,19 +44,21 @@ namespace ZkManagement.NewUI
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMenu.Controls.Add(this.linkPersonal, 0, 0);
-            this.tableMenu.Location = new System.Drawing.Point(157, 8);
+            this.tableMenu.Location = new System.Drawing.Point(235, 10);
+            this.tableMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableMenu.Name = "tableMenu";
             this.tableMenu.RowCount = 1;
             this.tableMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableMenu.Size = new System.Drawing.Size(385, 57);
+            this.tableMenu.Size = new System.Drawing.Size(577, 75);
             this.tableMenu.TabIndex = 1;
             // 
             // linkPersonal
             // 
             this.linkPersonal.BackColor = System.Drawing.Color.Transparent;
-            this.linkPersonal.Location = new System.Drawing.Point(3, 3);
+            this.linkPersonal.Location = new System.Drawing.Point(4, 4);
+            this.linkPersonal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.linkPersonal.Name = "linkPersonal";
-            this.linkPersonal.Size = new System.Drawing.Size(90, 51);
+            this.linkPersonal.Size = new System.Drawing.Size(135, 67);
             this.linkPersonal.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkPersonal.TabIndex = 2;
             this.linkPersonal.Text = "Personal";
@@ -74,24 +76,29 @@ namespace ZkManagement.NewUI
             this.MainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MainPanel.HorizontalScrollbarBarColor = true;
             this.MainPanel.HorizontalScrollbarHighlightOnWheel = false;
-            this.MainPanel.HorizontalScrollbarSize = 10;
-            this.MainPanel.Location = new System.Drawing.Point(32, 80);
+            this.MainPanel.HorizontalScrollbarSize = 13;
+            this.MainPanel.Location = new System.Drawing.Point(48, 105);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(0, 0);
             this.MainPanel.TabIndex = 2;
             this.MainPanel.VerticalScrollbarBarColor = true;
             this.MainPanel.VerticalScrollbarHighlightOnWheel = false;
-            this.MainPanel.VerticalScrollbarSize = 10;
+            this.MainPanel.VerticalScrollbarSize = 15;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel1_Paint);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 640);
+            this.ClientSize = new System.Drawing.Size(1350, 788);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.tableMenu);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.3F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(30, 78, 30, 26);
             this.Text = "SaftComm";
             this.tableMenu.ResumeLayout(false);
             this.ResumeLayout(false);
