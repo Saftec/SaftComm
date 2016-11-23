@@ -57,7 +57,8 @@ namespace ZkManagement.Logica
                                 break;
                         }
                     writer.EscribirRegistros(reloj, tipoMov, año, mes, dia, hora, minutos, legajo);
-                    id = ce.GetIdByLegajo(legajo);
+                    //id = ce.GetIdByLegajo(legajo);
+                    id = 0;
                     if (id < 1)
                     {
                         desconocidos.Add(fila["Legajo"].ToString());

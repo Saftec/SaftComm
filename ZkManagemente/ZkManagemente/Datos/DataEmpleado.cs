@@ -71,19 +71,6 @@ namespace ZkManagement.Datos
                     throw ex;
                 }
             }
-
-            // RECUPERO LAS HUELLAS //
-            try
-            {
-                foreach(Empleado e in empleados)
-                {
-                    e.Huellas = SetHuellas(e);
-                }
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
             return empleados;
         }
 

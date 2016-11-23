@@ -6,7 +6,7 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
-    class DataEmpleadoSaftime : DataEmpleado
+    class DataEmpleadoSaftime
     {
         private static DataEmpleadoSaftime _instancia;
 
@@ -29,14 +29,14 @@ namespace ZkManagement.Datos
 
             try
             {
-                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc, FROM Empleados e GROUP BY e.EmpId, e.Nombre, e.tarjeta, e.legajo, e.nroDoc ORDER BY e.Nombre ASC";
+                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado', (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.fecBaja IS NULL ORDER BY Nombre ASC";
                 cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
                     e.Legajo = dr["legajo"].ToString();
-                    e.Id = Convert.ToInt32(dr["EmpId"]);
+                    e.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     e.Nombre = dr["Nombre"].ToString();
                     e.Tarjeta = dr["tarjeta"].ToString();
                     e.Dni = dr["nroDoc"].ToString();
@@ -83,7 +83,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "DELETE FROM Empleados WHERE EmpId=" + emp.Id.ToString();
+                query = "UPDATE Empleados SET fecBaja= GETDATE() WHERE EmpId=" + emp.Id.ToString();
                 cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
                 cmd.ExecuteNonQuery();
             }

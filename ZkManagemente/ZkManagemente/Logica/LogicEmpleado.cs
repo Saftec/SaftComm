@@ -18,10 +18,6 @@ namespace ZkManagement.Logica
                 if (VerificarSaftime())
                 {
                     empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
-                    foreach (Empleado e in empleados)
-                    {
-                        e.Huellas=DataEmpleado.GetInstancia().SetHuellas(e);
-                    }
                 }
                 else
                 {
@@ -33,6 +29,33 @@ namespace ZkManagement.Logica
                 throw ex;
             }
             return empleados;
+        }
+
+        public List<Empleado> GetEmpleadosWithTemplates()
+        {
+            List<Empleado> empleados = new List<Empleado>();
+
+            try
+            {
+                if (VerificarSaftime())
+                {
+                    empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
+                }
+                else
+                {
+                    empleados = DataEmpleado.GetInstancia().Empleados();
+                }
+                foreach (Empleado e in empleados)
+                {
+                    e.Huellas = DataEmpleado.GetInstancia().SetHuellas(e);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return empleados;
+
         }
 
         public void BajaEmpleado(Empleado emp)
