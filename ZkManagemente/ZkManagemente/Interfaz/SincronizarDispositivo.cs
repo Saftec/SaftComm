@@ -37,7 +37,7 @@ namespace ZkManagement.Interfaz
         }
         private void LlenarComboBox()
         {
-            ControladorReloj cr = new ControladorReloj();           
+            LogicReloj cr = new LogicReloj();           
             try
             {
                 relojes = cr.TodosRelojes();

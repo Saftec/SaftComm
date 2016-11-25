@@ -34,7 +34,7 @@ namespace ZkManagement.NewUI
                     lc.AgregarEmpleado(empActual);
                     base.Informar("Empleado guardado correctamente", "Agregar Empleado.");
                 }
-                PanelPersonal.GetInstancia().RefreshData(); //Actualizo el DataGrid
+                PanelPersonal.GetInstancia().RefreshGrid(); //Actualizo el DataGrid
                 this.Dispose();                
             }
             catch(Exception ex)

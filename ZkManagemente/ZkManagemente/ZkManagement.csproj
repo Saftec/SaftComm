@@ -207,7 +207,7 @@
     <Compile Include="Logica\LogicEmpleado.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\ControladorRegistros.cs" />
-    <Compile Include="Logica\ControladorReloj.cs" />
+    <Compile Include="Logica\LogicReloj.cs" />
     <Compile Include="Logica\ControladorDescargaDatos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

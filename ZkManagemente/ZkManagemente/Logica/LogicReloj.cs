@@ -5,7 +5,7 @@ using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
-    class ControladorReloj
+    class LogicReloj
     {
         public List<Reloj> TodosRelojes()
         {

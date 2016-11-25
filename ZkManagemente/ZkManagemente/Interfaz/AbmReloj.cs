@@ -9,7 +9,7 @@ namespace ZkManagement.Interfaz
     public partial class AbmReloj : Form
     {
         private int id;
-        private ControladorReloj cr; 
+        private LogicReloj cr; 
 
         public AbmReloj()
         {
@@ -41,7 +41,7 @@ namespace ZkManagement.Interfaz
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            cr = new ControladorReloj();                     
+            cr = new LogicReloj();                     
             try
             {
                 ValidarDatos();

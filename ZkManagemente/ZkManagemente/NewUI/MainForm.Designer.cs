@@ -33,6 +33,7 @@ namespace ZkManagement.NewUI
             this.tableMenu = new System.Windows.Forms.TableLayoutPanel();
             this.linkPersonal = new MetroFramework.Controls.MetroLink();
             this.MainPanel = new MetroFramework.Controls.MetroPanel();
+            this.btnEquipos = new MetroFramework.Controls.MetroButton();
             this.tableMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,8 +45,9 @@ namespace ZkManagement.NewUI
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMenu.Controls.Add(this.linkPersonal, 0, 0);
+            this.tableMenu.Controls.Add(this.btnEquipos, 1, 0);
             this.tableMenu.Location = new System.Drawing.Point(235, 10);
-            this.tableMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableMenu.Margin = new System.Windows.Forms.Padding(4);
             this.tableMenu.Name = "tableMenu";
             this.tableMenu.RowCount = 1;
             this.tableMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -56,7 +58,7 @@ namespace ZkManagement.NewUI
             // 
             this.linkPersonal.BackColor = System.Drawing.Color.Transparent;
             this.linkPersonal.Location = new System.Drawing.Point(4, 4);
-            this.linkPersonal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.linkPersonal.Margin = new System.Windows.Forms.Padding(4);
             this.linkPersonal.Name = "linkPersonal";
             this.linkPersonal.Size = new System.Drawing.Size(135, 67);
             this.linkPersonal.Style = MetroFramework.MetroColorStyle.Blue;
@@ -78,7 +80,7 @@ namespace ZkManagement.NewUI
             this.MainPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.MainPanel.HorizontalScrollbarSize = 13;
             this.MainPanel.Location = new System.Drawing.Point(48, 105);
-            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(0, 0);
             this.MainPanel.TabIndex = 2;
@@ -86,6 +88,18 @@ namespace ZkManagement.NewUI
             this.MainPanel.VerticalScrollbarHighlightOnWheel = false;
             this.MainPanel.VerticalScrollbarSize = 15;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel1_Paint);
+            // 
+            // btnEquipos
+            // 
+            this.btnEquipos.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquipos.Location = new System.Drawing.Point(147, 3);
+            this.btnEquipos.Name = "btnEquipos";
+            this.btnEquipos.Size = new System.Drawing.Size(138, 69);
+            this.btnEquipos.TabIndex = 3;
+            this.btnEquipos.Text = "Equipos";
+            this.btnEquipos.UseCustomBackColor = true;
+            this.btnEquipos.UseSelectable = true;
+            this.btnEquipos.Click += new System.EventHandler(this.btnEquipos_Click);
             // 
             // MainForm
             // 
@@ -96,7 +110,7 @@ namespace ZkManagement.NewUI
             this.Controls.Add(this.tableMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.3F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(30, 78, 30, 26);
             this.Text = "SaftComm";
@@ -111,5 +125,6 @@ namespace ZkManagement.NewUI
         private System.Windows.Forms.TableLayoutPanel tableMenu;
         private MetroFramework.Controls.MetroPanel MainPanel;
         private MetroFramework.Controls.MetroLink linkPersonal;
+        private MetroFramework.Controls.MetroButton btnEquipos;
     }
 }

@@ -275,10 +275,11 @@ namespace ZkManagement.Datos
             try
             {
                 cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                var parameter = cmd.CreateParameter();
+                parameter.ParameterName = "@Id";
                 foreach (Empleado e in empleados)
                 {
-                    var parameter = cmd.CreateParameter();
-                    parameter.ParameterName = "@Id";
+                    cmd.Parameters.Clear(); //--> Borro el parametro que inserté en la pasada anterior.
                     parameter.Value = e.Id;
                     cmd.Parameters.Add(parameter);
 
@@ -292,6 +293,7 @@ namespace ZkManagement.Datos
                         h.Flag = Convert.ToInt32(dr["Flag"]);
                         e.Huellas.Add(h);
                     }
+                    dr.Close(); //--> Lo cierro para poder iniciarlizarlo cuando vuelvo a pasar por el bucle.
                 }
             }
             catch (DbException dbEx)

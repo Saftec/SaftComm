@@ -26,7 +26,7 @@ namespace ZkManagement.NewUI
         public PanelPersonal()
         {
             InitializeComponent();
-            RefreshData();
+            RefreshGrid();
         }
         #region MenuSuperior
         private void linkEdit_Click(object sender, EventArgs e)
@@ -83,15 +83,13 @@ namespace ZkManagement.NewUI
         }
         #endregion
 
-        public void RefreshData()
+        public void RefreshGrid()
         {
-            List<Empleado> emps = new List<Empleado>();
             gridPersonal.DataSource = null;
             le = new LogicEmpleado();
             try
             {
-                emps = le.GetEmpleados();
-                empleados = ConvertToDatatable(emps);
+                empleados = ConvertToDatatable(le.GetEmpleados());
                 gridPersonal.DataSource = empleados;
                 gridPersonal.Refresh();
             }

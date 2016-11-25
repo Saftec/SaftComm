@@ -13,7 +13,7 @@ namespace ZkManagement.Interfaz
     {
         private Reloj reloj = new Reloj(); //Esta instancia la utilizo para ejecutar todas las operaciones.
         private List<Reloj> relojes = new List<Reloj>();
-        private ControladorReloj cr;
+        private LogicReloj cr;
         public Relojes()
         {
             InitializeComponent();            
@@ -34,7 +34,7 @@ namespace ZkManagement.Interfaz
         //Inserta un registro en la tabla borrado//
         private void Borrado(int idReloj, int cant)
         {
-            cr = new ControladorReloj();
+            cr = new LogicReloj();
             try
             {
                 cr.ActualizarBorrado(idReloj, cant);
@@ -232,7 +232,7 @@ namespace ZkManagement.Interfaz
             if (!base.ConsultarUsuario("Está seguro que desea eliminar el equipo?", "Eliminar equipo")) { return; }
             try
             {
-                cr = new ControladorReloj();
+                cr = new LogicReloj();
                 Reloj r = new Reloj(GetPuerto(), GetNumero(), GetId(), GetClave(), GetDns(), GetIp(), GetNombre());
                 cr.EliminarReloj(r);
                 base.InformarEvento("Equipo eliminado correctamente.", "Eliminar reloj");
@@ -310,7 +310,7 @@ namespace ZkManagement.Interfaz
 
         public void CargarRelojes()
         {
-            cr = new ControladorReloj();
+            cr = new LogicReloj();
             relojes.Clear();
             try
             {
