@@ -176,14 +176,14 @@ namespace ZkManagement.Interfaz
         {
             if (!ValidarConexion()) { return; }          
             reloj = BuscarEquipo(GetId());
-            ControladorRegistros cr = new ControladorRegistros();
+            LogicRegistros cr = new LogicRegistros();
             DataTable regis = new DataTable();
             List<string> desconocidos = new List<string>();
             Cursor = Cursors.WaitCursor;
             try
             {
-                regis = reloj.DescargarRegistros();
-                desconocidos=cr.AgregarRegis(regis);
+                //regis = reloj.DescargarRegistros();
+                //desconocidos=cr.AgregarRegis(regis);
                 if (desconocidos.Count > 0)
                 {
                     base.InformarError("Los legajos: " + string.Join("--", desconocidos.ToArray()) + " son desconocidos");
@@ -443,7 +443,7 @@ namespace ZkManagement.Interfaz
             Cursor = Cursors.WaitCursor; //Cursor de espera
             List<string> desconocidos = new List<string>();
             int total = 0;
-            ControladorRegistros cr = new ControladorRegistros();
+            LogicRegistros cr = new LogicRegistros();
             LogInforme("--Inicio de rutina de descarga de registros");
             foreach (Reloj r in relojes)
             {

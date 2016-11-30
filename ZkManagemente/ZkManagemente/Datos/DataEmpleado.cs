@@ -229,12 +229,12 @@ namespace ZkManagement.Datos
             return emp;
         }
 
-        public void InsertarRegis(int id, DateTime fecha, string modo, int reloj)
+        public void InsertarRegis(Fichada f)
         {
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + id.ToString() + "', '" + modo + "', " + reloj.ToString() + ", '" + fecha.ToString("dd-MM-yyyy HH:mm:ss") + "')";
+                query = "INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + f.Empleado.Id.ToString() + "', '" + f.Movimiento + "', " + f.Reloj.Numero.ToString() + ", '" + f.Registro.ToString("dd-MM-yyyy HH:mm:ss") + "')";
                 cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
                 cmd.ExecuteNonQuery();
             }

@@ -203,11 +203,11 @@
     </Compile>
     <Compile Include="Util\Config.cs" />
     <Compile Include="Util\Encrypt.cs" />
-    <Compile Include="Util\EscribirArchivo.cs" />
+    <Compile Include="Util\Writer.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\LogicEmpleado.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
-    <Compile Include="Logica\ControladorRegistros.cs" />
+    <Compile Include="Logica\LogicRegistros.cs" />
     <Compile Include="Logica\LogicReloj.cs" />
     <Compile Include="Logica\ControladorDescargaDatos.cs" />
     <Compile Include="Program.cs" />

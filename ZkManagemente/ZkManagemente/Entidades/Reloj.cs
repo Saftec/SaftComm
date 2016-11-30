@@ -216,7 +216,7 @@ namespace ZkManagement.Entidades
         }
 
         //DESCARGA DE REGISTROS!!//
-        public DataTable DescargarRegistros()
+        public List<Fichada> DescargarRegistros()
         {
             string legajoEnReloj = string.Empty;            
             int tipoMov ,año, mes, dia, hora, minutos, segundos, idwVerifyMode, idwWorkCode = 0;          
@@ -227,18 +227,8 @@ namespace ZkManagement.Entidades
             int cantRegs = 0;
             int count = 0;
 
-            //DECLARO DATATABLE PARA ALMACENAR LAS REGISTRACIONES
-            DataTable regis = new DataTable();
-            DataColumn legajo = regis.Columns.Add("Legajo", typeof(string));
-            regis.Columns.Add("Dia", typeof(int));
-            regis.Columns.Add("Mes", typeof(int));
-            regis.Columns.Add("Año", typeof(int));
-            regis.Columns.Add("Hora", typeof(int));
-            regis.Columns.Add("Minutos", typeof(int));
-            regis.Columns.Add("Segundos", typeof(int));
-            regis.Columns.Add("Tipo", typeof(String));
-            regis.Columns.Add("Reloj", typeof(Int32));
-            //HASTA ACA
+            //DECLARO LIST PARA ALMACENAR LAS REGISTRACIONES
+            List<Fichada> fichadas = new List<Fichada>();
 
             base.EnableDevice(this.numero, false);//Bloqueo dispositivo
             cantRegs = GetCantidadRegistros();
@@ -246,17 +236,12 @@ namespace ZkManagement.Entidades
             {
                 while (base.SSR_GetGeneralLogData(this.numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkCode) && codError == 0)//Obtengo los registros
                 {
-                    DataRow fila = regis.NewRow();
-                    fila["Legajo"] = legajoEnReloj;
-                    fila["Dia"] = dia;
-                    fila["Mes"] = mes;
-                    fila["Año"] = año;
-                    fila["Hora"] = hora;
-                    fila["Minutos"] = minutos;
-                    fila["Segundos"] = segundos;
-                    fila["Tipo"] = tipoMov;
-                    fila["Reloj"] = Convert.ToInt32(this.Id);
-                    regis.Rows.Add(fila);
+                    Fichada f = new Fichada();
+                    f.Registro = new DateTime(año, mes, dia, hora, minutos, segundos);
+                    f.Tipo = tipoMov;
+                    f.Empleado.Legajo = legajoEnReloj;
+                    f.Reloj.Id = this.id;
+                    fichadas.Add(f);
                     count++;
                 }
             }
@@ -271,7 +256,7 @@ namespace ZkManagement.Entidades
                 }
             }
             base.EnableDevice(this.numero, true);
-            return regis;
+            return fichadas;
         }
 
         public DataTable DescargarInfo()

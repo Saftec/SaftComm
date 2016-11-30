@@ -40,19 +40,11 @@ namespace ZkManagement.NewUI.Generic
             try
             {
                 relojAct = MapearDeGrid();
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message, "Conectar Reloj.");
-                return;
-            }
-            if (relojAct.Estado)
-            {
-                InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra conectado.", "Conectar Reloj.");
-                return;
-            }
-            try
-            {
+                if (relojAct.Estado)
+                {
+                    InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra conectado.", "Conectar Reloj.");
+                    return;
+                }
                 relojAct.Conectar();
                 relojAct.Estado = true;
                 MapearAGrid(relojAct);
@@ -69,18 +61,11 @@ namespace ZkManagement.NewUI.Generic
             try
             {
                 relojAct = MapearDeGrid();
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message, "Desconectar Reloj.");
-            }
-            if (!relojAct.Estado)
-            {
-                InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra desconectado.", "Desconectar Reloj.");
-                return;
-            }
-            try
-            {
+                if (!relojAct.Estado)
+                {
+                    InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra desconectado.", "Desconectar Reloj.");
+                    return;
+                }
                 relojAct.Desconectar();
                 relojAct.Estado = false;
                 MapearAGrid(relojAct);
@@ -96,19 +81,12 @@ namespace ZkManagement.NewUI.Generic
         {
             try
             {
-                relojAct = MapearDeGrid();
-            }
-            catch(Exception ex)
-            {
-                InformarError(ex.Message, "Sincronizar Hora.");
-            }
-            if (!relojAct.Estado)
-            {
-                InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
-                return;
-            }
-            try
-            {
+                relojAct = MapearDeGrid();          
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
+                    return;
+                }
                 relojAct.SincronizarHora();
                 Informar("Se sincronizó correctamente la hora con el reloj: " + relojAct.Numero.ToString(), "Sincronizar Hora.");
             }
@@ -120,6 +98,33 @@ namespace ZkManagement.NewUI.Generic
         // DESCARGAR REGIS //
         private void linkDescRegs_Click(object sender, EventArgs e)
         {
+            try
+            {
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Descargar Registros.");
+                    return;
+                }
+                List<Fichada> fichadas;
+                List<string> desconocidos;
+                LogicRegistros lr = new LogicRegistros();
+                fichadas = relojAct.DescargarRegistros();
+                desconocidos=lr.AgregarRegis(fichadas);
+                if (desconocidos.Count > 0)
+                {
+                    InformarError("Los siguientes legajos son desconocidos: ", "Descarga de Registros.");
+                    foreach(string l in desconocidos)
+                    {
+                        MostrarError("Legajo: " + l);
+                    }
+                }
+                Informar("Se descargaron: " + fichadas.Count.ToString() + " registros.", "Descarga de Registros.");
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Descargar Registros.");
+            }
 
         }
         // BORRAR REGIS //
@@ -128,18 +133,11 @@ namespace ZkManagement.NewUI.Generic
             try
             {
                 relojAct = MapearDeGrid();
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message, "Borrar Registros.");
-            }
-            if (!relojAct.Estado)
-            {
-                InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Borrar Registros.");
-                return;
-            }
-            try
-            {
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Borrar Registros.");
+                    return;
+                }
                 if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
                 {
                     int cant = 0;
@@ -273,13 +271,20 @@ namespace ZkManagement.NewUI.Generic
         protected new void InformarError(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            txtLog.SelectionColor = Color.Red;
-            txtLog.AppendText(mensaje);
+            MostrarError(mensaje);
         }
         protected new void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtLog.AppendText("\n");
             txtLog.SelectionColor = Color.Black;
+            txtLog.AppendText(mensaje);
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            txtLog.AppendText("\n");
+            txtLog.SelectionColor = Color.Red;
             txtLog.AppendText(mensaje);
         }
     }

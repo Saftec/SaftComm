@@ -1,26 +1,26 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.IO;
+using ZkManagement.Entidades;
 using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
-    class EscribirArchivo
+    class Writer
     {
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         private Config config = new Config();
 
-        public void EscribirRegistros(int nroDispositivo, int ioModo, int año, int mes, int dia, int horas, int minuto, string legajo)
+        public void EscribirRegistros(Fichada f)
         {
             string path = config.Read("General","Path"); //Obtengo path de descarga de registros
 
-            string linea, hora, tipoMov, fecha, reloj;         
+            string linea, hora, tipoMov, fecha, reloj, legajo;         
 
-            hora = FormatoHora(horas, minuto);
-            fecha = FormatoFecha(año, mes, dia);
-            legajo = FormatoLegajo(legajo);
-            tipoMov = FormatoModo(ioModo);
-            reloj = FormatoReloj(nroDispositivo);
+            hora = FormatoHora(f.Registro.Hour, f.Registro.Minute);
+            fecha = FormatoFecha(f.Registro.Year, f.Registro.Month, f.Registro.Day);
+            legajo = FormatoLegajo(f.Empleado.Legajo);
+            tipoMov = FormatoModo(f.Tipo);
+            reloj = FormatoReloj(f.Reloj.Numero);
             linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
  
             try
