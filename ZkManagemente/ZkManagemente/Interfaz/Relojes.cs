@@ -37,7 +37,7 @@ namespace ZkManagement.Interfaz
             cr = new LogicReloj();
             try
             {
-                cr.ActualizarBorrado(idReloj, cant);
+                //cr.ActualizarBorrado(idReloj, cant);
             }
             catch (Exception ex)
             {

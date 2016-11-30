@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
 using ZkManagement.Util;
@@ -30,6 +32,135 @@ namespace ZkManagement.NewUI.Generic
             relojAct = new Reloj();
         }
 
+        // SETEAR MODELO - MAC - CANT.REGIS AL CONECTAR //
+        #region Operaciones
+        // CONECTAR //
+        private void linkConnect_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Conectar Reloj.");
+                return;
+            }
+            if (relojAct.Estado)
+            {
+                InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra conectado.", "Conectar Reloj.");
+                return;
+            }
+            try
+            {
+                relojAct.Conectar();
+                relojAct.Estado = true;
+                MapearAGrid(relojAct);
+                Informar("El dispositivo: " + relojAct.Numero.ToString() + " se conectó correctamente", "Conectar Reloj.");
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Conectar Reloj.");
+            }
+        }
+        // DESCONECTAR //
+        private void linkDesconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Desconectar Reloj.");
+            }
+            if (!relojAct.Estado)
+            {
+                InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra desconectado.", "Desconectar Reloj.");
+                return;
+            }
+            try
+            {
+                relojAct.Desconectar();
+                relojAct.Estado = false;
+                MapearAGrid(relojAct);
+                Informar("El dispositivo: " + relojAct.Numero.ToString() + " se desconectó correctamente", "Desconectar Reloj.");
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Desconectar Reloj.");
+            }
+        }
+        // SINCRONIZAR HORA //
+        private void linkSincHora_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Sincronizar Hora.");
+            }
+            if (!relojAct.Estado)
+            {
+                InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
+                return;
+            }
+            try
+            {
+                relojAct.SincronizarHora();
+                Informar("Se sincronizó correctamente la hora con el reloj: " + relojAct.Numero.ToString(), "Sincronizar Hora.");
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Sincronizar Hora.");
+            }
+        }
+        // DESCARGAR REGIS //
+        private void linkDescRegs_Click(object sender, EventArgs e)
+        {
+
+        }
+        // BORRAR REGIS //
+        private void linkBorrarRegs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Borrar Registros.");
+            }
+            if (!relojAct.Estado)
+            {
+                InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Borrar Registros.");
+                return;
+            }
+            try
+            {
+                if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
+                {
+                    int cant = 0;
+                    cant=relojAct.BorrarRegistros();
+                    lr = new LogicReloj();
+                    lr.ActualizarBorrado(relojAct, cant); //Guarda la info. del borrado en la BD
+                    Informar("Se borraron " + cant.ToString() + " registros del reloj: " + relojAct.Numero.ToString(), "Borrar Registros.");
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Borrar Registros.");
+            }
+        }
+        #endregion
+
+        #region Grid
         public void RefreshGrid()
         {
             lr = new LogicReloj();
@@ -37,24 +168,24 @@ namespace ZkManagement.NewUI.Generic
             DataTable relojes;
             try
             {
-                relojes=ConvertToDataTable(lr.TodosRelojes());
+                relojes = ConvertToDataTable(lr.TodosRelojes());
                 gridEquipos.DataSource = relojes;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 base.InformarError(ex.Message, "Consultar Relojes.");
             }
         }
-
         private Reloj MapearDeGrid()
         {
             Reloj r = new Reloj();
             int valor = 0; // Lo uso para los TryParse a int.
 
-            if(int.TryParse(gridEquipos.CurrentRow.Cells["Id"].ToString(), out valor))
+            if (int.TryParse(gridEquipos.CurrentRow.Cells["Id"].ToString(), out valor))
             {
                 r.Id = valor;
-            }else
+            }
+            else
             {
                 throw new AppException("Error al intentar convertir Id a INT.");
             }
@@ -90,36 +221,18 @@ namespace ZkManagement.NewUI.Generic
 
             return r;
         }
-
-
-        private void linkConnect_Click(object sender, System.EventArgs e)
+        private void MapearAGrid(Reloj r)
         {
-            try
+            if (r.Estado)
             {
-                relojAct = MapearDeGrid();
+                gridEquipos.CurrentRow.Cells["Estado"].Value = "Conectado";
             }
-            catch(Exception ex)
+            else
             {
-                base.InformarError(ex.Message, "Conectar Reloj.");
-                return;
-            }            
-            if (relojAct.Estado)
-            {
-                base.InformarError("El dispositivo ya se encuentra conectado.", "Conectar Reloj.");
-                return;
-            }
-            try
-            {
-                relojAct.Conectar();
-                relojAct.Estado = true;
-                base.Informar("Conexión exitosa!", "Conectar Reloj.");
-            }
-            catch(Exception ex)
-            {
-                base.InformarError(ex.Message, "Conectar Reloj.");
+                gridEquipos.CurrentRow.Cells["Estado"].Value = "Desconectado";
             }
         }
-
+        #endregion
         private DataTable ConvertToDataTable(List<Reloj> relojes)
         {
             DataTable dt = new DataTable();
@@ -155,6 +268,19 @@ namespace ZkManagement.NewUI.Generic
                 dt.Rows.Add(row);
             }
             return dt;
+        }
+
+        protected new void InformarError(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            txtLog.SelectionColor = Color.Red;
+            txtLog.AppendText(mensaje);
+        }
+        protected new void Informar(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtLog.SelectionColor = Color.Black;
+            txtLog.AppendText(mensaje);
         }
     }
 }

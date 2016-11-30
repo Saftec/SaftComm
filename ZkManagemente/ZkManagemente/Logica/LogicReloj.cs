@@ -48,13 +48,13 @@ namespace ZkManagement.Logica
             }
         }
 
-        public void ActualizarBorrado(int idReloj, int cantidad)
+        public void ActualizarBorrado(Reloj reloj, int cantidad)
         {
             DateTime fecha = DateTime.Now;
             ControladorLogin cl = new ControladorLogin();
             try
             {
-                CatalogoRelojes.GetInstancia().SetBorrado(cl.GetUsrId(), idReloj, cantidad, fecha);
+                CatalogoRelojes.GetInstancia().SetBorrado(cl.GetUsrId(), reloj.Id, cantidad, fecha);
             }
             catch(Exception ex)
             {

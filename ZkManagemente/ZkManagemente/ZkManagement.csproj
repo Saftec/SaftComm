@@ -96,6 +96,7 @@
     <Compile Include="Datos\ConnectionSaftime.cs" />
     <Compile Include="Datos\DataEmpleadoSaftime.cs" />
     <Compile Include="Datos\FactoryConnection.cs" />
+    <Compile Include="Entidades\Fichada.cs" />
     <Compile Include="Entidades\Huella.cs" />
     <Compile Include="Entidades\Reloj.cs" />
     <Compile Include="Entidades\Empleado.cs" />

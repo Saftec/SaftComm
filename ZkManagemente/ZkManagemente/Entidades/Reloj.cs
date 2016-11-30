@@ -141,10 +141,10 @@ namespace ZkManagement.Entidades
             base.EnableDevice(this.numero, true);
             return cant;
         }
-        public void BorrarRegistros()
+        public int BorrarRegistros()
         {
             int codError = 0;
-            int cant;
+            int cant = -1;
             base.EnableDevice(this.numero, false);     //bloqueo dispositivo
             cant = GetCantidadRegistros();
             if (base.ClearGLog(this.numero))
@@ -158,6 +158,7 @@ namespace ZkManagement.Entidades
                 base.EnableDevice(this.numero, true);      //desbloqueo
                 throw new AppException("Error al borrar los registros, coderror: " + codError.ToString());
             }
+            return cant;
         }
         public void SincronizarHora()
         {
