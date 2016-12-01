@@ -12,19 +12,26 @@ namespace ZkManagement.Datos
     {
         private static int cantConn;
         private static FactoryConnection _instancia;
-
-        public static FactoryConnection GetInstancia()
-        {
-            if (_instancia == null)
-            {
-                _instancia = new FactoryConnection();
-            }
-            return _instancia;
-        }
-
         private static IDbConnection cnn;
 
-        public enum DBType
+        public static FactoryConnection Instancia
+        {
+            get
+            {
+                if (_instancia == null)
+                {
+                    _instancia = new FactoryConnection();
+                }
+                return _instancia;
+            }
+        }
+
+        private FactoryConnection()
+        {
+
+        }    
+
+        private enum DBType
         {
             SQL,
             Access         
@@ -64,7 +71,7 @@ namespace ZkManagement.Datos
             return cnn;
         }
 
-        public IDbCommand Update(string command, IDbConnection cnn) //La conexión ya me llega abierta.
+        public IDbCommand GetCommand(string command, IDbConnection cnn) //La conexión ya me llega abierta.
         {
             IDbCommand cmd;
             try
@@ -95,11 +102,10 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error no controlado durante la creación de la consulta");
             }
-
             return cmd;
         }
 
-        public DbDataReader Consult(string command, IDbConnection cnn) //La conexión ya me llega abierta.
+        public DbDataReader GetReader(string command, IDbConnection cnn) //La conexión ya me llega abierta.
         {
             IDbCommand cmd;
             DbDataReader dr;

@@ -17,13 +17,13 @@ namespace ZkManagement.Logica
             {
                 if (VerificarSaftime())
                 {
-                    empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
+                    empleados = DataEmpleadoSaftime.Instancia.Empleados();
                 }
                 else
                 {
-                    empleados = DataEmpleado.GetInstancia().Empleados();
+                    empleados = DataEmpleado.Instancia.Empleados();
                 }
-                //empleados = DataEmpleado.GetInstancia().SetHuellas(empleados);
+                //empleados = DataEmpleado.Instancia.SetHuellas(empleados);
             }
             catch(Exception ex)
             {
@@ -40,13 +40,13 @@ namespace ZkManagement.Logica
             {
                 if (VerificarSaftime())
                 {
-                    empleados = DataEmpleadoSaftime.GetInstancia().Empleados();
+                    empleados = DataEmpleadoSaftime.Instancia.Empleados();
                 }
                 else
                 {
-                    empleados = DataEmpleado.GetInstancia().Empleados();
+                    empleados = DataEmpleado.Instancia.Empleados();
                 }
-                empleados = DataEmpleado.GetInstancia().SetHuellas(empleados);
+                empleados = DataEmpleado.Instancia.SetHuellas(empleados);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace ZkManagement.Logica
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.GetInstancia().Eliminar(emp);
+                    DataEmpleadoSaftime.Instancia.Eliminar(emp);
                 }
                 else
                 {
-                    DataEmpleado.GetInstancia().Eliminar(emp);
+                    DataEmpleado.Instancia.Eliminar(emp);
                 }
                 Huella h = new Huella();
                 h.Empleado = emp;
@@ -86,11 +86,11 @@ namespace ZkManagement.Logica
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.GetInstancia().Actualizar(emp);
+                    DataEmpleadoSaftime.Instancia.Actualizar(emp);
                 }
                 else
                 {
-                    DataEmpleado.GetInstancia().Actualizar(emp);
+                    DataEmpleado.Instancia.Actualizar(emp);
                 }
             }
             catch(Exception ex)
@@ -105,11 +105,11 @@ namespace ZkManagement.Logica
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.GetInstancia().Agregar(emp);
+                    DataEmpleadoSaftime.Instancia.Agregar(emp);
                 }
                 else
                 {
-                    DataEmpleado.GetInstancia().Agregar(emp);
+                    DataEmpleado.Instancia.Agregar(emp);
                 }                
             }
             catch(Exception ex)

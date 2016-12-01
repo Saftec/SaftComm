@@ -57,7 +57,9 @@
             this.ClientSize = new System.Drawing.Size(741, 550);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGuardar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GenericAbm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GenericAbm";
             this.ResumeLayout(false);
 

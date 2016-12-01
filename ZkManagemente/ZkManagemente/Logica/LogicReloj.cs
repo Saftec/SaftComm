@@ -12,7 +12,7 @@ namespace ZkManagement.Logica
             List<Reloj> relojes = new List<Reloj>();
             try
             {
-                relojes = CatalogoRelojes.GetInstancia().GetRelojes();
+                relojes = DataRelojes.Instancia.GetRelojes();
             }
             catch(Exception ex)
             {
@@ -26,8 +26,8 @@ namespace ZkManagement.Logica
         {
             try
             {
-                if (r.Id > 0) { CatalogoRelojes.GetInstancia().ActualizarReloj(r); }
-                else { CatalogoRelojes.GetInstancia().AgregarReloj(r); }
+                if (r.Id > 0) { DataRelojes.Instancia.ActualizarReloj(r); }
+                else { DataRelojes.Instancia.AgregarReloj(r); }
             }
             catch(Exception ex)
             {
@@ -40,7 +40,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoRelojes.GetInstancia().EliminarReloj(r);
+                DataRelojes.Instancia.EliminarReloj(r);
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace ZkManagement.Logica
             ControladorLogin cl = new ControladorLogin();
             try
             {
-                CatalogoRelojes.GetInstancia().SetBorrado(cl.GetUsrId(), reloj.Id, cantidad, fecha);
+                DataRelojes.Instancia.SetBorrado(cl.GetUsrId(), reloj.Id, cantidad, fecha);
             }
             catch(Exception ex)
             {

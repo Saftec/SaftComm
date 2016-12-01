@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
 using System.Collections.Generic;
@@ -12,13 +11,22 @@ namespace ZkManagement.Datos
     {
         private static DataEmpleado _instancia;
 
-        public static DataEmpleado GetInstancia()
+        public static DataEmpleado Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new DataEmpleado();
+                if (_instancia == null)
+                {
+                    _instancia = new DataEmpleado();
+                }
+                return _instancia;
             }
-            return _instancia;
+
+        }
+
+        private DataEmpleado()
+        {
+
         }
 
         private string query = string.Empty;
@@ -31,7 +39,7 @@ namespace ZkManagement.Datos
             try
             {                            
                 query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
-                dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
@@ -64,7 +72,7 @@ namespace ZkManagement.Datos
                     {
                         dr.Close();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -80,7 +88,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
-                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (DbException dbEx)
@@ -101,7 +109,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +126,7 @@ namespace ZkManagement.Datos
                 query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin='" + emp.Pin + "', Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
-                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (DbException dbEx)
@@ -139,7 +147,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -156,7 +164,7 @@ namespace ZkManagement.Datos
                 query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
-                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (DbException dbEx)
@@ -173,7 +181,7 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -189,7 +197,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e WHERE e.Legajo='" + legajo +"'";
-                dr = FactoryConnection.GetInstancia().Consult(query, FactoryConnection.GetInstancia().GetConnection());
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
@@ -219,7 +227,7 @@ namespace ZkManagement.Datos
                     {
                         dr.Close();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -235,7 +243,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Registros (IdEmpleado, Tipo, Reloj, Fecha) VALUES('" + f.Empleado.Id.ToString() + "', '" + f.Movimiento + "', " + f.Reloj.Numero.ToString() + ", '" + f.Registro.ToString("dd-MM-yyyy HH:mm:ss") + "')";
-                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch(DbException dbEx)
@@ -256,7 +264,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -274,7 +282,7 @@ namespace ZkManagement.Datos
 
             try
             {
-                cmd = FactoryConnection.GetInstancia().Update(query, FactoryConnection.GetInstancia().GetConnection());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 var parameter = cmd.CreateParameter();
                 parameter.ParameterName = "@Id";
                 foreach (Empleado e in empleados)
@@ -314,7 +322,7 @@ namespace ZkManagement.Datos
                     {
                         dr.Close();
                     }
-                    FactoryConnection.GetInstancia().ReleaseConn();
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {

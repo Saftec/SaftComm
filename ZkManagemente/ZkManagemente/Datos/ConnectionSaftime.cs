@@ -11,13 +11,16 @@ namespace ZkManagement.Datos
         private static SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["saftimeDB"].ConnectionString);
 
         private ConnectionSaftime() { }
-        public static ConnectionSaftime GetInstancia()
+        public static ConnectionSaftime Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new ConnectionSaftime();
+                if (_instancia == null)
+                {
+                    _instancia = new ConnectionSaftime();
+                }
+                return _instancia;
             }
-            return _instancia;
         }
         public SqlConnection GetConn()
         {

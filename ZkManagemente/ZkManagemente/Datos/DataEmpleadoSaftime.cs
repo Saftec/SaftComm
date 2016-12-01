@@ -10,13 +10,22 @@ namespace ZkManagement.Datos
     {
         private static DataEmpleadoSaftime _instancia;
 
-        public static DataEmpleadoSaftime GetInstancia()
+        private DataEmpleadoSaftime()
         {
-            if (_instancia == null)
+
+        }
+
+        public static DataEmpleadoSaftime Instancia
+        {
+            get
             {
-                _instancia = new DataEmpleadoSaftime();
+                if (_instancia == null)
+                {
+                    _instancia = new DataEmpleadoSaftime();
+                }
+                return _instancia;
             }
-            return _instancia;
+
         }
 
         private string query = string.Empty;
@@ -30,7 +39,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT e.legajo, e.EmpId as 'IdEmpleado', (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.fecBaja IS NULL ORDER BY Nombre ASC";
-                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -68,7 +77,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    ConnectionSaftime.GetInstancia().ReleaseConn();
+                    ConnectionSaftime.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +93,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "UPDATE Empleados SET fecBaja= GETDATE() WHERE EmpId=" + emp.Id.ToString();
-                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -105,7 +114,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    ConnectionSaftime.GetInstancia().ReleaseConn();
+                    ConnectionSaftime.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -121,7 +130,7 @@ namespace ZkManagement.Datos
             {
                 query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo + "', tarjeta='" + emp.Tarjeta + "' WHERE EmpId=" + emp.Id.ToString();
 
-                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -142,7 +151,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    ConnectionSaftime.GetInstancia().ReleaseConn();
+                    ConnectionSaftime.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -159,7 +168,7 @@ namespace ZkManagement.Datos
                 query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
-                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
@@ -180,7 +189,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    ConnectionSaftime.GetInstancia().ReleaseConn();
+                    ConnectionSaftime.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -197,7 +206,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + legajo + "'";
-                cmd = new SqlCommand(query, ConnectionSaftime.GetInstancia().GetConn());
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
@@ -232,7 +241,7 @@ namespace ZkManagement.Datos
                     {
                         cmd.Dispose();
                     }
-                    ConnectionSaftime.GetInstancia().ReleaseConn();
+                    ConnectionSaftime.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {

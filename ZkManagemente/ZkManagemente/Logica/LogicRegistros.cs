@@ -9,7 +9,6 @@ namespace ZkManagement.Logica
 {
     class LogicRegistros
     {
-        private DataEmpleado ce = new DataEmpleado();
         private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         public List<string> AgregarRegis(List<Fichada> fichadas)
         {
@@ -26,10 +25,10 @@ namespace ZkManagement.Logica
                     // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFTCOMM //
                     if (VerificarSaftime())
                     {
-                        f.Empleado = DataEmpleadoSaftime.GetInstancia().GetIdByLegajo(legajo);
+                        f.Empleado = DataEmpleadoSaftime.Instancia.GetIdByLegajo(legajo);
                     }else
                     {
-                        f.Empleado = DataEmpleado.GetInstancia().GetIdByLegajo(legajo);
+                        f.Empleado = DataEmpleado.Instancia.GetIdByLegajo(legajo);
                     }
                     
                     // SI NO LO ENCONTRÓ AGREGO EL LEGAJO A DESCONOCIDOS //
@@ -38,7 +37,7 @@ namespace ZkManagement.Logica
                         desconocidos.Add(legajo);
                         continue;
                     }
-                    DataEmpleado.GetInstancia().InsertarRegis(f);
+                    DataEmpleado.Instancia.InsertarRegis(f);
 
                 }
             }

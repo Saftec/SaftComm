@@ -12,18 +12,21 @@ namespace ZkManagement.NewUI
         //         PATRON SINGLETON            //
         private static PanelPersonal _instancia;
 
-        public static PanelPersonal GetInstancia()
+        public static PanelPersonal Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new PanelPersonal();
+                if (_instancia == null)
+                {
+                    _instancia = new PanelPersonal();
+                }
+                return _instancia;
             }
-            return _instancia;
         }
 
         private LogicEmpleado le;
         private DataTable empleados = new DataTable();
-        public PanelPersonal()
+        private PanelPersonal()
         {
             InitializeComponent();
             RefreshGrid();

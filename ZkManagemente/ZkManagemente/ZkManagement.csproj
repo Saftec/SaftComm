@@ -90,7 +90,7 @@
     <Compile Include="Datos\CatalogoDepartamentos.cs" />
     <Compile Include="Datos\DataEmpleado.cs" />
     <Compile Include="Datos\CatalogoHuellas.cs" />
-    <Compile Include="Datos\CatalogoRelojes.cs" />
+    <Compile Include="Datos\DataRelojes.cs" />
     <Compile Include="Datos\CatalogoUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\ConnectionSaftime.cs" />
@@ -171,6 +171,12 @@
     <Compile Include="NewUI\EditEmpleado.Designer.cs">
       <DependentUpon>EditEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\EditReloj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\EditReloj.Designer.cs">
+      <DependentUpon>EditReloj.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\Generic\GenericAbm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\EditEmpleado.resx">
       <DependentUpon>EditEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\EditReloj.resx">
+      <DependentUpon>EditReloj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\Generic\GenericAbm.resx">
       <DependentUpon>GenericAbm.cs</DependentUpon>

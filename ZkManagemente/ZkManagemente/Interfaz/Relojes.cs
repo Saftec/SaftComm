@@ -455,8 +455,8 @@ namespace ZkManagement.Interfaz
                     LogInforme("Conexion correcta con reloj: " + r.Numero.ToString());
                     r.Estado = true;
                     LogInforme("Descargando registros...");
-                    regis = r.DescargarRegistros();
-                    desconocidos=cr.AgregarRegis(regis);
+                    //regis = r.DescargarRegistros();
+                    //desconocidos=cr.AgregarRegis(regis);
                     LogInforme("Se descargaron " + regis.Rows.Count.ToString() + " registros");
                     LogInforme("Borrando registros...");
                     r.BorrarRegistros();                  

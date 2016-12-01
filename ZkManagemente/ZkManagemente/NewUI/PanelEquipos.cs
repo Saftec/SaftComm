@@ -14,19 +14,22 @@ namespace ZkManagement.NewUI.Generic
         //         PATRON SINGLETON            //
         private static PanelEquipos _instancia;
 
-        public static PanelEquipos GetInstancia()
+        public static PanelEquipos Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new PanelEquipos();
+                if(_instancia == null)
+                {
+                    _instancia = new PanelEquipos();
+                }
+                return _instancia;
             }
-            return _instancia;
         }
 
         private LogicReloj lr;
         private Reloj relojAct;
 
-        public PanelEquipos()
+        private PanelEquipos()
         {
             InitializeComponent();
             relojAct = new Reloj();
@@ -116,7 +119,7 @@ namespace ZkManagement.NewUI.Generic
                     InformarError("Los siguientes legajos son desconocidos: ", "Descarga de Registros.");
                     foreach(string l in desconocidos)
                     {
-                        MostrarError("Legajo: " + l);
+                        LoguearError("Legajo: " + l);
                     }
                 }
                 Informar("Se descargaron: " + fichadas.Count.ToString() + " registros.", "Descarga de Registros.");
@@ -179,7 +182,7 @@ namespace ZkManagement.NewUI.Generic
             Reloj r = new Reloj();
             int valor = 0; // Lo uso para los TryParse a int.
 
-            if (int.TryParse(gridEquipos.CurrentRow.Cells["Id"].ToString(), out valor))
+            if (int.TryParse(gridEquipos.CurrentRow.Cells["Id"].Value.ToString(), out valor))
             {
                 r.Id = valor;
             }
@@ -187,7 +190,7 @@ namespace ZkManagement.NewUI.Generic
             {
                 throw new AppException("Error al intentar convertir Id a INT.");
             }
-            if (int.TryParse(gridEquipos.CurrentRow.Cells["Numero"].ToString(), out valor))
+            if (int.TryParse(gridEquipos.CurrentRow.Cells["Numero"].Value.ToString(), out valor))
             {
                 r.Numero = valor;
             }
@@ -195,7 +198,7 @@ namespace ZkManagement.NewUI.Generic
             {
                 throw new AppException("Error al intentar convertir Numero de equipo a INT.");
             }
-            if (int.TryParse(gridEquipos.CurrentRow.Cells["Puerto"].ToString(), out valor))
+            if (int.TryParse(gridEquipos.CurrentRow.Cells["Puerto"].Value.ToString(), out valor))
             {
                 r.Puerto = valor;
             }
@@ -203,7 +206,7 @@ namespace ZkManagement.NewUI.Generic
             {
                 throw new AppException("Error al intentar convertir el puerto a INT.");
             }
-            if (gridEquipos.CurrentRow.Cells["Estado"].ToString() == "Conectado")
+            if (gridEquipos.CurrentRow.Cells["Estado"].Value.ToString() == "Conectado")
             {
                 r.Estado = true;
             }
@@ -212,10 +215,10 @@ namespace ZkManagement.NewUI.Generic
                 r.Estado = false;
             }
 
-            r.Nombre = gridEquipos.CurrentRow.Cells["Nombre"].ToString();
-            r.Clave = gridEquipos.CurrentRow.Cells["Clave"].ToString();
-            r.DNS = gridEquipos.CurrentRow.Cells["DNS"].ToString();
-            r.Ip = gridEquipos.CurrentRow.Cells["IP"].ToString();
+            r.Nombre = gridEquipos.CurrentRow.Cells["Nombre"].Value.ToString();
+            r.Clave = gridEquipos.CurrentRow.Cells["Clave"].Value.ToString();
+            r.DNS = gridEquipos.CurrentRow.Cells["DNS"].Value.ToString();
+            r.Ip = gridEquipos.CurrentRow.Cells["IP"].Value.ToString();
 
             return r;
         }
@@ -229,6 +232,64 @@ namespace ZkManagement.NewUI.Generic
             {
                 gridEquipos.CurrentRow.Cells["Estado"].Value = "Desconectado";
             }
+        }
+        #endregion
+
+        #region ABM
+        private void linkNuevo_Click(object sender, EventArgs e)
+        {
+            EditReloj er = new EditReloj();
+            Reloj r = new Reloj();
+            try
+            {
+                r.Id = 0;
+                er.MapearAFormulario(r);
+                er.Show();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Agregar Equipos.");
+            }
+        }
+        private void linkEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+                EditReloj er = new EditReloj();
+                er.MapearAFormulario(relojAct);
+                er.Show();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Modificar Equipos.");
+            }
+        }
+        #endregion
+
+        #region Informes
+        protected new void InformarError(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            LoguearError(mensaje);
+        }
+        protected new void Informar(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoguearInforme(mensaje);
+        }
+
+        private void LoguearInforme(string mensaje)
+        {
+            txtLog.SelectionColor = Color.Black;
+            txtLog.AppendText(mensaje);
+            txtLog.AppendText("\n");
+        }
+        private void LoguearError(string mensaje)
+        {
+            txtLog.SelectionColor = Color.Red;
+            txtLog.AppendText(mensaje);
+            txtLog.AppendText("\n");
         }
         #endregion
         private DataTable ConvertToDataTable(List<Reloj> relojes)
@@ -268,24 +329,6 @@ namespace ZkManagement.NewUI.Generic
             return dt;
         }
 
-        protected new void InformarError(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MostrarError(mensaje);
-        }
-        protected new void Informar(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            txtLog.AppendText("\n");
-            txtLog.SelectionColor = Color.Black;
-            txtLog.AppendText(mensaje);
-        }
 
-        private void MostrarError(string mensaje)
-        {
-            txtLog.AppendText("\n");
-            txtLog.SelectionColor = Color.Red;
-            txtLog.AppendText(mensaje);
-        }
     }
 }

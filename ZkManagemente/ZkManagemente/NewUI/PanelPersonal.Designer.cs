@@ -275,16 +275,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.gridPersonal);
             this.Name = "PanelPersonal";
             this.Size = new System.Drawing.Size(873, 621);
+            this.Controls.SetChildIndex(this.gridPersonal, 0);
+            this.Controls.SetChildIndex(this.tableLayoutPanel2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridPersonal)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

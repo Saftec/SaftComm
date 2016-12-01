@@ -1,4 +1,5 @@
 ﻿using MetroFramework.Forms;
+using System.Windows.Forms;
 using ZkManagement.NewUI.Generic;
 
 namespace ZkManagement.NewUI
@@ -14,17 +15,17 @@ namespace ZkManagement.NewUI
         {
 
         }
-
-        private void linkPersonal_Click(object sender, System.EventArgs e)
-        {
-            PanelPersonal.GetInstancia().RefreshGrid();
-            MainPanel.Controls.Add(PanelPersonal.GetInstancia());
-        }
-
         private void btnEquipos_Click(object sender, System.EventArgs e)
         {            
-            PanelEquipos.GetInstancia().RefreshGrid();
-            MainPanel.Controls.Add(PanelEquipos.GetInstancia());
+            PanelEquipos.Instancia.RefreshGrid();
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(PanelEquipos.Instancia);
+        }
+        private void btnPersonal_Click(object sender, System.EventArgs e)
+        {
+            PanelPersonal.Instancia.RefreshGrid();
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(PanelPersonal.Instancia);
         }
     }
 }
