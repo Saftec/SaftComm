@@ -10,7 +10,7 @@ namespace ZkManagement.Logica
             string valor;
             try
             {
-                valor = CatalogoConfiguraciones.GetInstancia().GetConfig(id);
+                valor = DataConfigs.Instancia.GetConfig(id);
             }
             catch (Exception ex)
             {
@@ -24,7 +24,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(id, valor);
+                DataConfigs.Instancia.SetConfig(id, valor);
             }
             catch(Exception ex)
             {

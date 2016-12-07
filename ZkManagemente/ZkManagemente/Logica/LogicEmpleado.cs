@@ -58,7 +58,7 @@ namespace ZkManagement.Logica
 
         public void BajaEmpleado(Empleado emp)
         {
-            CatalogoHuellas ch = new CatalogoHuellas();
+            DataTemplates ch = new DataTemplates();
 
             try
             {

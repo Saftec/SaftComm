@@ -29,7 +29,7 @@ namespace ZkManagement.Logica
             bool valor = false;
             try
             {
-                if(!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(4), out valor))
+                if(!Boolean.TryParse(DataConfigs.Instancia.GetConfig(4), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");                    
                 }
@@ -45,7 +45,7 @@ namespace ZkManagement.Logica
             bool valor = false;
             try
             {
-                if (!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(6), out valor))
+                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(6), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
@@ -60,7 +60,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(5);
+                return DataConfigs.Instancia.GetConfig(5);
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(7);
+                return DataConfigs.Instancia.GetConfig(7);
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace ZkManagement.Logica
             bool valor = false;
             try
             {
-                if (!Boolean.TryParse(CatalogoConfiguraciones.GetInstancia().GetConfig(10), out valor))
+                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(10), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
@@ -98,7 +98,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(8);
+                return DataConfigs.Instancia.GetConfig(8);
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                return CatalogoConfiguraciones.GetInstancia().GetConfig(9);
+                return DataConfigs.Instancia.GetConfig(9);
             }
             catch (Exception ex)
             {
@@ -134,7 +134,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(4, valor);
+                DataConfigs.Instancia.SetConfig(4, valor);
             }
             catch(Exception ex)
             {
@@ -145,7 +145,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(6, valor);
+                DataConfigs.Instancia.SetConfig(6, valor);
             }
             catch (Exception ex)
             {
@@ -156,7 +156,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(5, valor);
+                DataConfigs.Instancia.SetConfig(5, valor);
             }
             catch (Exception ex)
             {
@@ -167,7 +167,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(7, valor);
+                DataConfigs.Instancia.SetConfig(7, valor);
             }
             catch (Exception ex)
             {
@@ -178,7 +178,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(10, valor);
+                DataConfigs.Instancia.SetConfig(10, valor);
             }
             catch (Exception ex)
             {
@@ -189,7 +189,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(8, valor);
+                DataConfigs.Instancia.SetConfig(8, valor);
             }
             catch (Exception ex)
             {
@@ -200,7 +200,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoConfiguraciones.GetInstancia().SetConfig(9, valor);
+                DataConfigs.Instancia.SetConfig(9, valor);
             }
             catch (Exception ex)
             {

@@ -10,7 +10,7 @@ namespace ZkManagement.Logica
 
         public void CargarDatos(Empleado emp, Reloj reloj)
         {
-            CatalogoHuellas ch = new CatalogoHuellas();
+            DataTemplates ch = new DataTemplates();
             List<Huella> huellas = new List<Huella>();
             try
             {

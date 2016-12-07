@@ -86,13 +86,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datos\CatalogoConfiguraciones.cs" />
-    <Compile Include="Datos\CatalogoDepartamentos.cs" />
+    <Compile Include="Datos\DataConfigs.cs" />
+    <Compile Include="Datos\DataDeptos.cs" />
     <Compile Include="Datos\DataEmpleado.cs" />
-    <Compile Include="Datos\CatalogoHuellas.cs" />
+    <Compile Include="Datos\DataTemplates.cs" />
     <Compile Include="Datos\DataRelojes.cs" />
-    <Compile Include="Datos\CatalogoUsuarios.cs" />
-    <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Datos\DataUsuarios.cs" />
     <Compile Include="Datos\ConnectionSaftime.cs" />
     <Compile Include="Datos\DataEmpleadoSaftime.cs" />
     <Compile Include="Datos\FactoryConnection.cs" />

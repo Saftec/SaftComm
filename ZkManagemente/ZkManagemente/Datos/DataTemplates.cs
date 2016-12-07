@@ -1,21 +1,38 @@
 ﻿using System;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
-using System.Collections.Generic;
 using ZkManagement.Util;
+using System.Data;
 
 namespace ZkManagement.Datos
 {
-    class CatalogoHuellas
+    class DataTemplates
     {
+        // Patrón Singleton //
+        private static DataTemplates _instancia;
+        public static DataTemplates Instancia
+        {
+            get
+            {
+                if (_instancia == null)
+                {
+                    _instancia = new DataTemplates();
+                }
+                return _instancia;
+            }
+
+        }
+
+        // Hasta acá //
+
         private string query = string.Empty;
         public void InsertarHuella(Huella h)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + h.Empleado.Legajo.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -32,7 +49,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -43,12 +64,11 @@ namespace ZkManagement.Datos
 
         public bool Existe(Huella h)
         {
-            SqlCommand cmd;
+            IDataReader dr = null;
             try
             {
                 query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataReader dr = cmd.ExecuteReader();
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {                    
                     return true;
@@ -72,7 +92,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -83,13 +107,13 @@ namespace ZkManagement.Datos
 
         public void ActualizarHuella(Huella h)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "UPDATE Huellas SET Template='" + h.Template + "', Lengh='" + h.Lengh + "', Flag='" + h.Flag.ToString() +
                     "' WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
 
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -106,7 +130,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -116,11 +144,11 @@ namespace ZkManagement.Datos
         }
         public void EliminarHuella(Huella h)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "DELETE FROM Huellas WHERE IdEmpleado=" + h.Empleado.Id.ToString();
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -137,7 +165,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {

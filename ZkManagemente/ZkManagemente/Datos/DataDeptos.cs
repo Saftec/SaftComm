@@ -5,21 +5,18 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
-    class CatalogoDepartamentos
+    class DataDeptos
     {
         private string query = string.Empty;
 
-        private DataTable GetDeptos()
+        private DataTable GetDeptos() //CREAR UNA ENTIDAD DEPARTAMENTO PARA PODER DEVOLVER UN LIST<DEPTO>
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null; 
             DataTable departamentos = new DataTable();
             try
             {
                 query = "SELECT IdDepto, Nombre, Nivel FROM Departamentos";
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(departamentos);
-                da.Dispose();
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
             }
             catch(SqlException sqlex)
             {
@@ -35,7 +32,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch(Exception ex)
                 {
@@ -47,11 +48,11 @@ namespace ZkManagement.Datos
 
         private void AddDept(string nombre, int nivel)
         {
+            IDbCommand cmd = null;
             query = "INSERT INTO Departamentos (IdDepto, Nombre, Nivel) VALUES('" + nombre + "', " + nivel.ToString() + ")";
-            SqlCommand cmd;
             try
             {
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -64,7 +65,21 @@ namespace ZkManagement.Datos
                 Logger.GetLogger().Fatal(ex.StackTrace);
                 throw new Exception("Error no controlado al intentar crear el departamento");
             }
-
+            finally
+            {
+                try
+                {
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

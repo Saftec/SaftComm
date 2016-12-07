@@ -37,7 +37,7 @@ namespace ZkManagement.Logica
              * Por cada legajo, consulto el empid. --> El legajo existe SI O SI en la BD ya que anteriormente descargué y guardé los datos del equipo.
              * Por cada huella guardo el empid, template, fingerindex, largo de la huella.
              * */
-            CatalogoHuellas ch = new CatalogoHuellas();
+            DataTemplates ch = new DataTemplates();
             int total = 0;
             try
             {

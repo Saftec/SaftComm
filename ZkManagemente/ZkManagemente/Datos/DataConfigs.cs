@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
-    class CatalogoConfiguraciones
+    class DataConfigs
     {
         // Patrón Singleton //
-        private static CatalogoConfiguraciones _instancia;
-        public static CatalogoConfiguraciones GetInstancia()
+        private static DataConfigs _instancia;
+        public static DataConfigs Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new CatalogoConfiguraciones();
+                if (_instancia == null)
+                {
+                    _instancia = new DataConfigs();
+                }
+                return _instancia;
             }
-            return _instancia;
+
         }
 
         // Hasta acá //
@@ -24,14 +29,12 @@ namespace ZkManagement.Datos
         public string GetConfig(int id)
         {         
             string valor;
-            SqlCommand cmd;
-            SqlDataReader dr;
+            IDataReader dr = null;
             try
             {
 
                 query = "SELECT Valor FROM Configuracion WHERE ConfigId=" + id.ToString();
-                cmd = new SqlCommand(query,Conexion.GetInstancia().GetConn());
-                dr = cmd.ExecuteReader();
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 dr.Read();
                 valor = dr["Valor"].ToString();
                 dr.Close();
@@ -50,7 +53,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -62,10 +69,11 @@ namespace ZkManagement.Datos
 
         public void SetConfig(int id, string valor)
         {
+            IDbCommand cmd = null;
             try
             {
                 query = "UPDATE Configuracion SET Valor='" + valor + "' WHERE ConfigId=" + id.ToString();
-                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlEx)
@@ -82,7 +90,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {

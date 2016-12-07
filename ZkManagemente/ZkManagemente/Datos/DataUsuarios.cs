@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
@@ -6,34 +7,41 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Datos
 {
-    class CatalogoUsuarios
+    class DataUsuarios
     {
-        private static CatalogoUsuarios _instancia;
+        private static DataUsuarios _instancia;
 
-        public static CatalogoUsuarios GetInstancia()
+        public static DataUsuarios Instancia
         {
-            if (_instancia == null)
+            get
             {
-                _instancia = new CatalogoUsuarios();
+                if (_instancia == null)
+                {
+                    _instancia = new DataUsuarios();
+                }
+                return _instancia;
             }
-            return _instancia;
+
         }
         private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
         {
             Usuario usr = new Usuario();
-            SqlDataReader dr;
+            IDataReader dr = null;
             try
             {
                 query = "SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';";
-                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                dr = cmd.ExecuteReader();
-                dr.Read();
-                usr.Usr = (dr["Usuario"].ToString());
-                usr.Pass = (dr["Password"].ToString());
-                usr.Id = Convert.ToInt32(dr["IdUsuario"]);
-                usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
-                dr.Close();
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
+                if (dr.Read())
+                {
+                    usr.Usr = (dr["Usuario"].ToString());
+                    usr.Pass = (dr["Password"].ToString());
+                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
+                    usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
+                }else
+                {
+                    throw new AppException("Usuario incorrecto");
+                }
             }
            catch(InvalidOperationException)  //Si cacheo esto es porque la consulta no devolvió nada
             {
@@ -53,7 +61,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if(dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -63,18 +75,23 @@ namespace ZkManagement.Datos
             return usr;
         }
 
-        public DataTable GetUsuarios()
+        public List<Usuario> GetUsuarios()
         {
-            DataTable usuarios = new DataTable();
-            SqlDataAdapter da;
-            SqlCommand cmd;
+            IDataReader dr = null;
+            List<Usuario> usuarios = new List<Usuario>();
             try
             {
                 query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
-                da = new SqlDataAdapter(cmd);
-                da.Fill(usuarios);
-                da.Dispose();
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
+                while (dr.Read())
+                {
+                    Usuario usr = new Usuario();
+                    usr.Usr = (dr["Usuario"].ToString());
+                    usr.Pass = (dr["Password"].ToString());
+                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
+                    usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
+                    usuarios.Add(usr);
+                }
             }
             catch (SqlException sqlex)
             {
@@ -90,7 +107,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -102,10 +123,11 @@ namespace ZkManagement.Datos
 
         public void AltaUsuario(Usuario usr)
         {
+            IDbCommand cmd = null;
             try
             {
                 query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
-                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -122,7 +144,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -133,11 +159,11 @@ namespace ZkManagement.Datos
 
         public void ModifUsuario(Usuario usr)
         {
-            SqlCommand cmd;
+            IDbCommand cmd = null;
             try
             {
                 query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
-                cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -154,7 +180,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                     Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                     FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -165,10 +195,11 @@ namespace ZkManagement.Datos
 
         public void EliminarUsuario(Usuario usr)
         {
+            IDbCommand cmd = null;
             try
             {
                 query = "DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id;
-                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch(SqlException sqlex)
@@ -185,7 +216,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {
@@ -196,10 +231,11 @@ namespace ZkManagement.Datos
 
         public void SetUltimLogin(Usuario usr)
         {
+            IDbCommand cmd = null;
             try
             {
                 query = "UPDATE Usuarios SET UltimoInicio='" + DateTime.Now + "' WHERE IdUsuario=" + usr.Id.ToString();
-                SqlCommand cmd = new SqlCommand(query, Conexion.GetInstancia().GetConn());
+                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlex)
@@ -216,7 +252,11 @@ namespace ZkManagement.Datos
             {
                 try
                 {
-                    Conexion.GetInstancia().ReleaseConn();
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
                 }
                 catch (Exception ex)
                 {

@@ -189,7 +189,7 @@ namespace ZkManagement.Interfaz
             dgvUsuarios.DataSource = usuarios;
             try
             {
-                usuarios = abm.GetUsuarios();
+               // usuarios = abm.GetUsuarios();
                 dgvUsuarios.DataSource = usuarios;
                 dgvUsuarios.Refresh();
             }

@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
     class ControladorABMUsuarios
-    {        public DataTable GetUsuarios()
+    {
+        public List<Usuario> GetUsuarios()
         {
-            DataTable usuarios = new DataTable();
+            List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                usuarios = CatalogoUsuarios.GetInstancia().GetUsuarios();
+                usuarios = DataUsuarios.Instancia.GetUsuarios();
             }
             catch (Exception ex)
             {
@@ -25,7 +26,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoUsuarios.GetInstancia().ModifUsuario(usuario);
+                DataUsuarios.Instancia.ModifUsuario(usuario);
             }
             catch(Exception ex)
             {
@@ -37,7 +38,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoUsuarios.GetInstancia().AltaUsuario(usuario);
+                DataUsuarios.Instancia.AltaUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -50,7 +51,7 @@ namespace ZkManagement.Logica
         {
             try
             {
-                CatalogoUsuarios.GetInstancia().EliminarUsuario(usuario);
+                DataUsuarios.Instancia.EliminarUsuario(usuario);
             }
             catch (Exception ex)
             {

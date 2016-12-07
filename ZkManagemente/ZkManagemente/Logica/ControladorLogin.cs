@@ -14,10 +14,10 @@ namespace ZkManagement.Logica
         {                       
             try
             {
-                usr = CatalogoUsuarios.GetInstancia().GetUsuario(usuario);
+                usr = DataUsuarios.Instancia.GetUsuario(usuario);
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
                 if (Encrypt.DesEncriptar(usr.Pass)!=usuario.Pass) { throw new AppException("Password invalida"); }
-                CatalogoUsuarios.GetInstancia().SetUltimLogin(usr);
+                DataUsuarios.Instancia.SetUltimLogin(usr);
                 Logger.GetLogger().Info("-----------------------------------------------------------------\n");
                 Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
                 Principal.GetInstancia().SetPermisos(usr);
@@ -32,7 +32,8 @@ namespace ZkManagement.Logica
         {
             try
             {
-                return (Conexion.GetInstancia().TestConexion());
+                return true;
+                //return (FactoryConnection.Instancia.TestConexion());
             }
             catch (Exception ex)
             {
