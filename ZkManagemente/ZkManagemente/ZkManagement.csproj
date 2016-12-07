@@ -188,6 +188,18 @@
     <Compile Include="NewUI\Generic\GenericPanel.Designer.cs">
       <DependentUpon>GenericPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelUsuario.Designer.cs">
+      <DependentUpon>PanelUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelConfigs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelConfigs.Designer.cs">
+      <DependentUpon>PanelConfigs.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\PanelEquipos.cs">
       <SubType>UserControl</SubType>
     </Compile>
