@@ -50,7 +50,7 @@ namespace ZkManagement.Interfaz
         {
             Validate validate = new Validate();
             string[] notNulls = { txtLegajo.Text, txtNombre.Text };
-            if(!validate.IsEmpty(notNulls)) { return false; }
+            if(!validate.NotEmpty(notNulls)) { return false; }
             else { return true; }
         }
         private void Editable()

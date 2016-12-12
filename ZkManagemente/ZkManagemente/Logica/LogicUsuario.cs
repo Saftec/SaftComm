@@ -5,7 +5,7 @@ using ZkManagement.Entidades;
 
 namespace ZkManagement.Logica
 {
-    class ControladorABMUsuarios
+    class LogicUsuario
     {
         public List<Usuario> GetUsuarios()
         {

@@ -5,7 +5,7 @@ namespace ZkManagement.Util
 {
     class Validate
     {
-        public bool IsEmpty(string[] textos)
+        public bool NotEmpty(string[] textos)
         {
             bool band = true;
             foreach(string t in textos)

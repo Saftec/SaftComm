@@ -27,5 +27,11 @@ namespace ZkManagement.NewUI
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(PanelPersonal.Instancia);
         }
+
+        private void btnUsuarios_Click(object sender, System.EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(PanelUsuario.Instancia);
+        }
     }
 }

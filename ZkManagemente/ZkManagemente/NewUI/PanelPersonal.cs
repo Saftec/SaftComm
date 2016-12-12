@@ -20,6 +20,7 @@ namespace ZkManagement.NewUI
                 {
                     _instancia = new PanelPersonal();
                 }
+                _instancia.RefreshGrid();
                 return _instancia;
             }
         }
@@ -28,8 +29,8 @@ namespace ZkManagement.NewUI
         private DataTable empleados = new DataTable();
         private PanelPersonal()
         {
-            InitializeComponent();
-            RefreshGrid();
+            this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            InitializeComponent();          
         }
         #region MenuSuperior
         private void linkEdit_Click(object sender, EventArgs e)
@@ -94,6 +95,7 @@ namespace ZkManagement.NewUI
             {
                 empleados = ConvertToDatatable(le.GetEmpleados());
                 gridPersonal.DataSource = empleados;
+                gridPersonal.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
                 gridPersonal.Refresh();
             }
             catch(Exception ex)

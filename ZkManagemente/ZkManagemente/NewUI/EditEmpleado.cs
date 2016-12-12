@@ -14,7 +14,7 @@ namespace ZkManagement.NewUI
             InitializeComponent();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        protected override void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!Validar())
             {
@@ -42,12 +42,8 @@ namespace ZkManagement.NewUI
                 base.InformarError(ex.Message, "Modificar Empleados - ERROR");
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
 
-        public void MapearAForm(Empleado emp)
+        protected void MapearAForm(Empleado emp)
         {
             empActual = emp;
             txtDni.Text = emp.Dni;
@@ -58,7 +54,7 @@ namespace ZkManagement.NewUI
             cbPrivilegio.SelectedIndex = emp.Privilegio;
         }
 
-        private void MapearDeForm()
+        protected override void MapearDeForm()
         {
             empActual.Dni = txtDni.Text;
             empActual.Legajo = txtLegajo.Text;
@@ -69,10 +65,10 @@ namespace ZkManagement.NewUI
 
 
 
-        private bool Validar()
+        protected override bool Validar()
         {
             Validate v = new Validate();
-            if(!v.IsEmpty(new string[] {txtNombre.Text, txtLegajo.Text }))
+            if(!v.NotEmpty(new string[] {txtNombre.Text, txtLegajo.Text }))
             {
                 base.InformarError("Estos campos no pueden estar vacíos.", "Modificar Empleado.");
                 return false;
@@ -88,6 +84,11 @@ namespace ZkManagement.NewUI
                 return false;
             }
             return true;
+        }
+
+        protected override void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

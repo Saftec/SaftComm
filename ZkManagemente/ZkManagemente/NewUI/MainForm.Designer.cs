@@ -99,6 +99,7 @@ namespace ZkManagement.NewUI
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseCustomBackColor = true;
             this.btnUsuarios.UseSelectable = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // MainPanel
             // 
@@ -106,7 +107,6 @@ namespace ZkManagement.NewUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.AutoSize = true;
-            this.MainPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MainPanel.HorizontalScrollbarBarColor = true;
             this.MainPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.MainPanel.HorizontalScrollbarSize = 13;
@@ -134,6 +134,7 @@ namespace ZkManagement.NewUI
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(30, 78, 30, 26);
             this.Text = "SaftComm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

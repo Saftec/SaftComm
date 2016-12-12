@@ -47,7 +47,7 @@ namespace ZkManagement.Interfaz
         {
             Validate validate = new Validate();
             string[] textos = { textContraseña.Text, textUsuario.Text };
-            if (!validate.IsEmpty(textos)) { throw new AppException("Por favor, complete todos los campos"); }
+            if (!validate.NotEmpty(textos)) { throw new AppException("Por favor, complete todos los campos"); }
         }
         private void Login_Load(object sender, EventArgs e)
         {

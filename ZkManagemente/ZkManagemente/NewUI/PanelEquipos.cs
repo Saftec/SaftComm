@@ -313,7 +313,7 @@ namespace ZkManagement.NewUI.Generic
                 row["IdReloj"] = r.Id.ToString();
                 row["Puerto"] = r.Puerto.ToString();
                 row["Numero"] = r.Numero.ToString();
-                row["Clave"] = r.Clave;
+                row["Clave"] = Encrypt.DesEncriptar(r.Clave);
                 row["DNS"] = r.DNS;
 
                 if (r.Estado)

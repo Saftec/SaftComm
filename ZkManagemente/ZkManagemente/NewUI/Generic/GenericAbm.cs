@@ -8,15 +8,15 @@ namespace ZkManagement.NewUI.Generic
         {
             InitializeComponent();
         }
-        protected void InformarError(string mensaje, string titulo)
+        protected virtual void InformarError(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        protected void Informar(string mensaje, string titulo)
+        protected virtual void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        protected bool Question(string mensaje, string titulo)
+        protected virtual bool Question(string mensaje, string titulo)
         {
             if (MessageBox.Show(mensaje, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -27,5 +27,19 @@ namespace ZkManagement.NewUI.Generic
                 return false;
             }
         }
+        public virtual void MapearAForm(object T) { }
+        
+        protected virtual void MapearDeForm() { }
+
+        protected virtual void btnGuardar_Click(object sender, System.EventArgs e) { }
+
+        protected virtual void btnCancel_Click(object sender, System.EventArgs e)
+        {
+            this.Dispose();
+        }
+        protected virtual bool Validar()
+        {
+            return false;
+        } 
     }
 }

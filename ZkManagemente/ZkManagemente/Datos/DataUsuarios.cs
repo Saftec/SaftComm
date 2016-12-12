@@ -90,6 +90,7 @@ namespace ZkManagement.Datos
                     usr.Pass = (dr["Password"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
+                    usr.Permisos = (dr["Permisos"].ToString());
                     usuarios.Add(usr);
                 }
             }

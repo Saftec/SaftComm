@@ -160,7 +160,7 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logica\ControladorABMUsuarios.cs" />
+    <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
     <Compile Include="Logica\LogicConfigExport.cs" />
@@ -175,6 +175,12 @@
     </Compile>
     <Compile Include="NewUI\EditReloj.Designer.cs">
       <DependentUpon>EditReloj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\EditUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\EditUsuario.Designer.cs">
+      <DependentUpon>EditUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\Generic\GenericAbm.cs">
       <SubType>Form</SubType>
@@ -268,6 +274,9 @@
     <EmbeddedResource Include="NewUI\EditReloj.resx">
       <DependentUpon>EditReloj.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\EditUsuario.resx">
+      <DependentUpon>EditUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUI\Generic\GenericAbm.resx">
       <DependentUpon>GenericAbm.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelPersonal.resx">
       <DependentUpon>PanelPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelUsuario.resx">
+      <DependentUpon>PanelUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

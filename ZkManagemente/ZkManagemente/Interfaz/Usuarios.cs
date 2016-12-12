@@ -10,7 +10,7 @@ namespace ZkManagement.Interfaz
     public partial class Usuarios : GenericaPadre
     {
         Usuario usuario = new Usuario();
-        ControladorABMUsuarios abm;
+        LogicUsuario abm;
         public Usuarios()
         {
             InitializeComponent();
@@ -75,7 +75,7 @@ namespace ZkManagement.Interfaz
         {
             Validate validate = new Validate();
             string[] notNull = { txtContraseña.Text, txtUsuario.Text };
-            if (!validate.IsEmpty(notNull) || comboPermisos.SelectedIndex==-1)
+            if (!validate.NotEmpty(notNull) || comboPermisos.SelectedIndex==-1)
             {
                 return false;
             }
@@ -94,7 +94,7 @@ namespace ZkManagement.Interfaz
                 base.InformarError("Por favor complete todos los datos.");
                 return;
             }
-            abm = new ControladorABMUsuarios();
+            abm = new LogicUsuario();
             usuario.Nivel = comboPermisos.SelectedIndex + 1;
             usuario.Pass = Encrypt.Encriptar(txtContraseña.Text);
             usuario.Usr = txtUsuario.Text;
@@ -156,7 +156,7 @@ namespace ZkManagement.Interfaz
             {
                 return;
             }
-            abm = new ControladorABMUsuarios();
+            abm = new LogicUsuario();
             try
             {
                 Usuario usr = new Usuario();
@@ -183,7 +183,7 @@ namespace ZkManagement.Interfaz
         private void CargarDGV()
         {
             DataTable usuarios = new DataTable();
-            abm = new ControladorABMUsuarios();
+            abm = new LogicUsuario();
             dgvUsuarios.AutoGenerateColumns = false;
             usuarios.Clear();
             dgvUsuarios.DataSource = usuarios;
