@@ -1,5 +1,6 @@
 ﻿
 using System;
+using ZkManagement.Util;
 
 namespace ZkManagement.Entidades
 {
@@ -10,12 +11,13 @@ namespace ZkManagement.Entidades
         private int _nivel;
         private int _id;
         private string _permisos;
+        private DateTime? _ultimoAcceso;
 
         //CONSTRUCTORES
         public Usuario(string usr, string pass,int nivel, int id)
         {           
             Usr = usr;
-            Pass = pass;
+            PassDecrypt = pass;
             Nivel = nivel;
             Id = id;
         }
@@ -25,6 +27,12 @@ namespace ZkManagement.Entidades
         }
 
         //PROPIEDADES
+
+        public DateTime? UltimoAcceso
+        {
+            get { return _ultimoAcceso; }
+            set { _ultimoAcceso = value; }
+        }
 
         public int Id
         {
@@ -37,10 +45,27 @@ namespace ZkManagement.Entidades
             set { _nivel = value; }
         }
 
-        public string Pass
+        public string PassDecrypt
         {
-            get { return _pass; }
-            set { _pass = value; }
+            get
+            {
+                return Encrypt.DesEncriptar(_pass);
+            }
+            set
+            {
+                _pass = value;
+            }
+        }
+        public string PassEncrypt
+        {
+            get
+            {
+                return _pass;
+            }
+            set
+            {
+                _pass = Encrypt.Encriptar(value);
+            }
         }
 
 

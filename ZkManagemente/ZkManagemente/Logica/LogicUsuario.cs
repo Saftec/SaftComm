@@ -58,6 +58,6 @@ namespace ZkManagement.Logica
                 throw ex;
             }
         }
-        #endregion //-->DFalta agregar usuario!
+        #endregion
     }
 }

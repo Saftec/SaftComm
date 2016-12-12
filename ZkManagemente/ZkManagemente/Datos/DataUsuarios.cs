@@ -35,7 +35,7 @@ namespace ZkManagement.Datos
                 if (dr.Read())
                 {
                     usr.Usr = (dr["Usuario"].ToString());
-                    usr.Pass = (dr["Password"].ToString());
+                    usr.PassDecrypt = (dr["Password"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                 }else
@@ -81,16 +81,28 @@ namespace ZkManagement.Datos
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
+                query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, UltimoInicio, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
                     Usuario usr = new Usuario();
+                    DateTime fecha;
+
                     usr.Usr = (dr["Usuario"].ToString());
-                    usr.Pass = (dr["Password"].ToString());
+                    usr.PassDecrypt = (dr["Password"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                     usr.Permisos = (dr["Permisos"].ToString());
+
+                    if(DateTime.TryParse(dr["UltimoInicio"].ToString(), out fecha))
+                    {
+                        usr.UltimoAcceso = fecha;
+                    }
+                    else
+                    {
+                        usr.UltimoAcceso = null;
+                    }
+
                     usuarios.Add(usr);
                 }
             }
@@ -127,7 +139,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.Pass + "', '" + usr.Nivel + "')";
+                query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.PassEncrypt + "', '" + usr.Nivel + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -163,7 +175,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.Pass + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
+                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }

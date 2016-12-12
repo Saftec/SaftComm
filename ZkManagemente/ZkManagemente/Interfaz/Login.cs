@@ -25,7 +25,7 @@ namespace ZkManagement.Interfaz
             cl = new ControladorLogin();
 
             usuario.Usr = textUsuario.Text;
-            usuario.Pass = textContraseña.Text;
+            usuario.PassDecrypt = textContraseña.Text;
             try
             {
                 ValidarDatos();

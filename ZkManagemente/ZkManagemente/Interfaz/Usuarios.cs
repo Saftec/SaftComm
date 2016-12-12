@@ -96,7 +96,7 @@ namespace ZkManagement.Interfaz
             }
             abm = new LogicUsuario();
             usuario.Nivel = comboPermisos.SelectedIndex + 1;
-            usuario.Pass = Encrypt.Encriptar(txtContraseña.Text);
+            usuario.PassDecrypt = Encrypt.Encriptar(txtContraseña.Text);
             usuario.Usr = txtUsuario.Text;
             try
             {
