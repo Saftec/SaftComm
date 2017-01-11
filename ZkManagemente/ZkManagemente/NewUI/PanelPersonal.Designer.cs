@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridPersonal = new MetroFramework.Controls.MetroGrid();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.linkNuevo = new MetroFramework.Controls.MetroLink();
-            this.linkEdit = new MetroFramework.Controls.MetroLink();
-            this.linkDelete = new MetroFramework.Controls.MetroLink();
-            this.txtBuscar = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.linkSinc = new MetroFramework.Controls.MetroLink();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +41,13 @@
             this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.linkNuevo = new MetroFramework.Controls.MetroLink();
+            this.linkEdit = new MetroFramework.Controls.MetroLink();
+            this.linkDelete = new MetroFramework.Controls.MetroLink();
+            this.txtBuscar = new MetroFramework.Controls.MetroTextBox();
+            this.linkSinc = new MetroFramework.Controls.MetroLink();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gridPersonal)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -60,14 +60,14 @@
             this.gridPersonal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridPersonal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gridPersonal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPersonal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPersonal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPersonal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -79,32 +79,96 @@
             this.Pin,
             this.Privilegio,
             this.Eliminar});
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridPersonal.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridPersonal.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridPersonal.EnableHeadersVisualStyles = false;
             this.gridPersonal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridPersonal.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridPersonal.Location = new System.Drawing.Point(6, 51);
             this.gridPersonal.Name = "gridPersonal";
             this.gridPersonal.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPersonal.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPersonal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridPersonal.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridPersonal.Size = new System.Drawing.Size(863, 479);
             this.gridPersonal.TabIndex = 3;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "IdEmpleado";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Dni
+            // 
+            this.Dni.DataPropertyName = "DNI";
+            this.Dni.HeaderText = "DNI";
+            this.Dni.Name = "Dni";
+            this.Dni.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre y Apellido";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 140;
+            // 
+            // Legajo
+            // 
+            this.Legajo.DataPropertyName = "Legajo";
+            this.Legajo.HeaderText = "Legajo";
+            this.Legajo.Name = "Legajo";
+            this.Legajo.ReadOnly = true;
+            // 
+            // CantHuellas
+            // 
+            this.CantHuellas.DataPropertyName = "Cant";
+            this.CantHuellas.HeaderText = "Cant. Huellas";
+            this.CantHuellas.Name = "CantHuellas";
+            this.CantHuellas.ReadOnly = true;
+            // 
+            // Tarjeta
+            // 
+            this.Tarjeta.DataPropertyName = "Tarjeta";
+            this.Tarjeta.HeaderText = "Tarjeta";
+            this.Tarjeta.Name = "Tarjeta";
+            this.Tarjeta.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegio";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 80;
             // 
             // tableLayoutPanel2
             // 
@@ -189,6 +253,15 @@
             this.txtBuscar.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
+            // linkSinc
+            // 
+            this.linkSinc.Location = new System.Drawing.Point(423, 3);
+            this.linkSinc.Name = "linkSinc";
+            this.linkSinc.Size = new System.Drawing.Size(127, 23);
+            this.linkSinc.TabIndex = 5;
+            this.linkSinc.Text = "Sinc. Dispositivo";
+            this.linkSinc.UseSelectable = true;
+            // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
@@ -200,87 +273,13 @@
             this.metroLabel1.Text = "Buscar:";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // linkSinc
-            // 
-            this.linkSinc.Location = new System.Drawing.Point(423, 3);
-            this.linkSinc.Name = "linkSinc";
-            this.linkSinc.Size = new System.Drawing.Size(127, 23);
-            this.linkSinc.TabIndex = 5;
-            this.linkSinc.Text = "Sinc. Dispositivo";
-            this.linkSinc.UseSelectable = true;
-            this.linkSinc.Click += new System.EventHandler(this.linkSinc_Click);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "IdEmpleado";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Dni
-            // 
-            this.Dni.DataPropertyName = "DNI";
-            this.Dni.HeaderText = "DNI";
-            this.Dni.Name = "Dni";
-            this.Dni.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre y Apellido";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 140;
-            // 
-            // Legajo
-            // 
-            this.Legajo.DataPropertyName = "Legajo";
-            this.Legajo.HeaderText = "Legajo";
-            this.Legajo.Name = "Legajo";
-            this.Legajo.ReadOnly = true;
-            // 
-            // CantHuellas
-            // 
-            this.CantHuellas.DataPropertyName = "Cant";
-            this.CantHuellas.HeaderText = "Cant. Huellas";
-            this.CantHuellas.Name = "CantHuellas";
-            this.CantHuellas.ReadOnly = true;
-            // 
-            // Tarjeta
-            // 
-            this.Tarjeta.DataPropertyName = "Tarjeta";
-            this.Tarjeta.HeaderText = "Tarjeta";
-            this.Tarjeta.Name = "Tarjeta";
-            this.Tarjeta.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegio";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 80;
-            // 
-            // NewPersonal
+            // PanelPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.gridPersonal);
-            this.Name = "NewPersonal";
+            this.Name = "PanelPersonal";
             this.Controls.SetChildIndex(this.gridPersonal, 0);
             this.Controls.SetChildIndex(this.tableLayoutPanel2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridPersonal)).EndInit();

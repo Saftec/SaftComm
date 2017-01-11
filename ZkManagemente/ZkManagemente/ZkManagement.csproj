@@ -200,6 +200,12 @@
     <Compile Include="NewUI\Generic\GenericPanel.Designer.cs">
       <DependentUpon>GenericPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelReloj.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelReloj.Designer.cs">
+      <DependentUpon>PanelReloj.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\PanelPersonal.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -217,12 +223,6 @@
     </Compile>
     <Compile Include="NewUI\PanelConfigs.Designer.cs">
       <DependentUpon>PanelConfigs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewUI\PanelEquipos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NewUI\PanelEquipos.Designer.cs">
-      <DependentUpon>PanelEquipos.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\MainForm.cs">
       <SubType>Form</SubType>
@@ -292,14 +292,14 @@
     <EmbeddedResource Include="NewUI\Generic\GenericPanel.resx">
       <DependentUpon>GenericPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelReloj.resx">
+      <DependentUpon>PanelReloj.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelPersonal.resx">
       <DependentUpon>PanelPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewUI\PanelEquipos.resx">
-      <DependentUpon>PanelEquipos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelUsuario.resx">
       <DependentUpon>PanelUsuario.cs</DependentUpon>

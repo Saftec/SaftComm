@@ -29,52 +29,7 @@ namespace ZkManagement.NewUI.Generic
             InitializeComponent();
         }
 
-        public void RefreshGrid()
-        {
-            gridPersonal.DataSource = null;
-            le = new LogicEmpleado();
-            try
-            {
-                empleados = ConvertToDatatable(le.GetEmpleados());
-                gridPersonal.DataSource = empleados;
-                gridPersonal.Refresh();
-            }
-            catch (Exception ex)
-            {
-                base.InformarError(ex.Message, "Consultar Empleados");
-            }
-        }
-
-        private DataTable ConvertToDatatable(List<Empleado> listEmps)
-        {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt.Columns.Add("Legajo");
-            dt.Columns.Add("Nombre");
-            dt.Columns.Add("IdEmpleado");
-            dt.Columns.Add("Tarjeta");
-            dt.Columns.Add("DNI");
-            dt.Columns.Add("Pin");
-            dt.Columns.Add("Privilegio");
-            dt.Columns.Add("Baja");
-            dt.Columns.Add("Cant");
-            foreach (Empleado e in listEmps)
-            {
-                DataRow row = dt.NewRow();
-                row["Nombre"] = e.Nombre;
-                row["Legajo"] = e.Legajo;
-                row["IdEmpleado"] = e.Id;
-                row["Tarjeta"] = e.Tarjeta;
-                row["DNI"] = e.Dni;
-                row["Pin"] = e.Pin;
-                row["Privilegio"] = e.Privilegio;
-                row["Baja"] = e.Baja;
-                row["Cant"] = e.Huellas.Count;
-                dt.Rows.Add(row);
-            }
-            return dt;
-        }
-
+        #region ABM
         private void linkNuevo_Click(object sender, EventArgs e)
         {
             Empleado emp = new Empleado();
@@ -127,11 +82,9 @@ namespace ZkManagement.NewUI.Generic
             }
             filas.Clear(); //Limpio el arregle de filas guardado en memoria.
         }
+        #endregion
 
-        private void linkSinc_Click(object sender, EventArgs e)
-        {
-
-        }
+        #region Grid
         private Empleado MapearDeGrid()
         {
             Empleado e = new Empleado();
@@ -162,6 +115,52 @@ namespace ZkManagement.NewUI.Generic
             {
                 base.InformarError(ex.Message, "Buscar Empleados.");
             }
+        }
+        public void RefreshGrid()
+        {
+            gridPersonal.DataSource = null;
+            le = new LogicEmpleado();
+            try
+            {
+                empleados = ConvertToDatatable(le.GetEmpleados());
+                gridPersonal.DataSource = empleados;
+                gridPersonal.Refresh();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Consultar Empleados");
+            }
+        }
+        #endregion
+
+        private DataTable ConvertToDatatable(List<Empleado> listEmps)
+        {
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Legajo");
+            dt.Columns.Add("Nombre");
+            dt.Columns.Add("IdEmpleado");
+            dt.Columns.Add("Tarjeta");
+            dt.Columns.Add("DNI");
+            dt.Columns.Add("Pin");
+            dt.Columns.Add("Privilegio");
+            dt.Columns.Add("Baja");
+            dt.Columns.Add("Cant");
+            foreach (Empleado e in listEmps)
+            {
+                DataRow row = dt.NewRow();
+                row["Nombre"] = e.Nombre;
+                row["Legajo"] = e.Legajo;
+                row["IdEmpleado"] = e.Id;
+                row["Tarjeta"] = e.Tarjeta;
+                row["DNI"] = e.Dni;
+                row["Pin"] = e.Pin;
+                row["Privilegio"] = e.Privilegio;
+                row["Baja"] = e.Baja;
+                row["Cant"] = e.Huellas.Count;
+                dt.Rows.Add(row);
+            }
+            return dt;
         }
     }
 }

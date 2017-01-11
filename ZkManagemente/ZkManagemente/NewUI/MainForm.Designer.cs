@@ -111,6 +111,7 @@ namespace ZkManagement.NewUI
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.HelpButton = true;
             this.Name = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableMenu.ResumeLayout(false);
             this.pHeader.ResumeLayout(false);

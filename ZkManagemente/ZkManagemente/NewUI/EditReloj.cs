@@ -52,7 +52,7 @@ namespace ZkManagement.NewUI
                 LogicReloj lr = new LogicReloj();
                 reloj = MapearDeFormulario();
                 lr.ModifReloj(reloj);
-                PanelEquipos.Instancia.RefreshGrid();
+                PanelReloj.Instancia.RefreshGrid();
                 base.Informar("Dispositivo guardado correctamente.", "Editar Dispositivo");
                 this.Dispose();
             }

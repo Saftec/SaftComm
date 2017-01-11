@@ -250,10 +250,10 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="mainPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 111</value>
+    <value>182, 92</value>
   </data>
   <data name="mainPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1119, 639</value>
+    <value>1119, 685</value>
   </data>
   <data name="mainPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

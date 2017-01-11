@@ -7,38 +7,37 @@ using ZkManagement.Entidades;
 using ZkManagement.Logica;
 using ZkManagement.Util;
 
-namespace ZkManagement.NewUI.Generic
+namespace ZkManagement.NewUI
 {
-    public partial class PanelEquipos : GenericPanel
+    public partial class PanelReloj : GenericPanel
     {
-        //         PATRON SINGLETON            //
-        private static PanelEquipos _instancia;
+        private static PanelReloj _instancia;
 
-        public static PanelEquipos Instancia
+        public static PanelReloj Instancia
         {
             get
             {
-                if(_instancia == null)
+                if (_instancia == null)
                 {
-                    _instancia = new PanelEquipos();
+                    _instancia = new PanelReloj();
                 }
                 return _instancia;
             }
         }
-
         private LogicReloj lr;
         private Reloj relojAct;
-
-        private PanelEquipos()
+        public PanelReloj()
         {
             InitializeComponent();
-            relojAct = new Reloj();
         }
 
-        // SETEAR MODELO - MAC - CANT.REGIS AL CONECTAR //
+        private void NewReloj_Load(object sender, EventArgs e)
+        {
+
+        }
+
         #region Operaciones
-        // CONECTAR //
-        private void linkConnect_Click(object sender, System.EventArgs e)
+        private void linkConnect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -58,7 +57,7 @@ namespace ZkManagement.NewUI.Generic
                 InformarError(ex.Message, "Conectar Reloj.");
             }
         }
-        // DESCONECTAR //
+
         private void linkDesconnect_Click(object sender, EventArgs e)
         {
             try
@@ -79,12 +78,12 @@ namespace ZkManagement.NewUI.Generic
                 InformarError(ex.Message, "Desconectar Reloj.");
             }
         }
-        // SINCRONIZAR HORA //
+
         private void linkSincHora_Click(object sender, EventArgs e)
         {
             try
             {
-                relojAct = MapearDeGrid();          
+                relojAct = MapearDeGrid();
                 if (!relojAct.Estado)
                 {
                     InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
@@ -93,12 +92,12 @@ namespace ZkManagement.NewUI.Generic
                 relojAct.SincronizarHora();
                 Informar("Se sincronizó correctamente la hora con el reloj: " + relojAct.Numero.ToString(), "Sincronizar Hora.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InformarError(ex.Message, "Sincronizar Hora.");
             }
         }
-        // DESCARGAR REGIS //
+
         private void linkDescRegs_Click(object sender, EventArgs e)
         {
             try
@@ -113,24 +112,23 @@ namespace ZkManagement.NewUI.Generic
                 List<string> desconocidos;
                 LogicRegistros lr = new LogicRegistros();
                 fichadas = relojAct.DescargarRegistros();
-                desconocidos=lr.AgregarRegis(fichadas);
+                desconocidos = lr.AgregarRegis(fichadas);
                 if (desconocidos.Count > 0)
                 {
                     InformarError("Los siguientes legajos son desconocidos: ", "Descarga de Registros.");
-                    foreach(string l in desconocidos)
+                    foreach (string l in desconocidos)
                     {
                         LoguearError("Legajo: " + l);
                     }
                 }
                 Informar("Se descargaron: " + fichadas.Count.ToString() + " registros.", "Descarga de Registros.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InformarError(ex.Message, "Descargar Registros.");
             }
-
         }
-        // BORRAR REGIS //
+
         private void linkBorrarRegs_Click(object sender, EventArgs e)
         {
             try
@@ -144,7 +142,7 @@ namespace ZkManagement.NewUI.Generic
                 if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
                 {
                     int cant = 0;
-                    cant=relojAct.BorrarRegistros();
+                    cant = relojAct.BorrarRegistros();
                     lr = new LogicReloj();
                     lr.ActualizarBorrado(relojAct, cant); //Guarda la info. del borrado en la BD
                     Informar("Se borraron " + cant.ToString() + " registros del reloj: " + relojAct.Numero.ToString(), "Borrar Registros.");
@@ -154,29 +152,79 @@ namespace ZkManagement.NewUI.Generic
                     return;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InformarError(ex.Message, "Borrar Registros.");
             }
         }
         #endregion
 
-        #region Grid
-        public void RefreshGrid()
+        // FALTA HACER EL DELETE //
+        #region ABM
+        private void linkNuevo_Click(object sender, EventArgs e)
         {
-            lr = new LogicReloj();
-            gridEquipos.DataSource = null;
-            DataTable relojes;
+            EditReloj er = new EditReloj();
+            Reloj r = new Reloj();
             try
             {
-                relojes = ConvertToDataTable(lr.TodosRelojes());
-                gridEquipos.DataSource = relojes;
+                r.Id = 0;
+                er.MapearAFormulario(r);
+                er.Show();
             }
             catch (Exception ex)
             {
-                base.InformarError(ex.Message, "Consultar Relojes.");
+                base.InformarError(ex.Message, "Agregar Equipos.");
             }
         }
+
+        private void linkEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+                EditReloj er = new EditReloj();
+                er.MapearAFormulario(relojAct);
+                er.Show();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Modificar Equipos.");
+            }
+        }
+
+        private void linkDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Informes
+        protected new void InformarError(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            LoguearError(mensaje);
+        }
+        protected new void Informar(string mensaje, string titulo)
+        {
+            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoguearInforme(mensaje);
+        }
+
+        private void LoguearInforme(string mensaje)
+        {
+            txtLog.SelectionColor = Color.Black;
+            txtLog.AppendText(mensaje);
+            txtLog.AppendText("\n");
+        }
+        private void LoguearError(string mensaje)
+        {
+            txtLog.SelectionColor = Color.Red;
+            txtLog.AppendText(mensaje);
+            txtLog.AppendText("\n");
+        }
+        #endregion
+
+        #region Grid
         private Reloj MapearDeGrid()
         {
             Reloj r = new Reloj();
@@ -233,65 +281,24 @@ namespace ZkManagement.NewUI.Generic
                 gridEquipos.CurrentRow.Cells["Estado"].Value = "Desconectado";
             }
         }
-        #endregion
 
-        #region ABM
-        private void linkNuevo_Click(object sender, EventArgs e)
+        public void RefreshGrid()
         {
-            EditReloj er = new EditReloj();
-            Reloj r = new Reloj();
+            lr = new LogicReloj();
+            gridEquipos.DataSource = null;
+            DataTable relojes;
             try
             {
-                r.Id = 0;
-                er.MapearAFormulario(r);
-                er.Show();
+                relojes = ConvertToDataTable(lr.TodosRelojes());
+                gridEquipos.DataSource = relojes;
             }
             catch (Exception ex)
             {
-                base.InformarError(ex.Message, "Agregar Equipos.");
-            }
-        }
-        private void linkEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                relojAct = MapearDeGrid();
-                EditReloj er = new EditReloj();
-                er.MapearAFormulario(relojAct);
-                er.Show();
-            }
-            catch (Exception ex)
-            {
-                base.InformarError(ex.Message, "Modificar Equipos.");
+                base.InformarError(ex.Message, "Consultar Relojes.");
             }
         }
         #endregion
 
-        #region Informes
-        protected new void InformarError(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            LoguearError(mensaje);
-        }
-        protected new void Informar(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoguearInforme(mensaje);
-        }
-
-        private void LoguearInforme(string mensaje)
-        {
-            txtLog.SelectionColor = Color.Black;
-            txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");
-        }
-        private void LoguearError(string mensaje)
-        {
-            txtLog.SelectionColor = Color.Red;
-            txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");
-        }
-        #endregion
         private DataTable ConvertToDataTable(List<Reloj> relojes)
         {
             DataTable dt = new DataTable();
@@ -319,7 +326,8 @@ namespace ZkManagement.NewUI.Generic
                 if (r.Estado)
                 {
                     row["Estado"] = "Conectado";
-                }else
+                }
+                else
                 {
                     row["Estado"] = "Desconectado";
                 }
@@ -328,7 +336,5 @@ namespace ZkManagement.NewUI.Generic
             }
             return dt;
         }
-
-
     }
 }
