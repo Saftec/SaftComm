@@ -5,11 +5,12 @@ using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
 
-namespace ZkManagement.NewUI
+namespace ZkManagement.NewUI.Generic
 {
     public partial class PanelPersonal : GenericPanel
     {
-        //         PATRON SINGLETON            //
+        private LogicEmpleado le;
+        private DataTable empleados = new DataTable();
         private static PanelPersonal _instancia;
 
         public static PanelPersonal Instancia
@@ -20,31 +21,72 @@ namespace ZkManagement.NewUI
                 {
                     _instancia = new PanelPersonal();
                 }
-                _instancia.RefreshGrid();
                 return _instancia;
             }
         }
-
-        private LogicEmpleado le;
-        private DataTable empleados = new DataTable();
-        private PanelPersonal()
+        public PanelPersonal()
         {
-            this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            InitializeComponent();          
+            InitializeComponent();
         }
-        #region MenuSuperior
-        private void linkEdit_Click(object sender, EventArgs e)
+
+        public void RefreshGrid()
         {
-            Empleado emp = MapearDeGrid();
-            EditEmpleado ee = new EditEmpleado();
-            ee.MapearAForm(emp);
-            ee.Show();
+            gridPersonal.DataSource = null;
+            le = new LogicEmpleado();
+            try
+            {
+                empleados = ConvertToDatatable(le.GetEmpleados());
+                gridPersonal.DataSource = empleados;
+                gridPersonal.Refresh();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Consultar Empleados");
+            }
+        }
+
+        private DataTable ConvertToDatatable(List<Empleado> listEmps)
+        {
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Legajo");
+            dt.Columns.Add("Nombre");
+            dt.Columns.Add("IdEmpleado");
+            dt.Columns.Add("Tarjeta");
+            dt.Columns.Add("DNI");
+            dt.Columns.Add("Pin");
+            dt.Columns.Add("Privilegio");
+            dt.Columns.Add("Baja");
+            dt.Columns.Add("Cant");
+            foreach (Empleado e in listEmps)
+            {
+                DataRow row = dt.NewRow();
+                row["Nombre"] = e.Nombre;
+                row["Legajo"] = e.Legajo;
+                row["IdEmpleado"] = e.Id;
+                row["Tarjeta"] = e.Tarjeta;
+                row["DNI"] = e.Dni;
+                row["Pin"] = e.Pin;
+                row["Privilegio"] = e.Privilegio;
+                row["Baja"] = e.Baja;
+                row["Cant"] = e.Huellas.Count;
+                dt.Rows.Add(row);
+            }
+            return dt;
         }
 
         private void linkNuevo_Click(object sender, EventArgs e)
         {
             Empleado emp = new Empleado();
             emp.Id = 0;
+            EditEmpleado ee = new EditEmpleado();
+            ee.MapearAForm(emp);
+            ee.Show();
+        }
+
+        private void linkEdit_Click(object sender, EventArgs e)
+        {
+            Empleado emp = MapearDeGrid();
             EditEmpleado ee = new EditEmpleado();
             ee.MapearAForm(emp);
             ee.Show();
@@ -85,34 +127,20 @@ namespace ZkManagement.NewUI
             }
             filas.Clear(); //Limpio el arregle de filas guardado en memoria.
         }
-        #endregion
 
-        public void RefreshGrid()
+        private void linkSinc_Click(object sender, EventArgs e)
         {
-            gridPersonal.DataSource = null;
-            le = new LogicEmpleado();
-            try
-            {
-                empleados = ConvertToDatatable(le.GetEmpleados());
-                gridPersonal.DataSource = empleados;
-                gridPersonal.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                gridPersonal.Refresh();
-            }
-            catch(Exception ex)
-            {
-                base.InformarError(ex.Message, "Consultar Empleados");
-            }
-        }
 
+        }
         private Empleado MapearDeGrid()
         {
             Empleado e = new Empleado();
             int val = 0;
-            if(int.TryParse(gridPersonal.CurrentRow.Cells["IdEmpleado"].Value.ToString(), out val))
+            if (int.TryParse(gridPersonal.CurrentRow.Cells["IdEmpleado"].Value.ToString(), out val))
             {
                 e.Id = val;
             }
-            if(int.TryParse(gridPersonal.CurrentRow.Cells["Privilegio"].Value.ToString(), out val))
+            if (int.TryParse(gridPersonal.CurrentRow.Cells["Privilegio"].Value.ToString(), out val))
             {
                 e.Privilegio = val;
             }
@@ -122,37 +150,6 @@ namespace ZkManagement.NewUI
             e.Tarjeta = gridPersonal.CurrentRow.Cells["Tarjeta"].Value.ToString();
 
             return e;
-        }
-
-        //Recibe una list de empleados y la transforma en un datatable para usar de source para el grid.
-        private DataTable ConvertToDatatable(List<Empleado> empleados)
-        {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt.Columns.Add("Legajo");
-            dt.Columns.Add("Nombre");
-            dt.Columns.Add("IdEmpleado");
-            dt.Columns.Add("Tarjeta");
-            dt.Columns.Add("DNI");
-            dt.Columns.Add("Pin");
-            dt.Columns.Add("Privilegio");
-            dt.Columns.Add("Baja");
-            dt.Columns.Add("Cant");
-            foreach (Empleado e in empleados)
-            {
-                DataRow row = dt.NewRow();
-                row["Nombre"] = e.Nombre;
-                row["Legajo"] = e.Legajo;
-                row["IdEmpleado"] = e.Id;
-                row["Tarjeta"] = e.Tarjeta;
-                row["DNI"] = e.Dni;
-                row["Pin"] = e.Pin;
-                row["Privilegio"] = e.Privilegio;
-                row["Baja"] = e.Baja;
-                row["Cant"] = e.Huellas.Count;
-                dt.Rows.Add(row);
-            }
-            return dt;
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)

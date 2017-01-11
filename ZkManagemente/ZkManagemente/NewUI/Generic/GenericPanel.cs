@@ -1,8 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using MetroFramework.Controls;
+using System.Windows.Forms;
 
 namespace ZkManagement.NewUI
 {
-    public partial class GenericPanel : UserControl
+    public partial class GenericPanel : MetroUserControl
     {
         public GenericPanel()
         {
