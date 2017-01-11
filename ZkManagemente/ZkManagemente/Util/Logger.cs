@@ -15,6 +15,15 @@ namespace ZkManagement.Util
             return _logger;
         }
 
+        public static ILog GetLogger(string log)
+        {
+            if (_logger == null)
+            {
+                _logger = LogManager.GetLogger(log);
+            }
+            return _logger;
+        }
+
         /*public static ILog GetInfoLogger()
         {
             if (info_logger == null)

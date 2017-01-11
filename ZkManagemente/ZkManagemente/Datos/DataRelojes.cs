@@ -54,15 +54,17 @@ namespace ZkManagement.Datos
                     relojes.Add(r);
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al consultar datos de los relojes");
+                throw new AppException("Error al consultar datos de los relojes", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al consultar datos de los relojes");
+                throw new AppException("Error desconocido al consultar datos de los relojes", "Fatal", ex);
             }
             finally
             {
@@ -91,15 +93,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar agregar el equipo en la tabla relojes");           
+                throw new AppException("Error al intentar agregar el equipo en la tabla relojes", "Error", dbex);         
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar agregar el reloj");
+                throw new AppException("Error desconocido al intentar agregar el reloj", "Fatal", ex);
             }
             finally
             {
@@ -127,15 +131,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar actualizar los datos del equipo en la tabla relojes");
+                throw new AppException("Error al intentar actualizar los datos del equipo en la tabla relojes", "Error", dbex);
             }
             catch (Exception ex) 
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar los datos del reloj");
+                throw new AppException("Error desconocido al intentar actualizar los datos del reloj", "Fatal", ex);
             }
             finally
             {
@@ -163,15 +169,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar eliminar el reloj");
+                throw new AppException("Error al intentar eliminar el reloj", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar eliminar el reloj");
+                throw new AppException("Error desconocido al intentar eliminar el reloj", "Fatal", ex);
             }
             finally
             {
@@ -199,15 +207,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al actualizar la tabla borrado");
+                throw new AppException("Error al actualizar la tabla borrado", "Error", dbex);
             }
             catch (Exception ex) 
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar la tabla borrado");
+                throw new AppException("Error desconocido al intentar actualizar la tabla borrado", "Fatal", ex);
             }
             finally
             {

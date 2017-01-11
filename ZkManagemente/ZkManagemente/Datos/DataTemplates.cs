@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
 using System.Data;
+using System.Data.Common;
 
 namespace ZkManagement.Datos
 {
@@ -35,15 +35,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException sqlEx)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al insertar registros en la tabla huellas");
+                throw appex;
+            }
+            catch(DbException dbex)
+            {
+                throw new AppException("Error al insertar registros en la tabla huellas", "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar en la tabla huellas");
+                throw new AppException("Error desconocido al intentar actualizar en la tabla huellas", "Fatal", ex);
             }
             finally
             {
@@ -78,15 +80,17 @@ namespace ZkManagement.Datos
                     return false;                  
                 }
             }
-            catch (SqlException sqlex)
+            catch (AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al consultar la tabla de huellas");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al consultar la tabla de huellas", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al consultar la tabla huellas");
+                throw new AppException("Error desconocido al consultar la tabla huellas", "Fatal", ex);
             }
             finally
             {
@@ -116,15 +120,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch (AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al actualizar la tabla de huellas");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al actualizar la tabla de huellas", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al actualizar la tabla huellas");
+                throw new AppException("Error desconocido al actualizar la tabla huellas", "Fatal", ex);
             }
             finally
             {
@@ -151,15 +157,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException sqlex)
+            catch (AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar eliminar las huellas");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar eliminar las huellas", "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar eliminar las huellas");
+                throw new AppException("Error no controlado al intentar eliminar las huellas", "Fatal", ex);
             }
             finally
             {

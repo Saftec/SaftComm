@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.Common;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
 
@@ -43,19 +43,22 @@ namespace ZkManagement.Datos
                     throw new AppException("Usuario incorrecto");
                 }
             }
+           
+            catch(AppException appex)
+            {
+                throw appex;
+            }
            catch(InvalidOperationException)  //Si cacheo esto es porque la consulta no devolvió nada
             {
                 throw new AppException("Usuario incorrecto");
             }
-            catch(SqlException sqlex)
+            catch(DbException dbex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al consultar datos de usuario");
+                throw new AppException("Error al consultar datos de usuario", "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);            
-               throw new Exception("Error desconocido al consultar datos de usuario");
+                throw new AppException("Error desconocido al consultar datos de usuario", "Fatal", ex);
             }
             finally
             {
@@ -106,15 +109,17 @@ namespace ZkManagement.Datos
                     usuarios.Add(usr);
                 }
             }
-            catch (SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al consultar los datos de usuario");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al consultar los datos de usuario", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al consultar los datos de usuario");
+                throw new AppException("Error desconocido al consultar los datos de usuario", "Fatal", ex);
             }
             finally
             {
@@ -143,15 +148,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar dar de alta el empelado");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar dar de alta el empelado", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar dar de alta el empelado");
+                throw new AppException("Error desconocido al intentar dar de alta el empelado", "Fatal", ex);
             }
             finally
             {
@@ -179,15 +186,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar modificar usuario");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar modificar usuario", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar modificar usuario");
+                throw new AppException("Error desconocido al intentar modificar usuario", "Fatal", ex);
             }
             finally
             {
@@ -215,15 +224,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar eliminar el usuario");
+                throw appex;
+            }
+            catch(DbException dbex)
+            {
+                throw new AppException("Error al intentar eliminar el usuario", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar eliminar el usuario");
+                throw new AppException("Error desconocido al intentar eliminar el usuario", "Fatal", ex);
             }
             finally
             {
@@ -251,15 +262,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar actualizar la tabla usuarios");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar actualizar la tabla usuarios", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar actualizar la tabla usuario");
+                throw new AppException("Error no controlado al intentar actualizar la tabla usuario", "Fatal", ex);
             }
             finally
             {

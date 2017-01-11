@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.Common;
 using ZkManagement.Util;
 
 namespace ZkManagement.Datos
@@ -39,15 +39,17 @@ namespace ZkManagement.Datos
                 valor = dr["Valor"].ToString();
                 dr.Close();
             }
-            catch(SqlException sqlEx)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlEx);
-                throw new Exception("Error al consulta el valor de configuracion: " + id.ToString());
+                throw appex;
+            }
+            catch(DbException dbex)
+            {
+                throw new AppException("Error al consulta el valor de configuracion: " + id.ToString(), "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al consultar el valor de configuracion: " + id.ToString());
+                throw new AppException("Error desconocido al consultar el valor de configuracion: " + id.ToString(), "Fatal", ex);
             }
             finally
             {
@@ -76,15 +78,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(SqlException sqlEx)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al actualizar la tabla configuracion");
+                throw appex;
+            }
+            catch(DbException dbex)
+            {
+                throw new AppException("Error al actualizar la tabla configuracion", "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al actualizar la tabla configuracion");
+                throw new AppException("Error desconocido al actualizar la tabla configuracion", "Fatal", ex);
             }
             finally
             {

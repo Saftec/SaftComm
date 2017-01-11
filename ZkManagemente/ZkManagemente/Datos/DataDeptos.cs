@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Data;
 using ZkManagement.Util;
+using System.Data.Common;
 
 namespace ZkManagement.Datos
 {
@@ -18,15 +18,17 @@ namespace ZkManagement.Datos
                 query = "SELECT IdDepto, Nombre, Nivel FROM Departamentos";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
             }
-            catch(SqlException sqlex)
+            catch(AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al consultar la tabla de Departamentos");
+                throw appex;
+            }
+            catch(DbException dbex)
+            {
+                throw new AppException("Error al consultar la tabla de Departamentos", "Error", dbex);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar consultar la tabla de Departamentos");
+                throw new AppException("Error no controlado al intentar consultar la tabla de Departamentos", "Fatal", ex);
             }
             finally
             {
@@ -55,15 +57,17 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlex)
+            catch (AppException appex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar agregar el Departamento a la base de datos");
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar agregar el Departamento a la base de datos", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar crear el departamento");
+                throw new AppException("Error no controlado al intentar crear el departamento", "Fatal", ex);
             }
             finally
             {

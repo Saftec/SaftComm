@@ -60,13 +60,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar la conexión a la base de datos");
+                throw new AppException("Error al intentar la conexión a la base de datos", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar la conexión a la base de datos");
+                throw new AppException("Error al intentar la conexión a la base de datos", "Fatal", ex);
             }
             return cnn;
         }
@@ -94,13 +92,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar crear la consulta");
+                throw new AppException("Error al intentar crear la consulta", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado durante la creación de la consulta");
+                throw new AppException("Error no controlado durante la creación de la consulta", "Fatal", ex);
             }
             return cmd;
         }
@@ -132,15 +128,12 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar crear la consulta");
+                throw new AppException("Error durante la consulta a la base de datos.", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado durante la creación de la consulta");
+                throw new AppException("Error no controlado durante la consulta a la base de datos.", "Fatal", ex);
             }
-
             return dr;
         }
 
@@ -156,13 +149,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbex)
             {
-                Logger.GetLogger().Error(dbex.StackTrace);
-                throw new Exception("Error al intentar cerrar la conexión a la base de datos");
+                throw new AppException("Error al intentar cerrar la conexión a la base de datos", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar cerrar la conexión a la base de datos");
+                throw new AppException("Error no controlado al intentar cerrar la conexión a la base de datos", "Fatal", ex);
             }
 
         }
