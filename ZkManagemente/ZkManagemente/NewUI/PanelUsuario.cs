@@ -39,6 +39,7 @@ namespace ZkManagement.NewUI.Generic
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
+                gridUsuarios.AutoGenerateColumns = false;
                 gridUsuarios.DataSource = null;
                 gridUsuarios.Refresh();
                 usuarios = lu.GetUsuarios();
@@ -100,7 +101,6 @@ namespace ZkManagement.NewUI.Generic
         private void linkEdit_Click(object sender, EventArgs e)
         {
             EditUsuario eu = new EditUsuario();
-
             try
             {
                 eu.MapearAForm(MapearDeGrid());
@@ -117,7 +117,6 @@ namespace ZkManagement.NewUI.Generic
         private DataTable ConvertToDataTable(List<Usuario> usuarios)
         {
             DataTable dt = new DataTable();
-            dt.Clear();
             dt.Columns.Add("Usuario");
             dt.Columns.Add("Contraseña");
             dt.Columns.Add("Permisos");

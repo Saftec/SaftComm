@@ -206,6 +206,18 @@
     <Compile Include="NewUI\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelesConfigs\GenericConfigsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\GenericConfigsPanel.Designer.cs">
+      <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.Designer.cs">
+      <DependentUpon>PanelRutinas.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\PanelReloj.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -294,6 +306,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelConfigs.resx">
+      <DependentUpon>PanelConfigs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\GenericConfigsPanel.resx">
+      <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelRutinas.resx">
+      <DependentUpon>PanelRutinas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelReloj.resx">
       <DependentUpon>PanelReloj.cs</DependentUpon>

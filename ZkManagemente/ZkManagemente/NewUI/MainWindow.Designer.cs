@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.tableMenu = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEquipos = new MetroFramework.Controls.MetroButton();
             this.btnUsuarios = new MetroFramework.Controls.MetroButton();
             this.btnPersonal = new MetroFramework.Controls.MetroButton();
+            this.btnConfig = new MetroFramework.Controls.MetroButton();
             this.pHeader = new System.Windows.Forms.Panel();
             this.metroPanel = new MetroFramework.Controls.MetroPanel();
-            this.btnEquipos = new MetroFramework.Controls.MetroButton();
-            this.btnConfig = new MetroFramework.Controls.MetroButton();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,21 @@
             this.tableMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableMenu.Size = new System.Drawing.Size(577, 64);
             this.tableMenu.TabIndex = 2;
+            // 
+            // btnEquipos
+            // 
+            this.btnEquipos.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquipos.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnEquipos.ForeColor = System.Drawing.Color.Red;
+            this.btnEquipos.Location = new System.Drawing.Point(147, 3);
+            this.btnEquipos.Name = "btnEquipos";
+            this.btnEquipos.Size = new System.Drawing.Size(138, 58);
+            this.btnEquipos.Style = MetroFramework.MetroColorStyle.Blue;
+            this.btnEquipos.TabIndex = 6;
+            this.btnEquipos.Text = "Dispositivos";
+            this.btnEquipos.UseCustomBackColor = true;
+            this.btnEquipos.UseSelectable = true;
+            this.btnEquipos.Click += new System.EventHandler(this.btnEquipos_Click);
             // 
             // btnUsuarios
             // 
@@ -88,6 +103,21 @@
             this.btnPersonal.UseSelectable = true;
             this.btnPersonal.Click += new System.EventHandler(this.btnPersonal_Click);
             // 
+            // btnConfig
+            // 
+            this.btnConfig.BackColor = System.Drawing.Color.Transparent;
+            this.btnConfig.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnConfig.ForeColor = System.Drawing.Color.Red;
+            this.btnConfig.Location = new System.Drawing.Point(435, 3);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(138, 58);
+            this.btnConfig.Style = MetroFramework.MetroColorStyle.Blue;
+            this.btnConfig.TabIndex = 7;
+            this.btnConfig.Text = "Configuracion";
+            this.btnConfig.UseCustomBackColor = true;
+            this.btnConfig.UseSelectable = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
             // pHeader
             // 
             this.pHeader.Controls.Add(this.tableMenu);
@@ -110,35 +140,6 @@
             this.metroPanel.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel.VerticalScrollbarSize = 10;
             // 
-            // btnEquipos
-            // 
-            this.btnEquipos.BackColor = System.Drawing.Color.Transparent;
-            this.btnEquipos.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnEquipos.ForeColor = System.Drawing.Color.Red;
-            this.btnEquipos.Location = new System.Drawing.Point(147, 3);
-            this.btnEquipos.Name = "btnEquipos";
-            this.btnEquipos.Size = new System.Drawing.Size(138, 58);
-            this.btnEquipos.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnEquipos.TabIndex = 6;
-            this.btnEquipos.Text = "Dispositivos";
-            this.btnEquipos.UseCustomBackColor = true;
-            this.btnEquipos.UseSelectable = true;
-            this.btnEquipos.Click += new System.EventHandler(this.btnEquipos_Click);
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.BackColor = System.Drawing.Color.Transparent;
-            this.btnConfig.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnConfig.ForeColor = System.Drawing.Color.Red;
-            this.btnConfig.Location = new System.Drawing.Point(435, 3);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(138, 58);
-            this.btnConfig.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnConfig.TabIndex = 7;
-            this.btnConfig.Text = "Configuracion";
-            this.btnConfig.UseCustomBackColor = true;
-            this.btnConfig.UseSelectable = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,7 +148,7 @@
             this.Controls.Add(this.metroPanel);
             this.Controls.Add(this.pHeader);
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "SaftComm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tableMenu.ResumeLayout(false);

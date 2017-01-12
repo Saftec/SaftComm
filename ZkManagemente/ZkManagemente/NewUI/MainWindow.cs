@@ -37,32 +37,33 @@ namespace ZkManagement.NewUI
 
         private void btnPersonal_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
             PanelPersonal.Instancia.Dock = DockStyle.Fill;
             PanelPersonal.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelPersonal.Instancia);
-            Cursor = Cursors.Default;
         }
 
         private void btnEquipos_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
             PanelReloj.Instancia.Dock = DockStyle.Fill;
             PanelReloj.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelReloj.Instancia);
-            Cursor = Cursors.Default;
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
             PanelUsuario.Instancia.Dock = DockStyle.Fill;
             PanelUsuario.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelUsuario.Instancia);
-            Cursor = Cursors.Default;
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            PanelConfigs.Instancia.Dock = DockStyle.Fill;
+            this.MetroContainer.Controls.Clear();
+            this.MetroContainer.Controls.Add(PanelConfigs.Instancia);
         }
     }
 }

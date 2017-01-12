@@ -19,12 +19,18 @@ namespace ZkManagement.NewUI
         {
             if (!Validar())
             {
-                Informar("Error", "error");
+                return;
             }
             lu = new LogicUsuario();
             try
             {
-                
+                if (usrAct.Id > 0)
+                {
+                    lu.AgregarUsuario(usrAct);
+                }else
+                {
+                    lu.ModificarUsuario(usrAct);
+                }
             }
             catch(Exception ex)
             {
@@ -35,11 +41,13 @@ namespace ZkManagement.NewUI
         public void MapearAForm(Usuario u)
         {
             usrAct = u;
-            txtUsuario.Text = u.Usr;
             if (u.Id == 0)
             {
-
+                return;
             }
+            txtUsuario.Text = u.Usr;
+            cbPermisos.SelectedIndex = u.Nivel - 1;
+         
         }
 
         protected override bool Validar()
@@ -52,7 +60,11 @@ namespace ZkManagement.NewUI
                 return false;
             }
 
-            // CONTRASEÑA //
+            if (cbPermisos.SelectedIndex == -1)
+            {
+                base.InformarError("Debe seleccionar un nivel de permisos.", "Modificar Usuario.");
+                return false;
+            }
             return true;
         }
 

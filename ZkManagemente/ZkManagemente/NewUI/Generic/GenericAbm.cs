@@ -10,6 +10,7 @@ namespace ZkManagement.NewUI.Generic
         }
         protected virtual void InformarError(string mensaje, string titulo)
         {
+            //MetroMessageBox.Show(this, mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         protected virtual void Informar(string mensaje, string titulo)

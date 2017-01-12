@@ -32,17 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridUsuarios = new MetroFramework.Controls.MetroGrid();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.linkContraseña = new MetroFramework.Controls.MetroLink();
+            this.linkNuevo = new MetroFramework.Controls.MetroLink();
+            this.linkEdit = new MetroFramework.Controls.MetroLink();
+            this.linkDelete = new MetroFramework.Controls.MetroLink();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UltAcceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdPermisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Permisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.linkContraseña = new MetroFramework.Controls.MetroLink();
-            this.linkNuevo = new MetroFramework.Controls.MetroLink();
-            this.linkEdit = new MetroFramework.Controls.MetroLink();
-            this.linkDelete = new MetroFramework.Controls.MetroLink();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +52,8 @@
             this.gridUsuarios.AllowUserToAddRows = false;
             this.gridUsuarios.AllowUserToDeleteRows = false;
             this.gridUsuarios.AllowUserToResizeRows = false;
+            this.gridUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridUsuarios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -99,6 +101,67 @@
             this.gridUsuarios.Size = new System.Drawing.Size(709, 362);
             this.gridUsuarios.TabIndex = 1;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Controls.Add(this.linkContraseña, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkNuevo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkEdit, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkDelete, 2, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(174, 13);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(535, 30);
+            this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // linkContraseña
+            // 
+            this.linkContraseña.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkContraseña.Location = new System.Drawing.Point(402, 3);
+            this.linkContraseña.Name = "linkContraseña";
+            this.linkContraseña.Size = new System.Drawing.Size(130, 23);
+            this.linkContraseña.TabIndex = 3;
+            this.linkContraseña.Text = "Modificar Contraseña";
+            this.linkContraseña.UseSelectable = true;
+            this.linkContraseña.Click += new System.EventHandler(this.linkContraseña_Click);
+            // 
+            // linkNuevo
+            // 
+            this.linkNuevo.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkNuevo.Location = new System.Drawing.Point(3, 3);
+            this.linkNuevo.Name = "linkNuevo";
+            this.linkNuevo.Size = new System.Drawing.Size(127, 24);
+            this.linkNuevo.TabIndex = 0;
+            this.linkNuevo.Text = "Nuevo";
+            this.linkNuevo.UseSelectable = true;
+            this.linkNuevo.Click += new System.EventHandler(this.linkNuevo_Click);
+            // 
+            // linkEdit
+            // 
+            this.linkEdit.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkEdit.Location = new System.Drawing.Point(136, 3);
+            this.linkEdit.Name = "linkEdit";
+            this.linkEdit.Size = new System.Drawing.Size(127, 24);
+            this.linkEdit.TabIndex = 1;
+            this.linkEdit.Text = "Editar";
+            this.linkEdit.UseSelectable = true;
+            this.linkEdit.Click += new System.EventHandler(this.linkEdit_Click);
+            // 
+            // linkDelete
+            // 
+            this.linkDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.linkDelete.Location = new System.Drawing.Point(269, 3);
+            this.linkDelete.Name = "linkDelete";
+            this.linkDelete.Size = new System.Drawing.Size(127, 23);
+            this.linkDelete.TabIndex = 2;
+            this.linkDelete.Text = "Eliminar";
+            this.linkDelete.UseSelectable = true;
+            // 
             // Usuario
             // 
             this.Usuario.DataPropertyName = "Usuario";
@@ -112,6 +175,7 @@
             this.UltAcceso.HeaderText = "Utlimo Acceso";
             this.UltAcceso.Name = "UltAcceso";
             this.UltAcceso.ReadOnly = true;
+            this.UltAcceso.Width = 120;
             // 
             // IdPermisos
             // 
@@ -144,63 +208,6 @@
             this.Contraseña.ReadOnly = true;
             this.Contraseña.Visible = false;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.linkContraseña, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkNuevo, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkEdit, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkDelete, 2, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(174, 13);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(535, 30);
-            this.tableLayoutPanel2.TabIndex = 4;
-            // 
-            // linkContraseña
-            // 
-            this.linkContraseña.Location = new System.Drawing.Point(402, 3);
-            this.linkContraseña.Name = "linkContraseña";
-            this.linkContraseña.Size = new System.Drawing.Size(130, 23);
-            this.linkContraseña.TabIndex = 3;
-            this.linkContraseña.Text = "Modificar Contraseña";
-            this.linkContraseña.UseSelectable = true;
-            this.linkContraseña.Click += new System.EventHandler(this.linkContraseña_Click);
-            // 
-            // linkNuevo
-            // 
-            this.linkNuevo.Location = new System.Drawing.Point(3, 3);
-            this.linkNuevo.Name = "linkNuevo";
-            this.linkNuevo.Size = new System.Drawing.Size(127, 24);
-            this.linkNuevo.TabIndex = 0;
-            this.linkNuevo.Text = "Nuevo";
-            this.linkNuevo.UseSelectable = true;
-            this.linkNuevo.Click += new System.EventHandler(this.linkNuevo_Click);
-            // 
-            // linkEdit
-            // 
-            this.linkEdit.Location = new System.Drawing.Point(136, 3);
-            this.linkEdit.Name = "linkEdit";
-            this.linkEdit.Size = new System.Drawing.Size(127, 24);
-            this.linkEdit.TabIndex = 1;
-            this.linkEdit.Text = "Editar";
-            this.linkEdit.UseSelectable = true;
-            this.linkEdit.Click += new System.EventHandler(this.linkEdit_Click);
-            // 
-            // linkDelete
-            // 
-            this.linkDelete.Location = new System.Drawing.Point(269, 3);
-            this.linkDelete.Name = "linkDelete";
-            this.linkDelete.Size = new System.Drawing.Size(127, 23);
-            this.linkDelete.TabIndex = 2;
-            this.linkDelete.Text = "Eliminar";
-            this.linkDelete.UseSelectable = true;
-            // 
             // PanelUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +215,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.gridUsuarios);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Name = "PanelUsuario";
             this.Controls.SetChildIndex(this.gridUsuarios, 0);
             this.Controls.SetChildIndex(this.tableLayoutPanel2, 0);
@@ -225,12 +233,12 @@
         private MetroFramework.Controls.MetroLink linkNuevo;
         private MetroFramework.Controls.MetroLink linkEdit;
         private MetroFramework.Controls.MetroLink linkDelete;
+        private MetroFramework.Controls.MetroLink linkContraseña;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn UltAcceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdPermisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Permisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contraseña;
-        private MetroFramework.Controls.MetroLink linkContraseña;
     }
 }

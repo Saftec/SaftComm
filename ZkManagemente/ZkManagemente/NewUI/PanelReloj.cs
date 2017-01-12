@@ -289,6 +289,7 @@ namespace ZkManagement.NewUI
             DataTable relojes;
             try
             {
+                gridEquipos.AutoGenerateColumns = false;
                 relojes = ConvertToDataTable(lr.TodosRelojes());
                 gridEquipos.DataSource = relojes;
             }

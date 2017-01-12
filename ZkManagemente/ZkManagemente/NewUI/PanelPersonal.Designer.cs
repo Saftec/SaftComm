@@ -103,7 +103,7 @@
             this.gridPersonal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridPersonal.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridPersonal.Size = new System.Drawing.Size(863, 479);
+            this.gridPersonal.Size = new System.Drawing.Size(891, 479);
             this.gridPersonal.TabIndex = 3;
             // 
             // Id
@@ -189,7 +189,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(866, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(894, 30);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // linkNuevo
@@ -204,7 +204,7 @@
             // 
             // linkEdit
             // 
-            this.linkEdit.Location = new System.Drawing.Point(143, 3);
+            this.linkEdit.Location = new System.Drawing.Point(148, 3);
             this.linkEdit.Name = "linkEdit";
             this.linkEdit.Size = new System.Drawing.Size(127, 24);
             this.linkEdit.TabIndex = 1;
@@ -214,7 +214,7 @@
             // 
             // linkDelete
             // 
-            this.linkDelete.Location = new System.Drawing.Point(283, 3);
+            this.linkDelete.Location = new System.Drawing.Point(293, 3);
             this.linkDelete.Name = "linkDelete";
             this.linkDelete.Size = new System.Drawing.Size(127, 23);
             this.linkDelete.TabIndex = 2;
@@ -237,7 +237,7 @@
             this.txtBuscar.CustomButton.UseSelectable = true;
             this.txtBuscar.CustomButton.Visible = false;
             this.txtBuscar.Lines = new string[0];
-            this.txtBuscar.Location = new System.Drawing.Point(632, 3);
+            this.txtBuscar.Location = new System.Drawing.Point(654, 3);
             this.txtBuscar.MaxLength = 32767;
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.PasswordChar = '\0';
@@ -255,7 +255,7 @@
             // 
             // linkSinc
             // 
-            this.linkSinc.Location = new System.Drawing.Point(423, 3);
+            this.linkSinc.Location = new System.Drawing.Point(438, 3);
             this.linkSinc.Name = "linkSinc";
             this.linkSinc.Size = new System.Drawing.Size(127, 23);
             this.linkSinc.TabIndex = 5;
@@ -265,7 +265,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(567, 5);
+            this.metroLabel1.Location = new System.Drawing.Point(587, 5);
             this.metroLabel1.Margin = new System.Windows.Forms.Padding(7, 5, 3, 0);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(50, 19);

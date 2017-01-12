@@ -30,7 +30,7 @@
         {
             this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.txtUsuario = new MetroFramework.Controls.MetroTextBox();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
+            this.cbPermisos = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
@@ -81,19 +81,19 @@
             this.txtUsuario.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUsuario.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // metroComboBox1
+            // cbPermisos
             // 
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Items.AddRange(new object[] {
+            this.cbPermisos.FormattingEnabled = true;
+            this.cbPermisos.ItemHeight = 23;
+            this.cbPermisos.Items.AddRange(new object[] {
             "1 - Administrador",
             "2 - Supervisor",
             "3 - Operador"});
-            this.metroComboBox1.Location = new System.Drawing.Point(328, 354);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(121, 29);
-            this.metroComboBox1.TabIndex = 6;
-            this.metroComboBox1.UseSelectable = true;
+            this.cbPermisos.Location = new System.Drawing.Point(328, 354);
+            this.cbPermisos.Name = "cbPermisos";
+            this.cbPermisos.Size = new System.Drawing.Size(121, 29);
+            this.cbPermisos.TabIndex = 6;
+            this.cbPermisos.UseSelectable = true;
             // 
             // metroLabel1
             // 
@@ -110,7 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 581);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroComboBox1);
+            this.Controls.Add(this.cbPermisos);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.metroLink1);
             this.Name = "EditUsuario";
@@ -119,7 +119,7 @@
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.Controls.SetChildIndex(this.metroLink1, 0);
             this.Controls.SetChildIndex(this.txtUsuario, 0);
-            this.Controls.SetChildIndex(this.metroComboBox1, 0);
+            this.Controls.SetChildIndex(this.cbPermisos, 0);
             this.Controls.SetChildIndex(this.metroLabel1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -130,7 +130,7 @@
 
         private MetroFramework.Controls.MetroLink metroLink1;
         private MetroFramework.Controls.MetroTextBox txtUsuario;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
+        private MetroFramework.Controls.MetroComboBox cbPermisos;
         private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

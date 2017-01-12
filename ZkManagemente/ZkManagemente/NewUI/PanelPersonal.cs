@@ -119,6 +119,7 @@ namespace ZkManagement.NewUI.Generic
         public void RefreshGrid()
         {
             gridPersonal.DataSource = null;
+            gridPersonal.AutoGenerateColumns = false;
             le = new LogicEmpleado();
             try
             {
