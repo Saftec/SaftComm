@@ -47,7 +47,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "GenericPanel";
-            this.Size = new System.Drawing.Size(900, 650);
+            this.Size = new System.Drawing.Size(900, 550);
             this.ResumeLayout(false);
             this.PerformLayout();
 

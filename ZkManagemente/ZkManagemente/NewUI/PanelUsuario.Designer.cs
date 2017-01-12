@@ -83,7 +83,7 @@
             this.gridUsuarios.EnableHeadersVisualStyles = false;
             this.gridUsuarios.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridUsuarios.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridUsuarios.Location = new System.Drawing.Point(174, 79);
+            this.gridUsuarios.Location = new System.Drawing.Point(120, 79);
             this.gridUsuarios.Name = "gridUsuarios";
             this.gridUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -96,7 +96,7 @@
             this.gridUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridUsuarios.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(638, 362);
+            this.gridUsuarios.Size = new System.Drawing.Size(709, 362);
             this.gridUsuarios.TabIndex = 1;
             // 
             // Usuario
