@@ -25,9 +25,13 @@ namespace ZkManagement.Logica
                 }
                 //empleados = DataEmpleado.Instancia.SetHuellas(empleados);
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido al consultar los empleados", "Fatal", ex);
             }
             return empleados;
         }
@@ -48,9 +52,13 @@ namespace ZkManagement.Logica
                 }
                 empleados = DataEmpleado.Instancia.SetHuellas(empleados);
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido al consultar los empleados", "Fatal", ex);
             }
             return empleados;
 
@@ -74,9 +82,13 @@ namespace ZkManagement.Logica
                 h.Empleado = emp;
                 ch.EliminarHuella(h);
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido durante la baja.", "Fatal", ex);
             }
         }
 
@@ -93,9 +105,13 @@ namespace ZkManagement.Logica
                     DataEmpleado.Instancia.Actualizar(emp);
                 }
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido durante la actualización del empleado.", "Fatal", ex);
             }
         }
         public void AgregarEmpleado(Empleado emp)
@@ -112,9 +128,13 @@ namespace ZkManagement.Logica
                     DataEmpleado.Instancia.Agregar(emp);
                 }                
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido al intentar agregar el empleado", "Fatal", ex);
             }
         }
 

@@ -35,10 +35,6 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
             catch(DbException dbex)
             {
                 throw new AppException("Error al insertar registros en la tabla huellas", "Error", dbex);
@@ -80,10 +76,6 @@ namespace ZkManagement.Datos
                     return false;                  
                 }
             }
-            catch (AppException appex)
-            {
-                throw appex;
-            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al consultar la tabla de huellas", "Error", dbex);
@@ -120,10 +112,6 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (AppException appex)
-            {
-                throw appex;
-            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al actualizar la tabla de huellas", "Error", dbex);
@@ -156,10 +144,6 @@ namespace ZkManagement.Datos
                 query = "DELETE FROM Huellas WHERE IdEmpleado=" + h.Empleado.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
-            }
-            catch (AppException appex)
-            {
-                throw appex;
             }
             catch (DbException dbex)
             {

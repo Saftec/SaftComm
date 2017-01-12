@@ -1,5 +1,6 @@
 ﻿using System;
 using ZkManagement.Datos;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -12,9 +13,13 @@ namespace ZkManagement.Logica
             {
                 valor = DataConfigs.Instancia.GetConfig(id);
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error no controlado al intentar consultar una configuración a la base de datos.", "Fatal", ex);
             }
             return valor;
 
@@ -26,9 +31,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(id, valor);
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error no controlado al intentar guardar una configuración en la base de datos.", "Fatal", ex);
             }
         }
     }

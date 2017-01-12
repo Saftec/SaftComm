@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -14,9 +15,13 @@ namespace ZkManagement.Logica
             {
                 relojes = DataRelojes.Instancia.GetRelojes();
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido al consultar los relojes.", "Fatal", ex);
             }
             
             return relojes;
@@ -29,9 +34,13 @@ namespace ZkManagement.Logica
                 if (r.Id > 0) { DataRelojes.Instancia.ActualizarReloj(r); }
                 else { DataRelojes.Instancia.AgregarReloj(r); }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido al modificar reloj.", "Fatal", ex);
             }
 
         }
@@ -42,9 +51,13 @@ namespace ZkManagement.Logica
             {
                 DataRelojes.Instancia.EliminarReloj(r);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido al eliminar reloj.", "Fatal", ex);
             }
         }
 
@@ -56,9 +69,13 @@ namespace ZkManagement.Logica
             {
                 DataRelojes.Instancia.SetBorrado(cl.GetUsrId(), reloj.Id, cantidad, fecha);
             }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido durante el borrado.", "Fatal", ex);
             }
         }
     }

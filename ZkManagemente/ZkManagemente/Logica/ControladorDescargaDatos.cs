@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -25,9 +26,13 @@ namespace ZkManagement.Logica
                     DataEmpleado.Instancia.Agregar(emp);
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Erro no controlado durante la actualización del empleado.", "Fatal", ex);
             }                       
         }
         public int AgregarHuella(Empleado emp, Reloj reloj)
@@ -58,9 +63,13 @@ namespace ZkManagement.Logica
                     }
                 }                             
              }
-            catch(Exception ex)
+            catch (AppException appex)
             {
-                throw ex;
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Erro no controlado durante la actualización de huellas", "Fatal", ex);
             }
             return total;
         }

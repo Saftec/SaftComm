@@ -18,9 +18,13 @@ namespace ZkManagement.Logica
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error no controlado al verificar el archivo de configuraciones", "Fatal", ex);
             }
             return valor;
         }
@@ -34,9 +38,13 @@ namespace ZkManagement.Logica
                     throw new AppException("Error al intentar convertir los tipos de datos");                    
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error no controlado al verificar el archivo de configuraciones", "Fatal", ex);
             }
             return valor;
         }
@@ -50,9 +58,13 @@ namespace ZkManagement.Logica
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
             return valor;
         }
@@ -62,9 +74,13 @@ namespace ZkManagement.Logica
             {
                 return DataConfigs.Instancia.GetConfig(5);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
         }
         public string GetIntervaloHs()
@@ -73,9 +89,13 @@ namespace ZkManagement.Logica
             {
                 return DataConfigs.Instancia.GetConfig(7);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
         }
         public bool GetEstadoRango()
@@ -88,9 +108,13 @@ namespace ZkManagement.Logica
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
             return valor;
         }
@@ -100,9 +124,13 @@ namespace ZkManagement.Logica
             {
                 return DataConfigs.Instancia.GetConfig(8);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
         }
         public string GetHoraFinRango()
@@ -111,9 +139,13 @@ namespace ZkManagement.Logica
             {
                 return DataConfigs.Instancia.GetConfig(9);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la consulta de configuraciones", "Fatal", ex);
             }
         }
         #endregion
@@ -125,9 +157,9 @@ namespace ZkManagement.Logica
             {
                 ConfigurationManager.AppSettings["Descarga"] = valor.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error al intentar guardar configuración en archivo de configuraciones");
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetEstadoRutinaRegs(string valor)
@@ -136,9 +168,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(4, valor);
             }
+            catch(AppException apepx)
+            {
+                throw apepx;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetEstadoRutinaHs(string valor)
@@ -147,9 +183,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(6, valor);
             }
+            catch (AppException apepx)
+            {
+                throw apepx;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetIntervaloRegs(string valor)
@@ -158,9 +198,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(5, valor);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetIntervaloHs(string valor)
@@ -169,9 +213,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(7, valor);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetEstadoRango(string valor)
@@ -180,9 +228,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(10, valor);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetInicioRango(string valor)
@@ -191,9 +243,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(8, valor);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         public void SetFinRango(string valor)
@@ -202,9 +258,13 @@ namespace ZkManagement.Logica
             {
                 DataConfigs.Instancia.SetConfig(9, valor);
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
         #endregion

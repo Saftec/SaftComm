@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -17,9 +18,13 @@ namespace ZkManagement.Logica
                 reloj.CargarInfoUsuario(emp);
                 reloj.AgregarHuellas(emp);                
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                throw ex;
+                throw new AppException(ex.Message, "Fatal", ex);
             }
 
         }

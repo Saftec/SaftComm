@@ -54,10 +54,6 @@ namespace ZkManagement.Datos
                     relojes.Add(r);
                 }
             }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al consultar datos de los relojes", "Error", dbex);
@@ -93,10 +89,6 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (AppException appex)
-            {
-                throw appex;
-            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al intentar agregar el equipo en la tabla relojes", "Error", dbex);         
@@ -130,10 +122,6 @@ namespace ZkManagement.Datos
                 query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + Encrypt.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
-            }
-            catch (AppException appex)
-            {
-                throw appex;
             }
             catch (DbException dbex)
             {
@@ -169,10 +157,6 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch (AppException appex)
-            {
-                throw appex;
-            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al intentar eliminar el reloj", "Error", dbex);
@@ -206,10 +190,6 @@ namespace ZkManagement.Datos
                 query = "INSERT INTO Borrado (IdUsuario, IdReloj, Cantidad, Fecha) VALUES(" + idUsuario.ToString() + ", " + idReloj.ToString() + ", " + cantidad.ToString() + ", '" + fecha.ToString("dd-MM-yyyy hh:mm:ss") + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
-            }
-            catch (AppException appex)
-            {
-                throw appex;
             }
             catch (DbException dbex)
             {

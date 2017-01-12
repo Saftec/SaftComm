@@ -56,13 +56,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al intentar consultar los datos de los empleados");
+                throw new AppException("Error al intentar consultar los datos de los empleados", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar los datos de los empleados");
+                throw new AppException("Error desconocido al intentar consultar los datos de los empleados", "Fatal", ex);
             }
             finally
             {
@@ -93,13 +91,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al intentar eliminar empleado de la base de datos");
+                throw new AppException("Error al intentar eliminar empleado de la base de datos", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar eliminar el empleado");
+                throw new AppException("Error desconocido al intentar eliminar el empleado", "Fatal", ex);
             }
             finally
             {
@@ -131,13 +127,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al intentar actualizar los datos en la tabla empleados");
+                throw new AppException("Error al intentar actualizar los datos en la tabla empleados", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar los datos del empleado");
+                throw new AppException("Error desconocido al intentar actualizar los datos del empleado", "Fatal", ex);
             }
             finally
             {
@@ -169,13 +163,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al actualizar la tabla empleados");
+                throw new AppException("Error al actualizar la tabla empleados", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar agregar el empleado");
+                throw new AppException("Error desconocido al intentar agregar el empleado", "Fatal", ex);
             }
             finally
             {
@@ -211,13 +203,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al intentar consultar la tabla empleados");
+                throw new AppException("Error al intentar consultar la tabla empleados", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar la tabla empleados");
+                throw new AppException("Error desconocido al intentar consultar la tabla empleados", "Fatal", ex);
             }
             finally
             {
@@ -248,13 +238,11 @@ namespace ZkManagement.Datos
             }
             catch(DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al intentar insertar en la tabla registros");
+                throw new AppException("Error al intentar insertar en la tabla registros", "Error", dbEx);
             }
             catch(Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar la tabla registros");
+                throw new AppException("Error desconocido al intentar actualizar la tabla registros", "Fatal", ex);
             }
             finally
             {
@@ -306,13 +294,11 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbEx)
             {
-                Logger.GetLogger().Error(dbEx.StackTrace);
-                throw new Exception("Error al consultar la tabla huellas");
+                throw new AppException("Error al consultar la tabla huellas", "Error", dbEx);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar la tabla huellas");
+                throw new AppException("Error desconocido al intentar consultar la tabla huellas", "Fatal", ex);
             }
             finally
             {

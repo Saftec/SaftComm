@@ -18,10 +18,6 @@ namespace ZkManagement.Datos
                 query = "SELECT IdDepto, Nombre, Nivel FROM Departamentos";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
             }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
             catch(DbException dbex)
             {
                 throw new AppException("Error al consultar la tabla de Departamentos", "Error", dbex);
@@ -56,10 +52,6 @@ namespace ZkManagement.Datos
             {
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
-            }
-            catch (AppException appex)
-            {
-                throw appex;
             }
             catch (DbException dbex)
             {

@@ -41,9 +41,13 @@ namespace ZkManagement.Logica
 
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch(Exception ex)
             {
-                throw ex;
+                throw new AppException("Error desconocido durante la descarga de registros.", "Fatal", ex);
             }
             return desconocidos;
         }

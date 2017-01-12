@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -55,15 +56,13 @@ namespace ZkManagement.Datos
                     empleados.Add(e);
                 }
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar consultar los datos de los empleados de Saftime");
+                throw new AppException("Error al intentar consultar los datos de los empleados de Saftime", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar los datos de los empleados");
+                throw new AppException("Error desconocido al intentar consultar los datos de los empleados", "Fatal", ex);
             }
             finally
             {
@@ -96,15 +95,13 @@ namespace ZkManagement.Datos
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar eliminar empleado de la base de datos de Saftime");
+                throw new AppException("Error al intentar eliminar empleado de la base de datos de Saftime", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar eliminar el empleado");
+                throw new AppException("Error desconocido al intentar eliminar el empleado", "Fatal", ex);
             }
             finally
             {
@@ -133,15 +130,13 @@ namespace ZkManagement.Datos
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar actualizar los datos en la tabla empleados de Saftime");
+                throw new AppException("Error al intentar actualizar los datos en la tabla empleados de Saftime", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar actualizar los datos del empleado");
+                throw new AppException("Error desconocido al intentar actualizar los datos del empleado", "Fatal", ex);
             }
             finally
             {
@@ -171,15 +166,13 @@ namespace ZkManagement.Datos
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al actualizar la tabla empleados");
+                throw new AppException("Error al actualizar la tabla empleados", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar agregar el empleado");
+                throw new AppException("Error desconocido al intentar agregar el empleado", "Fatal", ex);
             }
             finally
             {
@@ -219,15 +212,13 @@ namespace ZkManagement.Datos
                     emp.Baja = 0;
                 }
             }
-            catch (SqlException sqlEx)
+            catch (DbException dbex)
             {
-                Logger.GetLogger().Error(sqlEx.StackTrace);
-                throw new Exception("Error al intentar consultar la tabla empleados");
+                throw new AppException("Error al intentar consultar la tabla empleados", "Error", dbex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error desconocido al intentar consultar la tabla empleados");
+                throw new AppException("Error desconocido al intentar consultar la tabla empleados", "Fatal", ex);
             }
             finally
             {

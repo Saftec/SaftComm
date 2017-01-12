@@ -39,10 +39,6 @@ namespace ZkManagement.Datos
                 valor = dr["Valor"].ToString();
                 dr.Close();
             }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
             catch(DbException dbex)
             {
                 throw new AppException("Error al consulta el valor de configuracion: " + id.ToString(), "Error", dbex);
@@ -77,10 +73,6 @@ namespace ZkManagement.Datos
                 query = "UPDATE Configuracion SET Valor='" + valor + "' WHERE ConfigId=" + id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
-            }
-            catch(AppException appex)
-            {
-                throw appex;
             }
             catch(DbException dbex)
             {
