@@ -108,6 +108,10 @@ namespace ZkManagement.Datos
                     usuarios.Add(usr);
                 }
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al consultar los datos de usuario", "Error", dbex);
@@ -143,6 +147,10 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al intentar dar de alta el empelado", "Error", dbex);
@@ -176,6 +184,10 @@ namespace ZkManagement.Datos
                 query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbex)
             {
@@ -211,7 +223,11 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(DbException dbex)
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbex)
             {
                 throw new AppException("Error al intentar eliminar el usuario", "Error", dbex);
             }
@@ -244,6 +260,10 @@ namespace ZkManagement.Datos
                 query = "UPDATE Usuarios SET UltimoInicio='" + DateTime.Now + "' WHERE IdUsuario=" + usr.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbex)
             {

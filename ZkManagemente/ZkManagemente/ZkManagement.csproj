@@ -89,6 +89,7 @@
     <Compile Include="Datos\DataConfigs.cs" />
     <Compile Include="Datos\DataDeptos.cs" />
     <Compile Include="Datos\DataEmpleado.cs" />
+    <Compile Include="Datos\DataFormatos.cs" />
     <Compile Include="Datos\DataTemplates.cs" />
     <Compile Include="Datos\DataRelojes.cs" />
     <Compile Include="Datos\DataUsuarios.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Datos\DataEmpleadoSaftime.cs" />
     <Compile Include="Datos\FactoryConnection.cs" />
     <Compile Include="Entidades\Fichada.cs" />
+    <Compile Include="Entidades\FormatoExport.cs" />
     <Compile Include="Entidades\Huella.cs" />
     <Compile Include="Entidades\Reloj.cs" />
     <Compile Include="Entidades\Empleado.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\LogicFormatos.cs" />
     <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
     <Compile Include="Logica\ControladorConfigRutinas.cs" />
@@ -206,11 +209,17 @@
     <Compile Include="NewUI\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\GenericConfigsPanel.cs">
+    <Compile Include="NewUI\Generic\GenericConfigsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\GenericConfigsPanel.Designer.cs">
+    <Compile Include="NewUI\Generic\GenericConfigsPanel.Designer.cs">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelDescarga.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelDescarga.Designer.cs">
+      <DependentUpon>PanelDescarga.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\PanelesConfigs\PanelRutinas.cs">
       <SubType>UserControl</SubType>
@@ -310,8 +319,11 @@
     <EmbeddedResource Include="NewUI\PanelConfigs.resx">
       <DependentUpon>PanelConfigs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewUI\PanelesConfigs\GenericConfigsPanel.resx">
+    <EmbeddedResource Include="NewUI\Generic\GenericConfigsPanel.resx">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelDescarga.resx">
+      <DependentUpon>PanelDescarga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelRutinas.resx">
       <DependentUpon>PanelRutinas.cs</DependentUpon>

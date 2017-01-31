@@ -71,6 +71,7 @@
             this.metroLink2.TabIndex = 4;
             this.metroLink2.Text = "Descarga de Fichadas";
             this.metroLink2.UseSelectable = true;
+            this.metroLink2.Click += new System.EventHandler(this.metroLink2_Click);
             // 
             // metroLink1
             // 
@@ -111,6 +112,7 @@
             this.Controls.Add(this.pConfigs);
             this.Controls.Add(this.metroPanel1);
             this.Name = "PanelConfigs";
+            this.Load += new System.EventHandler(this.PanelConfigs_Load);
             this.Controls.SetChildIndex(this.metroPanel1, 0);
             this.Controls.SetChildIndex(this.pConfigs, 0);
             this.metroPanel1.ResumeLayout(false);

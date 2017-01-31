@@ -39,7 +39,11 @@ namespace ZkManagement.Datos
                 valor = dr["Valor"].ToString();
                 dr.Close();
             }
-            catch(DbException dbex)
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbex)
             {
                 throw new AppException("Error al consulta el valor de configuracion: " + id.ToString(), "Error", dbex);
             }
@@ -74,7 +78,11 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(DbException dbex)
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbex)
             {
                 throw new AppException("Error al actualizar la tabla configuracion", "Error", dbex);
             }

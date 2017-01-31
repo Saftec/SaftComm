@@ -31,5 +31,20 @@ namespace ZkManagement.NewUI
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(pr);
         }
+
+        private void metroLink2_Click(object sender, System.EventArgs e)
+        {
+            PanelDescarga pd = new PanelDescarga();
+            pd.LoadConfigs();
+            pConfigs.Controls.Clear();
+            pConfigs.Controls.Add(pd);
+        }
+
+        private void PanelConfigs_Load(object sender, System.EventArgs e)
+        {
+
+
+
+        }
     }
 }

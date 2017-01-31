@@ -56,6 +56,10 @@ namespace ZkManagement.Datos
                     empleados.Add(e);
                 }
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al intentar consultar los datos de los empleados de Saftime", "Error", dbex);
@@ -95,6 +99,10 @@ namespace ZkManagement.Datos
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbex)
             {
                 throw new AppException("Error al intentar eliminar empleado de la base de datos de Saftime", "Error", dbex);
@@ -129,6 +137,10 @@ namespace ZkManagement.Datos
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbex)
             {
@@ -165,6 +177,10 @@ namespace ZkManagement.Datos
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbex)
             {
@@ -211,6 +227,10 @@ namespace ZkManagement.Datos
                     emp.Privilegio = 0;
                     emp.Baja = 0;
                 }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbex)
             {

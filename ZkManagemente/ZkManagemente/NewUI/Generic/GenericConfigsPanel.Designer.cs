@@ -34,7 +34,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(465, 458);
+            this.btnGuardar.Location = new System.Drawing.Point(464, 528);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(108, 32);
             this.btnGuardar.TabIndex = 1;
@@ -43,7 +43,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(96, 458);
+            this.btnCancel.Location = new System.Drawing.Point(98, 528);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(108, 32);
             this.btnCancel.TabIndex = 2;
@@ -58,7 +58,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGuardar);
             this.Name = "GenericConfigsPanel";
-            this.Size = new System.Drawing.Size(690, 540);
+            this.Size = new System.Drawing.Size(690, 572);
             this.Controls.SetChildIndex(this.btnGuardar, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.ResumeLayout(false);
@@ -67,8 +67,7 @@
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroButton btnGuardar;
         private MetroFramework.Controls.MetroButton btnCancel;
+        protected MetroFramework.Controls.MetroButton btnGuardar;
     }
 }

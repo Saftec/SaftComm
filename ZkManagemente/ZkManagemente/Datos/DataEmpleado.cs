@@ -54,6 +54,10 @@ namespace ZkManagement.Datos
                     empleados.Add(e);
                 }
             }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbEx)
             {
                 throw new AppException("Error al intentar consultar los datos de los empleados", "Error", dbEx);
@@ -88,6 +92,10 @@ namespace ZkManagement.Datos
                 query = "DELETE FROM Empleados WHERE IdEmpleado=" + emp.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbEx)
             {
@@ -125,6 +133,10 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbEx)
             {
                 throw new AppException("Error al intentar actualizar los datos en la tabla empleados", "Error", dbEx);
@@ -160,6 +172,10 @@ namespace ZkManagement.Datos
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbEx)
             {
@@ -201,6 +217,10 @@ namespace ZkManagement.Datos
                     emp.Baja = Convert.ToInt32(dr["Baja"]);
                 }       
             }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
             catch (DbException dbEx)
             {
                 throw new AppException("Error al intentar consultar la tabla empleados", "Error", dbEx);
@@ -236,7 +256,11 @@ namespace ZkManagement.Datos
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
-            catch(DbException dbEx)
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbEx)
             {
                 throw new AppException("Error al intentar insertar en la tabla registros", "Error", dbEx);
             }
@@ -291,6 +315,10 @@ namespace ZkManagement.Datos
                     }
                     dr.Close(); //--> Lo cierro para poder iniciarlizarlo cuando vuelvo a pasar por el bucle.
                 }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
             }
             catch (DbException dbEx)
             {
