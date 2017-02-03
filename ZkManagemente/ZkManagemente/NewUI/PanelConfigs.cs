@@ -26,7 +26,7 @@ namespace ZkManagement.NewUI
 
         private void linkRutinas_Click(object sender, System.EventArgs e)
         {
-            PanelRutinas pr = new PanelRutinas();
+            PanelFichadas pr = new PanelFichadas();
             pr.LoadConfigs();
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(pr);
@@ -34,17 +34,10 @@ namespace ZkManagement.NewUI
 
         private void metroLink2_Click(object sender, System.EventArgs e)
         {
-            PanelDescarga pd = new PanelDescarga();
+            PanelFormatos pd = new PanelFormatos();
             pd.LoadConfigs();
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(pd);
-        }
-
-        private void PanelConfigs_Load(object sender, System.EventArgs e)
-        {
-
-
-
         }
     }
 }

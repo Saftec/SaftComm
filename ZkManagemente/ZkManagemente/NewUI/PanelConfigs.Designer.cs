@@ -65,17 +65,17 @@
             // 
             // metroLink2
             // 
-            this.metroLink2.Location = new System.Drawing.Point(3, 222);
+            this.metroLink2.Location = new System.Drawing.Point(3, 193);
             this.metroLink2.Name = "metroLink2";
             this.metroLink2.Size = new System.Drawing.Size(191, 23);
             this.metroLink2.TabIndex = 4;
-            this.metroLink2.Text = "Descarga de Fichadas";
+            this.metroLink2.Text = "Formatos de Descarga";
             this.metroLink2.UseSelectable = true;
             this.metroLink2.Click += new System.EventHandler(this.metroLink2_Click);
             // 
             // metroLink1
             // 
-            this.metroLink1.Location = new System.Drawing.Point(3, 193);
+            this.metroLink1.Location = new System.Drawing.Point(3, 222);
             this.metroLink1.Name = "metroLink1";
             this.metroLink1.Size = new System.Drawing.Size(191, 23);
             this.metroLink1.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.linkRutinas.Name = "linkRutinas";
             this.linkRutinas.Size = new System.Drawing.Size(191, 23);
             this.linkRutinas.TabIndex = 2;
-            this.linkRutinas.Text = "Rutinas";
+            this.linkRutinas.Text = "Descarga de Fichadas";
             this.linkRutinas.UseSelectable = true;
             this.linkRutinas.Click += new System.EventHandler(this.linkRutinas_Click);
             // 
@@ -112,7 +112,6 @@
             this.Controls.Add(this.pConfigs);
             this.Controls.Add(this.metroPanel1);
             this.Name = "PanelConfigs";
-            this.Load += new System.EventHandler(this.PanelConfigs_Load);
             this.Controls.SetChildIndex(this.metroPanel1, 0);
             this.Controls.SetChildIndex(this.pConfigs, 0);
             this.metroPanel1.ResumeLayout(false);

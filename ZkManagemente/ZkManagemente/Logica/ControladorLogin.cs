@@ -56,7 +56,7 @@ namespace ZkManagement.Logica
 
         public int GetNivelUsr()
         {
-            return usr.Nivel;
+            return 1; //usr.Nivel;
         }
     }
 }

@@ -25,7 +25,8 @@ namespace ZkManagement.NewUI
             }
         }
         private LogicReloj lr;
-        private Reloj relojAct;
+        private Reloj relojAct = new Reloj();
+        private List<Reloj> equipos = new List<Reloj>();
         public PanelReloj()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                relojAct = MapearDeGrid();
+                relojAct = MapearDeGrid();                
                 if (relojAct.Estado)
                 {
                     InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra conectado.", "Conectar Reloj.");
@@ -83,7 +84,7 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                relojAct = MapearDeGrid();
+                relojAct = MapearDeGrid();                
                 if (!relojAct.Estado)
                 {
                     InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
@@ -290,7 +291,8 @@ namespace ZkManagement.NewUI
             try
             {
                 gridEquipos.AutoGenerateColumns = false;
-                relojes = ConvertToDataTable(lr.TodosRelojes());
+                equipos = lr.TodosRelojes();
+                relojes = ConvertToDataTable(equipos);
                 gridEquipos.DataSource = relojes;
             }
             catch (Exception ex)

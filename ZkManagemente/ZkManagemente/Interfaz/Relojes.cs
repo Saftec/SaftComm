@@ -97,7 +97,6 @@ namespace ZkManagement.Interfaz
             reloj = BuscarEquipo(GetId());
             LogInforme("Conectando con reloj: " + reloj.Numero.ToString());
             Cursor = Cursors.WaitCursor;
-            string llave = reloj.Clave;
             try
             {
                 reloj.Conectar();

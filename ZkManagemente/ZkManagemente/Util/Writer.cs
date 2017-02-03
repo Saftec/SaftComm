@@ -7,61 +7,61 @@ namespace ZkManagement.Logica
 {
     class Writer
     {
-        private ControladorConfiguraciones cc = new ControladorConfiguraciones();
-        private Config config = new Config();
-
+        FormatoExport fe;
         public void EscribirRegistros(Fichada f)
         {
-            string path = config.Read("General","Path"); //Obtengo path de descarga de registros
+            string linea, hora, tipoMov, fecha, reloj, legajo;
 
-            string linea, hora, tipoMov, fecha, reloj, legajo;         
-
-            hora = FormatoHora(f.Registro.Hour, f.Registro.Minute);
-            fecha = FormatoFecha(f.Registro.Year, f.Registro.Month, f.Registro.Day);
-            legajo = FormatoLegajo(f.Empleado.Legajo);
-            tipoMov = FormatoModo(f.Tipo);
-            reloj = FormatoReloj(f.Reloj.Numero);
-            linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
- 
             try
-            {
-                using (StreamWriter w = File.AppendText(path))
+            {            
+                ObtenerFormatoActual();
+                // FORMATEO CADA CAMPO //
+                hora = FormatoHora(f.Registro.Hour, f.Registro.Minute);
+                fecha = FormatoFecha(f.Registro.Year, f.Registro.Month, f.Registro.Day);
+                legajo = FormatoLegajo(f.Empleado.Legajo);
+                tipoMov = FormatoModo(f.Tipo);
+                reloj = FormatoReloj(f.Reloj.Numero);
+                linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
+
+                // ESCRIBO LA LINEA //
+                using (StreamWriter w = File.AppendText(fe.Path))
                   w.WriteLine(linea);                
             }
-
+            catch(AppException appex)
+            {
+                throw appex;
+            }
             catch (Exception ex)
             {
-                Logger.GetLogger().Error(ex.Message);
-                throw new Exception("Error al intentar escribir el archivo de registros");               
+                throw new AppException("Error al intentar escribir el archivo de registros", "Fatal", ex);               
             }
         }
 
         private string FormatoLinea(string hora, string tipoMov, string fecha, string reloj, string legajo)
         {
             string separador;
-            int indice;
+
             string[] linea = new string[5];
 
-            indice = Convert.ToInt32(config.Read("Hora", "Posicion"));
-            linea[indice - 1] = hora;
-            indice = Convert.ToInt32(config.Read("Movimientos", "Posicion"));
-            linea[indice - 1] = tipoMov;
-            indice = Convert.ToInt32(config.Read("fecha", "Posicion"));
-            linea[indice - 1] = fecha;
-            indice = Convert.ToInt32(config.Read("Reloj", "Posicion"));
-            linea[indice - 1] = reloj;
-            indice = Convert.ToInt32(config.Read("Legajo", "Posicion"));
-            linea[indice - 1] = legajo;
+            linea[fe.PosicionHora - 1] = hora;
+
+            linea[fe.PosicionMov - 1] = tipoMov;
+
+            linea[fe.PosicionFecha - 1] = fecha;
+
+            linea[fe.PosicionReloj - 1] = reloj;
+
+            linea[fe.PosicionLegajo - 1] = legajo;
 
             separador = LeerSeparador();
 
             return string.Join(separador, linea);
         }
 
+        // este método reemplaza el separador por el caracter que corresponda y lo devuelve //
         private string LeerSeparador()
         {
-            string separador = config.Read("General", "Separador");
-
+            string separador = fe.SeparadorCampos;
             switch (separador)
             {
                 case "ninguno":
@@ -79,12 +79,11 @@ namespace ZkManagement.Logica
         private string FormatoHora(int hora, int minutos) //LE DOY EL FORMATO CORRECTO A LA FECHA Y HORA Y CONCATENO
         {
             string horaFormateada = string.Empty;
-            string formato = config.Read("Hora", "Formato");
 
-            string separador = config.Read("Hora", "Separador");
+            string separador = fe.SeparadorHora;
             if(separador=="ninguno") { separador = string.Empty; }
 
-            switch (formato)
+            switch (fe.FormatoHora)
             {
                 case "hhmm":
                     horaFormateada = hora.ToString().PadLeft(2,'0') + separador + minutos.ToString().PadLeft(2,'0');
@@ -100,12 +99,11 @@ namespace ZkManagement.Logica
         private string FormatoFecha(int año, int mes, int dia)
         {
             string fecha = string.Empty;
-            string formato = config.Read("Fecha", "Formato");
 
-            string separador = config.Read("Fecha", "Separador");
+            string separador = fe.SeparadorFecha;
             if(separador=="ninguno") { separador = string.Empty; }
 
-            switch (formato)
+            switch (fe.FormatoFecha)
             {
                 case "yyyymmdd":
                         fecha = año.ToString().PadLeft(4,'0') + separador + mes.ToString().PadLeft(2, '0') + separador + dia.ToString().PadLeft(2,'0');
@@ -125,10 +123,9 @@ namespace ZkManagement.Logica
         
         private string FormatoLegajo(string legajo)
         {
-            int total = Convert.ToInt32(config.Read("Legajo", "Completar"));
-            if (total > 0)
+            if (fe.LongitudLegajo > 0)
             {
-                legajo=legajo.PadLeft(total, '0');
+                legajo=legajo.PadLeft(fe.LongitudLegajo, '0');
             }
             return legajo;
         }
@@ -139,25 +136,40 @@ namespace ZkManagement.Logica
 
             if (modo == 0)
             {
-                codigo = config.Read("Movimientos", "CodEntrada");
+                codigo = fe.CodEntrada;
             }
             else
             {
-                codigo = config.Read("Movimientos", "CodSalida");
+                codigo = fe.CodSalida;
             }
             return codigo;
         }
 
         private string FormatoReloj(int reloj)
-        {         
-            string cadena = config.Read("Reloj", "Cadena");            
-            int total = Convert.ToInt32(config.Read("Reloj", "Completar"));
+        {
             string relojFormateado = reloj.ToString();
-            if (total > 0)
+            if (fe.LongitudReloj > 0)
             {
-                relojFormateado=reloj.ToString().PadLeft(total, '0');                
+                relojFormateado=reloj.ToString().PadLeft(fe.LongitudReloj, '0');                
             }
-            return (cadena.ToUpper()+relojFormateado);
+            return (fe.PrefijoReloj.ToUpper()+relojFormateado);
+        }
+
+        private void ObtenerFormatoActual()
+        {
+            LogicFormatos lf = new LogicFormatos();
+            try
+            {
+                fe = lf.GetFormatoActivo();
+            }
+            catch(AppException appex)
+            {
+                throw appex;
+            }
+            catch(Exception ex)
+            {
+                throw new AppException("Error no controlado al consultar formato activo", "Fatal", ex);
+            }
         }
     }
 }

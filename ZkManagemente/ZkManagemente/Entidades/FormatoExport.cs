@@ -121,6 +121,13 @@ namespace ZkManagement.Entidades
         {
             return this.Nombre;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null) { return false; }
+            if (this.GetType() != obj.GetType()) { return false; }
 
+            FormatoExport f = (FormatoExport)obj;
+            return (this.Id == f.Id);
+        }
     }
 }

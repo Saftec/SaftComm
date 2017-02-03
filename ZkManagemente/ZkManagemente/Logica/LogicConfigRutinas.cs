@@ -5,7 +5,7 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
-    class ControladorConfigRutinas
+    class LogicConfigRutinas
     {
         #region GettersConfigs
         public bool IsDescarga()
@@ -23,6 +23,26 @@ namespace ZkManagement.Logica
                 throw appex;
             }
             catch(Exception ex)
+            {
+                throw new AppException("Error no controlado al verificar el archivo de configuraciones", "Fatal", ex);
+            }
+            return valor;
+        }
+        public bool IsFicheroCopia()
+        {
+            bool valor = false;
+            try
+            {
+                if (!Boolean.TryParse(ConfigurationManager.AppSettings["Fichero"].ToString(), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");
+                }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (Exception ex)
             {
                 throw new AppException("Error no controlado al verificar el archivo de configuraciones", "Fatal", ex);
             }
@@ -156,6 +176,17 @@ namespace ZkManagement.Logica
             try
             {
                 ConfigurationManager.AppSettings["Descarga"] = valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
+            }
+        }
+        public void SetFicheroCopia(bool valor)
+        {
+            try
+            {
+                ConfigurationManager.AppSettings["Fichero"] = valor.ToString();
             }
             catch (Exception ex)
             {

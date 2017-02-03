@@ -22,7 +22,7 @@ namespace ZkManagement.Interfaz
         }
 
         private Relojes relojes;
-        private ControladorConfigRutinas ccr;
+        private LogicConfigRutinas ccr;
         public Principal()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace ZkManagement.Interfaz
 
         private void Principal_Load(object sender, EventArgs e)
         {
-            ccr = new ControladorConfigRutinas();
+            ccr = new LogicConfigRutinas();
             IniciarReloj();
             if (ccr.IsDescarga())
             {
@@ -123,7 +123,7 @@ namespace ZkManagement.Interfaz
         #region Timers
         public void InicializarTimers()
         {
-            ccr = new ControladorConfigRutinas();
+            ccr = new LogicConfigRutinas();
             if (ccr.GetEstadoRutinaRegs())
             {
                 timerRutinaRegs.Enabled = true;

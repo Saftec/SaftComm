@@ -165,8 +165,7 @@
     <Compile Include="Logica\LogicFormatos.cs" />
     <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
-    <Compile Include="Logica\ControladorConfigRutinas.cs" />
-    <Compile Include="Logica\LogicConfigExport.cs" />
+    <Compile Include="Logica\LogicConfigRutinas.cs" />
     <Compile Include="NewUI\EditEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,17 +214,17 @@
     <Compile Include="NewUI\Generic\GenericConfigsPanel.Designer.cs">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelDescarga.cs">
+    <Compile Include="NewUI\PanelesConfigs\PanelFormatos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelDescarga.Designer.cs">
-      <DependentUpon>PanelDescarga.cs</DependentUpon>
+    <Compile Include="NewUI\PanelesConfigs\PanelFormatos.Designer.cs">
+      <DependentUpon>PanelFormatos.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.cs">
+    <Compile Include="NewUI\PanelesConfigs\PanelFichadas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.Designer.cs">
-      <DependentUpon>PanelRutinas.cs</DependentUpon>
+    <Compile Include="NewUI\PanelesConfigs\PanelFichadas.Designer.cs">
+      <DependentUpon>PanelFichadas.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\PanelReloj.cs">
       <SubType>UserControl</SubType>
@@ -251,7 +250,6 @@
     <Compile Include="NewUI\PanelConfigs.Designer.cs">
       <DependentUpon>PanelConfigs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\Config.cs" />
     <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\Writer.cs" />
     <Compile Include="Logica\ControladorConfiguraciones.cs" />
@@ -322,11 +320,11 @@
     <EmbeddedResource Include="NewUI\Generic\GenericConfigsPanel.resx">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelDescarga.resx">
-      <DependentUpon>PanelDescarga.cs</DependentUpon>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFormatos.resx">
+      <DependentUpon>PanelFormatos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelRutinas.resx">
-      <DependentUpon>PanelRutinas.cs</DependentUpon>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFichadas.resx">
+      <DependentUpon>PanelFichadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelReloj.resx">
       <DependentUpon>PanelReloj.cs</DependentUpon>
@@ -347,9 +345,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="exportar.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

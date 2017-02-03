@@ -7,15 +7,14 @@ namespace ZkManagement.Interfaz
 {
     public partial class Configuracion : GenericaPadre
     {
-        private ControladorConfigRutinas ccr;
-        private LogicConfigExport lce;
+        private LogicConfigRutinas ccr;
         public Configuracion()
         {
             InitializeComponent();
         }
         private void CargarConfigs()
         {
-            ccr = new ControladorConfigRutinas();
+            ccr = new LogicConfigRutinas();
             
                     //FICHERO DE REGISTROS//
             LoadExportar();
@@ -43,9 +42,8 @@ namespace ZkManagement.Interfaz
 
         private void LoadExportar()
         {
-            lce = new LogicConfigExport();
             try
-            {
+            {/*
                 txtCodEntrada.Text = lce.GetCodEntrada();
                 txtCodsalida.Text = lce.GetCodSalida();
                 cbPosicionMovimientos.SelectedIndex = Convert.ToInt32(lce.GetPosMov()) - 1;
@@ -61,7 +59,7 @@ namespace ZkManagement.Interfaz
                 cbPosicionReloj.SelectedIndex = Convert.ToInt32(lce.GetPosReloj()) - 1;
                 cbSeparadorCampos.Text = lce.GetSeparadorCampos();
                 txtPathRegs.Text = lce.GetPath();
-                txtAnteponer.Text = lce.GetPrefijoReloj();
+                txtAnteponer.Text = lce.GetPrefijoReloj();*/
             }
             catch(Exception ex)
             {
@@ -71,9 +69,8 @@ namespace ZkManagement.Interfaz
         }
         private void GrabarEnArchivo()
         {
-            lce = new LogicConfigExport();
             try
-            {
+            {/*
                 lce.SetCodEntrada(txtCodEntrada.Text);
                 lce.SetCodSalida(txtCodsalida.Text);
                 lce.SetPosMov((cbPosicionMovimientos.SelectedIndex + 1).ToString());
@@ -89,7 +86,7 @@ namespace ZkManagement.Interfaz
                 lce.SetPosReloj((cbPosicionReloj.SelectedIndex + 1).ToString());
                 lce.SetSeparadorCampos(cbSeparadorCampos.Text);
                 lce.SetPathDescarga(txtPathRegs.Text);
-                lce.SetLongitudReloj(txtReloj.Text);
+                lce.SetLongitudReloj(txtReloj.Text);*/
             }
             catch(Exception ex)
             {
@@ -104,7 +101,7 @@ namespace ZkManagement.Interfaz
 
         private void btnGuardar_Click(object sender, System.EventArgs e)
         {
-            ControladorConfigRutinas ccr = new ControladorConfigRutinas();
+            LogicConfigRutinas ccr = new LogicConfigRutinas();
             Cursor = Cursors.WaitCursor;
 
             try

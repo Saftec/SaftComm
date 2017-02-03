@@ -1,6 +1,6 @@
 ﻿namespace ZkManagement.NewUI.PanelesConfigs
 {
-    partial class PanelDescarga
+    partial class PanelFormatos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -70,8 +70,8 @@
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
             this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
-            this.btnEditar = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.btnEliminar = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -771,9 +771,9 @@
             // 
             this.cbFormatos.FormattingEnabled = true;
             this.cbFormatos.ItemHeight = 23;
-            this.cbFormatos.Location = new System.Drawing.Point(284, 28);
+            this.cbFormatos.Location = new System.Drawing.Point(252, 31);
             this.cbFormatos.Name = "cbFormatos";
-            this.cbFormatos.Size = new System.Drawing.Size(121, 29);
+            this.cbFormatos.Size = new System.Drawing.Size(141, 29);
             this.cbFormatos.TabIndex = 8;
             this.cbFormatos.UseSelectable = true;
             this.cbFormatos.SelectedIndexChanged += new System.EventHandler(this.cbFormatos_SelectedIndexChanged);
@@ -781,37 +781,38 @@
             // metroLabel17
             // 
             this.metroLabel17.AutoSize = true;
-            this.metroLabel17.Location = new System.Drawing.Point(210, 31);
+            this.metroLabel17.Location = new System.Drawing.Point(178, 31);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(68, 19);
             this.metroLabel17.TabIndex = 9;
             this.metroLabel17.Text = "Formatos:";
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(438, 31);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 10;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseSelectable = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(553, 31);
+            this.metroButton2.Location = new System.Drawing.Point(417, 35);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(75, 23);
+            this.metroButton2.Size = new System.Drawing.Size(112, 23);
             this.metroButton2.TabIndex = 11;
             this.metroButton2.Text = "Nuevo";
             this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
-            // PanelDescarga
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(549, 35);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(112, 23);
+            this.btnEliminar.TabIndex = 12;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseSelectable = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // PanelFormatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.metroButton2);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.metroLabel17);
             this.Controls.Add(this.cbFormatos);
             this.Controls.Add(this.groupBox6);
@@ -820,7 +821,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "PanelDescarga";
+            this.Name = "PanelFormatos";
             this.Controls.SetChildIndex(this.btnGuardar, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
@@ -830,8 +831,8 @@
             this.Controls.SetChildIndex(this.groupBox6, 0);
             this.Controls.SetChildIndex(this.cbFormatos, 0);
             this.Controls.SetChildIndex(this.metroLabel17, 0);
-            this.Controls.SetChildIndex(this.btnEditar, 0);
             this.Controls.SetChildIndex(this.metroButton2, 0);
+            this.Controls.SetChildIndex(this.btnEliminar, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -891,9 +892,9 @@
         private MetroFramework.Controls.MetroTextBox txtPosicionRegistro;
         private MetroFramework.Controls.MetroComboBox cbFormatos;
         private MetroFramework.Controls.MetroLabel metroLabel17;
-        private MetroFramework.Controls.MetroButton btnEditar;
         private MetroFramework.Controls.MetroButton metroButton2;
         private MetroFramework.Controls.MetroLabel metroLabel18;
         private MetroFramework.Controls.MetroTextBox txtNombreFormato;
+        private MetroFramework.Controls.MetroButton btnEliminar;
     }
 }
