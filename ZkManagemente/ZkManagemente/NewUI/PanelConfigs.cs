@@ -39,5 +39,13 @@ namespace ZkManagement.NewUI
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(pd);
         }
+
+        private void linkSaftime_Click(object sender, System.EventArgs e)
+        {
+            PanelSaftime ps = new PanelSaftime();
+            ps.LoadConfigs();
+            pConfigs.Controls.Clear();
+            pConfigs.Controls.Add(ps);
+        }
     }
 }

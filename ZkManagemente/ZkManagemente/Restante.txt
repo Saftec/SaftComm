@@ -1,8 +1,4 @@
-﻿Relojes:
-*Background para rutinas.
-*Actualización de DGV despues de ABM.
-
-Empleados:
+﻿Empleados:
 *Treeview para deptos.
 
 Entidad Reloj:

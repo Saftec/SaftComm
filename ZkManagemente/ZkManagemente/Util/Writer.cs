@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -7,25 +8,35 @@ namespace ZkManagement.Logica
 {
     class Writer
     {
-        FormatoExport fe;
-        public void EscribirRegistros(Fichada f)
+        private FormatoExport fe;
+        public void EscribirRegistros(List<Fichada> fichadas)
         {
             string linea, hora, tipoMov, fecha, reloj, legajo;
+            LogicConfigRutinas lcr = new LogicConfigRutinas(); // AGREGO PARA VERIFICAR SI TENGO QUE ESCRIBIR FICHERO DE COPIA EN CARPETA RAIZ.
 
             try
-            {            
+            {                         
                 ObtenerFormatoActual();
-                // FORMATEO CADA CAMPO //
-                hora = FormatoHora(f.Registro.Hour, f.Registro.Minute);
-                fecha = FormatoFecha(f.Registro.Year, f.Registro.Month, f.Registro.Day);
-                legajo = FormatoLegajo(f.Empleado.Legajo);
-                tipoMov = FormatoModo(f.Tipo);
-                reloj = FormatoReloj(f.Reloj.Numero);
-                linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
+                bool ficheroCopia = lcr.IsFicheroCopia();
+                foreach(Fichada f in fichadas)
+                {
+                    // FORMATEO CADA CAMPO //
+                    hora = FormatoHora(f.Registro.Hour, f.Registro.Minute);
+                    fecha = FormatoFecha(f.Registro.Year, f.Registro.Month, f.Registro.Day);
+                    legajo = FormatoLegajo(f.Empleado.Legajo);
+                    tipoMov = FormatoModo(f.Tipo);
+                    reloj = FormatoReloj(f.Reloj.Numero);
+                    linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
 
-                // ESCRIBO LA LINEA //
-                using (StreamWriter w = File.AppendText(fe.Path))
-                  w.WriteLine(linea);                
+                    // ESCRIBO LA LINEA //
+                    using (StreamWriter w = File.AppendText(fe.Path))
+                        w.WriteLine(linea);
+                    if (ficheroCopia)
+                    {
+                        using (StreamWriter w = File.AppendText(Directory.GetCurrentDirectory() + @"\Regs.txt"))  // ESCRIBO LAS REGS DE COPIA EN LA CARPETA DEL PROGRAMA
+                            w.WriteLine(linea);                      
+                    }
+                }                             
             }
             catch(AppException appex)
             {

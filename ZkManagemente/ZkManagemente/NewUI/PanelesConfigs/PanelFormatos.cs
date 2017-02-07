@@ -36,7 +36,59 @@ namespace ZkManagement.NewUI.PanelesConfigs
         }
         private bool Validar()
         {
+            Validate v = new Validate();
+            if(txtPosicionFecha.Text=="" || txtPosicionHora.Text == "" || txtPosicionLegajo.Text == "" || txtPosicionRegistro.Text == "" || txtPosicionReloj.Text == "")
+            {
+                base.InformarError("Todos los campos deben contener una posición.", "Guardar Formato");
+                return false;
+            }
+            if (txtNombreFormato.Text == "")
+            {
+                base.InformarError("Debe ingresar un nombre de formato.", "Guardar Formato");
+                return false;
+            }
+            if (txtPath.Text == "")
+            {
+                base.InformarError("Debe ingresar un path de descarga.", "Guardar Formato");
+                return false;
+            }
+            // ESTA VALIDACION FALLA //
+            if(!v.NumerosEnteros(new string[] { txtPosicionFecha.Text, txtPosicionHora.Text, txtPosicionLegajo.Text, txtPosicionRegistro.Text, txtPosicionReloj.Text }))
+            {
+                base.InformarError("Los campos de posición deben contener sólo números.", "Guardar Formato");
+                return false;
+            }
+            if (!ValidarPosiciones())
+            {
+                base.InformarError("Las posiciones de los campos no pueden repetirse o ser mayores a 5.", "Guardar Formato");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarPosiciones()
+        {
             bool band = true;
+            if(txtPosicionFecha.Text==txtPosicionHora.Text || txtPosicionFecha.Text == txtPosicionLegajo.Text || txtPosicionFecha.Text == txtPosicionRegistro.Text || txtPosicionFecha.Text == txtPosicionReloj.Text || Convert.ToInt32(txtPosicionFecha.Text)>5)
+            {
+                band = false;
+            }
+            if(txtPosicionHora.Text==txtPosicionFecha.Text || txtPosicionHora.Text == txtPosicionLegajo.Text || txtPosicionHora.Text == txtPosicionRegistro.Text || txtPosicionHora.Text == txtPosicionReloj.Text || Convert.ToInt32(txtPosicionHora.Text) > 5)
+            {
+                band = false;
+            }
+            if(txtPosicionLegajo.Text==txtPosicionFecha.Text || txtPosicionLegajo.Text == txtPosicionHora.Text || txtPosicionLegajo.Text == txtPosicionRegistro.Text || txtPosicionLegajo.Text == txtPosicionReloj.Text || Convert.ToInt32(txtPosicionLegajo.Text) > 5)
+            {
+                band = false;
+            }
+            if(txtPosicionRegistro.Text == txtPosicionFecha.Text || txtPosicionRegistro.Text == txtPosicionHora.Text || txtPosicionRegistro.Text == txtPosicionLegajo.Text || txtPosicionRegistro.Text == txtPosicionReloj.Text || Convert.ToInt32(txtPosicionRegistro.Text) > 5)
+            {
+                band = false;
+            }
+            if(txtPosicionReloj.Text == txtPosicionFecha.Text || txtPosicionReloj.Text == txtPosicionHora.Text || txtPosicionReloj.Text == txtPosicionLegajo.Text || txtPosicionReloj.Text == txtPosicionRegistro.Text || Convert.ToInt32(txtPosicionReloj.Text) > 5)
+            {
+                band = false;
+            }
 
             return band;
         }

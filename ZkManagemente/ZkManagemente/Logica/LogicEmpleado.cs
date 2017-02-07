@@ -141,12 +141,8 @@ namespace ZkManagement.Logica
         //VERIFICA SI TENGO QUE TRABAJAR CON LA BD DE SAFTIME
         private bool VerificarSaftime()
         {
-            bool resul=false;
-            if (!Boolean.TryParse(ConfigurationManager.AppSettings["Saftime"], out resul))
-            {
-                throw new AppException("Error al intentar leer la configuración de Saftime");
-            }
-            return resul;
+            LogicConfigSaftime lcs = new LogicConfigSaftime();
+            return lcs.IsEmpleados();
         }
     }
 }

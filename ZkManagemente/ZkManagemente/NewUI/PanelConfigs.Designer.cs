@@ -31,7 +31,7 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroLink3 = new MetroFramework.Controls.MetroLink();
             this.metroLink2 = new MetroFramework.Controls.MetroLink();
-            this.metroLink1 = new MetroFramework.Controls.MetroLink();
+            this.linkSaftime = new MetroFramework.Controls.MetroLink();
             this.linkRutinas = new MetroFramework.Controls.MetroLink();
             this.pConfigs = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1.SuspendLayout();
@@ -41,7 +41,7 @@
             // 
             this.metroPanel1.Controls.Add(this.metroLink3);
             this.metroPanel1.Controls.Add(this.metroLink2);
-            this.metroPanel1.Controls.Add(this.metroLink1);
+            this.metroPanel1.Controls.Add(this.linkSaftime);
             this.metroPanel1.Controls.Add(this.linkRutinas);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
@@ -73,14 +73,15 @@
             this.metroLink2.UseSelectable = true;
             this.metroLink2.Click += new System.EventHandler(this.metroLink2_Click);
             // 
-            // metroLink1
+            // linkSaftime
             // 
-            this.metroLink1.Location = new System.Drawing.Point(3, 222);
-            this.metroLink1.Name = "metroLink1";
-            this.metroLink1.Size = new System.Drawing.Size(191, 23);
-            this.metroLink1.TabIndex = 3;
-            this.metroLink1.Text = "Saftime";
-            this.metroLink1.UseSelectable = true;
+            this.linkSaftime.Location = new System.Drawing.Point(3, 222);
+            this.linkSaftime.Name = "linkSaftime";
+            this.linkSaftime.Size = new System.Drawing.Size(191, 23);
+            this.linkSaftime.TabIndex = 3;
+            this.linkSaftime.Text = "Saftime";
+            this.linkSaftime.UseSelectable = true;
+            this.linkSaftime.Click += new System.EventHandler(this.linkSaftime_Click);
             // 
             // linkRutinas
             // 
@@ -124,7 +125,7 @@
 
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroLink metroLink2;
-        private MetroFramework.Controls.MetroLink metroLink1;
+        private MetroFramework.Controls.MetroLink linkSaftime;
         private MetroFramework.Controls.MetroLink linkRutinas;
         private MetroFramework.Controls.MetroPanel pConfigs;
         private MetroFramework.Controls.MetroLink metroLink3;

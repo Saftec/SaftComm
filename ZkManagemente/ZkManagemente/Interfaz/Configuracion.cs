@@ -106,9 +106,9 @@ namespace ZkManagement.Interfaz
 
             try
             {
-                ccr.SetEstadoRango(chckActivarHorarios.Checked.ToString());
-                ccr.SetEstadoRutinaHs(chckActivaHora.Checked.ToString());
-                ccr.SetEstadoRutinaRegs(chckActivaReg.Checked.ToString());
+                //ccr.SetEstadoRango(chckActivarHorarios.Checked.ToString());
+                //ccr.SetEstadoRutinaHs(chckActivaHora.Checked.ToString());
+                //ccr.SetEstadoRutinaRegs(chckActivaReg.Checked.ToString());
                 ccr.SetFinRango(txtHSHasta.Text);
                 ccr.SetInicioRango(txtHSDesde.Text);
                 ccr.SetIntervaloHs(txtMinHs.Text);

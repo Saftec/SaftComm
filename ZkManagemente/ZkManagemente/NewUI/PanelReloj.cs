@@ -26,7 +26,7 @@ namespace ZkManagement.NewUI
         }
         private LogicReloj lr;
         private Reloj relojAct = new Reloj();
-        private List<Reloj> equipos = new List<Reloj>();
+        private List<Reloj> equipos;
         public PanelReloj()
         {
             InitializeComponent();
@@ -45,17 +45,21 @@ namespace ZkManagement.NewUI
                 relojAct = MapearDeGrid();                
                 if (relojAct.Estado)
                 {
-                    InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra conectado.", "Conectar Reloj.");
+                    InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra conectado.", "Conectar Reloj.");
                     return;
                 }
                 relojAct.Conectar();
                 relojAct.Estado = true;
                 MapearAGrid(relojAct);
-                Informar("El dispositivo: " + relojAct.Numero.ToString() + " se conectó correctamente", "Conectar Reloj.");
+                LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se conectó correctamente");
+            }
+            catch(AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
-                InformarError(ex.Message, "Conectar Reloj.");
+                InformarError(ex.Message, "Conectar.");
             }
         }
 
@@ -66,17 +70,21 @@ namespace ZkManagement.NewUI
                 relojAct = MapearDeGrid();
                 if (!relojAct.Estado)
                 {
-                    InformarError("El dispositivo: " + relojAct.Numero.ToString() + " ya se encuentra desconectado.", "Desconectar Reloj.");
+                    InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra desconectado.", "Desconectar Reloj.");
                     return;
                 }
                 relojAct.Desconectar();
                 relojAct.Estado = false;
                 MapearAGrid(relojAct);
-                Informar("El dispositivo: " + relojAct.Numero.ToString() + " se desconectó correctamente", "Desconectar Reloj.");
+                LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se desconectó correctamente");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
-                InformarError(ex.Message, "Desconectar Reloj.");
+                InformarError(ex.Message, "Desconectar.");
             }
         }
 
@@ -87,11 +95,15 @@ namespace ZkManagement.NewUI
                 relojAct = MapearDeGrid();                
                 if (!relojAct.Estado)
                 {
-                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Sincronizar Hora.");
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Sincronizar Hora.");
                     return;
                 }
                 relojAct.SincronizarHora();
-                Informar("Se sincronizó correctamente la hora con el reloj: " + relojAct.Numero.ToString(), "Sincronizar Hora.");
+                LoguearInforme("Se sincronizó correctamente la hora con el reloj: '" + relojAct.Nombre + "'");
+            }
+            catch(AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -106,7 +118,7 @@ namespace ZkManagement.NewUI
                 relojAct = MapearDeGrid();
                 if (!relojAct.Estado)
                 {
-                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Descargar Registros.");
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Descargar Registros.");
                     return;
                 }
                 List<Fichada> fichadas;
@@ -116,13 +128,17 @@ namespace ZkManagement.NewUI
                 desconocidos = lr.AgregarRegis(fichadas);
                 if (desconocidos.Count > 0)
                 {
-                    InformarError("Los siguientes legajos son desconocidos: ", "Descarga de Registros.");
+                    LoguearError("Los siguientes legajos son desconocidos: ");
                     foreach (string l in desconocidos)
                     {
                         LoguearError("Legajo: " + l);
                     }
                 }
-                Informar("Se descargaron: " + fichadas.Count.ToString() + " registros.", "Descarga de Registros.");
+                LoguearInforme("Se descargaron: " + fichadas.Count.ToString() + " registros.");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -137,7 +153,7 @@ namespace ZkManagement.NewUI
                 relojAct = MapearDeGrid();
                 if (!relojAct.Estado)
                 {
-                    InformarError("El equipo " + relojAct.Numero.ToString() + " no está conectado.", "Borrar Registros.");
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Borrar Registros.");
                     return;
                 }
                 if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
@@ -146,12 +162,16 @@ namespace ZkManagement.NewUI
                     cant = relojAct.BorrarRegistros();
                     lr = new LogicReloj();
                     lr.ActualizarBorrado(relojAct, cant); //Guarda la info. del borrado en la BD
-                    Informar("Se borraron " + cant.ToString() + " registros del reloj: " + relojAct.Numero.ToString(), "Borrar Registros.");
+                    LoguearInforme("Se borraron " + cant.ToString() + " registros del reloj: '" + relojAct.Nombre + "'");
                 }
                 else
                 {
                     return;
                 }
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -200,17 +220,6 @@ namespace ZkManagement.NewUI
         #endregion
 
         #region Informes
-        protected new void InformarError(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            LoguearError(mensaje);
-        }
-        protected new void Informar(string mensaje, string titulo)
-        {
-            MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoguearInforme(mensaje);
-        }
-
         private void LoguearInforme(string mensaje)
         {
             txtLog.SelectionColor = Color.Black;
@@ -239,37 +248,7 @@ namespace ZkManagement.NewUI
             {
                 throw new AppException("Error al intentar convertir Id a INT.");
             }
-            if (int.TryParse(gridEquipos.CurrentRow.Cells["Numero"].Value.ToString(), out valor))
-            {
-                r.Numero = valor;
-            }
-            else
-            {
-                throw new AppException("Error al intentar convertir Numero de equipo a INT.");
-            }
-            if (int.TryParse(gridEquipos.CurrentRow.Cells["Puerto"].Value.ToString(), out valor))
-            {
-                r.Puerto = valor;
-            }
-            else
-            {
-                throw new AppException("Error al intentar convertir el puerto a INT.");
-            }
-            if (gridEquipos.CurrentRow.Cells["Estado"].Value.ToString() == "Conectado")
-            {
-                r.Estado = true;
-            }
-            else
-            {
-                r.Estado = false;
-            }
-
-            r.Nombre = gridEquipos.CurrentRow.Cells["Nombre"].Value.ToString();
-            r.Clave = gridEquipos.CurrentRow.Cells["Clave"].Value.ToString();
-            r.DNS = gridEquipos.CurrentRow.Cells["DNS"].Value.ToString();
-            r.Ip = gridEquipos.CurrentRow.Cells["IP"].Value.ToString();
-
-            return r;
+            return (equipos[equipos.IndexOf(r)]);
         }
         private void MapearAGrid(Reloj r)
         {

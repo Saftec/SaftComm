@@ -162,6 +162,7 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\LogicConfigSaftime.cs" />
     <Compile Include="Logica\LogicFormatos.cs" />
     <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
@@ -225,6 +226,12 @@
     </Compile>
     <Compile Include="NewUI\PanelesConfigs\PanelFichadas.Designer.cs">
       <DependentUpon>PanelFichadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelSaftime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelSaftime.Designer.cs">
+      <DependentUpon>PanelSaftime.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\PanelReloj.cs">
       <SubType>UserControl</SubType>
@@ -325,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFichadas.resx">
       <DependentUpon>PanelFichadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelSaftime.resx">
+      <DependentUpon>PanelSaftime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelReloj.resx">
       <DependentUpon>PanelReloj.cs</DependentUpon>

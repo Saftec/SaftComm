@@ -17,9 +17,9 @@ namespace ZkManagement.Logica
 
             try
             {
+                writer.EscribirRegistros(fichadas);
                 foreach (Fichada f in fichadas)
                 {
-                    writer.EscribirRegistros(f);
                     string legajo = f.Empleado.Legajo;
 
                     // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFTCOMM //

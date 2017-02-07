@@ -193,11 +193,11 @@ namespace ZkManagement.Logica
                 throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
-        public void SetEstadoRutinaRegs(string valor)
+        public void SetEstadoRutinaRegs(bool valor)
         {
             try
             {
-                DataConfigs.Instancia.SetConfig(4, valor);
+                DataConfigs.Instancia.SetConfig(4, valor.ToString());
             }
             catch(AppException apepx)
             {
@@ -208,11 +208,11 @@ namespace ZkManagement.Logica
                 throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
-        public void SetEstadoRutinaHs(string valor)
+        public void SetEstadoRutinaHs(bool valor)
         {
             try
             {
-                DataConfigs.Instancia.SetConfig(6, valor);
+                DataConfigs.Instancia.SetConfig(6, valor.ToString());
             }
             catch (AppException apepx)
             {
@@ -253,11 +253,11 @@ namespace ZkManagement.Logica
                 throw new AppException("Error al intentar guardar configuración en archivo de configuraciones", "Fatal", ex);
             }
         }
-        public void SetEstadoRango(string valor)
+        public void SetEstadoRango(bool valor)
         {
             try
             {
-                DataConfigs.Instancia.SetConfig(10, valor);
+                DataConfigs.Instancia.SetConfig(10, valor.ToString());
             }
             catch (AppException appex)
             {
