@@ -47,5 +47,13 @@ namespace ZkManagement.NewUI
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(ps);
         }
+
+        private void linkBaseDeDatos_Click(object sender, System.EventArgs e)
+        {
+            PanelBaseDeDatos pbd = new PanelBaseDeDatos();
+            pbd.LoadConfigs();
+            pConfigs.Controls.Clear();
+            pConfigs.Controls.Add(pbd);
+        }
     }
 }

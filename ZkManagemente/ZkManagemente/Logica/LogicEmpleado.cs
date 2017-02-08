@@ -66,8 +66,6 @@ namespace ZkManagement.Logica
 
         public void BajaEmpleado(Empleado emp)
         {
-            DataTemplates ch = new DataTemplates();
-
             try
             {
                 if (VerificarSaftime())
@@ -80,7 +78,7 @@ namespace ZkManagement.Logica
                 }
                 Huella h = new Huella();
                 h.Empleado = emp;
-                ch.EliminarHuella(h);
+                DataTemplates.Instancia.EliminarHuella(h);
             }
             catch (AppException appex)
             {

@@ -11,7 +11,6 @@ namespace ZkManagement.Logica
 
         public void CargarDatos(Empleado emp, Reloj reloj)
         {
-            DataTemplates ch = new DataTemplates();
             List<Huella> huellas = new List<Huella>();
             try
             {

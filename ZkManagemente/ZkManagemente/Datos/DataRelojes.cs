@@ -11,12 +11,6 @@ namespace ZkManagement.Datos
     {
         // Patrón SINGLETON //
         private static DataRelojes _instancia;
-
-        private DataRelojes()
-        {
-
-        }
-
         public static DataRelojes Instancia
         {
             get
@@ -29,6 +23,7 @@ namespace ZkManagement.Datos
             }
 
         }
+        private DataRelojes() { }
         // HASTA ACÁ //
 
         private string query = string.Empty;

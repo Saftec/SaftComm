@@ -42,7 +42,6 @@ namespace ZkManagement.Logica
              * Por cada legajo, consulto el empid. --> El legajo existe SI O SI en la BD ya que anteriormente descargué y guardé los datos del equipo.
              * Por cada huella guardo el empid, template, fingerindex, largo de la huella.
              * */
-            DataTemplates ch = new DataTemplates();
             int total = 0;
             try
             {
@@ -53,13 +52,13 @@ namespace ZkManagement.Logica
                 foreach (Huella h in huellas)
                 {
                     h.Empleado = DataEmpleado.Instancia.GetIdByLegajo(h.Empleado.Legajo);
-                    if (!ch.Existe(h))
+                    if (!DataTemplates.Instancia.Existe(h))
                     {
-                        ch.InsertarHuella(h);
+                        DataTemplates.Instancia.InsertarHuella(h);
                     }
                     else
                     {
-                        ch.ActualizarHuella(h);
+                        DataTemplates.Instancia.ActualizarHuella(h);
                     }
                 }                             
              }

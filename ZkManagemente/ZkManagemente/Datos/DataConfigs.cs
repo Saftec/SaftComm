@@ -22,6 +22,8 @@ namespace ZkManagement.Datos
 
         }
 
+        private DataConfigs() { }
+
         // Hasta acá //
 
         private string query = string.Empty;

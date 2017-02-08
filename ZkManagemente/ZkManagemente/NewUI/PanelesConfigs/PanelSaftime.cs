@@ -6,6 +6,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
 {
     public partial class PanelSaftime : GenericConfigsPanel
     {
+        LogicConfigSQL lcsql;
         LogicConfigSaftime lcs;
         public PanelSaftime()
         {
@@ -14,13 +15,14 @@ namespace ZkManagement.NewUI.PanelesConfigs
 
         public override void LoadConfigs()
         {
+            lcsql = new LogicConfigSQL("Saftime");
             lcs = new LogicConfigSaftime();
             try
             {
-                txtBase.Text = lcs.GetCatalogo();
-                txtPassword.Text = lcs.GetContraseña();
-                txtServer.Text = lcs.GetServidor();
-                txtUsuario.Text = lcs.GetUsuario();
+                txtBase.Text = lcsql.GetCatalogo();
+                txtPassword.Text = lcsql.GetContraseña();
+                txtServer.Text = lcsql.GetServidor();
+                txtUsuario.Text = lcsql.GetUsuario();
                 chckEmpleados.Checked = lcs.IsEmpleados();
                 chckRegis.Checked = lcs.IsRegistros();
             }
@@ -35,10 +37,15 @@ namespace ZkManagement.NewUI.PanelesConfigs
         }
         protected override void SaveConfigs()
         {
+            lcsql = new LogicConfigSQL("Saftime");
             lcs = new LogicConfigSaftime();
             try
             {
-                lcs.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuario.Text, txtPassword.Text);
+                if(!lcsql.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuario.Text, txtPassword.Text, "Saftime"))
+                {
+                    base.InformarError("No se pudo establecer conexión con la base de datos de Saftime.", "Conexión Saftime.");
+                    return;
+                }
                 lcs.SetEstadoEmpleados(chckEmpleados.Checked);
                 lcs.SetEstadoRegistros(chckRegis.Checked);
                 base.Informar("Configuraciones guardadas correctamente.", "Guardar Configuración.");
@@ -55,7 +62,12 @@ namespace ZkManagement.NewUI.PanelesConfigs
 
         private bool Validar()
         {
-
+            Validate v = new Validate();
+            if(!v.NotEmpty(new string[] { txtBase.Text, txtPassword.Text, txtServer.Text, txtUsuario.Text }))
+            {
+                base.InformarError("Estos campos no pueden estar vacíos", "Guardar Configuración.");
+                return false;
+            }
             return true;
         }
 

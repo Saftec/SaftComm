@@ -10,7 +10,6 @@ namespace ZkManagement.Datos
     class DataUsuarios
     {
         private static DataUsuarios _instancia;
-
         public static DataUsuarios Instancia
         {
             get
@@ -23,6 +22,9 @@ namespace ZkManagement.Datos
             }
 
         }
+        private DataUsuarios() { }
+
+
         private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
         {

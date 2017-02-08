@@ -163,6 +163,7 @@
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Logica\LogicConfigSaftime.cs" />
+    <Compile Include="Logica\LogicConfigSQL.cs" />
     <Compile Include="Logica\LogicFormatos.cs" />
     <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\ControladorCargaDatos.cs" />
@@ -214,6 +215,12 @@
     </Compile>
     <Compile Include="NewUI\Generic\GenericConfigsPanel.Designer.cs">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelBaseDeDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelBaseDeDatos.Designer.cs">
+      <DependentUpon>PanelBaseDeDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\PanelesConfigs\PanelFormatos.cs">
       <SubType>UserControl</SubType>
@@ -326,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\Generic\GenericConfigsPanel.resx">
       <DependentUpon>GenericConfigsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelBaseDeDatos.resx">
+      <DependentUpon>PanelBaseDeDatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFormatos.resx">
       <DependentUpon>PanelFormatos.cs</DependentUpon>

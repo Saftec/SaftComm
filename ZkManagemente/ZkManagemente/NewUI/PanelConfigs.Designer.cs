@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.metroLink3 = new MetroFramework.Controls.MetroLink();
+            this.linkBaseDeDatos = new MetroFramework.Controls.MetroLink();
             this.metroLink2 = new MetroFramework.Controls.MetroLink();
             this.linkSaftime = new MetroFramework.Controls.MetroLink();
             this.linkRutinas = new MetroFramework.Controls.MetroLink();
@@ -39,7 +39,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.Controls.Add(this.metroLink3);
+            this.metroPanel1.Controls.Add(this.linkBaseDeDatos);
             this.metroPanel1.Controls.Add(this.metroLink2);
             this.metroPanel1.Controls.Add(this.linkSaftime);
             this.metroPanel1.Controls.Add(this.linkRutinas);
@@ -54,14 +54,15 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // metroLink3
+            // linkBaseDeDatos
             // 
-            this.metroLink3.Location = new System.Drawing.Point(3, 251);
-            this.metroLink3.Name = "metroLink3";
-            this.metroLink3.Size = new System.Drawing.Size(191, 23);
-            this.metroLink3.TabIndex = 5;
-            this.metroLink3.Text = "Servidor FTP";
-            this.metroLink3.UseSelectable = true;
+            this.linkBaseDeDatos.Location = new System.Drawing.Point(3, 251);
+            this.linkBaseDeDatos.Name = "linkBaseDeDatos";
+            this.linkBaseDeDatos.Size = new System.Drawing.Size(191, 23);
+            this.linkBaseDeDatos.TabIndex = 5;
+            this.linkBaseDeDatos.Text = "Base de Datos";
+            this.linkBaseDeDatos.UseSelectable = true;
+            this.linkBaseDeDatos.Click += new System.EventHandler(this.linkBaseDeDatos_Click);
             // 
             // metroLink2
             // 
@@ -128,6 +129,6 @@
         private MetroFramework.Controls.MetroLink linkSaftime;
         private MetroFramework.Controls.MetroLink linkRutinas;
         private MetroFramework.Controls.MetroPanel pConfigs;
-        private MetroFramework.Controls.MetroLink metroLink3;
+        private MetroFramework.Controls.MetroLink linkBaseDeDatos;
     }
 }

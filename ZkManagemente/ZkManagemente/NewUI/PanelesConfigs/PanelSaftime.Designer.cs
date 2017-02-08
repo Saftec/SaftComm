@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnTest = new MetroFramework.Controls.MetroButton();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
             this.txtUsuario = new MetroFramework.Controls.MetroTextBox();
@@ -50,7 +49,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Controls.Add(this.btnTest);
             this.groupBox1.Controls.Add(this.metroLabel4);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.txtUsuario);
@@ -61,19 +59,10 @@
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Location = new System.Drawing.Point(45, 213);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(592, 245);
+            this.groupBox1.Size = new System.Drawing.Size(592, 211);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conexión a base de datos";
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(217, 203);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(114, 23);
-            this.btnTest.TabIndex = 8;
-            this.btnTest.Text = "Probar Conexión";
-            this.btnTest.UseSelectable = true;
             // 
             // metroLabel4
             // 
@@ -285,7 +274,6 @@
         private MetroFramework.Controls.MetroTextBox txtPassword;
         private MetroFramework.Controls.MetroTextBox txtUsuario;
         private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroButton btnTest;
         private MetroFramework.Controls.MetroCheckBox chckEmpleados;
         private MetroFramework.Controls.MetroCheckBox chckRegis;
     }

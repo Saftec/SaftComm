@@ -157,6 +157,42 @@ namespace ZkManagement.Datos
             }
 
         }
+        public bool TestConexion()
+        {
+            bool band = false;
+            try
+            {
+                GetConnection();
+                if (cnn.State == System.Data.ConnectionState.Open)
+                {
+                    band = true;
+                }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (SqlException sqlex)
+            {
+                throw new AppException("Error al conectar con la base de datos", "Error", sqlex);
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error no controlado al intentar conectar con la base de datos", "Fatal", ex);
+            }
+            finally
+            {
+                try
+                {
+                    ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return band;
+        }
 
     }
 }

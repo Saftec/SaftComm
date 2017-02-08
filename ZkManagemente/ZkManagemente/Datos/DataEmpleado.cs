@@ -21,13 +21,9 @@ namespace ZkManagement.Datos
                 }
                 return _instancia;
             }
-
         }
+        private DataEmpleado() { }
 
-        private DataEmpleado()
-        {
-
-        }
 
         private string query = string.Empty;
 

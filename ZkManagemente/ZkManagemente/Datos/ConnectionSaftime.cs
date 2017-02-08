@@ -30,13 +30,11 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar conectar a la base de datos Saftime");
+                throw new AppException("Error al intentar conectar a la base de datos Saftime", "Error", sqlex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar conectar a la base de datos de Saftime");
+                throw new AppException("Error no controlado al intentar conectar a la base de datos de Saftime", "Fatal", ex);
             }
             return _conn;
         }
@@ -49,27 +47,40 @@ namespace ZkManagement.Datos
             }
             catch (SqlException sqlex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al intentar cerrar la conexión a la base de datos de Saftime");
+                throw new AppException("Error al intentar cerrar la conexión a la base de datos de Saftime", "Error", sqlex);
             }
             catch (Exception ex)
             {
-                Logger.GetLogger().Fatal(ex.StackTrace);
-                throw new Exception("Error no controlado al intentar cerrar la conexión a la base de datos de Saftime");
+                throw new AppException("Error no controlado al intentar cerrar la conexión a la base de datos de Saftime", "Fatal", ex);
             }
         }
         public bool TestConexion()
         {
+            bool band = false;
             try
             {
+                // ACTUALIZO EL CONNECTION STRING PORQUE SI SE MODIFICÓ SEGUIA USANDO LA MISMA
+                _conn.ConnectionString = ConfigurationManager.ConnectionStrings["saftimeDB"].ConnectionString;
+
                 GetConn();
+                if (_conn.State == System.Data.ConnectionState.Open)
+                {
+                    band = true;
+                }
+            }
+            catch(AppException appex)
+            {
+                throw appex;
             }
             catch (SqlException sqlex)
             {
-                Logger.GetLogger().Error(sqlex.StackTrace);
-                throw new Exception("Error al conectar con la base de datos");
+                throw new AppException("Error al conectar con la base de datos de Saftime", "Error", sqlex);
             }
-            if (_conn.State == System.Data.ConnectionState.Open)
+            catch(Exception ex)
+            {
+                throw new AppException("Error no controlado al intentar conectar con la base de datos de Saftime", "Fatal", ex);
+            }
+            finally
             {
                 try
                 {
@@ -79,9 +90,8 @@ namespace ZkManagement.Datos
                 {
                     throw ex;
                 }
-                return true;
             }
-            else { return false; }
+            return band;
         }
     }
 }

@@ -10,12 +10,6 @@ namespace ZkManagement.Datos
     class DataEmpleadoSaftime
     {
         private static DataEmpleadoSaftime _instancia;
-
-        private DataEmpleadoSaftime()
-        {
-
-        }
-
         public static DataEmpleadoSaftime Instancia
         {
             get
@@ -28,6 +22,7 @@ namespace ZkManagement.Datos
             }
 
         }
+        private DataEmpleadoSaftime() { }
 
         private string query = string.Empty;
 

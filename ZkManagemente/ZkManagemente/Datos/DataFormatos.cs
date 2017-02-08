@@ -9,6 +9,21 @@ namespace ZkManagement.Datos
 {
     class DataFormatos
     {
+        private static DataFormatos _instancia;
+        
+        public static DataFormatos Instancia
+        {
+            get
+            {
+                if (_instancia == null)
+                {
+                    _instancia = new DataFormatos();
+                }
+                return _instancia;
+            }
+        }
+
+        private DataFormatos() { }
         public FormatoExport GetById(int id)
         {
             FormatoExport f = new FormatoExport();

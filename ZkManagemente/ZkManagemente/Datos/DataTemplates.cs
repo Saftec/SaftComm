@@ -23,6 +23,7 @@ namespace ZkManagement.Datos
 
         }
 
+        private DataTemplates() { }
         // Hasta acá //
 
         private string query = string.Empty;
