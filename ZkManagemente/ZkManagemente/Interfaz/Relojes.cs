@@ -54,7 +54,6 @@ namespace ZkManagement.Interfaz
                 if (r.Estado == true)
                 {
                     r.Desconectar();
-                    r.Estado = false;
                 }
             }
             relojes.Clear();
@@ -100,7 +99,6 @@ namespace ZkManagement.Interfaz
             try
             {
                 reloj.Conectar();
-                reloj.Estado = true;
                 SetEstado("Conectado");
                 LogInforme("Conexión OK con reloj: " + reloj.Numero.ToString());
                 SetMac(reloj.GetMac());
@@ -166,7 +164,6 @@ namespace ZkManagement.Interfaz
             }
             reloj = BuscarEquipo(GetId());
             reloj.Desconectar();
-            reloj.Estado = false;
             SetEstado("Desconectado");
             LogInforme("Reloj: " + reloj.Numero.ToString() + " desconectado.");
         }
@@ -452,7 +449,6 @@ namespace ZkManagement.Interfaz
                     LogInforme("Conectando a reloj: " + r.Numero.ToString() + "...");
                     r.Conectar();
                     LogInforme("Conexion correcta con reloj: " + r.Numero.ToString());
-                    r.Estado = true;
                     LogInforme("Descargando registros...");
                     //regis = r.DescargarRegistros();
                     //desconocidos=cr.AgregarRegis(regis);
@@ -462,7 +458,6 @@ namespace ZkManagement.Interfaz
                     Borrado(r.Id, regis.Rows.Count);
                     LogInforme("Registros eliminados correctamente.");
                     r.Desconectar();
-                    r.Estado = false;
                     LogInforme("Reloj: " + r.Numero.ToString() + " desconectado");
                     total += regis.Rows.Count;
                 }
@@ -493,13 +488,11 @@ namespace ZkManagement.Interfaz
                 {
                     LogInforme("Conectando a reloj :" + r.Numero.ToString());
                     r.Conectar();
-                    r.Estado = true;
                     LogInforme("Conexion correcta con reloj :" + r.Numero.ToString());
                     LogInforme("Sincronizando hora con reloj :" + r.Numero.ToString());
                     r.SincronizarHora();
                     LogInforme("Hora sincronizada con reloj :" + r.Numero.ToString());
                     r.Desconectar();
-                    r.Estado = false;
                     LogInforme("Reloj: " + r.Numero.ToString() + " desconectado.");
                 }
                 catch(Exception ex)

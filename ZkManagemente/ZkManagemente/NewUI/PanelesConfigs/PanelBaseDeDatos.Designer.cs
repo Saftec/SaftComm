@@ -38,10 +38,7 @@
             this.txtServer = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupAccess = new System.Windows.Forms.GroupBox();
-            this.txtPasswordAccess = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.txtUsuarioAccess = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.btnExaminar = new MetroFramework.Controls.MetroButton();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.txtPath = new MetroFramework.Controls.MetroTextBox();
             this.rbSQL = new MetroFramework.Controls.MetroRadioButton();
@@ -236,10 +233,7 @@
             // groupAccess
             // 
             this.groupAccess.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupAccess.Controls.Add(this.txtPasswordAccess);
-            this.groupAccess.Controls.Add(this.metroLabel7);
-            this.groupAccess.Controls.Add(this.txtUsuarioAccess);
-            this.groupAccess.Controls.Add(this.metroLabel6);
+            this.groupAccess.Controls.Add(this.btnExaminar);
             this.groupAccess.Controls.Add(this.metroLabel5);
             this.groupAccess.Controls.Add(this.txtPath);
             this.groupAccess.Enabled = false;
@@ -250,83 +244,17 @@
             this.groupAccess.TabStop = false;
             this.groupAccess.Text = "MS Access";
             // 
-            // txtPasswordAccess
+            // btnExaminar
             // 
-            // 
-            // 
-            // 
-            this.txtPasswordAccess.CustomButton.Image = null;
-            this.txtPasswordAccess.CustomButton.Location = new System.Drawing.Point(139, 1);
-            this.txtPasswordAccess.CustomButton.Name = "";
-            this.txtPasswordAccess.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtPasswordAccess.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtPasswordAccess.CustomButton.TabIndex = 1;
-            this.txtPasswordAccess.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtPasswordAccess.CustomButton.UseSelectable = true;
-            this.txtPasswordAccess.CustomButton.Visible = false;
-            this.txtPasswordAccess.Lines = new string[0];
-            this.txtPasswordAccess.Location = new System.Drawing.Point(352, 90);
-            this.txtPasswordAccess.MaxLength = 32767;
-            this.txtPasswordAccess.Name = "txtPasswordAccess";
-            this.txtPasswordAccess.PasswordChar = '\0';
-            this.txtPasswordAccess.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtPasswordAccess.SelectedText = "";
-            this.txtPasswordAccess.SelectionLength = 0;
-            this.txtPasswordAccess.SelectionStart = 0;
-            this.txtPasswordAccess.ShortcutsEnabled = true;
-            this.txtPasswordAccess.Size = new System.Drawing.Size(161, 23);
-            this.txtPasswordAccess.TabIndex = 12;
-            this.txtPasswordAccess.UseSelectable = true;
-            this.txtPasswordAccess.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtPasswordAccess.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(263, 90);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(78, 19);
-            this.metroLabel7.TabIndex = 11;
-            this.metroLabel7.Text = "Contraseña:";
-            // 
-            // txtUsuarioAccess
-            // 
-            // 
-            // 
-            // 
-            this.txtUsuarioAccess.CustomButton.Image = null;
-            this.txtUsuarioAccess.CustomButton.Location = new System.Drawing.Point(120, 1);
-            this.txtUsuarioAccess.CustomButton.Name = "";
-            this.txtUsuarioAccess.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtUsuarioAccess.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtUsuarioAccess.CustomButton.TabIndex = 1;
-            this.txtUsuarioAccess.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtUsuarioAccess.CustomButton.UseSelectable = true;
-            this.txtUsuarioAccess.CustomButton.Visible = false;
-            this.txtUsuarioAccess.Lines = new string[0];
-            this.txtUsuarioAccess.Location = new System.Drawing.Point(68, 86);
-            this.txtUsuarioAccess.MaxLength = 32767;
-            this.txtUsuarioAccess.Name = "txtUsuarioAccess";
-            this.txtUsuarioAccess.PasswordChar = '\0';
-            this.txtUsuarioAccess.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtUsuarioAccess.SelectedText = "";
-            this.txtUsuarioAccess.SelectionLength = 0;
-            this.txtUsuarioAccess.SelectionStart = 0;
-            this.txtUsuarioAccess.ShortcutsEnabled = true;
-            this.txtUsuarioAccess.Size = new System.Drawing.Size(142, 23);
-            this.txtUsuarioAccess.TabIndex = 10;
-            this.txtUsuarioAccess.UseSelectable = true;
-            this.txtUsuarioAccess.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtUsuarioAccess.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(6, 90);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(56, 19);
-            this.metroLabel6.TabIndex = 9;
-            this.metroLabel6.Text = "Usuario:";
+            this.btnExaminar.Location = new System.Drawing.Point(407, 59);
+            this.btnExaminar.Name = "btnExaminar";
+            this.btnExaminar.Size = new System.Drawing.Size(106, 23);
+            this.btnExaminar.Style = MetroFramework.MetroColorStyle.Blue;
+            this.btnExaminar.TabIndex = 9;
+            this.btnExaminar.Text = "Buscar";
+            this.btnExaminar.UseSelectable = true;
+            this.btnExaminar.UseStyleColors = true;
+            this.btnExaminar.Click += new System.EventHandler(this.btnExaminar_Click);
             // 
             // metroLabel5
             // 
@@ -373,9 +301,11 @@
             this.rbSQL.Location = new System.Drawing.Point(12, 243);
             this.rbSQL.Name = "rbSQL";
             this.rbSQL.Size = new System.Drawing.Size(79, 15);
+            this.rbSQL.Style = MetroFramework.MetroColorStyle.Blue;
             this.rbSQL.TabIndex = 6;
             this.rbSQL.Text = "SQL Server";
             this.rbSQL.UseSelectable = true;
+            this.rbSQL.UseStyleColors = true;
             this.rbSQL.CheckedChanged += new System.EventHandler(this.rbSQL_CheckedChanged);
             // 
             // rbAccess
@@ -384,9 +314,11 @@
             this.rbAccess.Location = new System.Drawing.Point(12, 296);
             this.rbAccess.Name = "rbAccess";
             this.rbAccess.Size = new System.Drawing.Size(79, 15);
+            this.rbAccess.Style = MetroFramework.MetroColorStyle.Blue;
             this.rbAccess.TabIndex = 7;
             this.rbAccess.Text = "MS Access";
             this.rbAccess.UseSelectable = true;
+            this.rbAccess.UseStyleColors = true;
             this.rbAccess.CheckedChanged += new System.EventHandler(this.rbAccess_CheckedChanged);
             // 
             // PanelBaseDeDatos
@@ -426,11 +358,8 @@
         private System.Windows.Forms.GroupBox groupAccess;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroTextBox txtPath;
-        private MetroFramework.Controls.MetroTextBox txtUsuarioAccess;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
-        private MetroFramework.Controls.MetroTextBox txtPasswordAccess;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroRadioButton rbSQL;
         private MetroFramework.Controls.MetroRadioButton rbAccess;
+        private MetroFramework.Controls.MetroButton btnExaminar;
     }
 }

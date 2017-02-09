@@ -49,7 +49,6 @@ namespace ZkManagement.NewUI
                     return;
                 }
                 relojAct.Conectar();
-                relojAct.Estado = true;
                 MapearAGrid(relojAct);
                 LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se conectó correctamente");
             }
@@ -74,7 +73,6 @@ namespace ZkManagement.NewUI
                     return;
                 }
                 relojAct.Desconectar();
-                relojAct.Estado = false;
                 MapearAGrid(relojAct);
                 LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se desconectó correctamente");
             }

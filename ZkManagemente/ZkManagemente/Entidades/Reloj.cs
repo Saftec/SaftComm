@@ -50,7 +50,6 @@ namespace ZkManagement.Entidades
         public bool Estado
         {
             get { return estado; }
-            set { estado = value; }
         }
 
         public string Clave
@@ -103,7 +102,10 @@ namespace ZkManagement.Entidades
             Reloj r = (Reloj)obj;
             return (this.id == r.id);
         }
-
+        public override string ToString()
+        {
+            return (this.Nombre + " - IP: " + this.Ip);
+        }
         public void Conectar()
         {
             try
@@ -114,19 +116,19 @@ namespace ZkManagement.Entidades
             {
                 throw ex;
             }            
-            bool estado;
             if (this.clave != string.Empty)
             {
                 int psw = Convert.ToInt32(Encrypt.DesEncriptar(this.clave));
                 base.SetCommPassword(psw);
             }
-            estado = base.Connect_Net(ip, puerto);
-            if (estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
+            this.estado = base.Connect_Net(ip, puerto);
+            if (this.Estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         public void Desconectar()
         {
             base.Disconnect();
+            this.estado = false;
         }
         public int GetCantidadRegistros()
         {

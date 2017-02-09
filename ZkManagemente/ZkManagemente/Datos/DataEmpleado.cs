@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {                            
-                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
+                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'CantHuellas' FROM Empleados e INNER JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
@@ -46,7 +46,8 @@ namespace ZkManagement.Datos
                     e.Dni = dr["DNI"].ToString();
                     e.Pin = dr["Pin"].ToString();
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
-                    e.Baja = Convert.ToInt32(dr["Baja"]);             
+                    e.Baja = Convert.ToInt32(dr["Baja"]);
+                    e.CantHuellas = Convert.ToInt32(dr["CantHuellas"]);
                     empleados.Add(e);
                 }
             }

@@ -13,7 +13,8 @@ namespace ZkManagement.Logica
         private enum DBType
         {
             SaftComm,
-            Saftime
+            Saftime,
+            Empty
         }
 
         private LogicConfigSQL() { } //PONGO CONSTRUCTOR VACIO PRIVADO PARA NO CREAR INSTANCIAS SIN ESPECIFICAR LA BD
@@ -31,9 +32,8 @@ namespace ZkManagement.Logica
                     conexion = ConfigurationManager.ConnectionStrings["CNS"].ToString();
                     builder = new SqlConnectionStringBuilder(conexion);
                     break;
-                default:
-                    conexion = ConfigurationManager.ConnectionStrings["CNS"].ToString();
-                    builder = new SqlConnectionStringBuilder(conexion);
+                case DBType.Empty:
+                    builder = new SqlConnectionStringBuilder();
                     break;
             }           
         }
@@ -101,18 +101,6 @@ namespace ZkManagement.Logica
         public string GetContraseña()
         {
             return builder.Password;
-        }
-        // ESTE METODO LO USO SOLAMENTE PARA LA CONFIGURACION DE LA BD DE SAFTCOMM //
-        public bool IsSQL()
-        {
-            string value = ConfigurationManager.AppSettings["DatabaseType"].ToString();
-            if (value.Trim().ToUpper() == "SQL")
-            {
-                return true;
-            }else
-            {
-                return false;
-            }
         }
     }
 }

@@ -30,6 +30,10 @@
         {
             this.chckEjecutarRutina = new MetroFramework.Controls.MetroCheckBox();
             this.groupRutinas = new System.Windows.Forms.GroupBox();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.txtHoraFin = new MetroFramework.Controls.MetroTextBox();
+            this.txtHoraInicio = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtMinutosHora = new MetroFramework.Controls.MetroTextBox();
@@ -45,10 +49,6 @@
             this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chckFicheroCopia = new MetroFramework.Controls.MetroCheckBox();
-            this.txtHoraInicio = new MetroFramework.Controls.MetroTextBox();
-            this.txtHoraFin = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.groupRutinas.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +93,88 @@
             this.groupRutinas.TabIndex = 4;
             this.groupRutinas.TabStop = false;
             this.groupRutinas.Text = "Rutinas";
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel9.Location = new System.Drawing.Point(279, 244);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(42, 15);
+            this.metroLabel9.TabIndex = 17;
+            this.metroLabel9.Text = "hh:mm";
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel8.Location = new System.Drawing.Point(279, 197);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(42, 15);
+            this.metroLabel8.TabIndex = 16;
+            this.metroLabel8.Text = "hh:mm";
+            // 
+            // txtHoraFin
+            // 
+            // 
+            // 
+            // 
+            this.txtHoraFin.CustomButton.Image = null;
+            this.txtHoraFin.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.txtHoraFin.CustomButton.Name = "";
+            this.txtHoraFin.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtHoraFin.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtHoraFin.CustomButton.TabIndex = 1;
+            this.txtHoraFin.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtHoraFin.CustomButton.UseSelectable = true;
+            this.txtHoraFin.CustomButton.Visible = false;
+            this.txtHoraFin.Enabled = false;
+            this.txtHoraFin.Lines = new string[0];
+            this.txtHoraFin.Location = new System.Drawing.Point(267, 218);
+            this.txtHoraFin.MaxLength = 5;
+            this.txtHoraFin.Name = "txtHoraFin";
+            this.txtHoraFin.PasswordChar = '\0';
+            this.txtHoraFin.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtHoraFin.SelectedText = "";
+            this.txtHoraFin.SelectionLength = 0;
+            this.txtHoraFin.SelectionStart = 0;
+            this.txtHoraFin.ShortcutsEnabled = true;
+            this.txtHoraFin.Size = new System.Drawing.Size(75, 23);
+            this.txtHoraFin.TabIndex = 15;
+            this.txtHoraFin.UseSelectable = true;
+            this.txtHoraFin.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtHoraFin.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtHoraInicio
+            // 
+            // 
+            // 
+            // 
+            this.txtHoraInicio.CustomButton.Image = null;
+            this.txtHoraInicio.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.txtHoraInicio.CustomButton.Name = "";
+            this.txtHoraInicio.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtHoraInicio.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtHoraInicio.CustomButton.TabIndex = 1;
+            this.txtHoraInicio.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtHoraInicio.CustomButton.UseSelectable = true;
+            this.txtHoraInicio.CustomButton.Visible = false;
+            this.txtHoraInicio.Enabled = false;
+            this.txtHoraInicio.Lines = new string[0];
+            this.txtHoraInicio.Location = new System.Drawing.Point(267, 171);
+            this.txtHoraInicio.MaxLength = 5;
+            this.txtHoraInicio.Name = "txtHoraInicio";
+            this.txtHoraInicio.PasswordChar = '\0';
+            this.txtHoraInicio.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtHoraInicio.SelectedText = "";
+            this.txtHoraInicio.SelectionLength = 0;
+            this.txtHoraInicio.SelectionStart = 0;
+            this.txtHoraInicio.ShortcutsEnabled = true;
+            this.txtHoraInicio.Size = new System.Drawing.Size(75, 23);
+            this.txtHoraInicio.TabIndex = 14;
+            this.txtHoraInicio.UseSelectable = true;
+            this.txtHoraInicio.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtHoraInicio.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel7
             // 
@@ -279,92 +361,10 @@
             this.chckFicheroCopia.AutoSize = true;
             this.chckFicheroCopia.Location = new System.Drawing.Point(76, 45);
             this.chckFicheroCopia.Name = "chckFicheroCopia";
-            this.chckFicheroCopia.Size = new System.Drawing.Size(219, 15);
+            this.chckFicheroCopia.Size = new System.Drawing.Size(212, 15);
             this.chckFicheroCopia.TabIndex = 13;
-            this.chckFicheroCopia.Text = "Descargar fichadas a fichero de copia";
+            this.chckFicheroCopia.Text = "Escribir fichadas en fichero de copia";
             this.chckFicheroCopia.UseSelectable = true;
-            // 
-            // txtHoraInicio
-            // 
-            // 
-            // 
-            // 
-            this.txtHoraInicio.CustomButton.Image = null;
-            this.txtHoraInicio.CustomButton.Location = new System.Drawing.Point(53, 1);
-            this.txtHoraInicio.CustomButton.Name = "";
-            this.txtHoraInicio.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtHoraInicio.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtHoraInicio.CustomButton.TabIndex = 1;
-            this.txtHoraInicio.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtHoraInicio.CustomButton.UseSelectable = true;
-            this.txtHoraInicio.CustomButton.Visible = false;
-            this.txtHoraInicio.Enabled = false;
-            this.txtHoraInicio.Lines = new string[0];
-            this.txtHoraInicio.Location = new System.Drawing.Point(267, 171);
-            this.txtHoraInicio.MaxLength = 5;
-            this.txtHoraInicio.Name = "txtHoraInicio";
-            this.txtHoraInicio.PasswordChar = '\0';
-            this.txtHoraInicio.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtHoraInicio.SelectedText = "";
-            this.txtHoraInicio.SelectionLength = 0;
-            this.txtHoraInicio.SelectionStart = 0;
-            this.txtHoraInicio.ShortcutsEnabled = true;
-            this.txtHoraInicio.Size = new System.Drawing.Size(75, 23);
-            this.txtHoraInicio.TabIndex = 14;
-            this.txtHoraInicio.UseSelectable = true;
-            this.txtHoraInicio.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtHoraInicio.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtHoraFin
-            // 
-            // 
-            // 
-            // 
-            this.txtHoraFin.CustomButton.Image = null;
-            this.txtHoraFin.CustomButton.Location = new System.Drawing.Point(53, 1);
-            this.txtHoraFin.CustomButton.Name = "";
-            this.txtHoraFin.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtHoraFin.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtHoraFin.CustomButton.TabIndex = 1;
-            this.txtHoraFin.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtHoraFin.CustomButton.UseSelectable = true;
-            this.txtHoraFin.CustomButton.Visible = false;
-            this.txtHoraFin.Enabled = false;
-            this.txtHoraFin.Lines = new string[0];
-            this.txtHoraFin.Location = new System.Drawing.Point(267, 218);
-            this.txtHoraFin.MaxLength = 5;
-            this.txtHoraFin.Name = "txtHoraFin";
-            this.txtHoraFin.PasswordChar = '\0';
-            this.txtHoraFin.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtHoraFin.SelectedText = "";
-            this.txtHoraFin.SelectionLength = 0;
-            this.txtHoraFin.SelectionStart = 0;
-            this.txtHoraFin.ShortcutsEnabled = true;
-            this.txtHoraFin.Size = new System.Drawing.Size(75, 23);
-            this.txtHoraFin.TabIndex = 15;
-            this.txtHoraFin.UseSelectable = true;
-            this.txtHoraFin.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtHoraFin.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel8
-            // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel8.Location = new System.Drawing.Point(279, 197);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(42, 15);
-            this.metroLabel8.TabIndex = 16;
-            this.metroLabel8.Text = "hh:mm";
-            // 
-            // metroLabel9
-            // 
-            this.metroLabel9.AutoSize = true;
-            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel9.Location = new System.Drawing.Point(279, 244);
-            this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(42, 15);
-            this.metroLabel9.TabIndex = 17;
-            this.metroLabel9.Text = "hh:mm";
             // 
             // PanelFichadas
             // 

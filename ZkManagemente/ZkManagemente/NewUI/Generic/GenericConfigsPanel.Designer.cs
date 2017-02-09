@@ -37,18 +37,22 @@
             this.btnGuardar.Location = new System.Drawing.Point(464, 528);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(108, 32);
+            this.btnGuardar.Style = MetroFramework.MetroColorStyle.Blue;
             this.btnGuardar.TabIndex = 1;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseSelectable = true;
+            this.btnGuardar.UseStyleColors = true;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(98, 528);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(108, 32);
+            this.btnCancel.Style = MetroFramework.MetroColorStyle.Blue;
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseSelectable = true;
+            this.btnCancel.UseStyleColors = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // GenericConfigsPanel
@@ -58,7 +62,9 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGuardar);
             this.Name = "GenericConfigsPanel";
-            this.Size = new System.Drawing.Size(690, 572);
+            this.Size = new System.Drawing.Size(690, 580);
+            this.Style = MetroFramework.MetroColorStyle.Blue;
+            this.UseStyleColors = true;
             this.Controls.SetChildIndex(this.btnGuardar, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.ResumeLayout(false);

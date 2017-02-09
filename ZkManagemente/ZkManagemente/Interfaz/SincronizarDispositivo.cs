@@ -214,7 +214,7 @@ namespace ZkManagement.Interfaz
             if (reloj.Estado)
             {
                 reloj.Desconectar();
-                reloj.Estado = false;
+                //reloj.Estado = false;
             }
             LimpiarDgv(dgvDispositivo);
             Cursor = Cursors.WaitCursor;
@@ -223,7 +223,7 @@ namespace ZkManagement.Interfaz
             {
                 reloj.Conectar();
                 labelEstado.Text = "Conectado a dispostivo :" + reloj.Nombre;
-                reloj.Estado = true;
+                //reloj.Estado = true;
                 usuariosEnDisp = reloj.DescargarInfo();
                 LlenarDgvDispositivo();
             }
@@ -294,7 +294,6 @@ namespace ZkManagement.Interfaz
             if (reloj.Estado) //Si hay otro equipo conectado, lo desconecto antes de conectar el seleccionado
             {
                 reloj.Desconectar();
-                reloj.Estado = false;
             }
             LimpiarDgv(dgvDispositivo);
             Cursor = Cursors.WaitCursor;
@@ -302,7 +301,6 @@ namespace ZkManagement.Interfaz
             try
             {
                 reloj.Conectar();
-                reloj.Estado = true;
                 labelEstado.Text = "Conectado a dispostivo : " + reloj.Nombre;
             }
             catch (Exception ex)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -9,7 +8,6 @@ namespace ZkManagement.Logica
 {
     class LogicRegistros
     {
-        private ControladorConfiguraciones cc = new ControladorConfiguraciones();
         public List<string> AgregarRegis(List<Fichada> fichadas)
         {
             Writer writer = new Writer();
@@ -54,12 +52,17 @@ namespace ZkManagement.Logica
 
         private bool VerificarSaftime()
         {
-            bool resul = false;
-            if (!Boolean.TryParse(ConfigurationManager.AppSettings["Saftime"], out resul))
+            LogicConfigSaftime lcs = new LogicConfigSaftime();
+            bool band = false;
+            try
             {
-                throw new AppException("Error al intentar leer la configuración de Saftime");
+                band = lcs.IsRegistros();
             }
-            return resul;
+            catch(AppException appex)
+            {
+                throw appex;
+            }
+            return band; 
         }
 
         //Subir archivo a FTP

@@ -48,7 +48,9 @@
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "GenericPanel";
-            this.Size = new System.Drawing.Size(900, 550);
+            this.Size = new System.Drawing.Size(900, 590);
+            this.Style = MetroFramework.MetroColorStyle.Blue;
+            this.UseStyleColors = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

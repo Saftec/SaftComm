@@ -158,7 +158,7 @@ namespace ZkManagement.NewUI.Generic
                 row["Pin"] = e.Pin;
                 row["Privilegio"] = e.Privilegio;
                 row["Baja"] = e.Baja;
-                row["Cant"] = e.Huellas.Count;
+                row["Cant"] = e.CantHuellas;
                 dt.Rows.Add(row);
             }
             return dt;

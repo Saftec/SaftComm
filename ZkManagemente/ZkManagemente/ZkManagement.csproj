@@ -162,6 +162,7 @@
     <Compile Include="Interfaz\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logica\LogicConfigBD.cs" />
     <Compile Include="Logica\LogicConfigSaftime.cs" />
     <Compile Include="Logica\LogicConfigSQL.cs" />
     <Compile Include="Logica\LogicFormatos.cs" />
@@ -252,6 +253,12 @@
     <Compile Include="NewUI\PanelPersonal.Designer.cs">
       <DependentUpon>PanelPersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelSincronizacion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewUI\PanelSincronizacion.Designer.cs">
+      <DependentUpon>PanelSincronizacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\PanelUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -266,7 +273,6 @@
     </Compile>
     <Compile Include="Util\Encrypt.cs" />
     <Compile Include="Util\Writer.cs" />
-    <Compile Include="Logica\ControladorConfiguraciones.cs" />
     <Compile Include="Logica\LogicEmpleado.cs" />
     <Compile Include="Logica\ControladorLogin.cs" />
     <Compile Include="Logica\LogicRegistros.cs" />
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelPersonal.resx">
       <DependentUpon>PanelPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelSincronizacion.resx">
+      <DependentUpon>PanelSincronizacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelUsuario.resx">
       <DependentUpon>PanelUsuario.cs</DependentUpon>

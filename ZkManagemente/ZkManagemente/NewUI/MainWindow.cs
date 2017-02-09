@@ -65,5 +65,13 @@ namespace ZkManagement.NewUI
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelConfigs.Instancia);
         }
+
+        private void btnSinc_Click(object sender, EventArgs e)
+        {
+            PanelSincronizacion.Instancia.Dock = DockStyle.Fill;
+            PanelSincronizacion.Instancia.RefreshData();
+            this.MetroContainer.Controls.Clear();
+            this.MetroContainer.Controls.Add(PanelSincronizacion.Instancia);
+        }
     }
 }

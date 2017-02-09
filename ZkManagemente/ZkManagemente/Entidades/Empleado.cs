@@ -12,6 +12,7 @@ namespace ZkManagement.Entidades
         private string _dni;
         private int _privilegio;
         private int _baja;
+        private int _cantHuellas;
         private List<Huella> _huellas;
 
         public Empleado()
@@ -65,6 +66,10 @@ namespace ZkManagement.Entidades
             get { return _baja; }
             set { _baja = value; }
         }
-
+        public int CantHuellas
+        {
+            get { return _cantHuellas; }
+            set { _cantHuellas = value; }
+        }
     }
 }

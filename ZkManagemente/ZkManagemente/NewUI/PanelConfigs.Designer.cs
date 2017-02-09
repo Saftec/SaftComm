@@ -62,6 +62,7 @@
             this.linkBaseDeDatos.TabIndex = 5;
             this.linkBaseDeDatos.Text = "Base de Datos";
             this.linkBaseDeDatos.UseSelectable = true;
+            this.linkBaseDeDatos.UseStyleColors = true;
             this.linkBaseDeDatos.Click += new System.EventHandler(this.linkBaseDeDatos_Click);
             // 
             // metroLink2
@@ -72,6 +73,7 @@
             this.metroLink2.TabIndex = 4;
             this.metroLink2.Text = "Formatos de Descarga";
             this.metroLink2.UseSelectable = true;
+            this.metroLink2.UseStyleColors = true;
             this.metroLink2.Click += new System.EventHandler(this.metroLink2_Click);
             // 
             // linkSaftime
@@ -82,6 +84,7 @@
             this.linkSaftime.TabIndex = 3;
             this.linkSaftime.Text = "Saftime";
             this.linkSaftime.UseSelectable = true;
+            this.linkSaftime.UseStyleColors = true;
             this.linkSaftime.Click += new System.EventHandler(this.linkSaftime_Click);
             // 
             // linkRutinas
@@ -92,6 +95,7 @@
             this.linkRutinas.TabIndex = 2;
             this.linkRutinas.Text = "Descarga de Fichadas";
             this.linkRutinas.UseSelectable = true;
+            this.linkRutinas.UseStyleColors = true;
             this.linkRutinas.Click += new System.EventHandler(this.linkRutinas_Click);
             // 
             // pConfigs
