@@ -38,11 +38,16 @@ namespace ZkManagement.NewUI
             reloj.Ip = txtIp.Text;
             reloj.DNS = txtDns.Text;
             reloj.Clave = txtClave.Text;
+            reloj.Rutina = chckRutinas.Checked;
 
             return reloj;
         }
         protected override void btnGuardar_Click(object sender, System.EventArgs e)
         {
+            if(reloj == null)
+            {
+                return;
+            }
             if (!Validar())
             {
                 return;
@@ -54,7 +59,9 @@ namespace ZkManagement.NewUI
                 lr.ModifReloj(reloj);
                 PanelReloj.Instancia.RefreshGrid();
                 base.Informar("Dispositivo guardado correctamente.", "Editar Dispositivo");
-                this.Dispose();
+                reloj = null;
+                PanelReloj.Instancia.RefreshGrid();
+                this.Close();
             }
             catch(Exception ex)
             {
@@ -74,6 +81,7 @@ namespace ZkManagement.NewUI
                 txtNombre.Text = r.Nombre;
                 txtNumero.Text = r.Numero.ToString();
                 txtPuerto.Text = r.Puerto.ToString();
+                chckRutinas.Checked = r.Rutina;
             }
         }
 

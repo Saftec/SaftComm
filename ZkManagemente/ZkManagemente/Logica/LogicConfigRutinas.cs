@@ -8,6 +8,26 @@ namespace ZkManagement.Logica
     class LogicConfigRutinas
     {
         #region GettersConfigs
+        public bool IsBorradoRegs()
+        {
+            bool valor = false;
+            try
+            {
+                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(3), out valor))
+                {
+                    throw new AppException("Error al intentar convertir los tipos de datos");
+                }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error no controlado al verificar las configuraciones de la base de datos", "Fatal", ex);
+            }
+            return valor;
+        }
         public bool IsDescarga()
         {
             bool valor = false;
@@ -171,11 +191,25 @@ namespace ZkManagement.Logica
         #endregion
         #region SettersConfigs
 
-        public void SetDescarga(bool valor)
+        public void SetBorrarRegistros(bool valor)
         {
             try
             {
-                ConfigurationManager.AppSettings["Descarga"] = valor.ToString();
+                DataConfigs.Instancia.SetConfig(3, valor.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error al intentar guardar configuración en la base de datos", "Fatal", ex);
+            }
+        }
+        public void SetDescarga(bool valor)
+        {            
+            try
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["Descarga"].Value = valor.ToString();
+                config.Save(ConfigurationSaveMode.Modified, true);
+                ConfigurationManager.RefreshSection("appSettings");
             }
             catch (Exception ex)
             {

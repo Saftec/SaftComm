@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
 using ZkManagement.Util;
@@ -48,6 +47,7 @@ namespace ZkManagement.NewUI
                     InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra conectado.", "Conectar Reloj.");
                     return;
                 }
+                LoguearInforme("Conectando con '" + relojAct.Nombre + "'...");
                 relojAct.Conectar();
                 MapearAGrid(relojAct);
                 LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se conectó correctamente");
@@ -223,12 +223,14 @@ namespace ZkManagement.NewUI
             txtLog.SelectionColor = Color.Black;
             txtLog.AppendText(mensaje);
             txtLog.AppendText("\n");
+            Logger.GetLogger().Info(mensaje);
         }
         private void LoguearError(string mensaje)
         {
             txtLog.SelectionColor = Color.Red;
             txtLog.AppendText(mensaje);
             txtLog.AppendText("\n");
+            Logger.GetLogger().Info(mensaje);
         }
         #endregion
 
@@ -279,6 +281,88 @@ namespace ZkManagement.NewUI
         }
         #endregion
 
+        #region Rutinas
+        public void RutinaBajadaRegistros()
+        {
+            List<string> desconocidos = new List<string>();
+            List<Fichada> fichadas;
+            int total = 0;
+            LogicRegistros lregs = new LogicRegistros();
+            lr = new LogicReloj();
+            LogicConfigRutinas lcr = new LogicConfigRutinas();
+            LoguearInforme("--Inicio de rutina de descarga de registros");
+            foreach (Reloj r in equipos)
+            {
+                if (r.Rutina)
+                {
+                    try
+                    {
+                        LoguearInforme("Conectando con '" + r.Nombre + "'...");
+                        r.Conectar();
+                        LoguearInforme("El dispositivo: '" + r.Nombre + "' se conectó correctamente");
+                        LoguearInforme("Iniciando descarga de registros...");
+                        fichadas = r.DescargarRegistros();
+                        desconocidos = lregs.AgregarRegis(fichadas);
+                        LoguearInforme("Se descargaron " + fichadas.Count.ToString() + " registros");
+                        if (lcr.IsBorradoRegs())
+                        {
+                            LoguearInforme("Borrando registros...");
+                            r.BorrarRegistros();
+                            LoguearInforme("Registros eliminados correctamente.");
+                            LoguearInforme("Actualizando borrado en base de datos...");
+                            lr.ActualizarBorrado(r, fichadas.Count);
+                            LoguearInforme("Borrado actualizado en la base de datos correctamente");
+                        }
+                        r.Desconectar();
+                        LoguearInforme("El dispositivo: '" + r.Nombre + "' se desconectó correctamente");
+                        total += fichadas.Count;
+                    }
+                    catch (Exception ex)
+                    {
+                        LoguearError("****Se produjo un error con reloj: " + r.Numero.ToString() + " durante la rutina de bajada de registros*****");
+                        LoguearError("ERROR: " + ex.Message);
+                    }
+                }
+            }
+            if (desconocidos.Count > 0)
+            {
+                LoguearError("ATENCION, se encontraron empleados desconocidos durante la descarga");
+                foreach (string l in desconocidos)
+                {
+                    LoguearError("Legajo: " + l);
+                }
+            }
+            LoguearInforme("--Rutina de descarga de registros finalizada.");
+        }
+
+        public void RutinaSincronizacionHora()
+        {
+            LoguearInforme("--Inicio rutina de sincronización de hora");
+            foreach (Reloj r in equipos)
+            {
+                try
+                {
+                    if (r.Rutina)
+                    {
+                        LoguearInforme("Conectando con '" + r.Nombre + "'...");
+                        r.Conectar();
+                        LoguearInforme("El dispositivo: '" + r.Nombre + "' se conectó correctamente");
+                        r.SincronizarHora();
+                        LoguearInforme("Se sincronizó correctamente la hora con el reloj: '" + r.Nombre + "'");
+                        r.Desconectar();
+                        LoguearInforme("El dispositivo: '" + r.Nombre + "' se desconectó correctamente");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LoguearError("****Se produjo un error con reloj: " + r.Nombre + " durante la rutina de sincronización de hora*****");
+                    LoguearError("ERROR: " + ex.Message);
+                }
+
+            }
+            LoguearInforme("--Rutina de sincronización de hora finalizada");
+        }
+        #endregion
         private DataTable ConvertToDataTable(List<Reloj> relojes)
         {
             DataTable dt = new DataTable();

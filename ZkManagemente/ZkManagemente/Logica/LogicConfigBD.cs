@@ -1,6 +1,8 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.OleDb;
 using ZkManagement.Datos;
+using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
@@ -28,7 +30,17 @@ namespace ZkManagement.Logica
 
         public void SetType(string type)
         {
-            ConfigurationManager.AppSettings["DatabaseType"] = type;
+            try
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["DatabaseType"].Value = type;
+                config.Save(ConfigurationSaveMode.Modified, true);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+            catch(Exception ex)
+            {
+                throw new AppException("Error al intentar guardar el tipo de base de datos en archivo de configuracioens", "Fatal", ex);
+            }
         }
 
         public string GetPath()

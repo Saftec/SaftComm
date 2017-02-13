@@ -85,14 +85,22 @@ namespace ZkManagement.Datos
             return empleados;
         }
 
-        public void Eliminar(Empleado emp)
+        public void Eliminar(List<Empleado> empleados)
         {
             SqlCommand cmd = null;
+            query = "UPDATE Empleados SET fecBaja= GETDATE() WHERE EmpId=@Id";
             try
             {
-                query = "UPDATE Empleados SET fecBaja= GETDATE() WHERE EmpId=" + emp.Id.ToString();
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
-                cmd.ExecuteNonQuery();
+                var parameter = cmd.CreateParameter();
+                parameter.ParameterName = "@Id";
+                foreach (Empleado e in empleados)
+                {
+                    cmd.Parameters.Clear(); //--> Borro el parametro que inserté en la pasada anterior.
+                    parameter.Value = e.Id;
+                    cmd.Parameters.Add(parameter);
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (AppException appex)
             {

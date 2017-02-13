@@ -98,7 +98,7 @@ namespace ZkManagement.Interfaz
                         Empleado emp = new Empleado();
                         emp.Id = Convert.ToInt32(row.Cells["EmpId"].Value);
                         ce = new LogicEmpleado();
-                        ce.BajaEmpleado(emp);
+                        //ce.BajaEmpleado(emp);
                         filas.Add(row);
                     }
                     catch (Exception ex)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableMenu = new System.Windows.Forms.TableLayoutPanel();
             this.btnSinc = new MetroFramework.Controls.MetroButton();
             this.btnEquipos = new MetroFramework.Controls.MetroButton();
@@ -36,6 +37,10 @@
             this.btnConfig = new MetroFramework.Controls.MetroButton();
             this.pHeader = new System.Windows.Forms.Panel();
             this.metroPanel = new MetroFramework.Controls.MetroPanel();
+            this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
+            this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorkerRutinaRegistros = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +168,22 @@
             this.metroPanel.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel.VerticalScrollbarSize = 10;
             // 
+            // timerRutinaRegs
+            // 
+            this.timerRutinaRegs.Tick += new System.EventHandler(this.timerRutinaRegs_Tick);
+            // 
+            // timerRutinaHora
+            // 
+            this.timerRutinaHora.Tick += new System.EventHandler(this.timerRutinaHora_Tick);
+            // 
+            // backgroundWorkerRutinaRegistros
+            // 
+            this.backgroundWorkerRutinaRegistros.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaRegistros_DoWork);
+            // 
+            // backgroundWorkerRutinaHora
+            // 
+            this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,5 +211,9 @@
         private MetroFramework.Controls.MetroButton btnEquipos;
         private MetroFramework.Controls.MetroButton btnConfig;
         private MetroFramework.Controls.MetroButton btnSinc;
+        private System.Windows.Forms.Timer timerRutinaRegs;
+        private System.Windows.Forms.Timer timerRutinaHora;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaRegistros;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaHora;
     }
 }

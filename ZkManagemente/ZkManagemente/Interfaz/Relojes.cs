@@ -486,21 +486,23 @@ namespace ZkManagement.Interfaz
                 {
                 try
                 {
-                    LogInforme("Conectando a reloj :" + r.Numero.ToString());
-                    r.Conectar();
-                    LogInforme("Conexion correcta con reloj :" + r.Numero.ToString());
-                    LogInforme("Sincronizando hora con reloj :" + r.Numero.ToString());
-                    r.SincronizarHora();
-                    LogInforme("Hora sincronizada con reloj :" + r.Numero.ToString());
-                    r.Desconectar();
-                    LogInforme("Reloj: " + r.Numero.ToString() + " desconectado.");
+                    if (r.Rutina)
+                    {
+                        LogInforme("Conectando a reloj :" + r.Numero.ToString());
+                        r.Conectar();
+                        LogInforme("Conexion correcta con reloj :" + r.Numero.ToString());
+                        LogInforme("Sincronizando hora con reloj :" + r.Numero.ToString());
+                        r.SincronizarHora();
+                        LogInforme("Hora sincronizada con reloj :" + r.Numero.ToString());
+                        r.Desconectar();
+                        LogInforme("Reloj: " + r.Numero.ToString() + " desconectado.");
+                    }
                 }
                 catch(Exception ex)
                 {
                     LogError("****Se produjo un error con reloj: " + r.Numero.ToString() + " durante la rutina de sincronización de hora*****");
                     LogError("ERROR: " + ex.Message);
                 }
-
                 }
                 LogInforme("--Rutina de sincronización de hora finalizada");           
         }

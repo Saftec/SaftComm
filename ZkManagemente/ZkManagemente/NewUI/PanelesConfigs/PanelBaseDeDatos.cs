@@ -126,7 +126,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
             }
             if (rbAccess.Checked)
             {
-                if(v.NotEmpty(new string[] { txtPath.Text }))
+                if(!v.NotEmpty(new string[] { txtPath.Text }))
                 {
                     base.InformarError("Los campos no pueden quedar vacíos.", "Guardar Configuración.");
                     return false;

@@ -33,6 +33,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 lcr.SetInicioRango(txtHoraInicio.Text);
                 lcr.SetIntervaloHs(txtMinutosHora.Text);
                 lcr.SetIntervaloRegs(txtMinutosRegs.Text);
+                lcr.SetBorrarRegistros(chckBorrarRegs.Checked);
 
                 base.Informar("Configuraciones guardadas correctamente.", "Guardar Configuraciones.");
             }
@@ -56,6 +57,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 chckFicheroCopia.Checked = lcr.IsFicheroCopia();
 
                 // RUTINAS //
+                chckBorrarRegs.Checked = lcr.IsBorradoRegs();
                 chckEjecutarRutina.Checked = lcr.IsDescarga();
                 chckActivarHora.Checked = lcr.GetEstadoRutinaHs();
                 chckActivarHorario.Checked = lcr.GetEstadoRango();

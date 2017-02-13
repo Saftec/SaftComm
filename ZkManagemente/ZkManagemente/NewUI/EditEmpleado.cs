@@ -16,6 +16,10 @@ namespace ZkManagement.NewUI
 
         protected override void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (empActual == null)
+            {
+                return;
+            }
             if (!Validar())
             {
                 return; //Los carteles los muestro en el método validar.
@@ -35,6 +39,7 @@ namespace ZkManagement.NewUI
                     base.Informar("Empleado guardado correctamente", "Agregar Empleado.");
                 }
                 PanelPersonal.Instancia.RefreshGrid(); //Actualizo el DataGrid
+                empActual = null;
                 this.Dispose();                
             }
             catch(Exception ex)

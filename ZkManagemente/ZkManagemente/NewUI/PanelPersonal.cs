@@ -56,31 +56,37 @@ namespace ZkManagement.NewUI.Generic
             // Recorro todo el grid y elimino todos los seleccionados//
             List<DataGridViewRow> filas = new List<DataGridViewRow>();
             LogicEmpleado le = new LogicEmpleado();
-            foreach (DataGridViewRow row in gridPersonal.Rows)
-            {
-                DataGridViewCheckBoxCell cellSelecion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+            List<Empleado> eliminados = new List<Empleado>();
 
-                if (Convert.ToBoolean(cellSelecion.Value))
+            try
+            {
+                foreach (DataGridViewRow row in gridPersonal.Rows)
                 {
-                    try
+                    DataGridViewCheckBoxCell cellSelecion = row.Cells["Eliminar"] as DataGridViewCheckBoxCell;
+
+                    if (Convert.ToBoolean(cellSelecion.Value))
                     {
-                        Empleado emp = MapearDeGrid();
-                        le = new LogicEmpleado();
-                        le.BajaEmpleado(emp);
+                        Empleado emp = new Empleado();
+                        emp.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                        eliminados.Add(emp);
                         filas.Add(row);
                     }
-                    catch (Exception ex)
-                    {
-                        base.InformarError(ex.Message, "Eliminar Empleados.");
-                    }
                 }
+                le = new LogicEmpleado();
+                le.BajaEmpleado(eliminados);
+                //Borro las filas del DGV
+                foreach (DataGridViewRow row in filas)
+                {
+                    gridPersonal.Rows.Remove(row);
+                }
+                filas.Clear(); //Limpio el arregle de filas guardado en memoria.
+                base.Informar(eliminados.Count.ToString() + " empleados eliminados correctamente.", "Eliminar Empleados");
             }
-            //Borro las filas del DGV
-            foreach (DataGridViewRow row in filas)
+            catch (Exception ex)
             {
-                gridPersonal.Rows.Remove(row);
+                base.InformarError(ex.Message, "Eliminar Empleados.");
             }
-            filas.Clear(); //Limpio el arregle de filas guardado en memoria.
+
         }
         #endregion
 
@@ -89,7 +95,7 @@ namespace ZkManagement.NewUI.Generic
         {
             Empleado e = new Empleado();
             int val = 0;
-            if (int.TryParse(gridPersonal.CurrentRow.Cells["IdEmpleado"].Value.ToString(), out val))
+            if (int.TryParse(gridPersonal.CurrentRow.Cells["Id"].Value.ToString(), out val))
             {
                 e.Id = val;
             }

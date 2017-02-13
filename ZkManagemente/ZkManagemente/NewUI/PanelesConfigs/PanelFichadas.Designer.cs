@@ -49,6 +49,7 @@
             this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chckFicheroCopia = new MetroFramework.Controls.MetroCheckBox();
+            this.chckBorrarRegs = new MetroFramework.Controls.MetroCheckBox();
             this.groupRutinas.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             // groupRutinas
             // 
             this.groupRutinas.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupRutinas.Controls.Add(this.chckBorrarRegs);
             this.groupRutinas.Controls.Add(this.metroLabel9);
             this.groupRutinas.Controls.Add(this.metroLabel8);
             this.groupRutinas.Controls.Add(this.txtHoraFin);
@@ -87,9 +89,9 @@
             this.groupRutinas.Controls.Add(this.chckActivarHora);
             this.groupRutinas.Controls.Add(this.chckActivarRegs);
             this.groupRutinas.Enabled = false;
-            this.groupRutinas.Location = new System.Drawing.Point(76, 212);
+            this.groupRutinas.Location = new System.Drawing.Point(76, 207);
             this.groupRutinas.Name = "groupRutinas";
-            this.groupRutinas.Size = new System.Drawing.Size(531, 283);
+            this.groupRutinas.Size = new System.Drawing.Size(531, 315);
             this.groupRutinas.TabIndex = 4;
             this.groupRutinas.TabStop = false;
             this.groupRutinas.Text = "Rutinas";
@@ -188,7 +190,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(417, 47);
+            this.metroLabel6.Location = new System.Drawing.Point(417, 55);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(58, 19);
             this.metroLabel6.TabIndex = 12;
@@ -241,7 +243,7 @@
             this.txtMinutosRegs.CustomButton.Visible = false;
             this.txtMinutosRegs.Enabled = false;
             this.txtMinutosRegs.Lines = new string[0];
-            this.txtMinutosRegs.Location = new System.Drawing.Point(336, 47);
+            this.txtMinutosRegs.Location = new System.Drawing.Point(336, 55);
             this.txtMinutosRegs.MaxLength = 3;
             this.txtMinutosRegs.Name = "txtMinutosRegs";
             this.txtMinutosRegs.PasswordChar = '\0';
@@ -286,7 +288,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(109, 47);
+            this.metroLabel1.Location = new System.Drawing.Point(109, 55);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(221, 19);
             this.metroLabel1.TabIndex = 4;
@@ -317,7 +319,7 @@
             // chckActivarRegs
             // 
             this.chckActivarRegs.AutoSize = true;
-            this.chckActivarRegs.Location = new System.Drawing.Point(35, 51);
+            this.chckActivarRegs.Location = new System.Drawing.Point(35, 55);
             this.chckActivarRegs.Name = "chckActivarRegs";
             this.chckActivarRegs.Size = new System.Drawing.Size(60, 15);
             this.chckActivarRegs.TabIndex = 0;
@@ -366,6 +368,16 @@
             this.chckFicheroCopia.Text = "Escribir fichadas en fichero de copia";
             this.chckFicheroCopia.UseSelectable = true;
             // 
+            // chckBorrarRegs
+            // 
+            this.chckBorrarRegs.AutoSize = true;
+            this.chckBorrarRegs.Location = new System.Drawing.Point(148, 19);
+            this.chckBorrarRegs.Name = "chckBorrarRegs";
+            this.chckBorrarRegs.Size = new System.Drawing.Size(206, 15);
+            this.chckBorrarRegs.TabIndex = 18;
+            this.chckBorrarRegs.Text = "Borrar registros luego de descargar";
+            this.chckBorrarRegs.UseSelectable = true;
+            // 
             // PanelFichadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,5 +424,6 @@
         private MetroFramework.Controls.MetroTextBox txtHoraInicio;
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroCheckBox chckBorrarRegs;
     }
 }

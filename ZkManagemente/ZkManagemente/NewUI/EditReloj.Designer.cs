@@ -40,6 +40,7 @@
             this.txtDns = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtClave = new MetroFramework.Controls.MetroTextBox();
+            this.chckRutinas = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -288,11 +289,22 @@
             this.txtClave.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtClave.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // chckRutinas
+            // 
+            this.chckRutinas.AutoSize = true;
+            this.chckRutinas.Location = new System.Drawing.Point(432, 178);
+            this.chckRutinas.Name = "chckRutinas";
+            this.chckRutinas.Size = new System.Drawing.Size(171, 15);
+            this.chckRutinas.TabIndex = 16;
+            this.chckRutinas.Text = "Agregar a agenda de rutinas";
+            this.chckRutinas.UseSelectable = true;
+            // 
             // EditReloj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 550);
+            this.Controls.Add(this.chckRutinas);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.txtDns);
@@ -321,6 +333,7 @@
             this.Controls.SetChildIndex(this.txtDns, 0);
             this.Controls.SetChildIndex(this.metroLabel6, 0);
             this.Controls.SetChildIndex(this.txtClave, 0);
+            this.Controls.SetChildIndex(this.chckRutinas, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +353,6 @@
         private MetroFramework.Controls.MetroTextBox txtDns;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTextBox txtClave;
+        private MetroFramework.Controls.MetroCheckBox chckRutinas;
     }
 }

@@ -8,7 +8,7 @@ namespace ZkManagement.NewUI
 {
     public partial class EditUsuario : GenericAbm
     {
-        Usuario usrAct = new Usuario();
+        Usuario usrAct;
         LogicUsuario lu;
         public EditUsuario()
         {
@@ -17,6 +17,10 @@ namespace ZkManagement.NewUI
 
         private void btnGuardar_Click_1(object sender, System.EventArgs e)
         {
+            if(usrAct == null)
+            {
+                return;
+            }
             if (!Validar())
             {
                 return;
@@ -31,6 +35,10 @@ namespace ZkManagement.NewUI
                 {
                     lu.ModificarUsuario(usrAct);
                 }
+                PanelUsuario.Instancia.RefreshGrid();
+                base.Informar("Usuario modificado correctamente.", "Modificar Usuario.");
+                usrAct = null;
+                this.Close();
             }
             catch(Exception ex)
             {
@@ -41,12 +49,12 @@ namespace ZkManagement.NewUI
         public void MapearAForm(Usuario u)
         {
             usrAct = u;
-            if (u.Id == 0)
+            if (usrAct.Id == 0)
             {
                 return;
             }
-            txtUsuario.Text = u.Usr;
-            cbPermisos.SelectedIndex = u.Nivel - 1;
+            txtUsuario.Text = usrAct.Usr;
+            cbPermisos.SelectedIndex = usrAct.Nivel - 1;
          
         }
 

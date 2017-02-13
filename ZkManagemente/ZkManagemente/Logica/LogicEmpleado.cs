@@ -64,21 +64,24 @@ namespace ZkManagement.Logica
 
         }
 
-        public void BajaEmpleado(Empleado emp)
+        public void BajaEmpleado(List<Empleado> empleados)
         {
             try
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.Instancia.Eliminar(emp);
+                    DataEmpleadoSaftime.Instancia.Eliminar(empleados);
                 }
                 else
                 {
-                    DataEmpleado.Instancia.Eliminar(emp);
+                    DataEmpleado.Instancia.Eliminar(empleados);
                 }
-                Huella h = new Huella();
-                h.Empleado = emp;
-                DataTemplates.Instancia.EliminarHuella(h);
+                foreach(Empleado emp in empleados)
+                {
+                    Huella h = new Huella();
+                    h.Empleado = emp;
+                    DataTemplates.Instancia.EliminarHuella(h);
+                }
             }
             catch (AppException appex)
             {

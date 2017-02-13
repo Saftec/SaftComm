@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {
-                query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero FROM Relojes;";
+                query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero, Rutina, Tipo FROM Relojes;";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
@@ -46,6 +46,7 @@ namespace ZkManagement.Datos
                     r.Nombre = dr["Nombre"].ToString();
                     r.Puerto = Convert.ToInt32(dr["Puerto"]);
                     r.Numero = Convert.ToInt32(dr["Numero"]);
+                    r.Rutina = Convert.ToBoolean(dr["Rutina"]);
                     relojes.Add(r);
                 }
             }
@@ -84,7 +85,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + Encrypt.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ")";
+                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero, Rutina) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + Encrypt.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ", '" + r.Rutina.ToString() + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -122,7 +123,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + Encrypt.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + " WHERE IdReloj=" + r.Id;
+                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + Encrypt.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + ", Rutina='" + r.Rutina +"'  WHERE IdReloj=" + r.Id;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }

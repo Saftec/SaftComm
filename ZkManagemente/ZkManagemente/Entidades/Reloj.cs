@@ -16,7 +16,9 @@ namespace ZkManagement.Entidades
         private string ip;
         private string nombre;
         private bool estado;
-     // private string tipo;  --Esta variable la voy a usar para controlar si es TFT ByW o Facial.-- //
+        private bool rutina;
+
+        // private string tipo;  --Esta variable la voy a usar para controlar si es TFT ByW o Facial.-- //
 
         #region Constructores
         public Reloj()
@@ -41,7 +43,11 @@ namespace ZkManagement.Entidades
 
         #endregion
         #region Propiedades
-
+        public bool Rutina
+        {
+            get { return rutina; }
+            set { rutina = value; }
+        }
         public string DNS
         {
             get { return dns; }
