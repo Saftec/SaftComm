@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {
-                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado', (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.fecBaja IS NULL ORDER BY Nombre ASC";
+                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado', (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc, CASE WHEN e.fecbaja IS NULL THEN 0 ELSE 1 END AS 'Baja' FROM Empleados e ORDER BY Nombre ASC";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -47,7 +47,7 @@ namespace ZkManagement.Datos
                     e.Dni = dr["nroDoc"].ToString();
                     e.Pin = string.Empty;
                     e.Privilegio = 0;
-                    e.Baja = 0;
+                    e.Baja = Convert.ToInt32(dr["Baja"]);
                     empleados.Add(e);
                 }
             }
@@ -210,14 +210,63 @@ namespace ZkManagement.Datos
             }
         }
 
-        public Empleado GetIdByLegajo(string legajo)
+        public Empleado GetIdByLegajo(Empleado emp)
         {
             SqlDataReader dr = null;
             SqlCommand cmd = null;
-            Empleado emp = new Empleado();
             try
             {
-                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + legajo + "'";
+                query = "SELECT e.EmpId, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo + "'";
+                cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    emp.Id = Convert.ToInt32(dr["EmpId"]);
+                    emp.Dni = dr["nroDoc"].ToString();
+                    emp.Baja = 0;
+                }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbex)
+            {
+                throw new AppException("Error al intentar consultar la tabla empleados", "Error", dbex);
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido al intentar consultar la tabla empleados", "Fatal", ex);
+            }
+            finally
+            {
+                try
+                {
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    if (cmd != null)
+                    {
+                        cmd.Dispose();
+                    }
+                    ConnectionSaftime.Instancia.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return emp;
+        }
+
+        public Empleado GetDataByLegajo(Empleado emp)
+        {
+            SqlDataReader dr = null;
+            SqlCommand cmd = null;
+            try
+            {
+                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo + "'";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -263,7 +312,7 @@ namespace ZkManagement.Datos
                 }
             }
             return emp;
-        }
 
+        }
     }
 }

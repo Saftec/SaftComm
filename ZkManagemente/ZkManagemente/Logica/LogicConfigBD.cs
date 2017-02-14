@@ -27,7 +27,19 @@ namespace ZkManagement.Logica
                 return false;
             }
         }
-
+        public string GetVersion()
+        {
+            string valor="";
+            try
+            {
+                valor = DataConfigs.Instancia.GetConfig(1);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
+        }
         public void SetType(string type)
         {
             try

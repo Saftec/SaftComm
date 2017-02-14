@@ -1,6 +1,7 @@
 ﻿using MetroFramework.Controls;
 using MetroFramework.Forms;
 using System;
+using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
 using ZkManagement.Logica;
@@ -11,21 +12,52 @@ namespace ZkManagement.NewUI
 {
     public partial class MainWindow : MetroForm
     {
-        private LogicConfigRutinas lcr;
+
+        #region Singleton
+        private static MainWindow _instancia;
+
+        public static MainWindow Instancia
+        {
+            get
+            {
+                if (_instancia == null)
+                {
+                    _instancia = new MainWindow();
+                }
+                return _instancia;
+            }
+        }
+        private MainWindow()
+        {
+            InitializeComponent();          
+        }
+        #endregion
+        private LogicConfigRutinas lcr;    
         public MetroPanel MetroContainer
         {
             get { return metroPanel; }
         }
-        public MainWindow()
+
+        public void Inicializar()
         {
-            InitializeComponent();
             lcr = new LogicConfigRutinas();
-            if (lcr.IsDescarga())
+            LogicConfigBD lcbd = new LogicConfigBD();
+            try
             {
-                InicializarTimers();
+                if (lcr.IsDescarga())
+                {
+                    InicializarTimers();
+                }
+
+                lblVersionBD.Text = "Versión BD: " + lcbd.GetVersion();
+                lblVersionApp.Text = "Versión SaftComm: " + ConfigurationManager.AppSettings["Version"].ToString();
+                lblUsr.Text = "Usuario: Saftec";
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Inicializar Aplicación");
             }
         }
-
         #region Menu
         private void MainWindow_Load(object sender, EventArgs e)
         {
@@ -169,6 +201,11 @@ namespace ZkManagement.NewUI
         private void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

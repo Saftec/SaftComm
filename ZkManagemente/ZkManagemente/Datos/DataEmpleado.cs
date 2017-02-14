@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {                            
-                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'CantHuellas' FROM Empleados e INNER JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
+                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'CantHuellas' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
@@ -132,7 +132,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin='" + emp.Pin + "', Tarjeta='" + emp.Tarjeta +
+                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
@@ -203,22 +203,17 @@ namespace ZkManagement.Datos
             }
         }
 
-        public Empleado GetIdByLegajo(string legajo)
+        public Empleado GetIdByLegajo(Empleado emp)
         {
             IDataReader dr = null;
-            Empleado emp = new Empleado();
             try
             {
-                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e WHERE e.Legajo='" + legajo +"'";
+                query = "SELECT e.IdEmpleado, e.DNI, e.Baja FROM Empleados e WHERE e.Legajo='" + emp.Legajo +"'";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
-                    emp.Nombre = dr["Nombre"].ToString();
-                    emp.Tarjeta = dr["Tarjeta"].ToString();
                     emp.Dni = dr["DNI"].ToString();
-                    emp.Pin = dr["Pin"].ToString();
-                    emp.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     emp.Baja = Convert.ToInt32(dr["Baja"]);
                 }       
             }
@@ -288,6 +283,54 @@ namespace ZkManagement.Datos
                     throw ex;
                 }
             }
+        }
+        public Empleado GetDataByLegajo(Empleado emp)
+        {
+            IDataReader dr = null;
+            try
+            {
+                query = "SELECT e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'";
+                dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
+                if (dr.Read())
+                {
+                    emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
+                    emp.Nombre = dr["Nombre"].ToString();
+                    emp.Tarjeta = dr["Tarjeta"].ToString();
+                    emp.Dni = dr["DNI"].ToString();
+                    emp.Pin = dr["Pin"].ToString();
+                    emp.Privilegio = Convert.ToInt32(dr["Privilegio"]);
+                    emp.Baja = Convert.ToInt32(dr["Baja"]);
+                }
+            }
+            catch (AppException appex)
+            {
+                throw appex;
+            }
+            catch (DbException dbEx)
+            {
+                throw new AppException("Error al intentar consultar la tabla empleados", "Error", dbEx);
+            }
+            catch (Exception ex)
+            {
+                throw new AppException("Error desconocido al intentar consultar la tabla empleados", "Fatal", ex);
+            }
+            finally
+            {
+                try
+                {
+                    if (dr != null)
+                    {
+                        dr.Close();
+                    }
+                    FactoryConnection.Instancia.ReleaseConn();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return emp;
+
         }
 
         //Este método lo utilizo para setearle las huellas al list de empleados

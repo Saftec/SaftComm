@@ -64,7 +64,7 @@ namespace ZkManagement.Logica
         public void ActualizarBorrado(Reloj reloj, int cantidad)
         {
             DateTime fecha = DateTime.Now;
-            ControladorLogin cl = new ControladorLogin();
+            LogicLogin cl = new LogicLogin();
             try
             {
                 DataRelojes.Instancia.SetBorrado(cl.GetUsrId(), reloj.Id, cantidad, fecha);

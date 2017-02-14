@@ -31,6 +31,174 @@ namespace ZkManagement.NewUI
         private LogicReloj lr;
         private Reloj relojAct;
 
+
+        #region Botones
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            if (cbRelojes.SelectedIndex < 0)
+            {
+                base.InformarError("Por favor seleccione un dispositivo", "Sincronizar Datos.");
+            }
+            // SI SE UTILIZO OTRO RELOJ LO DESCONECTO //
+            if (relojAct != null && !relojAct.Estado)
+            {
+                relojAct.Desconectar();
+            }
+
+            try
+            {
+                gridPersonalReloj.AutoGenerateColumns = false;  // Para que respete las columnas ya diseñadas
+                relojAct = (Reloj)cbRelojes.SelectedItem;
+                relojAct.Conectar();
+                gridPersonalReloj.DataSource = null;
+                gridPersonalReloj.Refresh();
+                gridPersonalReloj.DataSource = relojAct.DescargarInfo();
+                relojAct.Desconectar();
+                gridPersonalReloj.Refresh();
+                lblDispositivo.Text = "Usuarios en dispositivo: " + relojAct.Nombre;
+            }
+            catch (AppException appex)
+            {
+                base.InformarError(appex.Message, "Sincronizar Datos.");
+            }
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            List<string> legajos = new List<string>();
+            try
+            {
+                foreach (DataGridViewRow fila in gridPersonalReloj.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["SeleccionDisp"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        legajos.Add(fila.Cells["LegajoDisp"].Value.ToString());
+                    }
+                }
+                //Valido que haya seleccionado al menos 1
+                if (legajos.Count == 0)
+                {
+                    base.InformarError("Debe seleccionar al menos un empleado.", "Eliminar Usuarios.");
+                    return;
+                }
+                //Pregunto si realmente quiere hacer la acción
+                if (MessageBox.Show("Esta seguro que desea eliminar los empleados seleccionados?", "Eliminar Usuarios.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                { return; }
+
+                if (relojAct != null && !relojAct.Estado)
+                {
+                    relojAct.Desconectar();
+                }
+
+                relojAct = (Reloj)cbRelojes.SelectedItem;
+                relojAct.Conectar();
+                relojAct.EliminarUsuarios(legajos);
+                relojAct.Desconectar();
+                base.Informar(legajos.Count.ToString() + " usuarios eliminados correctamente", "Eliminar Usuarios.");
+            }
+            catch (AppException appex)
+            {
+                InformarError(appex.Message, "Eliminar Usuarios.");
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Eliminar Usuarios.");
+            }
+        }
+        private void btnDownloadInfo_Click(object sender, EventArgs e)
+        {
+            if (relojAct != null && !relojAct.Estado)
+            {
+                relojAct.Desconectar();
+            }
+            try
+            {
+                relojAct = (Reloj)cbRelojes.SelectedItem;
+                backgroundDownloadInfo.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Descargar Usuarios.");
+            }
+        }
+        private void btnUploadInfo_Click(object sender, EventArgs e)
+        {
+            if (relojAct != null && !relojAct.Estado)
+            {
+                relojAct.Desconectar();
+            }
+            try
+            {
+                relojAct = (Reloj)cbRelojes.SelectedItem;
+                backgroundUploadInfo.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Cargar Usuarios.");
+            }
+
+        }
+        #endregion
+
+        #region BackGround's
+        private void backgroundDownloadInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            List<Empleado> empleados = new List<Empleado>();
+            LogicDescargaDatos ldd = new LogicDescargaDatos();
+            try
+            {
+                foreach (DataGridViewRow fila in gridPersonalReloj.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["SeleccionDisp"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Legajo = fila.Cells["LegajoDisp"].Value.ToString();
+                        emp.Nombre = fila.Cells["NombreDisp"].Value.ToString();
+                        emp.Pin = fila.Cells["PinDisp"].Value.ToString();
+                        emp.Tarjeta = fila.Cells["TarjetaDisp"].Value.ToString();
+                        empleados.Add(emp);
+                    }
+                }
+                if (empleados.Count <= 0)
+                {
+                    base.InformarError("No seleccionó ningún empleado", "Descargar Usuarios.");
+                    return;
+                }
+                int total = 0;
+                int cantHuellas = 0;
+                relojAct.Conectar();
+                relojAct.Deshabilitar();
+                foreach (Empleado emp in empleados)
+                {
+                    if (relojAct.Estado)
+                    {
+                        ldd.ActualizarInfo(emp);  //Descargo la info del usuario
+                        cantHuellas += ldd.AgregarHuella(emp, relojAct); //Descargo las huellas
+                        total++;
+                        backgroundDownloadInfo.ReportProgress((total * 100) / empleados.Count);
+                    }
+                }
+                backgroundDownloadInfo.ReportProgress(100);
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Descargar Usuarios.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct.Desconectar();
+            }
+        }
+        private void backgroundDownloadInfo_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+        }
+
+
+        #endregion
+
         public void RefreshData()
         {
             DataTable empleados = new DataTable();
@@ -79,77 +247,6 @@ namespace ZkManagement.NewUI
             return dt;
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
-        {
-            if (cbRelojes.SelectedIndex < 0)
-            {
-                base.InformarError("Por favor seleccione un dispositivo", "Sincronizar Datos.");
-            }
-            // SI SE UTILIZO OTRO RELOJ LO DESCONECTO //
-            if (relojAct!=null && !relojAct.Estado)
-            {
-                relojAct.Desconectar();
-            }
-            
-            try
-            {
-                gridPersonalReloj.AutoGenerateColumns = false;  // Para que respete las columnas ya diseñadas
-                relojAct = (Reloj)cbRelojes.SelectedItem;
-                relojAct.Conectar();
-                gridPersonalReloj.DataSource = null;
-                gridPersonalReloj.Refresh();
-                gridPersonalReloj.DataSource = relojAct.DescargarInfo();
-                relojAct.Desconectar();
-                gridPersonalReloj.Refresh();
-            }
-            catch(AppException appex)
-            {
-                base.InformarError(appex.Message, "Sincronizar Datos.");
-            }
-        }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            List<string> legajos = new List<string>();
-            try
-            {
-                foreach (DataGridViewRow fila in gridPersonalReloj.Rows)
-                {
-                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Eliminar"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(cellSeleccion.Value))
-                    {
-                        legajos.Add(fila.Cells["Leg"].Value.ToString());
-                    }
-                }
-                //Valido que haya seleccionado al menos 1
-                if (legajos.Count == 0)
-                {
-                    base.InformarError("Debe seleccionar al menos un empleado.", "Eliminar Usuarios.");
-                    return;
-                }
-                //Pregunto si realmente quiere hacer la acción
-                if (MessageBox.Show("Esta seguro que desea eliminar los empleados seleccionados?", "Eliminar Usuarios.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                { return; }
-
-                if(relojAct!=null && !relojAct.Estado)
-                {
-                    relojAct.Desconectar();
-                }
-
-                relojAct = (Reloj)cbRelojes.SelectedItem;
-                relojAct.Conectar();
-                relojAct.EliminarUsuarios(legajos);
-                relojAct.Desconectar();
-                base.Informar(legajos.Count.ToString() + " usuarios eliminados correctamente", "Eliminar Usuarios.");
-            }
-            catch (AppException appex)
-            {
-                InformarError(appex.Message, "Eliminar Usuarios.");
-            }
-            catch (Exception ex)
-            {
-                InformarError(ex.Message, "Eliminar Usuarios.");
-            }
-        }
     }
 }

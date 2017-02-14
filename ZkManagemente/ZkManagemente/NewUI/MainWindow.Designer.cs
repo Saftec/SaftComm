@@ -36,6 +36,9 @@
             this.btnPersonal = new MetroFramework.Controls.MetroButton();
             this.btnConfig = new MetroFramework.Controls.MetroButton();
             this.pHeader = new System.Windows.Forms.Panel();
+            this.lblUsr = new MetroFramework.Controls.MetroLabel();
+            this.lblVersionApp = new MetroFramework.Controls.MetroLabel();
+            this.lblVersionBD = new MetroFramework.Controls.MetroLabel();
             this.metroPanel = new MetroFramework.Controls.MetroPanel();
             this.timerRutinaRegs = new System.Windows.Forms.Timer(this.components);
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
@@ -148,21 +151,58 @@
             // 
             // pHeader
             // 
+            this.pHeader.Controls.Add(this.lblUsr);
+            this.pHeader.Controls.Add(this.lblVersionApp);
+            this.pHeader.Controls.Add(this.lblVersionBD);
             this.pHeader.Controls.Add(this.tableMenu);
             this.pHeader.Location = new System.Drawing.Point(175, 6);
             this.pHeader.Name = "pHeader";
-            this.pHeader.Size = new System.Drawing.Size(826, 67);
+            this.pHeader.Size = new System.Drawing.Size(854, 67);
             this.pHeader.TabIndex = 3;
+            // 
+            // lblUsr
+            // 
+            this.lblUsr.AutoSize = true;
+            this.lblUsr.Location = new System.Drawing.Point(724, 42);
+            this.lblUsr.Name = "lblUsr";
+            this.lblUsr.Size = new System.Drawing.Size(71, 19);
+            this.lblUsr.Style = MetroFramework.MetroColorStyle.Blue;
+            this.lblUsr.TabIndex = 5;
+            this.lblUsr.Text = "<Usuario>";
+            this.lblUsr.UseStyleColors = true;
+            // 
+            // lblVersionApp
+            // 
+            this.lblVersionApp.AutoSize = true;
+            this.lblVersionApp.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblVersionApp.Location = new System.Drawing.Point(724, 22);
+            this.lblVersionApp.Name = "lblVersionApp";
+            this.lblVersionApp.Size = new System.Drawing.Size(85, 15);
+            this.lblVersionApp.Style = MetroFramework.MetroColorStyle.Blue;
+            this.lblVersionApp.TabIndex = 4;
+            this.lblVersionApp.Text = "<Version App>";
+            this.lblVersionApp.UseStyleColors = true;
+            // 
+            // lblVersionBD
+            // 
+            this.lblVersionBD.AutoSize = true;
+            this.lblVersionBD.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblVersionBD.Location = new System.Drawing.Point(724, 3);
+            this.lblVersionBD.Name = "lblVersionBD";
+            this.lblVersionBD.Size = new System.Drawing.Size(78, 15);
+            this.lblVersionBD.Style = MetroFramework.MetroColorStyle.Blue;
+            this.lblVersionBD.TabIndex = 3;
+            this.lblVersionBD.Text = "<Version BD>";
+            this.lblVersionBD.UseStyleColors = true;
             // 
             // metroPanel
             // 
-            this.metroPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.metroPanel.HorizontalScrollbarBarColor = true;
             this.metroPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel.HorizontalScrollbarSize = 10;
-            this.metroPanel.Location = new System.Drawing.Point(6, 93);
+            this.metroPanel.Location = new System.Drawing.Point(22, 144);
             this.metroPanel.Name = "metroPanel";
-            this.metroPanel.Size = new System.Drawing.Size(995, 583);
+            this.metroPanel.Size = new System.Drawing.Size(1055, 630);
             this.metroPanel.TabIndex = 4;
             this.metroPanel.VerticalScrollbarBarColor = true;
             this.metroPanel.VerticalScrollbarHighlightOnWheel = false;
@@ -188,15 +228,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 699);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1108, 800);
             this.Controls.Add(this.metroPanel);
             this.Controls.Add(this.pHeader);
             this.Name = "MainWindow";
             this.Text = "SaftComm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tableMenu.ResumeLayout(false);
             this.pHeader.ResumeLayout(false);
+            this.pHeader.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -215,5 +257,8 @@
         private System.Windows.Forms.Timer timerRutinaHora;
         private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaRegistros;
         private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaHora;
+        private MetroFramework.Controls.MetroLabel lblUsr;
+        private MetroFramework.Controls.MetroLabel lblVersionApp;
+        private MetroFramework.Controls.MetroLabel lblVersionBD;
     }
 }

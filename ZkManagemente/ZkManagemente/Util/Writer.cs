@@ -31,9 +31,17 @@ namespace ZkManagement.Logica
                     // ESCRIBO LA LINEA //
                     using (StreamWriter w = File.AppendText(fe.Path))
                         w.WriteLine(linea);
+
+                    // SI ESTA ACTIVA LA CONFIG DEL FICHERO DE BK LO ESCRIBO EN EL PATH DE LA APP
                     if (ficheroCopia)
                     {
-                        using (StreamWriter w = File.AppendText(Directory.GetCurrentDirectory() + @"\Regs.txt"))  // ESCRIBO LAS REGS DE COPIA EN LA CARPETA DEL PROGRAMA
+                        string path = Directory.GetCurrentDirectory() + @"\Regs\";
+                        FileInfo fi = new FileInfo(path);
+                        if (!fi.Directory.Exists)
+                        {
+                            System.IO.Directory.CreateDirectory(fi.DirectoryName);
+                        }
+                        using (StreamWriter w = File.AppendText(path + "BK_" + DateTime.Now.ToString("yyMMddhhmmss") + "_Regs.txt"))
                             w.WriteLine(linea);                      
                     }
                 }                             

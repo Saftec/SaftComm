@@ -63,6 +63,7 @@
             this.groupSQL.Controls.Add(this.txtServer);
             this.groupSQL.Controls.Add(this.metroLabel1);
             this.groupSQL.Enabled = false;
+            this.groupSQL.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupSQL.Location = new System.Drawing.Point(145, 64);
             this.groupSQL.Name = "groupSQL";
             this.groupSQL.Size = new System.Drawing.Size(528, 211);
@@ -76,8 +77,10 @@
             this.metroLabel4.Location = new System.Drawing.Point(268, 153);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(78, 19);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 7;
             this.metroLabel4.Text = "Contraseña:";
+            this.metroLabel4.UseStyleColors = true;
             // 
             // txtPasswordSQL
             // 
@@ -104,8 +107,10 @@
             this.txtPasswordSQL.SelectionStart = 0;
             this.txtPasswordSQL.ShortcutsEnabled = true;
             this.txtPasswordSQL.Size = new System.Drawing.Size(161, 23);
+            this.txtPasswordSQL.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPasswordSQL.TabIndex = 6;
             this.txtPasswordSQL.UseSelectable = true;
+            this.txtPasswordSQL.UseStyleColors = true;
             this.txtPasswordSQL.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPasswordSQL.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -135,9 +140,11 @@
             this.txtUsuarioSQL.SelectionStart = 0;
             this.txtUsuarioSQL.ShortcutsEnabled = true;
             this.txtUsuarioSQL.Size = new System.Drawing.Size(142, 23);
+            this.txtUsuarioSQL.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUsuarioSQL.TabIndex = 5;
             this.txtUsuarioSQL.Text = "saftec";
             this.txtUsuarioSQL.UseSelectable = true;
+            this.txtUsuarioSQL.UseStyleColors = true;
             this.txtUsuarioSQL.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUsuarioSQL.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -147,8 +154,10 @@
             this.metroLabel3.Location = new System.Drawing.Point(6, 153);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(56, 19);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel3.TabIndex = 4;
             this.metroLabel3.Text = "Usuario:";
+            this.metroLabel3.UseStyleColors = true;
             // 
             // txtBase
             // 
@@ -176,9 +185,11 @@
             this.txtBase.SelectionStart = 0;
             this.txtBase.ShortcutsEnabled = true;
             this.txtBase.Size = new System.Drawing.Size(168, 23);
+            this.txtBase.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtBase.TabIndex = 3;
             this.txtBase.Text = "SaftCommDB";
             this.txtBase.UseSelectable = true;
+            this.txtBase.UseStyleColors = true;
             this.txtBase.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtBase.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -188,8 +199,10 @@
             this.metroLabel2.Location = new System.Drawing.Point(6, 99);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(94, 19);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 2;
             this.metroLabel2.Text = "Base de datos:";
+            this.metroLabel2.UseStyleColors = true;
             // 
             // txtServer
             // 
@@ -216,8 +229,10 @@
             this.txtServer.SelectionStart = 0;
             this.txtServer.ShortcutsEnabled = true;
             this.txtServer.Size = new System.Drawing.Size(440, 23);
+            this.txtServer.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtServer.TabIndex = 1;
             this.txtServer.UseSelectable = true;
+            this.txtServer.UseStyleColors = true;
             this.txtServer.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtServer.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -227,8 +242,10 @@
             this.metroLabel1.Location = new System.Drawing.Point(6, 37);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(61, 19);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "Servidor:";
+            this.metroLabel1.UseStyleColors = true;
             // 
             // groupAccess
             // 
@@ -237,6 +254,7 @@
             this.groupAccess.Controls.Add(this.metroLabel5);
             this.groupAccess.Controls.Add(this.txtPath);
             this.groupAccess.Enabled = false;
+            this.groupAccess.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupAccess.Location = new System.Drawing.Point(145, 306);
             this.groupAccess.Name = "groupAccess";
             this.groupAccess.Size = new System.Drawing.Size(528, 178);
@@ -262,8 +280,10 @@
             this.metroLabel5.Location = new System.Drawing.Point(6, 23);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(38, 19);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel5.TabIndex = 8;
             this.metroLabel5.Text = "Path:";
+            this.metroLabel5.UseStyleColors = true;
             // 
             // txtPath
             // 
@@ -290,8 +310,10 @@
             this.txtPath.SelectionStart = 0;
             this.txtPath.ShortcutsEnabled = true;
             this.txtPath.Size = new System.Drawing.Size(463, 23);
+            this.txtPath.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPath.TabIndex = 0;
             this.txtPath.UseSelectable = true;
+            this.txtPath.UseStyleColors = true;
             this.txtPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 

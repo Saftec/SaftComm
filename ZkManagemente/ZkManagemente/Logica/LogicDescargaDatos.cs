@@ -6,7 +6,7 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
-    class ControladorDescargaDatos
+    class LogicDescargaDatos
     {
         public void ActualizarInfo(Empleado emp)
         {
@@ -16,14 +16,29 @@ namespace ZkManagement.Logica
             }                   
             try
             {
-                emp = DataEmpleado.Instancia.GetIdByLegajo(emp.Legajo);
-                if (emp.Id > 0)
+                if (IsSaftime())
                 {
-                    DataEmpleado.Instancia.Actualizar(emp);              
+                    emp = DataEmpleadoSaftime.Instancia.GetIdByLegajo(emp);
+                    if (emp.Id > 0)
+                    {
+                        DataEmpleadoSaftime.Instancia.Actualizar(emp);
+                    }
+                    else
+                    {
+                        DataEmpleadoSaftime.Instancia.Agregar(emp);
+                    }
                 }
                 else
                 {
-                    DataEmpleado.Instancia.Agregar(emp);
+                    emp = DataEmpleado.Instancia.GetIdByLegajo(emp);
+                    if (emp.Id > 0)
+                    {
+                        DataEmpleado.Instancia.Actualizar(emp);
+                    }
+                    else
+                    {
+                        DataEmpleado.Instancia.Agregar(emp);
+                    }
                 }
             }
             catch(AppException appex)
@@ -32,7 +47,7 @@ namespace ZkManagement.Logica
             }
             catch(Exception ex)
             {
-                throw new AppException("Erro no controlado durante la actualización del empleado.", "Fatal", ex);
+                throw new AppException("Error no controlado durante la actualización del empleado.", "Fatal", ex);
             }                       
         }
         public int AgregarHuella(Empleado emp, Reloj reloj)
@@ -51,7 +66,15 @@ namespace ZkManagement.Logica
                 total = huellas.Count;
                 foreach (Huella h in huellas)
                 {
-                    h.Empleado = DataEmpleado.Instancia.GetIdByLegajo(h.Empleado.Legajo);
+                    if (IsSaftime())
+                    {
+                        h.Empleado = DataEmpleadoSaftime.Instancia.GetDataByLegajo(h.Empleado);
+                    }
+                    else
+                    {
+                        h.Empleado = DataEmpleado.Instancia.GetDataByLegajo(h.Empleado);
+                    }
+                    
                     if (!DataTemplates.Instancia.Existe(h))
                     {
                         DataTemplates.Instancia.InsertarHuella(h);
@@ -68,9 +91,24 @@ namespace ZkManagement.Logica
             }
             catch (Exception ex)
             {
-                throw new AppException("Erro no controlado durante la actualización de huellas", "Fatal", ex);
+                throw new AppException("Error no controlado durante la actualización de huellas", "Fatal", ex);
             }
             return total;
+        }
+
+        private bool IsSaftime()
+        {
+            LogicConfigSaftime lcs = new LogicConfigSaftime();
+            bool valor = false;
+            try
+            {
+                valor = lcs.IsEmpleados();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
         }
     }
 }

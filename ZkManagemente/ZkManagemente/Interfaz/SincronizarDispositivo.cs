@@ -374,7 +374,7 @@ namespace ZkManagement.Interfaz
                 Sino-->Agrego.
             *****************************************************/         
             List<Empleado> emps = new List<Empleado>();
-            ControladorDescargaDatos cdd = new ControladorDescargaDatos();
+            LogicDescargaDatos cdd = new LogicDescargaDatos();
 
             try
             {

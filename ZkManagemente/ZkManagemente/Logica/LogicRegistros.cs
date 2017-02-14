@@ -18,21 +18,19 @@ namespace ZkManagement.Logica
                 writer.EscribirRegistros(fichadas);
                 foreach (Fichada f in fichadas)
                 {
-                    string legajo = f.Empleado.Legajo;
-
                     // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFTCOMM //
                     if (VerificarSaftime())
                     {
-                        f.Empleado = DataEmpleadoSaftime.Instancia.GetIdByLegajo(legajo);
+                        f.Empleado = DataEmpleadoSaftime.Instancia.GetIdByLegajo(f.Empleado);
                     }else
                     {
-                        f.Empleado = DataEmpleado.Instancia.GetIdByLegajo(legajo);
+                        f.Empleado = DataEmpleado.Instancia.GetIdByLegajo(f.Empleado);
                     }
                     
                     // SI NO LO ENCONTRÓ AGREGO EL LEGAJO A DESCONOCIDOS //
                     if (f.Empleado.Id < 1)
                     {
-                        desconocidos.Add(legajo);
+                        desconocidos.Add(f.Empleado.Legajo);
                         continue;
                     }
                     DataEmpleado.Instancia.InsertarRegis(f);

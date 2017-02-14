@@ -419,7 +419,7 @@ namespace ZkManagement.Interfaz
         }
         private void SetPermisos()
         {
-            ControladorLogin cl = new ControladorLogin();
+            LogicLogin cl = new LogicLogin();
 
             if (cl.GetNivelUsr() < 3)
             {                

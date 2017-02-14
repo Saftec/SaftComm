@@ -24,9 +24,9 @@ namespace ZkManagement.NewUI.Generic
                 return _instancia;
             }
         }
-        public PanelPersonal()
+        private PanelPersonal()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         #region ABM
@@ -125,12 +125,13 @@ namespace ZkManagement.NewUI.Generic
         public void RefreshGrid()
         {
             gridPersonal.DataSource = null;
-            gridPersonal.AutoGenerateColumns = false;
+            gridPersonal.AutoGenerateColumns = false;           
             le = new LogicEmpleado();
             try
             {
                 empleados = ConvertToDatatable(le.GetEmpleados());
                 gridPersonal.DataSource = empleados;
+                rbActivos.Checked = true;
                 gridPersonal.Refresh();
             }
             catch (Exception ex)
@@ -168,6 +169,25 @@ namespace ZkManagement.NewUI.Generic
                 dt.Rows.Add(row);
             }
             return dt;
+        }
+
+        private void rbActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbActivos.Checked)
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 0");
+                }
+                else
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 1");
+                }
+            }
+            catch(Exception ex)
+            {
+                base.InformarError(ex.Message, "Filtrar Empleados");
+            }
         }
     }
 }

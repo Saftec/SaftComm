@@ -8,7 +8,7 @@ namespace ZkManagement.Interfaz
 {
     public partial class Login : Form
     {
-        private ControladorLogin cl;
+        private LogicLogin cl;
         public Login()
         {            
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace ZkManagement.Interfaz
         private void btnAceptar_Click(object sender, EventArgs e)
         {           
             Usuario usuario = new Usuario();
-            cl = new ControladorLogin();
+            cl = new LogicLogin();
 
             usuario.Usr = textUsuario.Text;
             usuario.PassDecrypt = textContraseña.Text;
@@ -58,7 +58,7 @@ namespace ZkManagement.Interfaz
             log4net.Config.XmlConfigurator.Configure();
 
             bool estado = false;
-            cl = new ControladorLogin();
+            cl = new LogicLogin();
 
             try
             {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
 using ZkManagement.Util;
@@ -143,7 +142,16 @@ namespace ZkManagement.Logica
         private bool VerificarSaftime()
         {
             LogicConfigSaftime lcs = new LogicConfigSaftime();
-            return lcs.IsEmpleados();
+            bool valor = false;
+            try
+            {
+                valor = lcs.IsEmpleados();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return valor;
         }
     }
 }

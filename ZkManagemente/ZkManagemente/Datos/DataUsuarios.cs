@@ -49,10 +49,6 @@ namespace ZkManagement.Datos
             {
                 throw appex;
             }
-           catch(InvalidOperationException)  //Si cacheo esto es porque la consulta no devolvió nada
-            {
-                throw new AppException("Usuario incorrecto");
-            }
             catch(DbException dbex)
             {
                 throw new AppException("Error al consultar datos de usuario", "Error", dbex);

@@ -48,8 +48,10 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 3);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(197, 544);
+            this.metroPanel1.Size = new System.Drawing.Size(197, 580);
+            this.metroPanel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroPanel1.TabIndex = 1;
+            this.metroPanel1.UseStyleColors = true;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
@@ -105,7 +107,7 @@
             this.pConfigs.HorizontalScrollbarSize = 10;
             this.pConfigs.Location = new System.Drawing.Point(206, 3);
             this.pConfigs.Name = "pConfigs";
-            this.pConfigs.Size = new System.Drawing.Size(691, 544);
+            this.pConfigs.Size = new System.Drawing.Size(690, 580);
             this.pConfigs.TabIndex = 2;
             this.pConfigs.VerticalScrollbarBarColor = true;
             this.pConfigs.VerticalScrollbarHighlightOnWheel = false;

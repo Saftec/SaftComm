@@ -264,6 +264,19 @@ namespace ZkManagement.NewUI
 
         public void RefreshGrid()
         {
+            // VALIDO QUE HAYA QUEDADO ALGUN RELOJ CONECTADO DE UNA OPERACION ANTERIOR
+            if (equipos!=null && equipos.Count > 0)
+            {
+                foreach(Reloj r in equipos)
+                {
+                    if (r.Estado)
+                    {
+                        r.Desconectar();
+                    }
+                }
+            }
+            // HASTA ACA
+
             lr = new LogicReloj();
             gridEquipos.DataSource = null;
             DataTable relojes;
@@ -399,6 +412,11 @@ namespace ZkManagement.NewUI
                 dt.Rows.Add(row);
             }
             return dt;
+        }
+
+        private void linkCleanLog_Click(object sender, EventArgs e)
+        {
+            txtLog.Text = string.Empty;
         }
     }
 }

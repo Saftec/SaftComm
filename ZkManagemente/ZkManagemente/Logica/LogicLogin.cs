@@ -7,7 +7,7 @@ using ZkManagement.Util;
 namespace ZkManagement.Logica
 {
 
-    class ControladorLogin
+    class LogicLogin
     {        
         private static Usuario usr; //---->Guardo el usuario que inicio
         public void ValidarUsuario(Usuario usuario)
@@ -16,12 +16,10 @@ namespace ZkManagement.Logica
             {
                 usr = DataUsuarios.Instancia.GetUsuario(usuario);
                 if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
-                if (Encrypt.DesEncriptar(usr.PassDecrypt) != usuario.PassDecrypt) { throw new AppException("Password invalida"); }
+                if (usr.PassDecrypt != usuario.PassDecrypt) { throw new AppException("Password invalida"); }
                 DataUsuarios.Instancia.SetUltimLogin(usr);
                 Logger.GetLogger().Info("-----------------------------------------------------------------\n");
                 Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
-                Principal.GetInstancia().SetPermisos(usr);
-                Principal.GetInstancia().Show();
             }
             catch (AppException appex)
             {
