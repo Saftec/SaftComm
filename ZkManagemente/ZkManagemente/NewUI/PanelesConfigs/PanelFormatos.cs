@@ -193,11 +193,46 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 txtPosicionReloj.Text = formatoAct.PosicionReloj.ToString();
                 txtPrefijoReloj.Text = formatoAct.PrefijoReloj;
 
-                cbFormatoFecha.Text = formatoAct.FormatoFecha;
-                cbFormatoHora.Text = formatoAct.FormatoHora;
-                cbSeparador.Text = formatoAct.SeparadorCampos;
-                cbSeparadorFecha.Text = formatoAct.SeparadorFecha;
-                cbSeparadorHora.Text = formatoAct.SeparadorHora;
+                if (cbFormatoFecha.Items.Contains(formatoAct.FormatoFecha))
+                {
+                    cbFormatoFecha.Text = formatoAct.FormatoFecha;
+                }
+                else
+                {
+                    throw new AppException("El formato de la fecha no es válido.");
+                }
+
+                if (cbFormatoHora.Items.Contains(formatoAct.FormatoHora))
+                {
+                    cbFormatoHora.Text = formatoAct.FormatoHora;
+                }
+                else
+                {
+                    throw new AppException("El formato de la hora no es válido.");
+                }
+                if (cbSeparador.Items.Contains(formatoAct.SeparadorCampos))
+                {
+                    cbSeparador.Text = formatoAct.SeparadorCampos;
+                }
+                else
+                {
+                    throw new AppException("El separador de los campos no es válido.");
+                }
+                if (cbSeparadorFecha.Items.Contains(formatoAct.SeparadorFecha))
+                {
+                    cbSeparadorFecha.Text = formatoAct.SeparadorFecha;
+                }
+                else
+                {
+                    throw new AppException("El separador de la fecha no es válido.");
+                }
+                if (cbSeparadorHora.Items.Contains(formatoAct.SeparadorHora))
+                {
+                    cbSeparadorHora.Text = formatoAct.SeparadorHora;
+                }else
+                {
+                    throw new AppException("El separador de la hora no es válido.");
+                }
             }
             catch(Exception ex)
             {

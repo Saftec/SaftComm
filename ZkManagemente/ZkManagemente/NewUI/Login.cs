@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
+using ZkManagement.NewUI.PanelesConfigs;
 using ZkManagement.Util;
 
 namespace ZkManagement.NewUI
@@ -18,7 +19,7 @@ namespace ZkManagement.NewUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Application.Exit();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)

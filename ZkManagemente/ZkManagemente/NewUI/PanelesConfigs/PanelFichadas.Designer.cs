@@ -91,6 +91,7 @@
             this.groupRutinas.Controls.Add(this.chckActivarHora);
             this.groupRutinas.Controls.Add(this.chckActivarRegs);
             this.groupRutinas.Enabled = false;
+            this.groupRutinas.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupRutinas.Location = new System.Drawing.Point(76, 207);
             this.groupRutinas.Name = "groupRutinas";
             this.groupRutinas.Size = new System.Drawing.Size(531, 315);
@@ -399,6 +400,7 @@
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Controls.Add(this.cbFormatos);
             this.groupBox2.Controls.Add(this.metroLabel5);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox2.Location = new System.Drawing.Point(76, 78);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(538, 92);

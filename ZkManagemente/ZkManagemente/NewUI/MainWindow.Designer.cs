@@ -33,7 +33,6 @@
             this.btnSinc = new MetroFramework.Controls.MetroButton();
             this.btnEquipos = new MetroFramework.Controls.MetroButton();
             this.btnUsuarios = new MetroFramework.Controls.MetroButton();
-            this.btnPersonal = new MetroFramework.Controls.MetroButton();
             this.btnConfig = new MetroFramework.Controls.MetroButton();
             this.pHeader = new System.Windows.Forms.Panel();
             this.lblUsr = new MetroFramework.Controls.MetroLabel();
@@ -44,6 +43,7 @@
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorkerRutinaRegistros = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
+            this.linkPersonal = new MetroFramework.Controls.MetroLink();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +57,10 @@
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableMenu.Controls.Add(this.btnSinc, 0, 0);
-            this.tableMenu.Controls.Add(this.btnEquipos, 0, 0);
             this.tableMenu.Controls.Add(this.btnUsuarios, 2, 0);
-            this.tableMenu.Controls.Add(this.btnPersonal, 0, 0);
             this.tableMenu.Controls.Add(this.btnConfig, 4, 0);
+            this.tableMenu.Controls.Add(this.btnEquipos, 3, 0);
+            this.tableMenu.Controls.Add(this.linkPersonal, 0, 0);
             this.tableMenu.Location = new System.Drawing.Point(0, 0);
             this.tableMenu.Margin = new System.Windows.Forms.Padding(4);
             this.tableMenu.Name = "tableMenu";
@@ -74,7 +74,7 @@
             this.btnSinc.BackColor = System.Drawing.Color.Transparent;
             this.btnSinc.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btnSinc.ForeColor = System.Drawing.Color.Red;
-            this.btnSinc.Location = new System.Drawing.Point(289, 3);
+            this.btnSinc.Location = new System.Drawing.Point(146, 3);
             this.btnSinc.Name = "btnSinc";
             this.btnSinc.Size = new System.Drawing.Size(137, 58);
             this.btnSinc.Style = MetroFramework.MetroColorStyle.Blue;
@@ -90,7 +90,7 @@
             this.btnEquipos.BackColor = System.Drawing.Color.Transparent;
             this.btnEquipos.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btnEquipos.ForeColor = System.Drawing.Color.Red;
-            this.btnEquipos.Location = new System.Drawing.Point(146, 3);
+            this.btnEquipos.Location = new System.Drawing.Point(432, 3);
             this.btnEquipos.Name = "btnEquipos";
             this.btnEquipos.Size = new System.Drawing.Size(137, 58);
             this.btnEquipos.Style = MetroFramework.MetroColorStyle.Blue;
@@ -106,7 +106,7 @@
             this.btnUsuarios.BackColor = System.Drawing.Color.Transparent;
             this.btnUsuarios.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btnUsuarios.ForeColor = System.Drawing.Color.Red;
-            this.btnUsuarios.Location = new System.Drawing.Point(432, 3);
+            this.btnUsuarios.Location = new System.Drawing.Point(289, 3);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(137, 58);
             this.btnUsuarios.Style = MetroFramework.MetroColorStyle.Blue;
@@ -116,22 +116,6 @@
             this.btnUsuarios.UseSelectable = true;
             this.btnUsuarios.UseStyleColors = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-            // 
-            // btnPersonal
-            // 
-            this.btnPersonal.BackColor = System.Drawing.Color.Transparent;
-            this.btnPersonal.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnPersonal.ForeColor = System.Drawing.Color.Red;
-            this.btnPersonal.Location = new System.Drawing.Point(3, 3);
-            this.btnPersonal.Name = "btnPersonal";
-            this.btnPersonal.Size = new System.Drawing.Size(137, 58);
-            this.btnPersonal.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnPersonal.TabIndex = 5;
-            this.btnPersonal.Text = "Personal";
-            this.btnPersonal.UseCustomBackColor = true;
-            this.btnPersonal.UseSelectable = true;
-            this.btnPersonal.UseStyleColors = true;
-            this.btnPersonal.Click += new System.EventHandler(this.btnPersonal_Click);
             // 
             // btnConfig
             // 
@@ -224,6 +208,19 @@
             // 
             this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
             // 
+            // linkPersonal
+            // 
+            this.linkPersonal.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkPersonal.Location = new System.Drawing.Point(3, 3);
+            this.linkPersonal.Name = "linkPersonal";
+            this.linkPersonal.Size = new System.Drawing.Size(137, 58);
+            this.linkPersonal.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkPersonal.TabIndex = 6;
+            this.linkPersonal.Text = "Personal";
+            this.linkPersonal.UseSelectable = true;
+            this.linkPersonal.UseStyleColors = true;
+            this.linkPersonal.Click += new System.EventHandler(this.linkPersonal_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +243,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableMenu;
-        private MetroFramework.Controls.MetroButton btnPersonal;
         private MetroFramework.Controls.MetroButton btnUsuarios;
         private System.Windows.Forms.Panel pHeader;
         private MetroFramework.Controls.MetroPanel metroPanel;
@@ -260,5 +256,6 @@
         private MetroFramework.Controls.MetroLabel lblUsr;
         private MetroFramework.Controls.MetroLabel lblVersionApp;
         private MetroFramework.Controls.MetroLabel lblVersionBD;
+        private MetroFramework.Controls.MetroLink linkPersonal;
     }
 }

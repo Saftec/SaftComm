@@ -57,6 +57,7 @@
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.txtServer);
             this.groupBox1.Controls.Add(this.metroLabel1);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(45, 213);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(592, 211);
@@ -70,8 +71,10 @@
             this.metroLabel4.Location = new System.Drawing.Point(268, 153);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(78, 19);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 7;
             this.metroLabel4.Text = "Contraseña:";
+            this.metroLabel4.UseStyleColors = true;
             // 
             // txtPassword
             // 
@@ -98,8 +101,10 @@
             this.txtPassword.SelectionStart = 0;
             this.txtPassword.ShortcutsEnabled = true;
             this.txtPassword.Size = new System.Drawing.Size(161, 23);
+            this.txtPassword.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPassword.TabIndex = 6;
             this.txtPassword.UseSelectable = true;
+            this.txtPassword.UseStyleColors = true;
             this.txtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -129,9 +134,11 @@
             this.txtUsuario.SelectionStart = 0;
             this.txtUsuario.ShortcutsEnabled = true;
             this.txtUsuario.Size = new System.Drawing.Size(142, 23);
+            this.txtUsuario.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUsuario.TabIndex = 5;
             this.txtUsuario.Text = "saftec";
             this.txtUsuario.UseSelectable = true;
+            this.txtUsuario.UseStyleColors = true;
             this.txtUsuario.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUsuario.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -141,8 +148,10 @@
             this.metroLabel3.Location = new System.Drawing.Point(6, 153);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(56, 19);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel3.TabIndex = 4;
             this.metroLabel3.Text = "Usuario:";
+            this.metroLabel3.UseStyleColors = true;
             // 
             // txtBase
             // 
@@ -170,9 +179,11 @@
             this.txtBase.SelectionStart = 0;
             this.txtBase.ShortcutsEnabled = true;
             this.txtBase.Size = new System.Drawing.Size(168, 23);
+            this.txtBase.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtBase.TabIndex = 3;
             this.txtBase.Text = "saftimedb";
             this.txtBase.UseSelectable = true;
+            this.txtBase.UseStyleColors = true;
             this.txtBase.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtBase.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -182,8 +193,10 @@
             this.metroLabel2.Location = new System.Drawing.Point(6, 99);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(94, 19);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 2;
             this.metroLabel2.Text = "Base de datos:";
+            this.metroLabel2.UseStyleColors = true;
             // 
             // txtServer
             // 
@@ -210,8 +223,10 @@
             this.txtServer.SelectionStart = 0;
             this.txtServer.ShortcutsEnabled = true;
             this.txtServer.Size = new System.Drawing.Size(440, 23);
+            this.txtServer.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtServer.TabIndex = 1;
             this.txtServer.UseSelectable = true;
+            this.txtServer.UseStyleColors = true;
             this.txtServer.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtServer.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -221,8 +236,10 @@
             this.metroLabel1.Location = new System.Drawing.Point(6, 37);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(61, 19);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "Servidor:";
+            this.metroLabel1.UseStyleColors = true;
             // 
             // chckEmpleados
             // 
@@ -230,9 +247,11 @@
             this.chckEmpleados.Location = new System.Drawing.Point(128, 159);
             this.chckEmpleados.Name = "chckEmpleados";
             this.chckEmpleados.Size = new System.Drawing.Size(165, 15);
+            this.chckEmpleados.Style = MetroFramework.MetroColorStyle.Blue;
             this.chckEmpleados.TabIndex = 4;
             this.chckEmpleados.Text = "Leer empleados de Saftime";
             this.chckEmpleados.UseSelectable = true;
+            this.chckEmpleados.UseStyleColors = true;
             // 
             // chckRegis
             // 
@@ -240,9 +259,11 @@
             this.chckRegis.Location = new System.Drawing.Point(351, 159);
             this.chckRegis.Name = "chckRegis";
             this.chckRegis.Size = new System.Drawing.Size(162, 15);
+            this.chckRegis.Style = MetroFramework.MetroColorStyle.Blue;
             this.chckRegis.TabIndex = 5;
             this.chckRegis.Text = "Insertar registros a Saftime";
             this.chckRegis.UseSelectable = true;
+            this.chckRegis.UseStyleColors = true;
             // 
             // PanelSaftime
             // 

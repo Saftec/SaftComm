@@ -35,6 +35,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 lcr.SetIntervaloRegs(txtMinutosRegs.Text);
                 lcr.SetBorrarRegistros(chckBorrarRegs.Checked);
 
+                MainWindow.Instancia.Inicializar();
                 base.Informar("Configuraciones guardadas correctamente.", "Guardar Configuraciones.");
             }
             catch (AppException appex)

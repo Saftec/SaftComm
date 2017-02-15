@@ -10,6 +10,7 @@ namespace ZkManagement.NewUI
 {
     public partial class PanelReloj : GenericPanel
     {
+        #region Singleton
         private static PanelReloj _instancia;
 
         public static PanelReloj Instancia
@@ -20,16 +21,20 @@ namespace ZkManagement.NewUI
                 {
                     _instancia = new PanelReloj();
                 }
-                return _instancia;
+                return _instancia;               
             }
         }
-        private LogicReloj lr;
-        private Reloj relojAct = new Reloj();
-        private List<Reloj> equipos;
-        public PanelReloj()
+
+        private PanelReloj()
         {
             InitializeComponent();
         }
+        #endregion
+
+        private LogicReloj lr;
+        private Reloj relojAct = new Reloj();
+        private List<Reloj> equipos;
+
 
         private void NewReloj_Load(object sender, EventArgs e)
         {
@@ -220,16 +225,18 @@ namespace ZkManagement.NewUI
         #region Informes
         private void LoguearInforme(string mensaje)
         {
-            txtLog.SelectionColor = Color.Black;
+           /* txtLog.SelectionColor = Color.Black;          
             txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");
+            txtLog.AppendText("\n");*/
+            AppendTextBox(mensaje + "\n");
             Logger.GetLogger().Info(mensaje);
         }
         private void LoguearError(string mensaje)
         {
-            txtLog.SelectionColor = Color.Red;
+            /*txtLog.SelectionColor = Color.Red;
             txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");
+            txtLog.AppendText("\n");*/
+            AppendTextBox(mensaje + "\n");
             Logger.GetLogger().Info(mensaje);
         }
         #endregion
@@ -414,9 +421,20 @@ namespace ZkManagement.NewUI
             return dt;
         }
 
+        // ESTE METODO MANEJA LAS ESCRITURAS EN EL LOG PARA NO TENER CONFLICTOS CON LAS LLAMADAS ASINCRONICAS //
+        public void AppendTextBox(string value)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(AppendTextBox), new object[] { value });
+                return;
+            }
+            txtLog.Text += value;
+        }
         private void linkCleanLog_Click(object sender, EventArgs e)
         {
             txtLog.Text = string.Empty;
+            txtLog.Refresh();
         }
     }
 }

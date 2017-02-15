@@ -39,23 +39,29 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
+            this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel1.Location = new System.Drawing.Point(57, 40);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(56, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(59, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "Usuario:";
+            this.metroLabel1.UseCustomBackColor = true;
             this.metroLabel1.UseStyleColors = true;
             // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(35, 110);
+            this.metroLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel2.Location = new System.Drawing.Point(34, 110);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(78, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(82, 19);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 1;
             this.metroLabel2.Text = "Contraseña:";
+            this.metroLabel2.UseCustomBackColor = true;
             this.metroLabel2.UseStyleColors = true;
             // 
             // txtPassword
@@ -73,7 +79,7 @@
             this.txtPassword.CustomButton.UseSelectable = true;
             this.txtPassword.CustomButton.Visible = false;
             this.txtPassword.Lines = new string[0];
-            this.txtPassword.Location = new System.Drawing.Point(119, 110);
+            this.txtPassword.Location = new System.Drawing.Point(130, 110);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -105,7 +111,7 @@
             this.txtUsuario.CustomButton.UseSelectable = true;
             this.txtUsuario.CustomButton.Visible = false;
             this.txtUsuario.Lines = new string[0];
-            this.txtUsuario.Location = new System.Drawing.Point(119, 36);
+            this.txtUsuario.Location = new System.Drawing.Point(130, 36);
             this.txtUsuario.MaxLength = 32767;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.PasswordChar = '\0';
@@ -116,7 +122,7 @@
             this.txtUsuario.ShortcutsEnabled = true;
             this.txtUsuario.Size = new System.Drawing.Size(236, 23);
             this.txtUsuario.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtUsuario.TabIndex = 3;
+            this.txtUsuario.TabIndex = 1;
             this.txtUsuario.UseSelectable = true;
             this.txtUsuario.UseStyleColors = true;
             this.txtUsuario.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -140,7 +146,7 @@
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(102, 30);
             this.btnIngresar.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnIngresar.TabIndex = 5;
+            this.btnIngresar.TabIndex = 3;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseSelectable = true;
             this.btnIngresar.UseStyleColors = true;

@@ -249,6 +249,7 @@ namespace ZkManagement.Entidades
                     f.Tipo = tipoMov;
                     f.Empleado.Legajo = legajoEnReloj;
                     f.Reloj.Id = this.id;
+                    f.Reloj.Numero = this.numero;
                     fichadas.Add(f);
                     count++;
                 }

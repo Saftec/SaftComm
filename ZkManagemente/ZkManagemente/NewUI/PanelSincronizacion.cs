@@ -212,6 +212,9 @@ namespace ZkManagement.NewUI
                 gridPersonalLocal.DataSource = empleados;
                 gridPersonalLocal.Refresh();
                 cbRelojes.DataSource = lr.TodosRelojes();
+                gridPersonalReloj.DataSource = null;
+                gridPersonalReloj.Refresh();
+                lblDispositivo.Text = "Usuarios en dispositivo: ";
             }
             catch (Exception ex)
             {

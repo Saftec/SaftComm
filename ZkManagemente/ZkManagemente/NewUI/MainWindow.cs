@@ -63,15 +63,13 @@ namespace ZkManagement.NewUI
         {
 
         }
-
-        private void btnPersonal_Click(object sender, EventArgs e)
+        private void linkPersonal_Click(object sender, EventArgs e)
         {
             PanelPersonal.Instancia.Dock = DockStyle.Fill;
             PanelPersonal.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelPersonal.Instancia);
         }
-
         private void btnEquipos_Click(object sender, EventArgs e)
         {
             PanelReloj.Instancia.Dock = DockStyle.Fill;
