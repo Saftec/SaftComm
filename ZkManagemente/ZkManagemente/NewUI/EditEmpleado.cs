@@ -48,7 +48,7 @@ namespace ZkManagement.NewUI
             }
         }
 
-        protected void MapearAForm(Empleado emp)
+        public void MapearAFormulario(Empleado emp)
         {
             empActual = emp;
             txtDni.Text = emp.Dni;

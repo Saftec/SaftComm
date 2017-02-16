@@ -51,7 +51,7 @@ namespace ZkManagement.NewUI
 
                 lblVersionBD.Text = "Versión BD: " + lcbd.GetVersion();
                 lblVersionApp.Text = "Versión SaftComm: " + ConfigurationManager.AppSettings["Version"].ToString();
-                lblUsr.Text = "Usuario: Saftec";
+                lblUsr.Text = "Usuario: " + LogicLogin.Usuario.Usr;
             }
             catch (Exception ex)
             {
@@ -59,10 +59,6 @@ namespace ZkManagement.NewUI
             }
         }
         #region Menu
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
         private void linkPersonal_Click(object sender, EventArgs e)
         {
             PanelPersonal.Instancia.Dock = DockStyle.Fill;
@@ -70,30 +66,27 @@ namespace ZkManagement.NewUI
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelPersonal.Instancia);
         }
-        private void btnEquipos_Click(object sender, EventArgs e)
+        private void linkDispositivos_Click(object sender, EventArgs e)
         {
             PanelReloj.Instancia.Dock = DockStyle.Fill;
             PanelReloj.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelReloj.Instancia);
         }
-
-        private void btnUsuarios_Click(object sender, EventArgs e)
+        private void linkUsuarios_Click(object sender, EventArgs e)
         {
             PanelUsuario.Instancia.Dock = DockStyle.Fill;
             PanelUsuario.Instancia.RefreshGrid();
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelUsuario.Instancia);
         }
-
-        private void btnConfig_Click(object sender, EventArgs e)
+        private void linkConfiguracion_Click(object sender, EventArgs e)
         {
             PanelConfigs.Instancia.Dock = DockStyle.Fill;
             this.MetroContainer.Controls.Clear();
             this.MetroContainer.Controls.Add(PanelConfigs.Instancia);
         }
-
-        private void btnSinc_Click(object sender, EventArgs e)
+        private void linkSincronizacion_Click(object sender, EventArgs e)
         {
             PanelSincronizacion.Instancia.Dock = DockStyle.Fill;
             PanelSincronizacion.Instancia.RefreshData();
@@ -152,10 +145,18 @@ namespace ZkManagement.NewUI
         }
         private void timerRutinaRegs_Tick(object sender, EventArgs e)
         {
+            if (!ValidarHora())
+            {
+                return;
+            }
             backgroundWorkerRutinaRegistros.RunWorkerAsync();
         }
         private void timerRutinaHora_Tick(object sender, EventArgs e)
         {
+            if (!ValidarHora())
+            {
+                return;
+            }
             backgroundWorkerRutinaHora.RunWorkerAsync();
         }
         private void backgroundWorkerRutinaHora_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)

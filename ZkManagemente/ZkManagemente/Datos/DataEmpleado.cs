@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {                            
-                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as 'CantHuellas' FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
+                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as CantHuellas FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {

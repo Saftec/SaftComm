@@ -70,7 +70,7 @@ namespace ZkManagement.Datos
             IDataReader dr = null;
             try
             {
-                query = "SELECT HuellaId FROM HUELLAS WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
+                query = "SELECT TOP 1 HuellaId FROM HUELLAS WHERE IdEmpleado='" + h.Empleado.Id.ToString() + "' AND FingerIndex='" + h.FingerIndex.ToString() + "'";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {                    

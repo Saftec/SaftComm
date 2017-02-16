@@ -317,9 +317,13 @@ namespace ZkManagement.NewUI
                 {
                     try
                     {
+                        int cant = 0;
                         LoguearInforme("Conectando con '" + r.Nombre + "'...");
                         r.Conectar();
                         LoguearInforme("El dispositivo: '" + r.Nombre + "' se conectó correctamente");
+                        LoguearInforme("Consultando cantidad de registros...");
+                        cant=r.GetCantidadRegistros();
+                        LoguearInforme(cant.ToString() + " registros por descargar");
                         LoguearInforme("Iniciando descarga de registros...");
                         fichadas = r.DescargarRegistros();
                         desconocidos = lregs.AgregarRegis(fichadas);
@@ -327,8 +331,9 @@ namespace ZkManagement.NewUI
                         if (lcr.IsBorradoRegs())
                         {
                             LoguearInforme("Borrando registros...");
-                            r.BorrarRegistros();
-                            LoguearInforme("Registros eliminados correctamente.");
+                            cant = 0;
+                            cant = r.BorrarRegistros();
+                            LoguearInforme(cant.ToString() + " registros eliminados correctamente.");
                             LoguearInforme("Actualizando borrado en base de datos...");
                             lr.ActualizarBorrado(r, fichadas.Count);
                             LoguearInforme("Borrado actualizado en la base de datos correctamente");

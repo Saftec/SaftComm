@@ -58,8 +58,10 @@
             this.metroLabel1.Location = new System.Drawing.Point(51, 94);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(62, 19);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 2;
             this.metroLabel1.Text = "Nombre:";
+            this.metroLabel1.UseStyleColors = true;
             // 
             // txtNombre
             // 
@@ -86,8 +88,10 @@
             this.txtNombre.SelectionStart = 0;
             this.txtNombre.ShortcutsEnabled = true;
             this.txtNombre.Size = new System.Drawing.Size(211, 23);
+            this.txtNombre.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtNombre.TabIndex = 3;
             this.txtNombre.UseSelectable = true;
+            this.txtNombre.UseStyleColors = true;
             this.txtNombre.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtNombre.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -97,8 +101,10 @@
             this.metroLabel2.Location = new System.Drawing.Point(374, 97);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(52, 19);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 4;
             this.metroLabel2.Text = "Tarjeta:";
+            this.metroLabel2.UseStyleColors = true;
             // 
             // txtTarjeta
             // 
@@ -125,8 +131,10 @@
             this.txtTarjeta.SelectionStart = 0;
             this.txtTarjeta.ShortcutsEnabled = true;
             this.txtTarjeta.Size = new System.Drawing.Size(103, 23);
+            this.txtTarjeta.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtTarjeta.TabIndex = 5;
             this.txtTarjeta.UseSelectable = true;
+            this.txtTarjeta.UseStyleColors = true;
             this.txtTarjeta.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtTarjeta.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -136,8 +144,10 @@
             this.metroLabel3.Location = new System.Drawing.Point(79, 161);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(34, 19);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel3.TabIndex = 6;
             this.metroLabel3.Text = "DNI:";
+            this.metroLabel3.UseStyleColors = true;
             // 
             // txtDni
             // 
@@ -164,8 +174,10 @@
             this.txtDni.SelectionStart = 0;
             this.txtDni.ShortcutsEnabled = true;
             this.txtDni.Size = new System.Drawing.Size(125, 23);
+            this.txtDni.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDni.TabIndex = 7;
             this.txtDni.UseSelectable = true;
+            this.txtDni.UseStyleColors = true;
             this.txtDni.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDni.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -175,8 +187,10 @@
             this.metroLabel4.Location = new System.Drawing.Point(375, 161);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(51, 19);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 8;
             this.metroLabel4.Text = "Legajo:";
+            this.metroLabel4.UseStyleColors = true;
             // 
             // txtLegajo
             // 
@@ -203,8 +217,10 @@
             this.txtLegajo.SelectionStart = 0;
             this.txtLegajo.ShortcutsEnabled = true;
             this.txtLegajo.Size = new System.Drawing.Size(103, 23);
+            this.txtLegajo.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtLegajo.TabIndex = 9;
             this.txtLegajo.UseSelectable = true;
+            this.txtLegajo.UseStyleColors = true;
             this.txtLegajo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtLegajo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -214,8 +230,10 @@
             this.metroLabel5.Location = new System.Drawing.Point(83, 233);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(30, 19);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel5.TabIndex = 10;
             this.metroLabel5.Text = "Pin:";
+            this.metroLabel5.UseStyleColors = true;
             // 
             // txtPin
             // 
@@ -242,8 +260,10 @@
             this.txtPin.SelectionStart = 0;
             this.txtPin.ShortcutsEnabled = true;
             this.txtPin.Size = new System.Drawing.Size(75, 23);
+            this.txtPin.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPin.TabIndex = 11;
             this.txtPin.UseSelectable = true;
+            this.txtPin.UseStyleColors = true;
             this.txtPin.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPin.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -257,8 +277,10 @@
             this.cbPrivilegio.Location = new System.Drawing.Point(432, 223);
             this.cbPrivilegio.Name = "cbPrivilegio";
             this.cbPrivilegio.Size = new System.Drawing.Size(135, 29);
+            this.cbPrivilegio.Style = MetroFramework.MetroColorStyle.Blue;
             this.cbPrivilegio.TabIndex = 12;
             this.cbPrivilegio.UseSelectable = true;
+            this.cbPrivilegio.UseStyleColors = true;
             // 
             // metroLabel6
             // 
@@ -266,8 +288,10 @@
             this.metroLabel6.Location = new System.Drawing.Point(360, 229);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(66, 19);
+            this.metroLabel6.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel6.TabIndex = 13;
             this.metroLabel6.Text = "Privilegio:";
+            this.metroLabel6.UseStyleColors = true;
             // 
             // EditEmpleado
             // 

@@ -30,6 +30,7 @@ namespace ZkManagement.NewUI
         private LogicEmpleado le;
         private LogicReloj lr;
         private Reloj relojAct;
+        private int cantHuellas;
 
 
         #region Botones
@@ -141,12 +142,14 @@ namespace ZkManagement.NewUI
         #endregion
 
         #region BackGround's
+        //////////////////// DESCARGA ////////////////////////////////////
         private void backgroundDownloadInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
+        {           
             List<Empleado> empleados = new List<Empleado>();
             LogicDescargaDatos ldd = new LogicDescargaDatos();
             try
             {
+                backgroundDownloadInfo.ReportProgress(0);
                 foreach (DataGridViewRow fila in gridPersonalReloj.Rows)
                 {
                     DataGridViewCheckBoxCell cellSeleccion = fila.Cells["SeleccionDisp"] as DataGridViewCheckBoxCell;
@@ -166,7 +169,7 @@ namespace ZkManagement.NewUI
                     return;
                 }
                 int total = 0;
-                int cantHuellas = 0;
+                cantHuellas = 0;
                 relojAct.Conectar();
                 relojAct.Deshabilitar();
                 foreach (Empleado emp in empleados)
@@ -195,8 +198,65 @@ namespace ZkManagement.NewUI
         {
             progressBar.Value = e.ProgressPercentage;
         }
+        private void backgroundDownloadInfo_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            base.Informar("Descarga de datos finalizada, se descargaron: " + cantHuellas.ToString() + " huellas.", "Descarga de Usuarios");
+            progressBar.Value = 100;
+        }
+        //////////////////////////////////////////////////////////////
 
 
+        private void backgroundUploadInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            List<Empleado> empleados = new List<Empleado>();
+            LogicCargaDatos lcd = new LogicCargaDatos();
+            backgroundUploadInfo.ReportProgress(0);
+            try
+            {
+                foreach (DataGridViewRow fila in gridPersonalLocal.Rows)
+                {
+                    DataGridViewCheckBoxCell cellSeleccion = fila.Cells["Seleccion"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(cellSeleccion.Value))
+                    {
+                        Empleado emp = new Empleado();
+                        emp.Legajo = fila.Cells["Legajo"].Value.ToString();
+                        emp.Nombre = fila.Cells["Nombre"].Value.ToString();
+                        emp.Pin = fila.Cells["Pin"].Value.ToString();
+                        emp.Tarjeta = fila.Cells["Tarjeta"].Value.ToString();
+                        emp.Privilegio = Convert.ToInt32(fila.Cells["Privilegio"].Value);
+                        emp.Id = Convert.ToInt32(fila.Cells["Id"].Value);
+                        empleados.Add(emp);
+                    }
+                    if (empleados.Count == 0)
+                    {
+                        base.InformarError("Por favor, seleccione al menos 1 empleado", "Cargar Información");
+                        return;
+                    }
+                    int total = 0;
+                    relojAct.Conectar();
+                    foreach(Empleado emp in empleados)
+                    {
+                        lcd.CargarDatos(emp, relojAct);
+                        backgroundUploadInfo.ReportProgress((total * 100) / empleados.Count);
+                        total++;
+                    }
+                    backgroundUploadInfo.ReportProgress(100);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct.Desconectar();
+            }
+        }
+        private void backgroundUploadInfo_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+        }
         #endregion
 
         public void RefreshData()
@@ -249,7 +309,5 @@ namespace ZkManagement.NewUI
             }
             return dt;
         }
-
-
     }
 }

@@ -30,10 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSinc = new MetroFramework.Controls.MetroButton();
-            this.btnEquipos = new MetroFramework.Controls.MetroButton();
-            this.btnUsuarios = new MetroFramework.Controls.MetroButton();
-            this.btnConfig = new MetroFramework.Controls.MetroButton();
+            this.linkConfiguracion = new MetroFramework.Controls.MetroLink();
+            this.linkPersonal = new MetroFramework.Controls.MetroLink();
+            this.linkDispositivos = new MetroFramework.Controls.MetroLink();
+            this.linkSincronizacion = new MetroFramework.Controls.MetroLink();
+            this.linkUsuarios = new MetroFramework.Controls.MetroLink();
             this.pHeader = new System.Windows.Forms.Panel();
             this.lblUsr = new MetroFramework.Controls.MetroLabel();
             this.lblVersionApp = new MetroFramework.Controls.MetroLabel();
@@ -43,7 +44,6 @@
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorkerRutinaRegistros = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
-            this.linkPersonal = new MetroFramework.Controls.MetroLink();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
             this.SuspendLayout();
@@ -56,82 +56,99 @@
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableMenu.Controls.Add(this.btnSinc, 0, 0);
-            this.tableMenu.Controls.Add(this.btnUsuarios, 2, 0);
-            this.tableMenu.Controls.Add(this.btnConfig, 4, 0);
-            this.tableMenu.Controls.Add(this.btnEquipos, 3, 0);
+            this.tableMenu.Controls.Add(this.linkConfiguracion, 4, 0);
             this.tableMenu.Controls.Add(this.linkPersonal, 0, 0);
+            this.tableMenu.Controls.Add(this.linkDispositivos, 1, 0);
+            this.tableMenu.Controls.Add(this.linkSincronizacion, 2, 0);
+            this.tableMenu.Controls.Add(this.linkUsuarios, 3, 0);
             this.tableMenu.Location = new System.Drawing.Point(0, 0);
             this.tableMenu.Margin = new System.Windows.Forms.Padding(4);
             this.tableMenu.Name = "tableMenu";
             this.tableMenu.RowCount = 1;
             this.tableMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableMenu.Size = new System.Drawing.Size(717, 64);
             this.tableMenu.TabIndex = 2;
             // 
-            // btnSinc
+            // linkConfiguracion
             // 
-            this.btnSinc.BackColor = System.Drawing.Color.Transparent;
-            this.btnSinc.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnSinc.ForeColor = System.Drawing.Color.Red;
-            this.btnSinc.Location = new System.Drawing.Point(146, 3);
-            this.btnSinc.Name = "btnSinc";
-            this.btnSinc.Size = new System.Drawing.Size(137, 58);
-            this.btnSinc.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnSinc.TabIndex = 8;
-            this.btnSinc.Text = "Sincronizacion";
-            this.btnSinc.UseCustomBackColor = true;
-            this.btnSinc.UseSelectable = true;
-            this.btnSinc.UseStyleColors = true;
-            this.btnSinc.Click += new System.EventHandler(this.btnSinc_Click);
+            this.linkConfiguracion.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkConfiguracion.Image = global::ZkManagement.Properties.Resources.settings;
+            this.linkConfiguracion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkConfiguracion.ImageSize = 20;
+            this.linkConfiguracion.Location = new System.Drawing.Point(575, 3);
+            this.linkConfiguracion.Name = "linkConfiguracion";
+            this.linkConfiguracion.Size = new System.Drawing.Size(137, 58);
+            this.linkConfiguracion.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkConfiguracion.TabIndex = 9;
+            this.linkConfiguracion.Text = "Configuracion";
+            this.linkConfiguracion.UseSelectable = true;
+            this.linkConfiguracion.UseStyleColors = true;
+            this.linkConfiguracion.Click += new System.EventHandler(this.linkConfiguracion_Click);
             // 
-            // btnEquipos
+            // linkPersonal
             // 
-            this.btnEquipos.BackColor = System.Drawing.Color.Transparent;
-            this.btnEquipos.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnEquipos.ForeColor = System.Drawing.Color.Red;
-            this.btnEquipos.Location = new System.Drawing.Point(432, 3);
-            this.btnEquipos.Name = "btnEquipos";
-            this.btnEquipos.Size = new System.Drawing.Size(137, 58);
-            this.btnEquipos.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnEquipos.TabIndex = 6;
-            this.btnEquipos.Text = "Dispositivos";
-            this.btnEquipos.UseCustomBackColor = true;
-            this.btnEquipos.UseSelectable = true;
-            this.btnEquipos.UseStyleColors = true;
-            this.btnEquipos.Click += new System.EventHandler(this.btnEquipos_Click);
+            this.linkPersonal.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkPersonal.Image = global::ZkManagement.Properties.Resources.group;
+            this.linkPersonal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkPersonal.ImageSize = 20;
+            this.linkPersonal.Location = new System.Drawing.Point(3, 3);
+            this.linkPersonal.Name = "linkPersonal";
+            this.linkPersonal.Size = new System.Drawing.Size(137, 58);
+            this.linkPersonal.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkPersonal.TabIndex = 6;
+            this.linkPersonal.Text = "Personal";
+            this.linkPersonal.UseSelectable = true;
+            this.linkPersonal.UseStyleColors = true;
+            this.linkPersonal.Click += new System.EventHandler(this.linkPersonal_Click);
             // 
-            // btnUsuarios
+            // linkDispositivos
             // 
-            this.btnUsuarios.BackColor = System.Drawing.Color.Transparent;
-            this.btnUsuarios.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnUsuarios.ForeColor = System.Drawing.Color.Red;
-            this.btnUsuarios.Location = new System.Drawing.Point(289, 3);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(137, 58);
-            this.btnUsuarios.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnUsuarios.TabIndex = 4;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.UseCustomBackColor = true;
-            this.btnUsuarios.UseSelectable = true;
-            this.btnUsuarios.UseStyleColors = true;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            this.linkDispositivos.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkDispositivos.Image = global::ZkManagement.Properties.Resources.clock;
+            this.linkDispositivos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkDispositivos.ImageSize = 20;
+            this.linkDispositivos.Location = new System.Drawing.Point(146, 3);
+            this.linkDispositivos.Name = "linkDispositivos";
+            this.linkDispositivos.Size = new System.Drawing.Size(137, 58);
+            this.linkDispositivos.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkDispositivos.TabIndex = 8;
+            this.linkDispositivos.Text = "Dispositivos";
+            this.linkDispositivos.UseSelectable = true;
+            this.linkDispositivos.UseStyleColors = true;
+            this.linkDispositivos.Click += new System.EventHandler(this.linkDispositivos_Click);
             // 
-            // btnConfig
+            // linkSincronizacion
             // 
-            this.btnConfig.BackColor = System.Drawing.Color.Transparent;
-            this.btnConfig.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btnConfig.ForeColor = System.Drawing.Color.Red;
-            this.btnConfig.Location = new System.Drawing.Point(575, 3);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(138, 58);
-            this.btnConfig.Style = MetroFramework.MetroColorStyle.Blue;
-            this.btnConfig.TabIndex = 7;
-            this.btnConfig.Text = "Configuracion";
-            this.btnConfig.UseCustomBackColor = true;
-            this.btnConfig.UseSelectable = true;
-            this.btnConfig.UseStyleColors = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            this.linkSincronizacion.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkSincronizacion.Image = global::ZkManagement.Properties.Resources.sinc;
+            this.linkSincronizacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkSincronizacion.ImageSize = 20;
+            this.linkSincronizacion.Location = new System.Drawing.Point(289, 3);
+            this.linkSincronizacion.Name = "linkSincronizacion";
+            this.linkSincronizacion.Size = new System.Drawing.Size(137, 58);
+            this.linkSincronizacion.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkSincronizacion.TabIndex = 6;
+            this.linkSincronizacion.Text = "Sincronizacion";
+            this.linkSincronizacion.UseSelectable = true;
+            this.linkSincronizacion.UseStyleColors = true;
+            this.linkSincronizacion.Click += new System.EventHandler(this.linkSincronizacion_Click);
+            // 
+            // linkUsuarios
+            // 
+            this.linkUsuarios.FontSize = MetroFramework.MetroLinkSize.Tall;
+            this.linkUsuarios.Image = global::ZkManagement.Properties.Resources.padlock;
+            this.linkUsuarios.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkUsuarios.ImageSize = 20;
+            this.linkUsuarios.Location = new System.Drawing.Point(432, 3);
+            this.linkUsuarios.Name = "linkUsuarios";
+            this.linkUsuarios.Size = new System.Drawing.Size(137, 58);
+            this.linkUsuarios.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkUsuarios.TabIndex = 7;
+            this.linkUsuarios.Text = "Usuarios";
+            this.linkUsuarios.UseSelectable = true;
+            this.linkUsuarios.UseStyleColors = true;
+            this.linkUsuarios.Click += new System.EventHandler(this.linkUsuarios_Click);
             // 
             // pHeader
             // 
@@ -208,19 +225,6 @@
             // 
             this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
             // 
-            // linkPersonal
-            // 
-            this.linkPersonal.FontSize = MetroFramework.MetroLinkSize.Tall;
-            this.linkPersonal.Location = new System.Drawing.Point(3, 3);
-            this.linkPersonal.Name = "linkPersonal";
-            this.linkPersonal.Size = new System.Drawing.Size(137, 58);
-            this.linkPersonal.Style = MetroFramework.MetroColorStyle.Blue;
-            this.linkPersonal.TabIndex = 6;
-            this.linkPersonal.Text = "Personal";
-            this.linkPersonal.UseSelectable = true;
-            this.linkPersonal.UseStyleColors = true;
-            this.linkPersonal.Click += new System.EventHandler(this.linkPersonal_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,10 +233,10 @@
             this.ClientSize = new System.Drawing.Size(1108, 800);
             this.Controls.Add(this.metroPanel);
             this.Controls.Add(this.pHeader);
+            this.ForeColor = System.Drawing.SystemColors.Highlight;
             this.Name = "MainWindow";
             this.Text = "SaftComm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tableMenu.ResumeLayout(false);
             this.pHeader.ResumeLayout(false);
             this.pHeader.PerformLayout();
@@ -243,12 +247,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableMenu;
-        private MetroFramework.Controls.MetroButton btnUsuarios;
         private System.Windows.Forms.Panel pHeader;
         private MetroFramework.Controls.MetroPanel metroPanel;
-        private MetroFramework.Controls.MetroButton btnEquipos;
-        private MetroFramework.Controls.MetroButton btnConfig;
-        private MetroFramework.Controls.MetroButton btnSinc;
         private System.Windows.Forms.Timer timerRutinaRegs;
         private System.Windows.Forms.Timer timerRutinaHora;
         private System.ComponentModel.BackgroundWorker backgroundWorkerRutinaRegistros;
@@ -257,5 +257,9 @@
         private MetroFramework.Controls.MetroLabel lblVersionApp;
         private MetroFramework.Controls.MetroLabel lblVersionBD;
         private MetroFramework.Controls.MetroLink linkPersonal;
+        private MetroFramework.Controls.MetroLink linkSincronizacion;
+        private MetroFramework.Controls.MetroLink linkUsuarios;
+        private MetroFramework.Controls.MetroLink linkDispositivos;
+        private MetroFramework.Controls.MetroLink linkConfiguracion;
     }
 }

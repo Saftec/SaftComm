@@ -1,7 +1,6 @@
 ﻿using System;
 using ZkManagement.Datos;
 using ZkManagement.Entidades;
-using ZkManagement.Interfaz;
 using ZkManagement.Util;
 
 namespace ZkManagement.Logica
@@ -9,17 +8,25 @@ namespace ZkManagement.Logica
 
     class LogicLogin
     {        
-        private static Usuario usr; //---->Guardo el usuario que inicio
+        private static Usuario _usr; //---->Guardo el usuario que inicio
+
+        public static Usuario Usuario
+        {
+            get
+            {
+                return _usr;
+            }
+        }
         public void ValidarUsuario(Usuario usuario)
         {
             try
             {
-                usr = DataUsuarios.Instancia.GetUsuario(usuario);
-                if (usr.Usr == null) { throw new AppException("Usuario invalido"); }
-                if (usr.PassDecrypt != usuario.PassDecrypt) { throw new AppException("Password invalida"); }
-                DataUsuarios.Instancia.SetUltimLogin(usr);
+                _usr = DataUsuarios.Instancia.GetUsuario(usuario);
+                if (_usr.Usr == null) { throw new AppException("Usuario invalido"); }
+                if (_usr.PassDecrypt != usuario.PassDecrypt) { throw new AppException("Password invalida"); }
+                DataUsuarios.Instancia.SetUltimLogin(_usr);
                 Logger.GetLogger().Info("-----------------------------------------------------------------\n");
-                Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + usr.Usr.ToUpper() + " ---------" + "\n");
+                Logger.GetLogger().Info(" ---------" + " Sesión Iniciada: " + _usr.Usr.ToUpper() + " ---------" + "\n");
             }
             catch (AppException appex)
             {
@@ -46,15 +53,6 @@ namespace ZkManagement.Logica
                 throw ex;
             }
             
-        }
-        public int GetUsrId()
-        {
-            return usr.Id;
-        }
-
-        public int GetNivelUsr()
-        {
-            return 1; //usr.Nivel;
         }
     }
 }

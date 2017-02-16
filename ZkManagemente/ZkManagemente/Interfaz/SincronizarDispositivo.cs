@@ -424,7 +424,7 @@ namespace ZkManagement.Interfaz
         private void backgroundWorkerCargaDatos_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             List<Empleado> empleados = new List<Empleado>();
-            ControladorCargaDatos ccd = new ControladorCargaDatos();
+            LogicCargaDatos ccd = new LogicCargaDatos();
             try
             {
                 foreach (DataGridViewRow fila in dgvLocal.Rows)

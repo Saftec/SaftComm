@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using ZkManagement.Datos;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
-using ZkManagement.NewUI.PanelesConfigs;
 using ZkManagement.Util;
 
 namespace ZkManagement.NewUI
@@ -19,7 +19,7 @@ namespace ZkManagement.NewUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Dispose();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -66,6 +66,21 @@ namespace ZkManagement.NewUI
         private void Informar(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            // SALTEO LA CAPA DE LOGICA PORQUE SOLAMENTE ME INTERESA TESTEAR LA CONEXION //
+            try
+            {
+                FactoryConnection.Instancia.TestConexion();
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Conexión a base de datos.");
+                EditConexionBD window = new EditConexionBD();
+                window.Show();
+            }
         }
     }
 }

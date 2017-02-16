@@ -35,13 +35,14 @@ namespace ZkManagement.Logica
                     // SI ESTA ACTIVA LA CONFIG DEL FICHERO DE BK LO ESCRIBO EN EL PATH DE LA APP
                     if (ficheroCopia)
                     {
-                        string path = Directory.GetCurrentDirectory() + @"\Regs\";
-                        FileInfo fi = new FileInfo(path);
+                        string pathBK = Directory.GetCurrentDirectory() + @"\Regs\";
+                        string fileName = FileName(fe.Path);
+                        FileInfo fi = new FileInfo(pathBK);
                         if (!fi.Directory.Exists)
                         {
                             System.IO.Directory.CreateDirectory(fi.DirectoryName);
                         }
-                        using (StreamWriter w = File.AppendText(path + "BK_" + DateTime.Now.ToString("yyMMddhhmmss") + "_Regs.txt"))
+                        using (StreamWriter w = File.AppendText(pathBK + "BK_" + DateTime.Now.ToString("yyMMddhhmmss") + "_" + fileName))
                             w.WriteLine(linea);                      
                     }
                 }                             
@@ -56,6 +57,14 @@ namespace ZkManagement.Logica
             }
         }
 
+        private string FileName(string path)
+        {
+            string[] directories = path.Split(Path.DirectorySeparatorChar);
+            string name = string.Empty;
+
+            name = directories[directories.Length - 1];
+            return name;
+        }
         private string FormatoLinea(string hora, string tipoMov, string fecha, string reloj, string legajo)
         {
             string separador;

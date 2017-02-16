@@ -421,7 +421,7 @@ namespace ZkManagement.Interfaz
         {
             LogicLogin cl = new LogicLogin();
 
-            if (cl.GetNivelUsr() < 3)
+           /* if (cl.GetNivelUsr() < 3)
             {                
                 groupABM.Enabled = true;
             }
@@ -430,7 +430,7 @@ namespace ZkManagement.Interfaz
                 btnBorrar.Enabled = true;
                 groupAvanzadas.Visible = true;
                 groupAvanzadas.Enabled = true;
-            }
+            }*/
         }
         #endregion
         #region Rutinas

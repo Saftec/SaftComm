@@ -6,7 +6,7 @@ using ZkManagement.Util;
 
 namespace ZkManagement.Logica
 {
-    class ControladorCargaDatos
+    class LogicCargaDatos
     {
 
         public void CargarDatos(Empleado emp, Reloj reloj)

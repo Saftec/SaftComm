@@ -35,7 +35,7 @@ namespace ZkManagement.NewUI.Generic
             Empleado emp = new Empleado();
             emp.Id = 0;
             EditEmpleado ee = new EditEmpleado();
-            ee.MapearAForm(emp);
+            ee.MapearAFormulario(emp);
             ee.Show();
         }
 
@@ -43,7 +43,7 @@ namespace ZkManagement.NewUI.Generic
         {
             Empleado emp = MapearDeGrid();
             EditEmpleado ee = new EditEmpleado();
-            ee.MapearAForm(emp);
+            ee.MapearAFormulario(emp);
             ee.Show();
         }
 
@@ -103,7 +103,7 @@ namespace ZkManagement.NewUI.Generic
             {
                 e.Privilegio = val;
             }
-            e.Nombre = gridPersonal.CurrentRow.Cells["Nombre"].Value.ToString();
+            e.Nombre = gridPersonal.CurrentRow.Cells["Nombre"].Value.ToString().Trim(); ;
             e.Legajo = gridPersonal.CurrentRow.Cells["Legajo"].Value.ToString();
             e.Pin = gridPersonal.CurrentRow.Cells["Pin"].Value.ToString();
             e.Tarjeta = gridPersonal.CurrentRow.Cells["Tarjeta"].Value.ToString();

@@ -370,6 +370,8 @@ namespace ZkManagement.Entidades
             }
             base.RefreshData(this.numero);         
         }
+
+        // ESTE MÉTODO SÓLO ENVÍA LA INFO DE USUARIO, SIN HUELLAS NI ROSTROS //
         public void CargarInfoUsuario(Empleado emp)
         {
             int codErrror = 0;

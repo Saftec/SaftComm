@@ -167,8 +167,14 @@
     <Compile Include="Logica\LogicConfigSQL.cs" />
     <Compile Include="Logica\LogicFormatos.cs" />
     <Compile Include="Logica\LogicUsuario.cs" />
-    <Compile Include="Logica\ControladorCargaDatos.cs" />
+    <Compile Include="Logica\LogicCargaDatos.cs" />
     <Compile Include="Logica\LogicConfigRutinas.cs" />
+    <Compile Include="NewUI\EditConexionBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI\EditConexionBD.Designer.cs">
+      <DependentUpon>EditConexionBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUI\EditEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\EditConexionBD.resx">
+      <DependentUpon>EditConexionBD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\EditEmpleado.resx">
       <DependentUpon>EditEmpleado.cs</DependentUpon>
