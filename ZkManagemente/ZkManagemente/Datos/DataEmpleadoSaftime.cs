@@ -34,15 +34,15 @@ namespace ZkManagement.Datos
 
             try
             {
-                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado',e.nombres as 'Nombre', e.apellido, e.tarjeta, e.nroDoc, CASE WHEN e.fecbaja IS NULL THEN 0 ELSE 1 END AS 'Baja' FROM Empleados e ORDER BY Nombre ASC";
+                query = "SELECT legajo, EmpId, nombres, apellido, tarjeta, nroDoc, Baja FROM Vi_SaftComm e ORDER BY nombres ASC";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     Empleado e = new Empleado();
                     e.Legajo = dr["legajo"].ToString();
-                    e.Id = Convert.ToInt32(dr["IdEmpleado"]);
-                    e.Nombre = dr["Nombre"].ToString();
+                    e.Id = Convert.ToInt32(dr["EmpId"]);
+                    e.Nombre = dr["nombres"].ToString();
                     e.Apellido = dr["Apellido"].ToString();
                     e.Tarjeta = dr["tarjeta"].ToString();
                     e.Dni = dr["nroDoc"].ToString();

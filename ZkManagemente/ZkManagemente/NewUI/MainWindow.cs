@@ -194,6 +194,7 @@ namespace ZkManagement.NewUI
         }
         #endregion
 
+        #region InformesUI
         private void InformarError(string mensaje, string titulo)
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -202,10 +203,57 @@ namespace ZkManagement.NewUI
         {
             MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        #endregion
 
+        #region Bandeja
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            iconoBandeja.Visible = false;
             Application.Exit();
         }
+        private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            MainWindow.Instancia.Show();
+            MainWindow.Instancia.TopMost = true;
+            MainWindow.Instancia.BringToFront();
+            iconoBandeja.Visible = false;
+        }
+        private void MostrarNotificacionEvento(string mensaje, string titulo)
+        {
+            iconoBandeja.BalloonTipTitle = titulo;
+            iconoBandeja.BalloonTipText = mensaje;
+            iconoBandeja.BalloonTipIcon = ToolTipIcon.Info;
+            iconoBandeja.ShowBalloonTip(5000);
+        }
+        private void MostrarNotificacionError(string mensaje, string titulo)
+        {
+            iconoBandeja.BalloonTipTitle = titulo;
+            iconoBandeja.BalloonTipText = mensaje;
+            iconoBandeja.BalloonTipIcon = ToolTipIcon.Error;
+            iconoBandeja.ShowBalloonTip(5000);
+        }
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)
+            {
+                MainWindow.Instancia.Hide();
+                iconoBandeja.Visible = true;
+                MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SaftComm");
+            }
+        }
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+
+        }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainWindow.Instancia.Show();
+            MainWindow.Instancia.TopMost = true;
+            MainWindow.Instancia.BringToFront();
+            iconoBandeja.Visible = false;
+        }
+        #endregion
     }
 }

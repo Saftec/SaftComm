@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tableMenu = new System.Windows.Forms.TableLayoutPanel();
             this.linkConfiguracion = new MetroFramework.Controls.MetroLink();
             this.linkPersonal = new MetroFramework.Controls.MetroLink();
@@ -44,8 +45,13 @@
             this.timerRutinaHora = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorkerRutinaRegistros = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
+            this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableMenu
@@ -225,6 +231,34 @@
             // 
             this.backgroundWorkerRutinaHora.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRutinaHora_DoWork);
             // 
+            // iconoBandeja
+            // 
+            this.iconoBandeja.Icon = ((System.Drawing.Icon)(resources.GetObject("iconoBandeja.Icon")));
+            this.iconoBandeja.Text = "Saftec";
+            this.iconoBandeja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.iconoBandeja_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salirToolStripMenuItem,
+            this.abrirToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // abrirToolStripMenuItem
+            // 
+            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,9 +271,11 @@
             this.Name = "MainWindow";
             this.Text = "SaftComm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.tableMenu.ResumeLayout(false);
             this.pHeader.ResumeLayout(false);
             this.pHeader.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -261,5 +297,9 @@
         private MetroFramework.Controls.MetroLink linkUsuarios;
         private MetroFramework.Controls.MetroLink linkDispositivos;
         private MetroFramework.Controls.MetroLink linkConfiguracion;
+        private System.Windows.Forms.NotifyIcon iconoBandeja;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
     }
 }

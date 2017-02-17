@@ -52,9 +52,20 @@ namespace ZkManagement.NewUI
         {
             empActual = emp;
             txtDni.Text = emp.Dni;
-            txtLegajo.Text = emp.Legajo;
-            txtNombre.Text = emp.Nombre.Trim();
-            txtApellido.Text = emp.Apellido.Trim();
+            
+            if (emp.Legajo != null)
+            {
+                txtLegajo.Text = emp.Legajo.Trim();
+            }
+            if (emp.Nombre != null)
+            {
+                txtNombre.Text = emp.Nombre.Trim();
+            }
+            if(emp.Apellido != null)
+            {
+                txtApellido.Text = emp.Apellido.Trim();
+            }
+            
             txtPin.Text = emp.Pin;
             txtTarjeta.Text = emp.Tarjeta;
             cbPrivilegio.SelectedIndex = emp.Privilegio;
