@@ -76,8 +76,10 @@
             this.txtNombre.SelectionStart = 0;
             this.txtNombre.ShortcutsEnabled = true;
             this.txtNombre.Size = new System.Drawing.Size(190, 23);
+            this.txtNombre.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtNombre.TabIndex = 5;
             this.txtNombre.UseSelectable = true;
+            this.txtNombre.UseStyleColors = true;
             this.txtNombre.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtNombre.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -87,8 +89,10 @@
             this.metroLabel1.Location = new System.Drawing.Point(67, 60);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(62, 19);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 4;
             this.metroLabel1.Text = "Nombre:";
+            this.metroLabel1.UseStyleColors = true;
             // 
             // metroLabel2
             // 
@@ -96,8 +100,10 @@
             this.metroLabel2.Location = new System.Drawing.Point(82, 118);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(47, 19);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 6;
             this.metroLabel2.Text = "Dir. IP:";
+            this.metroLabel2.UseStyleColors = true;
             // 
             // txtIp
             // 
@@ -125,9 +131,11 @@
             this.txtIp.SelectionStart = 0;
             this.txtIp.ShortcutsEnabled = true;
             this.txtIp.Size = new System.Drawing.Size(109, 23);
+            this.txtIp.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtIp.TabIndex = 7;
             this.txtIp.Text = "192.168.1.70";
             this.txtIp.UseSelectable = true;
+            this.txtIp.UseStyleColors = true;
             this.txtIp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtIp.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -137,8 +145,10 @@
             this.metroLabel3.Location = new System.Drawing.Point(432, 64);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(61, 19);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel3.TabIndex = 8;
             this.metroLabel3.Text = "Número:";
+            this.metroLabel3.UseStyleColors = true;
             // 
             // txtNumero
             // 
@@ -165,8 +175,10 @@
             this.txtNumero.SelectionStart = 0;
             this.txtNumero.ShortcutsEnabled = true;
             this.txtNumero.Size = new System.Drawing.Size(75, 23);
+            this.txtNumero.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtNumero.TabIndex = 9;
             this.txtNumero.UseSelectable = true;
+            this.txtNumero.UseStyleColors = true;
             this.txtNumero.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtNumero.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -176,8 +188,10 @@
             this.metroLabel4.Location = new System.Drawing.Point(442, 118);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(51, 19);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 10;
             this.metroLabel4.Text = "Puerto:";
+            this.metroLabel4.UseStyleColors = true;
             // 
             // txtPuerto
             // 
@@ -205,9 +219,11 @@
             this.txtPuerto.SelectionStart = 0;
             this.txtPuerto.ShortcutsEnabled = true;
             this.txtPuerto.Size = new System.Drawing.Size(75, 23);
+            this.txtPuerto.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPuerto.TabIndex = 11;
             this.txtPuerto.Text = "4370";
             this.txtPuerto.UseSelectable = true;
+            this.txtPuerto.UseStyleColors = true;
             this.txtPuerto.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPuerto.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -217,8 +233,10 @@
             this.metroLabel5.Location = new System.Drawing.Point(61, 230);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(68, 19);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel5.TabIndex = 12;
             this.metroLabel5.Text = "Host DNS:";
+            this.metroLabel5.UseStyleColors = true;
             // 
             // txtDns
             // 
@@ -245,8 +263,10 @@
             this.txtDns.SelectionStart = 0;
             this.txtDns.ShortcutsEnabled = true;
             this.txtDns.Size = new System.Drawing.Size(387, 23);
+            this.txtDns.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDns.TabIndex = 13;
             this.txtDns.UseSelectable = true;
+            this.txtDns.UseStyleColors = true;
             this.txtDns.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDns.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
@@ -256,8 +276,10 @@
             this.metroLabel6.Location = new System.Drawing.Point(85, 174);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(44, 19);
+            this.metroLabel6.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel6.TabIndex = 14;
             this.metroLabel6.Text = "Clave:";
+            this.metroLabel6.UseStyleColors = true;
             // 
             // txtClave
             // 
@@ -284,20 +306,26 @@
             this.txtClave.SelectionStart = 0;
             this.txtClave.ShortcutsEnabled = true;
             this.txtClave.Size = new System.Drawing.Size(109, 23);
+            this.txtClave.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtClave.TabIndex = 15;
             this.txtClave.UseSelectable = true;
+            this.txtClave.UseStyleColors = true;
             this.txtClave.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtClave.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // chckRutinas
             // 
             this.chckRutinas.AutoSize = true;
+            this.chckRutinas.Checked = true;
+            this.chckRutinas.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chckRutinas.Location = new System.Drawing.Point(432, 178);
             this.chckRutinas.Name = "chckRutinas";
             this.chckRutinas.Size = new System.Drawing.Size(171, 15);
+            this.chckRutinas.Style = MetroFramework.MetroColorStyle.Blue;
             this.chckRutinas.TabIndex = 16;
             this.chckRutinas.Text = "Agregar a agenda de rutinas";
             this.chckRutinas.UseSelectable = true;
+            this.chckRutinas.UseStyleColors = true;
             // 
             // EditReloj
             // 

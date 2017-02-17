@@ -41,14 +41,17 @@ namespace ZkManagement.NewUI.PanelesConfigs
             lcs = new LogicConfigSaftime();
             try
             {
-                if(!lcsql.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuario.Text, txtPassword.Text, "Saftime"))
+                // Primero guardo las configs generales //
+                lcs.SetEstadoEmpleados(chckEmpleados.Checked);
+                lcs.SetEstadoRegistros(chckRegis.Checked);
+                base.Informar("Las configuraciones generales se guardaron correctamente.", "Guardar Configuración.");
+                // Guardo la connection string, si da error la conexión ya guardé las demás opciones //
+                if (!lcsql.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuario.Text, txtPassword.Text, "Saftime"))
                 {
                     base.InformarError("No se pudo establecer conexión con la base de datos de Saftime.", "Conexión Saftime.");
                     return;
                 }
-                lcs.SetEstadoEmpleados(chckEmpleados.Checked);
-                lcs.SetEstadoRegistros(chckRegis.Checked);
-                base.Informar("Configuraciones guardadas correctamente.", "Guardar Configuración.");
+                base.Informar("Los parametros de conexión se guardaron correctamente.", "Guardar Configuración.");
             }
             catch(AppException appex)
             {

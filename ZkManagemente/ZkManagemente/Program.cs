@@ -10,8 +10,6 @@ namespace ZkManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Interfaz.Principal());
-            //Application.Run(new NewUI.MainWindow());
             Application.Run(new NewUI.Login());
         }
     }

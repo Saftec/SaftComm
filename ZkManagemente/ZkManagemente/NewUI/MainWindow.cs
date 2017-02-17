@@ -117,9 +117,9 @@ namespace ZkManagement.NewUI
             DateTime horaFin;
             try
             {
-                if (!lcr.GetEstadoRango()) //Si no está activado el rango de horario devuelvo false.
+                if (!lcr.GetEstadoRango()) //Si no está activado el rango de horario devuelvo true.
                 {
-                    return false;
+                    return true;
                 }
                 horaInicio = DateTime.ParseExact(lcr.GetHoraInicioRango(), "HH:mm", CultureInfo.CurrentCulture);
                 horaFin = DateTime.ParseExact(lcr.GetHoraFinRango(), "HH:mm", CultureInfo.CurrentCulture);
@@ -145,6 +145,7 @@ namespace ZkManagement.NewUI
         }
         private void timerRutinaRegs_Tick(object sender, EventArgs e)
         {
+
             if (!ValidarHora())
             {
                 return;
@@ -163,7 +164,7 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                PanelReloj.Instancia.RefreshGrid();
+                PanelReloj.Instancia.RefreshList();
                 PanelReloj.Instancia.RutinaSincronizacionHora();
             }
             catch (AppException appex)
@@ -179,7 +180,7 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                PanelReloj.Instancia.RefreshGrid();
+                PanelReloj.Instancia.RefreshList();
                 PanelReloj.Instancia.RutinaBajadaRegistros();
             }
             catch (AppException appex)
