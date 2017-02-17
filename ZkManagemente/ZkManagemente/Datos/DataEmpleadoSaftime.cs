@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {
-                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado', (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc, CASE WHEN e.fecbaja IS NULL THEN 0 ELSE 1 END AS 'Baja' FROM Empleados e ORDER BY Nombre ASC";
+                query = "SELECT e.legajo, e.EmpId as 'IdEmpleado',e.nombres as 'Nombre', e.apellido, e.tarjeta, e.nroDoc, CASE WHEN e.fecbaja IS NULL THEN 0 ELSE 1 END AS 'Baja' FROM Empleados e ORDER BY Nombre ASC";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -43,6 +43,7 @@ namespace ZkManagement.Datos
                     e.Legajo = dr["legajo"].ToString();
                     e.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     e.Nombre = dr["Nombre"].ToString();
+                    e.Apellido = dr["Apellido"].ToString();
                     e.Tarjeta = dr["tarjeta"].ToString();
                     e.Dni = dr["nroDoc"].ToString();
                     e.Pin = string.Empty;
@@ -136,7 +137,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo + "', tarjeta='" + emp.Tarjeta + "' WHERE EmpId=" + emp.Id.ToString();
+                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo + "', tarjeta='" + emp.Tarjeta + "', nombres='" + emp.Nombre + "', apellido='" + emp.Apellido +"' WHERE EmpId=" + emp.Id.ToString();
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
@@ -175,7 +176,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
+                query = "INSERT INTO Empleados (nombres, apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', ' " + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
@@ -266,13 +267,14 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "SELECT e.legajo, e.EmpId, (e.nombres + e.apellido) as 'Nombre', e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo + "'";
+                query = "SELECT e.legajo, e.EmpId, e.nombres as 'Nombre', e.apellido, e.tarjeta, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo + "'";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
                     emp.Id = Convert.ToInt32(dr["EmpId"]);
                     emp.Nombre = dr["Nombre"].ToString();
+                    emp.Apellido = dr["Apellido"].ToString();
                     emp.Tarjeta = dr["tarjeta"].ToString();
                     emp.Dni = dr["nroDoc"].ToString();
                     emp.Pin = string.Empty;

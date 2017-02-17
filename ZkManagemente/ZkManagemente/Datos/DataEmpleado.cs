@@ -34,7 +34,7 @@ namespace ZkManagement.Datos
 
             try
             {                            
-                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, COUNT(h.IdEmpleado) as CantHuellas FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
+                query = "SELECT e.Legajo, e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja, e.Apellido, COUNT(h.IdEmpleado) as CantHuellas FROM Empleados e LEFT JOIN Huellas h ON e.IdEmpleado=h.IdEmpleado GROUP BY e.IdEmpleado, e.Nombre, e.Apellido, e.Pin, e.Tarjeta, e.Legajo, e.DNI, e.Privilegio, e.Baja ORDER BY e.Nombre ASC";           
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
@@ -48,6 +48,7 @@ namespace ZkManagement.Datos
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     e.Baja = Convert.ToInt32(dr["Baja"]);
                     e.CantHuellas = Convert.ToInt32(dr["CantHuellas"]);
+                    e.Apellido = dr["Apellido"].ToString();
                     empleados.Add(e);
                 }
             }
@@ -133,7 +134,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "' WHERE IdEmpleado=" + emp.Id.ToString();
+                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "', Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
@@ -172,7 +173,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Empleados (Nombre, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
+                query = "INSERT INTO Empleados (Nombre, Apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', '" + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
@@ -289,7 +290,7 @@ namespace ZkManagement.Datos
             IDataReader dr = null;
             try
             {
-                query = "SELECT e.IdEmpleado, e.Nombre, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'";
+                query = "SELECT e.IdEmpleado, e.Nombre, e.Apellido, e.Tarjeta, e.DNI, e.Pin, e.Privilegio, e.Baja FROM Empleados e WHERE e.Legajo='" + emp.Legajo + "'";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {
@@ -300,6 +301,7 @@ namespace ZkManagement.Datos
                     emp.Pin = dr["Pin"].ToString();
                     emp.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     emp.Baja = Convert.ToInt32(dr["Baja"]);
+                    emp.Apellido = dr["Apellido"].ToString();
                 }
             }
             catch (AppException appex)

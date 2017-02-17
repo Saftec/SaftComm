@@ -103,7 +103,8 @@ namespace ZkManagement.NewUI.Generic
             {
                 e.Privilegio = val;
             }
-            e.Nombre = gridPersonal.CurrentRow.Cells["Nombre"].Value.ToString().Trim(); ;
+            e.Nombre = gridPersonal.CurrentRow.Cells["Nombre"].Value.ToString().Trim();
+            e.Apellido = gridPersonal.CurrentRow.Cells["Apellido"].Value.ToString().Trim();
             e.Legajo = gridPersonal.CurrentRow.Cells["Legajo"].Value.ToString();
             e.Pin = gridPersonal.CurrentRow.Cells["Pin"].Value.ToString();
             e.Tarjeta = gridPersonal.CurrentRow.Cells["Tarjeta"].Value.ToString();
@@ -154,14 +155,16 @@ namespace ZkManagement.NewUI.Generic
             dt.Columns.Add("Privilegio");
             dt.Columns.Add("Baja");
             dt.Columns.Add("Cant");
+            dt.Columns.Add("Apellido");
             foreach (Empleado e in listEmps)
             {
                 DataRow row = dt.NewRow();
-                row["Nombre"] = e.Nombre;
-                row["Legajo"] = e.Legajo;
+                row["Nombre"] = e.Nombre.Trim();
+                row["Apellido"] = e.Apellido.Trim();
+                row["Legajo"] = e.Legajo.Trim();
                 row["IdEmpleado"] = e.Id;
                 row["Tarjeta"] = e.Tarjeta;
-                row["DNI"] = e.Dni;
+                row["DNI"] = e.Dni.Trim();
                 row["Pin"] = e.Pin;
                 row["Privilegio"] = e.Privilegio;
                 row["Baja"] = e.Baja;

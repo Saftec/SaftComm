@@ -13,6 +13,7 @@ namespace ZkManagement.Entidades
         private int _privilegio;
         private int _baja;
         private int _cantHuellas;
+        private string _apellido;
         private List<Huella> _huellas;
 
         public Empleado()
@@ -25,7 +26,11 @@ namespace ZkManagement.Entidades
             get { return _huellas; }
             set { _huellas = value; }
         }
-
+        public string Apellido
+        {
+            get { return _apellido; }
+            set { _apellido = value; }
+        }
         public string Nombre
         {
             get { return _nombre; }

@@ -53,7 +53,8 @@ namespace ZkManagement.NewUI
             empActual = emp;
             txtDni.Text = emp.Dni;
             txtLegajo.Text = emp.Legajo;
-            txtNombre.Text = emp.Nombre;
+            txtNombre.Text = emp.Nombre.Trim();
+            txtApellido.Text = emp.Apellido.Trim();
             txtPin.Text = emp.Pin;
             txtTarjeta.Text = emp.Tarjeta;
             cbPrivilegio.SelectedIndex = emp.Privilegio;
@@ -66,6 +67,15 @@ namespace ZkManagement.NewUI
             empActual.Nombre = txtNombre.Text;
             empActual.Tarjeta = txtTarjeta.Text;
             empActual.Privilegio = cbPrivilegio.SelectedIndex;
+            empActual.Apellido = txtApellido.Text;
+            if (txtPin.Text != "")
+            {
+                empActual.Pin = txtPin.Text;
+            }
+            else
+            {
+                empActual.Pin = "NULL";
+            }
         }
 
 

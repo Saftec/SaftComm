@@ -128,7 +128,7 @@ namespace ZkManagement.Datos
             }
             catch (DbException dbex)
             {
-                throw new AppException("Error durante la consulta a la base de datos.", "Error", dbex);
+                throw new AppException("Error al intentar leer datos de la base de datos.", "Error", dbex);
             }
             catch (Exception ex)
             {
