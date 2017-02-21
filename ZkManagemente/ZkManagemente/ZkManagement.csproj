@@ -169,6 +169,7 @@
     <Compile Include="Logica\LogicUsuario.cs" />
     <Compile Include="Logica\LogicCargaDatos.cs" />
     <Compile Include="Logica\LogicConfigRutinas.cs" />
+    <Compile Include="Logica\ProcRegisSaftime.cs" />
     <Compile Include="NewUI\EditConexionBD.cs">
       <SubType>Form</SubType>
     </Compile>

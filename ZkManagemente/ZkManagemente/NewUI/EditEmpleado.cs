@@ -51,8 +51,11 @@ namespace ZkManagement.NewUI
         public void MapearAFormulario(Empleado emp)
         {
             empActual = emp;
-            txtDni.Text = emp.Dni;
             
+            if(emp.Dni != null)
+            {
+                txtDni.Text = emp.Dni.Trim();
+            }
             if (emp.Legajo != null)
             {
                 txtLegajo.Text = emp.Legajo.Trim();
@@ -65,9 +68,13 @@ namespace ZkManagement.NewUI
             {
                 txtApellido.Text = emp.Apellido.Trim();
             }
-            
+            if(emp.Tarjeta != null)
+            {
+                txtTarjeta.Text = emp.Tarjeta.Trim();
+            }
+
             txtPin.Text = emp.Pin;
-            txtTarjeta.Text = emp.Tarjeta;
+            
             cbPrivilegio.SelectedIndex = emp.Privilegio;
         }
 

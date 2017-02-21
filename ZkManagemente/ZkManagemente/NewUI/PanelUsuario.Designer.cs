@@ -38,6 +38,8 @@
             this.linkEdit = new MetroFramework.Controls.MetroLink();
             this.linkDelete = new MetroFramework.Controls.MetroLink();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UltAcceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdPermisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +71,8 @@
             this.gridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Usuario,
+            this.Apellido,
+            this.Nombre,
             this.UltAcceso,
             this.IdPermisos,
             this.IdUsuario,
@@ -169,6 +173,18 @@
             this.Usuario.Name = "Usuario";
             this.Usuario.ReadOnly = true;
             // 
+            // Apellido
+            // 
+            this.Apellido.DataPropertyName = "Apellido";
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
             // UltAcceso
             // 
             this.UltAcceso.DataPropertyName = "UltAcceso";
@@ -235,6 +251,8 @@
         private MetroFramework.Controls.MetroLink linkDelete;
         private MetroFramework.Controls.MetroLink linkContraseña;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn UltAcceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdPermisos;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdUsuario;

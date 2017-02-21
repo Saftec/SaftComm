@@ -75,6 +75,8 @@ namespace ZkManagement.NewUI.Generic
             }
 
             u.Usr = gridUsuarios.CurrentRow.Cells["Usuario"].Value.ToString();
+            u.Nombre = gridUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
+            u.Apellido = gridUsuarios.CurrentRow.Cells["Apellido"].Value.ToString();
             u.PassDecrypt = gridUsuarios.CurrentRow.Cells["Contraseña"].Value.ToString();
 
             return u;
@@ -123,11 +125,15 @@ namespace ZkManagement.NewUI.Generic
             dt.Columns.Add("IdPermisos");
             dt.Columns.Add("IdUsuario");
             dt.Columns.Add("UltAcceso");
+            dt.Columns.Add("Nombre");
+            dt.Columns.Add("Apellido");
 
             foreach (Usuario u in usuarios)
             {
                 DataRow row = dt.NewRow();
                 row["Usuario"] = u.Usr;
+                row["Nombre"] = u.Nombre;
+                row["Apellido"] = u.Apellido;
                 row["Contraseña"] = u.PassEncrypt;
                 row["Permisos"] = u.Permisos;
                 row["IdPermisos"] = u.Nivel;

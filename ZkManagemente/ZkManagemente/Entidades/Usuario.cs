@@ -11,6 +11,8 @@ namespace ZkManagement.Entidades
         private int _nivel;
         private int _id;
         private string _permisos;
+        private string _nombre;
+        private string _apellido;
         private DateTime? _ultimoAcceso;
 
         //CONSTRUCTORES
@@ -73,6 +75,16 @@ namespace ZkManagement.Entidades
         {
             get { return _usr; }
             set { _usr = value; }
+        }
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+        public string Apellido
+        {
+            get { return _apellido; }
+            set { _apellido = value; }
         }
 
         public string Permisos

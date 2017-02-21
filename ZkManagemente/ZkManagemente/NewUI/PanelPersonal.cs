@@ -29,7 +29,7 @@ namespace ZkManagement.NewUI.Generic
             InitializeComponent();           
         }
 
-        #region ABM
+        #region Menu
         private void linkNuevo_Click(object sender, EventArgs e)
         {
             Empleado emp = new Empleado();
@@ -72,6 +72,11 @@ namespace ZkManagement.NewUI.Generic
                         filas.Add(row);
                     }
                 }
+                if (eliminados.Count <= 0)
+                {
+                    base.InformarError("No seleccionó ningún empleado", "Eliminar Empleados");
+                    return;
+                }
                 le = new LogicEmpleado();
                 le.BajaEmpleado(eliminados);
                 //Borro las filas del DGV
@@ -87,6 +92,13 @@ namespace ZkManagement.NewUI.Generic
                 base.InformarError(ex.Message, "Eliminar Empleados.");
             }
 
+        }
+        private void linkSinc_Click(object sender, EventArgs e)
+        {
+            PanelSincronizacion.Instancia.Dock = DockStyle.Fill;
+            PanelSincronizacion.Instancia.RefreshData();
+            MainWindow.Instancia.MetroContainer.Controls.Clear();
+            MainWindow.Instancia.MetroContainer.Controls.Add(PanelSincronizacion.Instancia);
         }
         #endregion
 
@@ -116,7 +128,14 @@ namespace ZkManagement.NewUI.Generic
         {
             try
             {
-                ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%'", txtBuscar.Text.Trim().Replace("'", "''"));
+                if (rbActivos.Checked)
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja=0 AND (Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("')", "''"));
+                }
+                if (rbBaja.Checked)
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja=1 AND (Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("'", "''"));
+                }
             }
             catch (Exception ex)
             {
@@ -138,6 +157,24 @@ namespace ZkManagement.NewUI.Generic
             catch (Exception ex)
             {
                 base.InformarError(ex.Message, "Consultar Empleados");
+            }
+        }
+        private void rbActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbActivos.Checked)
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 0");
+                }
+                else
+                {
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 1");
+                }
+            }
+            catch (Exception ex)
+            {
+                base.InformarError(ex.Message, "Filtrar Empleados");
             }
         }
         #endregion
@@ -172,25 +209,6 @@ namespace ZkManagement.NewUI.Generic
                 dt.Rows.Add(row);
             }
             return dt;
-        }
-
-        private void rbActivos_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rbActivos.Checked)
-                {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 0");
-                }
-                else
-                {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 1");
-                }
-            }
-            catch(Exception ex)
-            {
-                base.InformarError(ex.Message, "Filtrar Empleados");
-            }
         }
     }
 }

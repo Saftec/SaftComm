@@ -50,6 +50,7 @@ namespace ZkManagement.Logica
             }
             catch (Exception ex)
             {
+                Logger.GetLogger("").Fatal(ex.StackTrace);
                 throw ex;
             }
             

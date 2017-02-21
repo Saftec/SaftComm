@@ -32,15 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridPersonal = new MetroFramework.Controls.MetroGrid();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.linkNuevo = new MetroFramework.Controls.MetroLink();
-            this.linkEdit = new MetroFramework.Controls.MetroLink();
-            this.linkDelete = new MetroFramework.Controls.MetroLink();
-            this.txtBuscar = new MetroFramework.Controls.MetroTextBox();
-            this.linkSinc = new MetroFramework.Controls.MetroLink();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.rbActivos = new MetroFramework.Controls.MetroRadioButton();
-            this.rbBaja = new MetroFramework.Controls.MetroRadioButton();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +42,15 @@
             this.Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Privilegio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.linkNuevo = new MetroFramework.Controls.MetroLink();
+            this.linkEdit = new MetroFramework.Controls.MetroLink();
+            this.linkDelete = new MetroFramework.Controls.MetroLink();
+            this.txtBuscar = new MetroFramework.Controls.MetroTextBox();
+            this.linkSinc = new MetroFramework.Controls.MetroLink();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.rbActivos = new MetroFramework.Controls.MetroRadioButton();
+            this.rbBaja = new MetroFramework.Controls.MetroRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridPersonal)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,79 @@
             this.gridPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridPersonal.Size = new System.Drawing.Size(926, 479);
             this.gridPersonal.TabIndex = 3;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "IdEmpleado";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Dni
+            // 
+            this.Dni.DataPropertyName = "DNI";
+            this.Dni.HeaderText = "DNI";
+            this.Dni.Name = "Dni";
+            this.Dni.ReadOnly = true;
+            this.Dni.Width = 60;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 125;
+            // 
+            // Apellido
+            // 
+            this.Apellido.DataPropertyName = "Apellido";
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            this.Apellido.Width = 125;
+            // 
+            // Legajo
+            // 
+            this.Legajo.DataPropertyName = "Legajo";
+            this.Legajo.HeaderText = "Legajo";
+            this.Legajo.Name = "Legajo";
+            this.Legajo.ReadOnly = true;
+            this.Legajo.Width = 80;
+            // 
+            // CantHuellas
+            // 
+            this.CantHuellas.DataPropertyName = "Cant";
+            this.CantHuellas.HeaderText = "Cant. Huellas";
+            this.CantHuellas.Name = "CantHuellas";
+            this.CantHuellas.ReadOnly = true;
+            // 
+            // Tarjeta
+            // 
+            this.Tarjeta.DataPropertyName = "Tarjeta";
+            this.Tarjeta.HeaderText = "Tarjeta";
+            this.Tarjeta.Name = "Tarjeta";
+            this.Tarjeta.ReadOnly = true;
+            // 
+            // Pin
+            // 
+            this.Pin.DataPropertyName = "Pin";
+            this.Pin.HeaderText = "Pin";
+            this.Pin.Name = "Pin";
+            this.Pin.ReadOnly = true;
+            // 
+            // Privilegio
+            // 
+            this.Privilegio.DataPropertyName = "Privilegio";
+            this.Privilegio.HeaderText = "Privilegio";
+            this.Privilegio.Name = "Privilegio";
+            this.Privilegio.ReadOnly = true;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Width = 60;
             // 
             // tableLayoutPanel2
             // 
@@ -209,6 +282,7 @@
             this.linkSinc.Text = "Sinc. Dispositivo";
             this.linkSinc.UseSelectable = true;
             this.linkSinc.UseStyleColors = true;
+            this.linkSinc.Click += new System.EventHandler(this.linkSinc_Click);
             // 
             // metroLabel1
             // 
@@ -247,79 +321,6 @@
             this.rbBaja.TabIndex = 6;
             this.rbBaja.Text = "De Baja";
             this.rbBaja.UseSelectable = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "IdEmpleado";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Dni
-            // 
-            this.Dni.DataPropertyName = "DNI";
-            this.Dni.HeaderText = "DNI";
-            this.Dni.Name = "Dni";
-            this.Dni.ReadOnly = true;
-            this.Dni.Width = 60;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 125;
-            // 
-            // Apellido
-            // 
-            this.Apellido.DataPropertyName = "Apellido";
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.Name = "Apellido";
-            this.Apellido.Width = 125;
-            // 
-            // Legajo
-            // 
-            this.Legajo.DataPropertyName = "Legajo";
-            this.Legajo.HeaderText = "Legajo";
-            this.Legajo.Name = "Legajo";
-            this.Legajo.ReadOnly = true;
-            this.Legajo.Width = 80;
-            // 
-            // CantHuellas
-            // 
-            this.CantHuellas.DataPropertyName = "Cant";
-            this.CantHuellas.HeaderText = "Cant. Huellas";
-            this.CantHuellas.Name = "CantHuellas";
-            this.CantHuellas.ReadOnly = true;
-            // 
-            // Tarjeta
-            // 
-            this.Tarjeta.DataPropertyName = "Tarjeta";
-            this.Tarjeta.HeaderText = "Tarjeta";
-            this.Tarjeta.Name = "Tarjeta";
-            this.Tarjeta.ReadOnly = true;
-            // 
-            // Pin
-            // 
-            this.Pin.DataPropertyName = "Pin";
-            this.Pin.HeaderText = "Pin";
-            this.Pin.Name = "Pin";
-            this.Pin.ReadOnly = true;
-            // 
-            // Privilegio
-            // 
-            this.Privilegio.DataPropertyName = "Privilegio";
-            this.Privilegio.HeaderText = "Privilegio";
-            this.Privilegio.Name = "Privilegio";
-            this.Privilegio.ReadOnly = true;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Width = 60;
             // 
             // PanelPersonal
             // 

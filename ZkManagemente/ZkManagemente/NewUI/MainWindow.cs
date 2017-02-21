@@ -150,6 +150,7 @@ namespace ZkManagement.NewUI
             {
                 return;
             }
+            MostrarNotificacionEvento("Iniciando descarga de registros", "Rutinas");
             backgroundWorkerRutinaRegistros.RunWorkerAsync();
         }
         private void timerRutinaHora_Tick(object sender, EventArgs e)
@@ -158,6 +159,7 @@ namespace ZkManagement.NewUI
             {
                 return;
             }
+            MostrarNotificacionEvento("Iniciando sincronización de hora", "Rutinas");
             backgroundWorkerRutinaHora.RunWorkerAsync();
         }
         private void backgroundWorkerRutinaHora_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -209,6 +211,7 @@ namespace ZkManagement.NewUI
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             iconoBandeja.Visible = false;
+            PanelReloj.Instancia.DisconnectAll(); //Para dejar desconectados todos los equipos
             Application.Exit();
         }
         private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -249,9 +252,10 @@ namespace ZkManagement.NewUI
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MainWindow.Instancia.Show();
-            MainWindow.Instancia.TopMost = true;
+            MainWindow.Instancia.WindowState = FormWindowState.Normal;
             MainWindow.Instancia.BringToFront();
+            MainWindow.Instancia.TopMost = true;            
+            
             iconoBandeja.Visible = false;
         }
         #endregion

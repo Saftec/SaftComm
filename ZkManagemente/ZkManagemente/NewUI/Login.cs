@@ -82,5 +82,13 @@ namespace ZkManagement.NewUI
                 window.Show();
             }
         }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                btnIngresar.PerformClick();
+            }
+        }
     }
 }

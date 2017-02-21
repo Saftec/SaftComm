@@ -25,10 +25,11 @@ namespace ZkManagement.NewUI
             {
                 return;
             }
+            MapearDeForm();
             lu = new LogicUsuario();
             try
             {
-                if (usrAct.Id > 0)
+                if (usrAct.Id == 0)
                 {
                     lu.AgregarUsuario(usrAct);
                 }else
@@ -51,11 +52,25 @@ namespace ZkManagement.NewUI
             usrAct = u;
             if (usrAct.Id == 0)
             {
+                lblPassword.Visible = true;
+                txtPassword.Visible = true;
                 return;
             }
             txtUsuario.Text = usrAct.Usr;
-            cbPermisos.SelectedIndex = usrAct.Nivel - 1;
-         
+            txtNombre.Text = usrAct.Nombre;
+            txtApellido.Text = usrAct.Apellido;
+            cbPermisos.SelectedIndex = usrAct.Nivel - 1;      
+        }
+        protected override void MapearDeForm()
+        {
+            usrAct.Apellido = txtApellido.Text;
+            usrAct.Nivel = cbPermisos.SelectedIndex + 1;
+            usrAct.Nombre = txtNombre.Text;
+            usrAct.Usr = txtUsuario.Text;
+            if (usrAct.Id == 0)
+            {
+                usrAct.PassEncrypt = txtPassword.Text;
+            }
         }
 
         protected override bool Validar()

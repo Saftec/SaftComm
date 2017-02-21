@@ -34,7 +34,6 @@ namespace ZkManagement.Logica
                         continue;
                     }
                     DataEmpleado.Instancia.InsertarRegis(f);
-
                 }
             }
             catch(AppException appex)

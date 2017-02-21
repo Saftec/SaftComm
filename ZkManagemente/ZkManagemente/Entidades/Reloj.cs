@@ -42,6 +42,7 @@ namespace ZkManagement.Entidades
         }
 
         #endregion
+
         #region Propiedades
         public bool Rutina
         {
@@ -99,7 +100,10 @@ namespace ZkManagement.Entidades
         }
 
         #endregion
+
         #region Metodos
+
+        // Override a Equals para poder buscar instancias dentro de una list<>
         public override bool Equals(object obj)
         {
             if (obj == null) { return false; }
@@ -108,6 +112,7 @@ namespace ZkManagement.Entidades
             Reloj r = (Reloj)obj;
             return (this.id == r.id);
         }
+        // Override a ToString() para mostrar datos en ComboBox
         public override string ToString()
         {
             return (this.Nombre + " - IP: " + this.Ip);
@@ -155,6 +160,10 @@ namespace ZkManagement.Entidades
             int cant = -1;
             base.EnableDevice(this.numero, false);     //bloqueo dispositivo
             cant = GetCantidadRegistros();
+            if (cant == -1)
+            {
+                throw new AppException("Error al consultar la cantidad de registros a borrar.");
+            }
             if (base.ClearGLog(this.numero))
             {
                 base.RefreshData(this.numero);     //los datos deben ser actualizados en el reloj

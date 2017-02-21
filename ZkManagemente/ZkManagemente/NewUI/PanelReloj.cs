@@ -73,6 +73,11 @@ namespace ZkManagement.NewUI
             {
                 InformarError(ex.Message, "Conectar.");
             }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
         }
 
         private void linkDesconnect_Click(object sender, EventArgs e)
@@ -109,6 +114,11 @@ namespace ZkManagement.NewUI
             {
                 InformarError(ex.Message, "Desconectar.");
             }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
         }
 
         private void linkSincHora_Click(object sender, EventArgs e)
@@ -143,6 +153,11 @@ namespace ZkManagement.NewUI
             catch (Exception ex)
             {
                 InformarError(ex.Message, "Sincronizar Hora.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
             }
         }
 
@@ -191,6 +206,11 @@ namespace ZkManagement.NewUI
             {
                 InformarError(ex.Message, "Descargar Registros.");
             }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
         }
 
         private void linkBorrarRegs_Click(object sender, EventArgs e)
@@ -235,6 +255,11 @@ namespace ZkManagement.NewUI
             catch (Exception ex)
             {
                 InformarError(ex.Message, "Borrar Registros.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
             }
         }
         #endregion
@@ -324,10 +349,8 @@ namespace ZkManagement.NewUI
                 gridEquipos.CurrentRow.Cells["Estado"].Value = "Desconectado";
             }
         }
-
-        public void RefreshList()
+        public void DisconnectAll()
         {
-            // VALIDO QUE HAYA QUEDADO ALGUN RELOJ CONECTADO DE UNA OPERACION ANTERIOR
             if (equipos != null && equipos.Count > 0)
             {
                 foreach (Reloj r in equipos)
@@ -338,7 +361,11 @@ namespace ZkManagement.NewUI
                     }
                 }
             }
-            // HASTA ACA
+
+        }
+        public void RefreshList()
+        {
+            DisconnectAll();
             lr = new LogicReloj();
             try
             {

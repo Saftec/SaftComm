@@ -91,7 +91,7 @@
             this.txtNombre.ShortcutsEnabled = true;
             this.txtNombre.Size = new System.Drawing.Size(211, 23);
             this.txtNombre.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtNombre.TabIndex = 3;
+            this.txtNombre.TabIndex = 1;
             this.txtNombre.UseSelectable = true;
             this.txtNombre.UseStyleColors = true;
             this.txtNombre.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -177,7 +177,7 @@
             this.txtDni.ShortcutsEnabled = true;
             this.txtDni.Size = new System.Drawing.Size(125, 23);
             this.txtDni.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtDni.TabIndex = 7;
+            this.txtDni.TabIndex = 3;
             this.txtDni.UseSelectable = true;
             this.txtDni.UseStyleColors = true;
             this.txtDni.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -220,7 +220,7 @@
             this.txtLegajo.ShortcutsEnabled = true;
             this.txtLegajo.Size = new System.Drawing.Size(103, 23);
             this.txtLegajo.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtLegajo.TabIndex = 9;
+            this.txtLegajo.TabIndex = 4;
             this.txtLegajo.UseSelectable = true;
             this.txtLegajo.UseStyleColors = true;
             this.txtLegajo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -263,7 +263,7 @@
             this.txtPin.ShortcutsEnabled = true;
             this.txtPin.Size = new System.Drawing.Size(75, 23);
             this.txtPin.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtPin.TabIndex = 11;
+            this.txtPin.TabIndex = 7;
             this.txtPin.UseSelectable = true;
             this.txtPin.UseStyleColors = true;
             this.txtPin.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -280,7 +280,7 @@
             this.cbPrivilegio.Name = "cbPrivilegio";
             this.cbPrivilegio.Size = new System.Drawing.Size(135, 29);
             this.cbPrivilegio.Style = MetroFramework.MetroColorStyle.Blue;
-            this.cbPrivilegio.TabIndex = 12;
+            this.cbPrivilegio.TabIndex = 6;
             this.cbPrivilegio.UseSelectable = true;
             this.cbPrivilegio.UseStyleColors = true;
             // 
@@ -321,7 +321,7 @@
             this.txtApellido.ShortcutsEnabled = true;
             this.txtApellido.Size = new System.Drawing.Size(211, 23);
             this.txtApellido.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtApellido.TabIndex = 14;
+            this.txtApellido.TabIndex = 2;
             this.txtApellido.UseSelectable = true;
             this.txtApellido.UseStyleColors = true;
             this.txtApellido.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));

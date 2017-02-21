@@ -65,7 +65,7 @@
             this.txtPswNew2.SelectionStart = 0;
             this.txtPswNew2.ShortcutsEnabled = true;
             this.txtPswNew2.Size = new System.Drawing.Size(208, 23);
-            this.txtPswNew2.TabIndex = 15;
+            this.txtPswNew2.TabIndex = 3;
             this.txtPswNew2.UseSelectable = true;
             this.txtPswNew2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPswNew2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -104,7 +104,7 @@
             this.txtPswNew1.SelectionStart = 0;
             this.txtPswNew1.ShortcutsEnabled = true;
             this.txtPswNew1.Size = new System.Drawing.Size(208, 23);
-            this.txtPswNew1.TabIndex = 13;
+            this.txtPswNew1.TabIndex = 2;
             this.txtPswNew1.UseSelectable = true;
             this.txtPswNew1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPswNew1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -143,7 +143,7 @@
             this.txtPswVieja.SelectionStart = 0;
             this.txtPswVieja.ShortcutsEnabled = true;
             this.txtPswVieja.Size = new System.Drawing.Size(208, 23);
-            this.txtPswVieja.TabIndex = 11;
+            this.txtPswVieja.TabIndex = 1;
             this.txtPswVieja.UseSelectable = true;
             this.txtPswVieja.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPswVieja.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);

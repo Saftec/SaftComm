@@ -9,6 +9,7 @@ namespace ZkManagement.Datos
 {
     class DataEmpleadoSaftime
     {
+        #region Singleton
         private static DataEmpleadoSaftime _instancia;
         public static DataEmpleadoSaftime Instancia
         {
@@ -23,6 +24,7 @@ namespace ZkManagement.Datos
 
         }
         private DataEmpleadoSaftime() { }
+        #endregion
 
         private string query = string.Empty;
 

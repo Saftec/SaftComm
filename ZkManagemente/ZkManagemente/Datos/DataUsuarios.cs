@@ -9,6 +9,7 @@ namespace ZkManagement.Datos
 {
     class DataUsuarios
     {
+        #region Singleton
         private static DataUsuarios _instancia;
         public static DataUsuarios Instancia
         {
@@ -23,7 +24,7 @@ namespace ZkManagement.Datos
 
         }
         private DataUsuarios() { }
-
+        #endregion
 
         private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
@@ -32,11 +33,13 @@ namespace ZkManagement.Datos
             IDataReader dr = null;
             try
             {
-                query = "SELECT Usuario, Password, IdUsuario, idPermisos FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';";
+                query = "SELECT Usuario, Password, IdUsuario, idPermisos, Nombre, Apellido FROM Usuarios u WHERE u.Usuario='" + usuario.Usr + "';";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 if (dr.Read())
                 {
                     usr.Usr = (dr["Usuario"].ToString());
+                    usr.Nombre = (dr["Nombre"].ToString());
+                    usr.Apellido = (dr["Apellido"].ToString());
                     usr.PassDecrypt = (dr["Password"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
@@ -81,7 +84,7 @@ namespace ZkManagement.Datos
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, UltimoInicio, Permisos FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
+                query = "SELECT IdUsuario, Usuario, Password, u.IdPermisos, UltimoInicio, Permisos, Nombre, Apellido FROM Usuarios u INNER JOIN Permisos p ON u.idPermisos=p.IdPermisos";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
@@ -89,6 +92,8 @@ namespace ZkManagement.Datos
                     DateTime fecha;
 
                     usr.Usr = (dr["Usuario"].ToString());
+                    usr.Nombre = (dr["Nombre"].ToString());
+                    usr.Apellido = (dr["Apellido"].ToString());
                     usr.PassDecrypt = (dr["Password"].ToString());
                     usr.Id = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
@@ -141,7 +146,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos) VALUES('" + usr.Usr + "', '" + usr.PassEncrypt + "', '" + usr.Nivel + "')";
+                query = "INSERT INTO Usuarios (Usuario, Password, IdPermisos, Nombre, Apellido) VALUES('" + usr.Usr + "', '" + usr.PassEncrypt + "', '" + usr.Nivel + "', '" + usr.Nombre + "', '" + usr.Apellido + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -179,7 +184,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + " WHERE IdUsuario=" + usr.Id.ToString();
+                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + ", Nombre='" + usr.Nombre + "', Apellido='" + usr.Apellido + "' WHERE IdUsuario=" + usr.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -255,7 +260,7 @@ namespace ZkManagement.Datos
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Usuarios SET UltimoInicio='" + DateTime.Now + "' WHERE IdUsuario=" + usr.Id.ToString();
+                query = "UPDATE Usuarios SET UltimoInicio=GETDATE() WHERE IdUsuario=" + usr.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
