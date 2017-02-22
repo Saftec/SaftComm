@@ -18,12 +18,18 @@ namespace ZkManagement.Entidades
         //CONSTRUCTORES
         public Usuario(string usr, string pass,int nivel, int id)
         {           
-            Usr = usr;
+            _usr = usr;
             PassDecrypt = pass;
-            Nivel = nivel;
-            Id = id;
+            _nivel = nivel;
+            _id = id;
         }
 
+        public Usuario(string usr, int nivel, int id)
+        {
+            _usr = usr;
+            _nivel = nivel;
+            _id = id;
+        }
         public Usuario()
         {
         }

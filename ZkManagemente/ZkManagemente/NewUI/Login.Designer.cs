@@ -36,6 +36,7 @@
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.btnIngresar = new MetroFramework.Controls.MetroButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkMonitor = new MetroFramework.Controls.MetroLink();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,7 +135,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(34, 196);
+            this.btnCancel.Location = new System.Drawing.Point(45, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(102, 30);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Blue;
@@ -146,7 +147,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(264, 196);
+            this.btnIngresar.Location = new System.Drawing.Point(245, 189);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(102, 30);
             this.btnIngresar.Style = MetroFramework.MetroColorStyle.Blue;
@@ -165,12 +166,25 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // linkMonitor
+            // 
+            this.linkMonitor.Location = new System.Drawing.Point(357, 234);
+            this.linkMonitor.Name = "linkMonitor";
+            this.linkMonitor.Size = new System.Drawing.Size(182, 23);
+            this.linkMonitor.Style = MetroFramework.MetroColorStyle.Blue;
+            this.linkMonitor.TabIndex = 6;
+            this.linkMonitor.Text = "Iniciar en Modo Monitor";
+            this.linkMonitor.UseSelectable = true;
+            this.linkMonitor.UseStyleColors = true;
+            this.linkMonitor.Click += new System.EventHandler(this.linkMonitor_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(547, 265);
+            this.Controls.Add(this.linkMonitor);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.btnCancel);
@@ -199,5 +213,6 @@
         private MetroFramework.Controls.MetroButton btnCancel;
         private MetroFramework.Controls.MetroButton btnIngresar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Controls.MetroLink linkMonitor;
     }
 }

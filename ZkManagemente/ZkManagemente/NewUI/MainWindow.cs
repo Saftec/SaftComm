@@ -37,7 +37,17 @@ namespace ZkManagement.NewUI
         {
             get { return metroPanel; }
         }
-
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            iconoBandeja.DoubleClick += new EventHandler(Open_Click);
+            toolStripMenuAbrir.DoubleClick += new EventHandler(Open_Click);
+        }
+        public void Ocultar()
+        {
+            MainWindow.Instancia.Hide();
+            iconoBandeja.Visible = true;
+            MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SaftComm");
+        }
         public void Inicializar()
         {
             lcr = new LogicConfigRutinas();
@@ -48,7 +58,7 @@ namespace ZkManagement.NewUI
                 {
                     InicializarTimers();
                 }
-
+                SetPermisos();
                 lblVersionBD.Text = "Versión BD: " + lcbd.GetVersion();
                 lblVersionApp.Text = "Versión SaftComm: " + ConfigurationManager.AppSettings["Version"].ToString();
                 lblUsr.Text = "Usuario: " + LogicLogin.Usuario.Usr;
@@ -56,6 +66,19 @@ namespace ZkManagement.NewUI
             catch (Exception ex)
             {
                 InformarError(ex.Message, "Inicializar Aplicación");
+            }
+        }
+
+        private void SetPermisos()
+        {
+            int nivel = LogicLogin.Usuario.Nivel;
+            if (nivel > 0)
+            {
+                linkConfiguracion.Enabled = true;
+                linkDispositivos.Enabled = true;
+                linkPersonal.Enabled = true;
+                linkSincronizacion.Enabled = true;
+                linkUsuarios.Enabled = true;
             }
         }
         #region Menu
@@ -216,10 +239,7 @@ namespace ZkManagement.NewUI
         }
         private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            MainWindow.Instancia.Show();
-            MainWindow.Instancia.TopMost = true;
-            MainWindow.Instancia.BringToFront();
-            iconoBandeja.Visible = false;
+
         }
         private void MostrarNotificacionEvento(string mensaje, string titulo)
         {
@@ -249,13 +269,16 @@ namespace ZkManagement.NewUI
             Application.Exit();
 
         }
-
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuSalir_Click(object sender, EventArgs e)
         {
-            MainWindow.Instancia.WindowState = FormWindowState.Normal;
+            Application.Exit();
+        }
+        // EVENTO GENERICO PARA MOSTRAR LA APP //
+        private void Open_Click(object sender, EventArgs e)
+        {
+            MainWindow.Instancia.Show();
+            MainWindow.Instancia.TopMost = true;
             MainWindow.Instancia.BringToFront();
-            MainWindow.Instancia.TopMost = true;            
-            
             iconoBandeja.Visible = false;
         }
         #endregion

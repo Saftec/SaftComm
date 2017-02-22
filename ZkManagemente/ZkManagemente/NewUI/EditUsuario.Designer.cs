@@ -38,6 +38,8 @@
             this.txtNombre = new MetroFramework.Controls.MetroTextBox();
             this.lblPassword = new MetroFramework.Controls.MetroLabel();
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
+            this.lblPassword2 = new MetroFramework.Controls.MetroLabel();
+            this.txtPassword2 = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -122,7 +124,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(251, 192);
+            this.metroLabel3.Location = new System.Drawing.Point(251, 226);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(62, 19);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
@@ -133,7 +135,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(252, 253);
+            this.metroLabel4.Location = new System.Drawing.Point(253, 283);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(61, 19);
             this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
@@ -156,7 +158,7 @@
             this.txtApellido.CustomButton.UseSelectable = true;
             this.txtApellido.CustomButton.Visible = false;
             this.txtApellido.Lines = new string[0];
-            this.txtApellido.Location = new System.Drawing.Point(319, 249);
+            this.txtApellido.Location = new System.Drawing.Point(319, 283);
             this.txtApellido.MaxLength = 32767;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.PasswordChar = '\0';
@@ -188,7 +190,7 @@
             this.txtNombre.CustomButton.UseSelectable = true;
             this.txtNombre.CustomButton.Visible = false;
             this.txtNombre.Lines = new string[0];
-            this.txtNombre.Location = new System.Drawing.Point(319, 188);
+            this.txtNombre.Location = new System.Drawing.Point(319, 226);
             this.txtNombre.MaxLength = 32767;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.PasswordChar = '\0';
@@ -235,7 +237,7 @@
             this.txtPassword.Location = new System.Drawing.Point(319, 107);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '\0';
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtPassword.SelectedText = "";
             this.txtPassword.SelectionLength = 0;
@@ -250,11 +252,58 @@
             this.txtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // lblPassword2
+            // 
+            this.lblPassword2.AutoSize = true;
+            this.lblPassword2.Location = new System.Drawing.Point(197, 150);
+            this.lblPassword2.Name = "lblPassword2";
+            this.lblPassword2.Size = new System.Drawing.Size(116, 19);
+            this.lblPassword2.Style = MetroFramework.MetroColorStyle.Blue;
+            this.lblPassword2.TabIndex = 14;
+            this.lblPassword2.Text = "Repita contraseña:";
+            this.lblPassword2.UseStyleColors = true;
+            this.lblPassword2.Visible = false;
+            // 
+            // txtPassword2
+            // 
+            // 
+            // 
+            // 
+            this.txtPassword2.CustomButton.Image = null;
+            this.txtPassword2.CustomButton.Location = new System.Drawing.Point(215, 1);
+            this.txtPassword2.CustomButton.Name = "";
+            this.txtPassword2.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtPassword2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtPassword2.CustomButton.TabIndex = 1;
+            this.txtPassword2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtPassword2.CustomButton.UseSelectable = true;
+            this.txtPassword2.CustomButton.Visible = false;
+            this.txtPassword2.Lines = new string[0];
+            this.txtPassword2.Location = new System.Drawing.Point(319, 146);
+            this.txtPassword2.MaxLength = 32767;
+            this.txtPassword2.Name = "txtPassword2";
+            this.txtPassword2.PasswordChar = '*';
+            this.txtPassword2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtPassword2.SelectedText = "";
+            this.txtPassword2.SelectionLength = 0;
+            this.txtPassword2.SelectionStart = 0;
+            this.txtPassword2.ShortcutsEnabled = true;
+            this.txtPassword2.Size = new System.Drawing.Size(237, 23);
+            this.txtPassword2.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtPassword2.TabIndex = 15;
+            this.txtPassword2.UseSelectable = true;
+            this.txtPassword2.UseStyleColors = true;
+            this.txtPassword2.Visible = false;
+            this.txtPassword2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtPassword2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
             // EditUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 581);
+            this.Controls.Add(this.txtPassword2);
+            this.Controls.Add(this.lblPassword2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtNombre);
@@ -279,6 +328,8 @@
             this.Controls.SetChildIndex(this.txtNombre, 0);
             this.Controls.SetChildIndex(this.lblPassword, 0);
             this.Controls.SetChildIndex(this.txtPassword, 0);
+            this.Controls.SetChildIndex(this.lblPassword2, 0);
+            this.Controls.SetChildIndex(this.txtPassword2, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +346,7 @@
         private MetroFramework.Controls.MetroTextBox txtNombre;
         private MetroFramework.Controls.MetroLabel lblPassword;
         private MetroFramework.Controls.MetroTextBox txtPassword;
+        private MetroFramework.Controls.MetroLabel lblPassword2;
+        private MetroFramework.Controls.MetroTextBox txtPassword2;
     }
 }

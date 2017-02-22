@@ -54,6 +54,8 @@ namespace ZkManagement.NewUI
             {
                 lblPassword.Visible = true;
                 txtPassword.Visible = true;
+                lblPassword2.Visible = true;
+                txtPassword2.Visible = true;
                 return;
             }
             txtUsuario.Text = usrAct.Usr;
@@ -87,6 +89,15 @@ namespace ZkManagement.NewUI
             {
                 base.InformarError("Debe seleccionar un nivel de permisos.", "Modificar Usuario.");
                 return false;
+            }
+
+            if (usrAct.Id == 0)
+            {
+                if (txtPassword.Text != txtPassword2.Text)
+                {
+                    base.InformarError("Las contraseñas ingresadas no coinciden.", "Modificar Usuario.");
+                    return false;
+                }
             }
             return true;
         }

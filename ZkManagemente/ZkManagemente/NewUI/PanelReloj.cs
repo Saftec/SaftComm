@@ -440,7 +440,7 @@ namespace ZkManagement.NewUI
                             LoguearInforme(cant.ToString() + " registros eliminados correctamente.");
                             LoguearInforme("Actualizando borrado en base de datos...");
                             lr.ActualizarBorrado(r, fichadas.Count);
-                            LoguearInforme("Borrado actualizado en la base de datos correctamente");
+                            LoguearInforme("Borrado actualizado en la base de datos.");
                         }
                         r.Desconectar();
                         LoguearInforme("El dispositivo: '" + r.Nombre + "' se desconectó correctamente");

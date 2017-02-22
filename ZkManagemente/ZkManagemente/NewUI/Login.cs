@@ -90,5 +90,22 @@ namespace ZkManagement.NewUI
                 btnIngresar.PerformClick();
             }
         }
+
+        private void linkMonitor_Click(object sender, EventArgs e)
+        {
+            usrAct = new Usuario("Monitor", 0, 0);
+            ll = new LogicLogin();
+            try
+            {
+                ll.MonitorMode(usrAct);                
+                MainWindow.Instancia.Inicializar();
+                this.Hide();
+                MainWindow.Instancia.Ocultar();                
+            }
+            catch(Exception ex)
+            {
+                InformarError(ex.Message, "Iniciar SaftComm");
+            }
+        }
     }
 }

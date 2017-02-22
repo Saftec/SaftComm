@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using ZkManagement.Logica;
 using ZkManagement.Util;
@@ -168,6 +169,9 @@ namespace ZkManagement.NewUI.PanelesConfigs
         private void btnExaminar_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Database files (*.mdb, *.accdb)|*.mdb;*.accdb";
+            fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 txtPath.Text = fileDialog.FileName;

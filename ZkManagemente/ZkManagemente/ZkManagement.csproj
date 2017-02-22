@@ -248,6 +248,9 @@
     <Compile Include="NewUI\PanelesConfigs\PanelFichadas.Designer.cs">
       <DependentUpon>PanelFichadas.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUI\PanelesConfigs\PanelGral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="NewUI\PanelesConfigs\PanelSaftime.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -367,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFichadas.resx">
       <DependentUpon>PanelFichadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelGral.resx">
+      <DependentUpon>PanelGral.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelSaftime.resx">
       <DependentUpon>PanelSaftime.cs</DependentUpon>

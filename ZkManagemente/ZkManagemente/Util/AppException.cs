@@ -4,6 +4,12 @@ namespace ZkManagement.Util
 {
     class AppException:Exception
     {
+        private Exception _ex;
+
+        public Exception Ex
+        {
+            get { return _ex; }
+        }
         public AppException (string message): base(message)
         {
 
@@ -16,6 +22,7 @@ namespace ZkManagement.Util
 
         public AppException(string message, string level, Exception ex) : base(message, ex)
         {
+            _ex = ex;
             ExType type = (ExType)Enum.Parse(typeof(ExType), level);
             switch (type)
             {

@@ -46,12 +46,12 @@
             this.backgroundWorkerRutinaRegistros = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRutinaHora = new System.ComponentModel.BackgroundWorker();
             this.iconoBandeja = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuBandeja = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuSalir = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuAbrir = new System.Windows.Forms.ToolStripMenuItem();
             this.tableMenu.SuspendLayout();
             this.pHeader.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuBandeja.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableMenu
@@ -78,6 +78,7 @@
             // 
             // linkConfiguracion
             // 
+            this.linkConfiguracion.Enabled = false;
             this.linkConfiguracion.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.linkConfiguracion.Image = global::ZkManagement.Properties.Resources.settings;
             this.linkConfiguracion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -94,6 +95,7 @@
             // 
             // linkPersonal
             // 
+            this.linkPersonal.Enabled = false;
             this.linkPersonal.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.linkPersonal.Image = global::ZkManagement.Properties.Resources.group;
             this.linkPersonal.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -110,6 +112,7 @@
             // 
             // linkDispositivos
             // 
+            this.linkDispositivos.Enabled = false;
             this.linkDispositivos.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.linkDispositivos.Image = global::ZkManagement.Properties.Resources.clock;
             this.linkDispositivos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -126,6 +129,7 @@
             // 
             // linkSincronizacion
             // 
+            this.linkSincronizacion.Enabled = false;
             this.linkSincronizacion.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.linkSincronizacion.Image = global::ZkManagement.Properties.Resources.sinc;
             this.linkSincronizacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -142,6 +146,7 @@
             // 
             // linkUsuarios
             // 
+            this.linkUsuarios.Enabled = false;
             this.linkUsuarios.FontSize = MetroFramework.MetroLinkSize.Tall;
             this.linkUsuarios.Image = global::ZkManagement.Properties.Resources.padlock;
             this.linkUsuarios.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -237,27 +242,26 @@
             this.iconoBandeja.Text = "Saftec";
             this.iconoBandeja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.iconoBandeja_MouseDoubleClick);
             // 
-            // contextMenuStrip1
+            // contextMenuBandeja
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem,
-            this.abrirToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuBandeja.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuSalir,
+            this.toolStripMenuAbrir});
+            this.contextMenuBandeja.Name = "contextMenuBandeja";
+            this.contextMenuBandeja.Size = new System.Drawing.Size(153, 70);
             // 
-            // salirToolStripMenuItem
+            // toolStripMenuSalir
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.toolStripMenuSalir.Name = "toolStripMenuSalir";
+            this.toolStripMenuSalir.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuSalir.Text = "Salir";
+            this.toolStripMenuSalir.Click += new System.EventHandler(this.toolStripMenuSalir_Click);
             // 
-            // abrirToolStripMenuItem
+            // toolStripMenuAbrir
             // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            this.toolStripMenuAbrir.Name = "toolStripMenuAbrir";
+            this.toolStripMenuAbrir.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuAbrir.Text = "Abrir";
             // 
             // MainWindow
             // 
@@ -271,11 +275,12 @@
             this.Name = "MainWindow";
             this.Text = "SaftComm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.tableMenu.ResumeLayout(false);
             this.pHeader.ResumeLayout(false);
             this.pHeader.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuBandeja.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -298,8 +303,8 @@
         private MetroFramework.Controls.MetroLink linkDispositivos;
         private MetroFramework.Controls.MetroLink linkConfiguracion;
         private System.Windows.Forms.NotifyIcon iconoBandeja;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuBandeja;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSalir;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuAbrir;
     }
 }

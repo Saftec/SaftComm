@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using ZkManagement.Entidades;
 using ZkManagement.Logica;
 using ZkManagement.Util;
@@ -10,6 +12,9 @@ namespace ZkManagement.NewUI.PanelesConfigs
     {
         private LogicFormatos lf;
         private LogicConfigRutinas lcr;
+
+        // The path to the key where Windows looks for startup applications
+        private RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         public PanelFichadas()
         {
             InitializeComponent();
@@ -20,6 +25,16 @@ namespace ZkManagement.NewUI.PanelesConfigs
             lcr = new LogicConfigRutinas();
             try
             {
+                // GUARDO EN EL REGISTRO EL INICIO CON WINDOWS
+                if (chckIniciarWindows.Checked)
+                {
+                    rkApp.SetValue("SaftComm", Application.ExecutablePath);
+                }else
+                {
+                    rkApp.DeleteValue("SaftComm", false);
+                }
+                // HASTA ACA //
+
                 FormatoExport fe = new FormatoExport();
                 fe = (FormatoExport)cbFormatos.SelectedItem;
                 lf.SetFormatoActivo(fe);
@@ -51,6 +66,17 @@ namespace ZkManagement.NewUI.PanelesConfigs
             lcr = new LogicConfigRutinas();
             try
             {
+                // RECUPERO DESDE EL REGISTRO EL INICIO CON WINDOWS //
+                if (rkApp.GetValue("SaftComm") == null)
+                {
+                    chckIniciarWindows.Checked = false;
+                }
+                else
+                {
+                    chckIniciarWindows.Checked = true;
+                }
+                // HASTA ACA //
+
                 formatos = lf.GetFormatos();
                 formatoAct = lf.GetFormatoActivo();
                 cbFormatos.DataSource = formatos;

@@ -50,6 +50,7 @@
             this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chckFicheroCopia = new MetroFramework.Controls.MetroCheckBox();
+            this.chckIniciarWindows = new MetroFramework.Controls.MetroCheckBox();
             this.groupRutinas.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -420,10 +421,23 @@
             this.chckFicheroCopia.UseSelectable = true;
             this.chckFicheroCopia.UseStyleColors = true;
             // 
+            // chckIniciarWindows
+            // 
+            this.chckIniciarWindows.AutoSize = true;
+            this.chckIniciarWindows.Location = new System.Drawing.Point(317, 186);
+            this.chckIniciarWindows.Name = "chckIniciarWindows";
+            this.chckIniciarWindows.Size = new System.Drawing.Size(187, 15);
+            this.chckIniciarWindows.Style = MetroFramework.MetroColorStyle.Blue;
+            this.chckIniciarWindows.TabIndex = 14;
+            this.chckIniciarWindows.Text = "Iniciar aplicación con Windows";
+            this.chckIniciarWindows.UseSelectable = true;
+            this.chckIniciarWindows.UseStyleColors = true;
+            // 
             // PanelFichadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chckIniciarWindows);
             this.Controls.Add(this.chckFicheroCopia);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupRutinas);
@@ -434,6 +448,7 @@
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.btnGuardar, 0);
             this.Controls.SetChildIndex(this.chckFicheroCopia, 0);
+            this.Controls.SetChildIndex(this.chckIniciarWindows, 0);
             this.groupRutinas.ResumeLayout(false);
             this.groupRutinas.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -467,5 +482,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroCheckBox chckBorrarRegs;
+        private MetroFramework.Controls.MetroCheckBox chckIniciarWindows;
     }
 }
