@@ -29,7 +29,9 @@ namespace ZkManagement.NewUI
         }
         private MainWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
+            SetPermisos();
+            iconoBandeja.ContextMenuStrip = contextMenuBandeja;          
         }
         #endregion
         private LogicConfigRutinas lcr;    
@@ -39,8 +41,6 @@ namespace ZkManagement.NewUI
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            iconoBandeja.DoubleClick += new EventHandler(Open_Click);
-            toolStripMenuAbrir.DoubleClick += new EventHandler(Open_Click);
         }
         public void Ocultar()
         {
@@ -58,7 +58,6 @@ namespace ZkManagement.NewUI
                 {
                     InicializarTimers();
                 }
-                SetPermisos();
                 lblVersionBD.Text = "Versión BD: " + lcbd.GetVersion();
                 lblVersionApp.Text = "Versión SaftComm: " + ConfigurationManager.AppSettings["Version"].ToString();
                 lblUsr.Text = "Usuario: " + LogicLogin.Usuario.Usr;
@@ -69,17 +68,31 @@ namespace ZkManagement.NewUI
             }
         }
 
+        // LO LLAMO DESDE EL CONSTRUCTOR //
         private void SetPermisos()
         {
             int nivel = LogicLogin.Usuario.Nivel;
-            if (nivel > 0)
+            switch (nivel)
             {
-                linkConfiguracion.Enabled = true;
-                linkDispositivos.Enabled = true;
-                linkPersonal.Enabled = true;
-                linkSincronizacion.Enabled = true;
-                linkUsuarios.Enabled = true;
-            }
+                case 1:
+                    linkConfiguracion.Enabled = true;
+                    linkDispositivos.Enabled = true;
+                    linkPersonal.Enabled = true;
+                    linkSincronizacion.Enabled = true;
+                    linkUsuarios.Enabled = true;
+                    break;
+                case 2:
+                    linkConfiguracion.Enabled = true;
+                    linkDispositivos.Enabled = true;
+                    linkSincronizacion.Enabled = true;
+                    linkPersonal.Enabled = true;
+                    break;
+                case 3:
+                    linkDispositivos.Enabled = true;
+                    linkSincronizacion.Enabled = true;
+                    linkPersonal.Enabled = true;
+                    break;
+            }             
         }
         #region Menu
         private void linkPersonal_Click(object sender, EventArgs e)
@@ -239,7 +252,10 @@ namespace ZkManagement.NewUI
         }
         private void iconoBandeja_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            MainWindow.Instancia.Show();
+            MainWindow.Instancia.TopMost = true;
+            MainWindow.Instancia.BringToFront();
+            iconoBandeja.Visible = false;
         }
         private void MostrarNotificacionEvento(string mensaje, string titulo)
         {
@@ -273,8 +289,7 @@ namespace ZkManagement.NewUI
         {
             Application.Exit();
         }
-        // EVENTO GENERICO PARA MOSTRAR LA APP //
-        private void Open_Click(object sender, EventArgs e)
+        private void toolStripMenuAbrir_Click(object sender, EventArgs e)
         {
             MainWindow.Instancia.Show();
             MainWindow.Instancia.TopMost = true;
@@ -282,5 +297,7 @@ namespace ZkManagement.NewUI
             iconoBandeja.Visible = false;
         }
         #endregion
+
+
     }
 }

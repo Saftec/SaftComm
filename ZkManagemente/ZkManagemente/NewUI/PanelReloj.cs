@@ -28,6 +28,7 @@ namespace ZkManagement.NewUI
         private PanelReloj()
         {
             InitializeComponent();
+            SetPermisos();
         }
         #endregion
 
@@ -35,39 +36,48 @@ namespace ZkManagement.NewUI
         private Reloj relojAct = new Reloj();
         private List<Reloj> equipos;
 
+        private void SetPermisos()
+        {
+            int nivel;
+            try
+            {
+                nivel = LogicLogin.Usuario.Nivel;
+                if (nivel <= 2)
+                {
+                    linkBorrarRegs.Enabled = true;
+                }
+                if (nivel == 1)
+                {
+                    tableOperaciones.Visible = true;
+                }else
+                {
+                    tableOperaciones.Visible = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                base.InformarError(ex.Message, "Validar permisos usuario.");
+            }
+        }
         #region Operaciones
         private void linkConnect_Click(object sender, EventArgs e)
         {
             try
             {
-                // ABRO UN HILO NUEVO //
-                new Thread(() =>
+                relojAct = MapearDeGrid();
+                if (relojAct.Estado)
                 {
-                    try
-                    {
-                        Thread.CurrentThread.IsBackground = true;
-
-                        relojAct = MapearDeGrid();
-                        if (relojAct.Estado)
-                        {
-                            InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra conectado.", "Conectar Reloj.");
-                            return;
-                        }
-                        LoguearInforme("Conectando con '" + relojAct.Nombre + "'...");
-                        relojAct.Conectar();
-                        MapearAGrid(relojAct);
-                        LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se conectó correctamente");
-                    }
-                    catch (AppException appex)
-                    {
-                        LoguearError(appex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-
-                }).Start();               
+                    InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra conectado.", "Conectar Reloj.");
+                    return;
+                }
+                LoguearInforme("Conectando con '" + relojAct.Nombre + "'...");
+                relojAct.Conectar();
+                MapearAGrid(relojAct);
+                LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se conectó correctamente");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -84,31 +94,19 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                new Thread(() =>
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
                 {
-                    try
-                    {
-                        Thread.CurrentThread.IsBackground = true;
-
-                        relojAct = MapearDeGrid();
-                        if (!relojAct.Estado)
-                        {
-                            InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra desconectado.", "Desconectar Reloj.");
-                            return;
-                        }
-                        relojAct.Desconectar();
-                        MapearAGrid(relojAct);
-                        LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se desconectó correctamente");
-                    }
-                    catch (AppException appex)
-                    {
-                        LoguearError(appex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }).Start();            
+                    InformarError("El dispositivo: '" + relojAct.Nombre + "' ya se encuentra desconectado.", "Desconectar Reloj.");
+                    return;
+                }
+                relojAct.Desconectar();
+                MapearAGrid(relojAct);
+                LoguearInforme("El dispositivo: '" + relojAct.Nombre + "' se desconectó correctamente");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -125,30 +123,18 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                new Thread(() =>
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
                 {
-                    try
-                    {
-                        Thread.CurrentThread.IsBackground = true;
-
-                        relojAct = MapearDeGrid();
-                        if (!relojAct.Estado)
-                        {
-                            InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Sincronizar Hora.");
-                            return;
-                        }
-                        relojAct.SincronizarHora();
-                        LoguearInforme("Se sincronizó correctamente la hora con el reloj: '" + relojAct.Nombre + "'");
-                    }
-                    catch (AppException appex)
-                    {
-                        LoguearError(appex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }).Start();
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Sincronizar Hora.");
+                    return;
+                }
+                relojAct.SincronizarHora();
+                LoguearInforme("Se sincronizó correctamente la hora con el reloj: '" + relojAct.Nombre + "'");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -165,42 +151,30 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                new Thread(() =>
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
                 {
-                    try
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Descargar Registros.");
+                    return;
+                }
+                List<Fichada> fichadas;
+                List<string> desconocidos;
+                LogicRegistros lr = new LogicRegistros();
+                fichadas = relojAct.DescargarRegistros();
+                desconocidos = lr.AgregarRegis(fichadas);
+                if (desconocidos.Count > 0)
+                {
+                    LoguearError("Los siguientes legajos son desconocidos: ");
+                    foreach (string l in desconocidos)
                     {
-                        Thread.CurrentThread.IsBackground = true;
-
-                        relojAct = MapearDeGrid();
-                        if (!relojAct.Estado)
-                        {
-                            InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Descargar Registros.");
-                            return;
-                        }
-                        List<Fichada> fichadas;
-                        List<string> desconocidos;
-                        LogicRegistros lr = new LogicRegistros();
-                        fichadas = relojAct.DescargarRegistros();
-                        desconocidos = lr.AgregarRegis(fichadas);
-                        if (desconocidos.Count > 0)
-                        {
-                            LoguearError("Los siguientes legajos son desconocidos: ");
-                            foreach (string l in desconocidos)
-                            {
-                                LoguearError("Legajo: " + l);
-                            }
-                        }
-                        LoguearInforme("Se descargaron: " + fichadas.Count.ToString() + " registros.");
+                        LoguearError("Legajo: " + l);
                     }
-                    catch (AppException appex)
-                    {
-                        LoguearError(appex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }).Start();
+                }
+                LoguearInforme("Se descargaron: " + fichadas.Count.ToString() + " registros.");
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
@@ -217,44 +191,114 @@ namespace ZkManagement.NewUI
         {
             try
             {
-                new Thread(() =>
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
                 {
-                    try
-                    {
-                        Thread.CurrentThread.IsBackground = true;
-
-                        relojAct = MapearDeGrid();
-                        if (!relojAct.Estado)
-                        {
-                            InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Borrar Registros.");
-                            return;
-                        }
-                        if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
-                        {
-                            int cant = 0;
-                            cant = relojAct.BorrarRegistros();
-                            lr = new LogicReloj();
-                            lr.ActualizarBorrado(relojAct, cant); //Guarda la info. del borrado en la BD
-                            LoguearInforme("Se borraron " + cant.ToString() + " registros del reloj: '" + relojAct.Nombre + "'");
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    catch (AppException appex)
-                    {
-                        LoguearError(appex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }).Start();
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Borrar Registros.");
+                    return;
+                }
+                if (base.Question("¿Está seguro que desea eliminar todos los registros del dispositivo?", "Borrar Registros."))
+                {
+                    int cant = 0;
+                    cant = relojAct.BorrarRegistros();
+                    lr = new LogicReloj();
+                    lr.ActualizarBorrado(relojAct, cant); //Guarda la info. del borrado en la BD
+                    LoguearInforme("Se borraron " + cant.ToString() + " registros del reloj: '" + relojAct.Nombre + "'");
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
             }
             catch (Exception ex)
             {
                 InformarError(ex.Message, "Borrar Registros.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
+        }
+        private void linkBorrarAdmin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Eliminar Administradores.");
+                    return;
+                }
+                if (!base.Question("Está seguro que desea eliminar los administradores del equipo?", "Eliminar Administradores.")) { return; }
+                relojAct.EliminarAdmins();
+                LoguearInforme("Todos los administradores fuero borrados del reloj: " + relojAct.Nombre);
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Eliminar Administradores.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
+        }
+        private void linkReiniciarDisp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Reiniciar Dispositivo.");
+                    return;
+                }
+                relojAct.Reiniciar();
+                LoguearInforme("Se ha reiniciado correctamente el reloj: " + relojAct.Nombre);
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Reiniciar Dispositivo.");
+            }
+            finally
+            {
+                relojAct.ActivarDispositivo();
+                relojAct = null;
+            }
+        }
+        private void linkInicializar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                relojAct = MapearDeGrid();
+                if (!relojAct.Estado)
+                {
+                    InformarError("El equipo '" + relojAct.Nombre + "' no está conectado.", "Incializar Dispositivo.");
+                    return;
+                }
+                relojAct.Inicializar();
+                LoguearInforme("Se ha inicializado el equipo: " + relojAct.Nombre);
+            }
+            catch (AppException appex)
+            {
+                LoguearError(appex.Message);
+            }
+            catch (Exception ex)
+            {
+                InformarError(ex.Message, "Incializar Dispositivo.");
             }
             finally
             {

@@ -262,6 +262,7 @@
             this.toolStripMenuAbrir.Name = "toolStripMenuAbrir";
             this.toolStripMenuAbrir.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuAbrir.Text = "Abrir";
+            this.toolStripMenuAbrir.Click += new System.EventHandler(this.toolStripMenuAbrir_Click);
             // 
             // MainWindow
             // 

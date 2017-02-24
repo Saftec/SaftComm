@@ -88,7 +88,8 @@ namespace ZkManagement.NewUI.PanelesConfigs
                     }
                     else
                     {
-                        base.Informar("Configuración guardada correctamente.", "Guardar Configuración.");
+                        base.Informar("Configuración guardada correctamente. Acontinuación, la apliación se reiniciará.", "Guardar Configuración.");
+                        Application.Restart();
                     }
                 }
                 else
@@ -100,9 +101,10 @@ namespace ZkManagement.NewUI.PanelesConfigs
                     }
                     else
                     {
-                        base.Informar("Configuración guardada correctamente.", "Guardar Configuración.");
+                        base.Informar("Configuración guardada correctamente. Acontinuación, la apliación se reiniciará.", "Guardar Configuración.");
+                        Application.Restart();
                     }
-                }
+                }                
             }
             catch (AppException appex)
             {

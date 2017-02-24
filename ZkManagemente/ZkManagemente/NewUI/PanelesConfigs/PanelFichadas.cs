@@ -118,7 +118,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 base.InformarError("Los campos de minutos deben contener sólo números.", "Guardar Configuraciones.");
                 return false;
             }
-            if (v.TimeFormat(new string[] { txtHoraFin.Text, txtHoraInicio.Text }))
+            if (!v.TimeFormat(new string[] { txtHoraFin.Text, txtHoraInicio.Text }))
             {
                 base.InformarError("El formato de la hora no es correcto.", "Guardar Configuraciones.");
                 return false;

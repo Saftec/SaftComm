@@ -8,10 +8,11 @@ namespace ZkManagement.Util
         public bool TimeFormat(string [] textos)
         {
             bool band = true;
-            Regex validar = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
+            //Regex validar = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
+            Regex validar = new Regex(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$");
             foreach (string t in textos)
             {
-                if (validar.IsMatch(t.Trim()))
+                if (!validar.IsMatch(t.Trim()))
                 {
                     band = false;
                 }

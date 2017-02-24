@@ -139,7 +139,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo + "', tarjeta='" + emp.Tarjeta + "', nombres='" + emp.Nombre + "', apellido='" + emp.Apellido +"' WHERE EmpId=" + emp.Id.ToString();
+                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo.PadLeft(5, '0') + "', tarjeta='" + emp.Tarjeta + "', nombres='" + emp.Nombre + "', apellido='" + emp.Apellido +"' WHERE EmpId=" + emp.Id.ToString();
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
@@ -179,7 +179,7 @@ namespace ZkManagement.Datos
             try
             {
                 query = "INSERT INTO Empleados (nombres, apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', ' " + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
-                    "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
+                    "', '" + emp.Legajo.PadLeft(5, '0') + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
@@ -219,7 +219,7 @@ namespace ZkManagement.Datos
             SqlCommand cmd = null;
             try
             {
-                query = "SELECT e.EmpId, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo + "'";
+                query = "SELECT e.EmpId, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo.PadLeft(5,'0') + "'";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
