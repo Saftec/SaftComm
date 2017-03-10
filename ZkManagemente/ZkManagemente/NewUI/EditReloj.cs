@@ -1,9 +1,9 @@
 ﻿
 using System;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
+using Entidades;
+using Logic;
 using ZkManagement.NewUI.Generic;
-using ZkManagement.Util;
+using Util;
 
 namespace ZkManagement.NewUI
 {

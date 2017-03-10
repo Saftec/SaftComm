@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ZkManagement.Logica;
-using ZkManagement.Util;
-using ZkManagement.Entidades;
+using Logic;
+using Util;
+using Entidades;
 using System.Windows.Forms;
-
 namespace ZkManagement.NewUI
 {
     public partial class PanelSincronizacion : GenericPanel

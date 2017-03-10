@@ -4,9 +4,9 @@ using System;
 using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
-using ZkManagement.Logica;
+using Logic;
 using ZkManagement.NewUI.Generic;
-using ZkManagement.Util;
+using Util;
 
 namespace ZkManagement.NewUI
 {

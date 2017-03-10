@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Entidades;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI
 {
@@ -354,7 +353,7 @@ namespace ZkManagement.NewUI
             txtLog.AppendText(mensaje);
             txtLog.AppendText("\n");*/
             AppendTextBox(mensaje + "\n");
-            Logger.GetLogger().Info(mensaje);
+            Logger.LogInfo(mensaje);
         }
         private void LoguearError(string mensaje)
         {
@@ -362,7 +361,7 @@ namespace ZkManagement.NewUI
             txtLog.AppendText(mensaje);
             txtLog.AppendText("\n");*/
             AppendTextBox(mensaje + "\n");
-            Logger.GetLogger().Info(mensaje);
+            Logger.LogInfo(mensaje);
         }
         #endregion
 
@@ -549,7 +548,7 @@ namespace ZkManagement.NewUI
                 row["IdReloj"] = r.Id.ToString();
                 row["Puerto"] = r.Puerto.ToString();
                 row["Numero"] = r.Numero.ToString();
-                row["Clave"] = Encrypt.DesEncriptar(r.Clave);
+                row["Clave"] = Security.DesEncriptar(r.Clave);
                 row["DNS"] = r.DNS;
 
                 if (r.Estado)

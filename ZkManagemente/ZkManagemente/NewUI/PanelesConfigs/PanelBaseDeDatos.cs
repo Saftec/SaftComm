@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI.PanelesConfigs
 {

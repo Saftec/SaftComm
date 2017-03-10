@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Entidades;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI.PanelesConfigs
 {

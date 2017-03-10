@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using ZkManagement.Datos;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Entidades;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI
 {
@@ -70,10 +69,10 @@ namespace ZkManagement.NewUI
 
         private void Login_Load(object sender, EventArgs e)
         {
-            // SALTEO LA CAPA DE LOGICA PORQUE SOLAMENTE ME INTERESA TESTEAR LA CONEXION //
+            ll = new LogicLogin();
             try
             {
-                FactoryConnection.Instancia.TestConexion();
+                ll.TestConnection();
             }
             catch(Exception ex)
             {

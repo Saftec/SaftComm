@@ -1,6 +1,6 @@
 ﻿using System;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI.PanelesConfigs
 {

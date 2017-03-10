@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
+using Entidades;
+using Logic;
 
 namespace ZkManagement.NewUI.Generic
 {

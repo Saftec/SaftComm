@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Entidades;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI.PanelesConfigs
 {

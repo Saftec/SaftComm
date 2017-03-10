@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ZkManagement.Entidades;
-using ZkManagement.Logica;
-using ZkManagement.Util;
+using Entidades;
+using Logic;
+using Util;
 
 namespace ZkManagement.NewUI.Generic
 {
