@@ -7,14 +7,16 @@ namespace Logic
     public class LogicConfigRutinas
     {
         private DataConfigFile dataConfigFile;
+        private DataConfigs dataConfigs;
 
         #region GettersConfigs
         public bool IsBorradoRegs()
         {
+            dataConfigs = new DataConfigs();
             bool valor = false;
             try
             {
-                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(3), out valor))
+                if (!Boolean.TryParse(dataConfigs.GetConfig(3), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
@@ -74,10 +76,11 @@ namespace Logic
         }
         public bool GetEstadoRutinaRegs()
         {
+            dataConfigs = new DataConfigs();
             bool valor = false;
             try
             {
-                if(!Boolean.TryParse(DataConfigs.Instancia.GetConfig(4), out valor))
+                if(!Boolean.TryParse(dataConfigs.GetConfig(4), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");                    
                 }
@@ -94,10 +97,11 @@ namespace Logic
         }
         public bool GetEstadoRutinaHs()
         {
+            dataConfigs = new DataConfigs();
             bool valor = false;
             try
             {
-                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(6), out valor))
+                if (!Boolean.TryParse(dataConfigs.GetConfig(6), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
@@ -114,9 +118,10 @@ namespace Logic
         }
         public string GetIntervaloRegs()
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                return DataConfigs.Instancia.GetConfig(5);
+                return dataConfigs.GetConfig(5);
             }
             catch (AppException appex)
             {
@@ -129,9 +134,10 @@ namespace Logic
         }
         public string GetIntervaloHs()
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                return DataConfigs.Instancia.GetConfig(7);
+                return dataConfigs.GetConfig(7);
             }
             catch (AppException appex)
             {
@@ -144,10 +150,11 @@ namespace Logic
         }
         public bool GetEstadoRango()
         {
+            dataConfigs = new DataConfigs();
             bool valor = false;
             try
             {
-                if (!Boolean.TryParse(DataConfigs.Instancia.GetConfig(10), out valor))
+                if (!Boolean.TryParse(dataConfigs.GetConfig(10), out valor))
                 {
                     throw new AppException("Error al intentar convertir los tipos de datos");
                 }
@@ -164,9 +171,10 @@ namespace Logic
         }
         public string GetHoraInicioRango()
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                return DataConfigs.Instancia.GetConfig(8);
+                return dataConfigs.GetConfig(8);
             }
             catch (AppException appex)
             {
@@ -179,9 +187,10 @@ namespace Logic
         }
         public string GetHoraFinRango()
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                return DataConfigs.Instancia.GetConfig(9);
+                return dataConfigs.GetConfig(9);
             }
             catch (AppException appex)
             {
@@ -197,9 +206,10 @@ namespace Logic
 
         public void SetBorrarRegistros(bool valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(3, valor.ToString());
+                dataConfigs.SetConfig(3, valor.ToString());
             }
             catch (Exception ex)
             {
@@ -240,9 +250,10 @@ namespace Logic
         }
         public void SetEstadoRutinaRegs(bool valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(4, valor.ToString());
+                dataConfigs.SetConfig(4, valor.ToString());
             }
             catch(AppException apepx)
             {
@@ -255,9 +266,10 @@ namespace Logic
         }
         public void SetEstadoRutinaHs(bool valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(6, valor.ToString());
+                dataConfigs.SetConfig(6, valor.ToString());
             }
             catch (AppException apepx)
             {
@@ -270,9 +282,10 @@ namespace Logic
         }
         public void SetIntervaloRegs(string valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(5, valor);
+                dataConfigs.SetConfig(5, valor);
             }
             catch (AppException appex)
             {
@@ -285,9 +298,10 @@ namespace Logic
         }
         public void SetIntervaloHs(string valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(7, valor);
+                dataConfigs.SetConfig(7, valor);
             }
             catch (AppException appex)
             {
@@ -300,9 +314,10 @@ namespace Logic
         }
         public void SetEstadoRango(bool valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(10, valor.ToString());
+                dataConfigs.SetConfig(10, valor.ToString());
             }
             catch (AppException appex)
             {
@@ -315,9 +330,10 @@ namespace Logic
         }
         public void SetInicioRango(string valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(8, valor);
+                dataConfigs.SetConfig(8, valor);
             }
             catch (AppException appex)
             {
@@ -330,9 +346,10 @@ namespace Logic
         }
         public void SetFinRango(string valor)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(9, valor);
+                dataConfigs.SetConfig(9, valor);
             }
             catch (AppException appex)
             {

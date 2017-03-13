@@ -8,12 +8,14 @@ namespace Logic {
 
     public class LogicUsuario
     {
+        private DataUsuarios dataUsuarios;
         public List<Usuario> GetUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
+            dataUsuarios = new DataUsuarios();
             try
             {
-                usuarios = DataUsuarios.Instancia.GetUsuarios();
+                usuarios = dataUsuarios.GetUsuarios();
             }
             catch (AppException appex)
             {
@@ -29,9 +31,10 @@ namespace Logic {
         #region ABM
         public void ModificarUsuario(Usuario usuario)
         {
+            dataUsuarios = new DataUsuarios();
             try
             {
-                DataUsuarios.Instancia.ModifUsuario(usuario);
+                dataUsuarios.ModifUsuario(usuario);
             }
             catch (AppException appex)
             {
@@ -45,9 +48,10 @@ namespace Logic {
 
         public void AgregarUsuario(Usuario usuario)
         {
+            dataUsuarios = new DataUsuarios();
             try
             {
-                DataUsuarios.Instancia.AltaUsuario(usuario);
+                dataUsuarios.AltaUsuario(usuario);
             }
             catch (AppException appex)
             {
@@ -62,9 +66,10 @@ namespace Logic {
 
         public void EliminarUsuario(Usuario usuario)
         {
+            dataUsuarios = new DataUsuarios();
             try
             {
-                DataUsuarios.Instancia.EliminarUsuario(usuario);
+                dataUsuarios.EliminarUsuario(usuario);
             }
             catch (AppException appex)
             {

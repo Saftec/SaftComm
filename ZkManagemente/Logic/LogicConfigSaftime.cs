@@ -6,13 +6,15 @@ namespace Logic
 {
     public class LogicConfigSaftime
     {
+        private DataConfigs dataConfigs;
         public bool IsEmpleados()
         {
+            dataConfigs = new DataConfigs();
             string valor;
             bool parse;
             try
             {
-                valor = DataConfigs.Instancia.GetConfig(10);
+                valor = dataConfigs.GetConfig(10);
                 if (!bool.TryParse(valor, out parse))
                 {
                     throw new AppException("Error al intentar convertir el valor de la configuración.");
@@ -30,11 +32,12 @@ namespace Logic
         }
         public bool IsRegistros()
         {
+            dataConfigs = new DataConfigs();
             string valor;
             bool parse;
             try
             {
-                valor = DataConfigs.Instancia.GetConfig(11);
+                valor = dataConfigs.GetConfig(11);
                 if (!bool.TryParse(valor, out parse))
                 {
                     throw new AppException("Error al intentar convertir el valor de la configuración.");
@@ -52,9 +55,10 @@ namespace Logic
         }
         public void SetEstadoRegistros(bool estado)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(11, estado.ToString());
+                dataConfigs.SetConfig(11, estado.ToString());
             }
             catch (AppException appex)
             {
@@ -67,9 +71,10 @@ namespace Logic
         }
         public void SetEstadoEmpleados(bool estado)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(10, estado.ToString());
+                dataConfigs.SetConfig(10, estado.ToString());
             }
             catch (AppException appex)
             {

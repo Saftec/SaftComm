@@ -8,12 +8,15 @@ namespace Logic
 {
     public class LogicFormatos
     {
+        private DataConfigs dataConfigs;
+        private DataFormatos dataFormatos;
         public List<FormatoExport> GetFormatos()
         {
             List<FormatoExport> formatos;
+            dataFormatos = new DataFormatos();
             try
             {
-                formatos = DataFormatos.Instancia.GetFormatos();
+                formatos = dataFormatos.GetFormatos();
             }
             catch(AppException appex)
             {
@@ -28,9 +31,10 @@ namespace Logic
 
         public void UpdateFormato(FormatoExport f)
         {
+            dataFormatos = new DataFormatos();
             try
             {
-                DataFormatos.Instancia.Update(f);
+                dataFormatos.Update(f);
             }
             catch (AppException appex)
             {
@@ -44,9 +48,10 @@ namespace Logic
 
         public void InsertFormato(FormatoExport f)
         {
+            dataFormatos = new DataFormatos();
             try
             {
-                DataFormatos.Instancia.Insert(f);
+                dataFormatos.Insert(f);
             }
             catch(AppException appex)
             {
@@ -60,9 +65,10 @@ namespace Logic
 
         public void DeleteFormato(FormatoExport f)
         {
+            dataFormatos = new DataFormatos();
             try
             {
-                DataFormatos.Instancia.Delete(f);
+                dataFormatos.Delete(f);
             }
             catch (AppException appex)
             {
@@ -75,9 +81,10 @@ namespace Logic
         }
         public void SetFormatoActivo(FormatoExport f)
         {
+            dataConfigs = new DataConfigs();
             try
             {
-                DataConfigs.Instancia.SetConfig(2, f.Id.ToString());
+                dataConfigs.SetConfig(2, f.Id.ToString());
             }
             catch(AppException appex)
             {
@@ -92,18 +99,20 @@ namespace Logic
 
         public FormatoExport GetFormatoActivo()
         {
+            dataConfigs = new DataConfigs();
+            dataFormatos = new DataFormatos();
             FormatoExport f;
             int id;
             string valor;
 
             try
             {
-                valor=DataConfigs.Instancia.GetConfig(2);
+                valor=dataConfigs.GetConfig(2);
                 if(!int.TryParse(valor, out id))
                 {
                     throw new AppException("Error al intentar el id de formato a entero");
                 }
-                f = DataFormatos.Instancia.GetById(id);
+                f = dataFormatos.GetById(id);
             }
             catch(AppException appex)
             {

@@ -9,23 +9,6 @@ namespace Database
 {
     public class DataRelojes
     {
-        // Patrón SINGLETON //
-        private static DataRelojes _instancia;
-        public static DataRelojes Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataRelojes();
-                }
-                return _instancia;
-            }
-
-        }
-        private DataRelojes() { }
-        // HASTA ACÁ //
-
         private string query = string.Empty;
         public List<Reloj> GetRelojes()
         {

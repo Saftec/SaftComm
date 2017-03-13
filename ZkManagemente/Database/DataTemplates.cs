@@ -8,24 +8,6 @@ namespace Database
 {
     public class DataTemplates
     {
-        // Patrón Singleton //
-        private static DataTemplates _instancia;
-        public static DataTemplates Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataTemplates();
-                }
-                return _instancia;
-            }
-
-        }
-
-        private DataTemplates() { }
-        // Hasta acá //
-
         private string query = string.Empty;
         public void InsertarHuella(Huella h)
         {

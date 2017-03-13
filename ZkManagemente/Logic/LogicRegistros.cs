@@ -12,6 +12,7 @@ namespace Logic
         {
             Writer writer = new Writer();
             List<string> desconocidos = new List<string>();
+            DataEmpleado dataEmpleado = new DataEmpleado();
 
             try
             {
@@ -21,10 +22,11 @@ namespace Logic
                     // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFTCOMM //
                     if (VerificarSaftime())
                     {
-                        f.Empleado = DataEmpleadoSaftime.Instancia.GetIdByLegajo(f.Empleado);
+                        DataEmpleadoSaftime dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                        f.Empleado = dataEmpleadoSaftime.GetIdByLegajo(f.Empleado);
                     }else
                     {
-                        f.Empleado = DataEmpleado.Instancia.GetIdByLegajo(f.Empleado);
+                        f.Empleado = dataEmpleado.GetIdByLegajo(f.Empleado);
                     }
                     
                     // SI NO LO ENCONTRÓ AGREGO EL LEGAJO A DESCONOCIDOS //
@@ -33,7 +35,7 @@ namespace Logic
                         desconocidos.Add(f.Empleado.Legajo);
                         continue;
                     }
-                    DataEmpleado.Instancia.InsertarRegis(f);
+                    dataEmpleado.InsertarRegis(f);
                 }
             }
             catch(AppException appex)

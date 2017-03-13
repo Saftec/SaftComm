@@ -7,23 +7,6 @@ namespace Database
 {
     public class DataConfigs
     {
-        // Patrón Singleton //
-        private static DataConfigs _instancia;
-        public static DataConfigs Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataConfigs();
-                }
-                return _instancia;
-            }
-
-        }
-
-        private DataConfigs() { }
-
         // Hasta acá //
 
         private string query = string.Empty;

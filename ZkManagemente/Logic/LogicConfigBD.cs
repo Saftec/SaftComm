@@ -8,7 +8,7 @@ namespace Logic
     public class LogicConfigBD
     {
         private OleDbConnectionStringBuilder builder;
-        private DataConfigFile dataConfigFile;
+        private DataConfigFile dataConfigFile;       
         public LogicConfigBD()
         {
             dataConfigFile = new DataConfigFile();
@@ -53,10 +53,11 @@ namespace Logic
         }
         public string GetVersion()
         {
+            DataConfigs dataConfigs = new DataConfigs();
             string valor="";
             try
             {
-                valor = DataConfigs.Instancia.GetConfig(1);
+                valor = dataConfigs.GetConfig(1);
             }
             catch(Exception ex)
             {

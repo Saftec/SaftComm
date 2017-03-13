@@ -8,8 +8,11 @@ namespace Logic
 {
     public class LogicDescargaDatos
     {
+        private DataEmpleado dataEmpleado;
+        private DataEmpleadoSaftime dataEmpleadoSaftime;
+        private DataTemplates dataTemplates;
         public void ActualizarInfo(Empleado emp)
-        {
+        {          
             if (emp.Pin==string.Empty)
             {
                 emp.Pin = "NULL";
@@ -18,26 +21,28 @@ namespace Logic
             {
                 if (IsSaftime())
                 {
-                    emp = DataEmpleadoSaftime.Instancia.GetIdByLegajo(emp);
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    emp = dataEmpleadoSaftime.GetIdByLegajo(emp);
                     if (emp.Id > 0)
                     {
-                        DataEmpleadoSaftime.Instancia.Actualizar(emp);
+                        dataEmpleadoSaftime.Actualizar(emp);
                     }
                     else
                     {
-                        DataEmpleadoSaftime.Instancia.Agregar(emp);
+                        dataEmpleadoSaftime.Agregar(emp);
                     }
                 }
                 else
                 {
-                    emp = DataEmpleado.Instancia.GetIdByLegajo(emp);
+                    dataEmpleado = new DataEmpleado();
+                    emp = dataEmpleado.GetIdByLegajo(emp);
                     if (emp.Id > 0)
                     {
-                        DataEmpleado.Instancia.Actualizar(emp);
+                        dataEmpleado.Actualizar(emp);
                     }
                     else
                     {
-                        DataEmpleado.Instancia.Agregar(emp);
+                        dataEmpleado.Agregar(emp);
                     }
                 }
             }
@@ -57,6 +62,7 @@ namespace Logic
              * Por cada legajo, consulto el empid. --> El legajo existe SI O SI en la BD ya que anteriormente descargué y guardé los datos del equipo.
              * Por cada huella guardo el empid, template, fingerindex, largo de la huella.
              * */
+            dataTemplates = new DataTemplates();
             int total = 0;
             try
             {
@@ -68,20 +74,22 @@ namespace Logic
                 {
                     if (IsSaftime())
                     {
-                        h.Empleado = DataEmpleadoSaftime.Instancia.GetDataByLegajo(h.Empleado);
+                        dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                        h.Empleado = dataEmpleadoSaftime.GetDataByLegajo(h.Empleado);
                     }
                     else
                     {
-                        h.Empleado = DataEmpleado.Instancia.GetDataByLegajo(h.Empleado);
+                        dataEmpleado = new DataEmpleado();
+                        h.Empleado = dataEmpleado.GetDataByLegajo(h.Empleado);
                     }
                     
-                    if (!DataTemplates.Instancia.Existe(h))
+                    if (!dataTemplates.Existe(h))
                     {
-                        DataTemplates.Instancia.InsertarHuella(h);
+                        dataTemplates.InsertarHuella(h);
                     }
                     else
                     {
-                        DataTemplates.Instancia.ActualizarHuella(h);
+                        dataTemplates.ActualizarHuella(h);
                     }
                 }                             
              }

@@ -9,23 +9,6 @@ namespace Database
 {
     public class DataEmpleadoSaftime
     {
-        #region Singleton
-        private static DataEmpleadoSaftime _instancia;
-        public static DataEmpleadoSaftime Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataEmpleadoSaftime();
-                }
-                return _instancia;
-            }
-
-        }
-        private DataEmpleadoSaftime() { }
-        #endregion
-
         private string query = string.Empty;
 
         public List<Empleado> Empleados()

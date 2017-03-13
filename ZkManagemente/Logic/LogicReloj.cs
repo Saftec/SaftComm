@@ -8,12 +8,14 @@ namespace Logic
 {
     public class LogicReloj
     {
+        private DataRelojes dataRelojes;
         public List<Reloj> TodosRelojes()
         {
+            dataRelojes = new DataRelojes();
             List<Reloj> relojes = new List<Reloj>();
             try
             {
-                relojes = DataRelojes.Instancia.GetRelojes();
+                relojes = dataRelojes.GetRelojes();
             }
             catch(AppException appex)
             {
@@ -29,10 +31,11 @@ namespace Logic
 
         public void ModifReloj(Reloj r)
         {
+            dataRelojes = new DataRelojes();
             try
             {
-                if (r.Id > 0) { DataRelojes.Instancia.ActualizarReloj(r); }
-                else { DataRelojes.Instancia.AgregarReloj(r); }
+                if (r.Id > 0) { dataRelojes.ActualizarReloj(r); }
+                else { dataRelojes.AgregarReloj(r); }
             }
             catch(AppException appex)
             {
@@ -47,9 +50,10 @@ namespace Logic
 
         public void EliminarReloj(Reloj r)
         {
+            dataRelojes = new DataRelojes();
             try
             {
-                DataRelojes.Instancia.EliminarReloj(r);
+                dataRelojes.EliminarReloj(r);
             }
             catch (AppException appex)
             {
@@ -63,10 +67,11 @@ namespace Logic
 
         public void ActualizarBorrado(Reloj reloj, int cantidad)
         {
+            dataRelojes = new DataRelojes();
             DateTime fecha = DateTime.Now;
             try
             {
-                DataRelojes.Instancia.SetBorrado(LogicLogin.Usuario.Id, reloj.Id, cantidad, fecha);
+                dataRelojes.SetBorrado(LogicLogin.Usuario.Id, reloj.Id, cantidad, fecha);
             }
             catch (AppException appex)
             {

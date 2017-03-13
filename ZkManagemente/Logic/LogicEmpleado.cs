@@ -8,6 +8,9 @@ namespace Logic
 {
     public class LogicEmpleado
     {
+        private DataEmpleado dataEmpleado;
+        private DataEmpleadoSaftime dataEmpleadoSaftime;
+        private DataTemplates dataTemplates;
         public List<Empleado> GetEmpleados()
         {
             List<Empleado> empleados = new List<Empleado>();     
@@ -16,13 +19,15 @@ namespace Logic
             {
                 if (VerificarSaftime())
                 {
-                    empleados = DataEmpleadoSaftime.Instancia.Empleados();
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    empleados = dataEmpleadoSaftime.Empleados();
                 }
                 else
                 {
-                    empleados = DataEmpleado.Instancia.Empleados();
+                    dataEmpleado = new DataEmpleado();
+                    empleados = dataEmpleado.Empleados();
                 }
-                //empleados = DataEmpleado.Instancia.SetHuellas(empleados);
+                //empleados = dataEmpleado.SetHuellas(empleados);
             }
             catch(AppException appex)
             {
@@ -38,18 +43,19 @@ namespace Logic
         public List<Empleado> GetEmpleadosWithTemplates()
         {
             List<Empleado> empleados = new List<Empleado>();
-
+            dataEmpleado = new DataEmpleado();
             try
             {
                 if (VerificarSaftime())
                 {
-                    empleados = DataEmpleadoSaftime.Instancia.Empleados();
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    empleados = dataEmpleadoSaftime.Empleados();
                 }
                 else
                 {
-                    empleados = DataEmpleado.Instancia.Empleados();
+                    empleados = dataEmpleado.Empleados();
                 }
-                empleados = DataEmpleado.Instancia.SetHuellas(empleados);
+                empleados = dataEmpleado.SetHuellas(empleados);
             }
             catch(AppException appex)
             {
@@ -65,21 +71,24 @@ namespace Logic
 
         public void BajaEmpleado(List<Empleado> empleados)
         {
+            dataTemplates = new DataTemplates();
             try
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.Instancia.Eliminar(empleados);
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    dataEmpleadoSaftime.Eliminar(empleados);
                 }
                 else
                 {
-                    DataEmpleado.Instancia.Eliminar(empleados);
+                    dataEmpleado = new DataEmpleado();
+                    dataEmpleado.Eliminar(empleados);
                 }
                 foreach(Empleado emp in empleados)
                 {
                     Huella h = new Huella();
                     h.Empleado = emp;
-                    DataTemplates.Instancia.EliminarHuella(h);
+                    dataTemplates.EliminarHuella(h);
                 }
             }
             catch (AppException appex)
@@ -98,11 +107,13 @@ namespace Logic
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.Instancia.Actualizar(emp);
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    dataEmpleadoSaftime.Actualizar(emp);
                 }
                 else
                 {
-                    DataEmpleado.Instancia.Actualizar(emp);
+                    dataEmpleado = new DataEmpleado();
+                    dataEmpleado.Actualizar(emp);
                 }
             }
             catch (AppException appex)
@@ -121,11 +132,13 @@ namespace Logic
             {
                 if (VerificarSaftime())
                 {
-                    DataEmpleadoSaftime.Instancia.Agregar(emp);
+                    dataEmpleadoSaftime = new DataEmpleadoSaftime();
+                    dataEmpleadoSaftime.Agregar(emp);
                 }
                 else
                 {
-                    DataEmpleado.Instancia.Agregar(emp);
+                    dataEmpleado = new DataEmpleado();
+                    dataEmpleado.Agregar(emp);
                 }                
             }
             catch (AppException appex)

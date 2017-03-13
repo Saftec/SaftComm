@@ -9,23 +9,6 @@ namespace Database
 {
     public class DataUsuarios
     {
-        #region Singleton
-        private static DataUsuarios _instancia;
-        public static DataUsuarios Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataUsuarios();
-                }
-                return _instancia;
-            }
-
-        }
-        private DataUsuarios() { }
-        #endregion
-
         private string query = string.Empty;
         public Usuario GetUsuario(Usuario usuario)
         {

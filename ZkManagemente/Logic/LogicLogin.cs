@@ -8,7 +8,8 @@ namespace Logic
 
     public class LogicLogin
     {        
-        private static Usuario _usr; //---->Guardo el usuario que inicio
+        private static Usuario _usr; //---->Guardo el usuario actual
+        private DataUsuarios dataUsuarios;
 
         public static Usuario Usuario
         {
@@ -29,12 +30,13 @@ namespace Logic
         }
         public void ValidarUsuario(Usuario usuario)
         {
+            dataUsuarios = new DataUsuarios();
             try
             {
-                _usr = DataUsuarios.Instancia.GetUsuario(usuario);
+                _usr = dataUsuarios.GetUsuario(usuario);
                 if (_usr.Usr == null) { throw new AppException("Usuario invalido"); }
                 if (_usr.PassDecrypt != usuario.PassDecrypt) { throw new AppException("Password invalida"); }
-                DataUsuarios.Instancia.SetUltimLogin(_usr);
+                dataUsuarios.SetUltimLogin(_usr);
                 Log(_usr.Usr);
             }
             catch (AppException appex)

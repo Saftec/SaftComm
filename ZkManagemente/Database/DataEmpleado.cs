@@ -9,22 +9,6 @@ namespace Database
 {
     public class DataEmpleado
     {
-        private static DataEmpleado _instancia;
-
-        public static DataEmpleado Instancia
-        {
-            get
-            {
-                if (_instancia == null)
-                {
-                    _instancia = new DataEmpleado();
-                }
-                return _instancia;
-            }
-        }
-        private DataEmpleado() { }
-
-
         private string query = string.Empty;
 
         public List<Empleado> Empleados()
