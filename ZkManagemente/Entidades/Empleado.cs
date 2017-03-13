@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Entidades
 {
@@ -11,7 +12,7 @@ namespace Entidades
         private string _pin;
         private string _dni;
         private int _privilegio;
-        private int _baja;
+        private DateTime? _baja;
         private int _cantHuellas;
         private string _apellido;
         private List<Huella> _huellas;
@@ -66,7 +67,7 @@ namespace Entidades
             get { return _privilegio; }
             set { _privilegio = value; }
         }
-        public int Baja
+        public DateTime? Baja
         {
             get { return _baja; }
             set { _baja = value; }

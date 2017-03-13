@@ -24,6 +24,7 @@ namespace Database
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
+                    DateTime parseValue;
                     Empleado e = new Empleado();
                     e.Legajo = dr["legajo"].ToString();
                     e.Id = Convert.ToInt32(dr["EmpId"]);
@@ -33,7 +34,16 @@ namespace Database
                     e.Dni = dr["nroDoc"].ToString();
                     e.Pin = string.Empty;
                     e.Privilegio = 0;
-                    e.Baja = Convert.ToInt32(dr["Baja"]);
+                    if(DateTime.TryParse(dr["Baja"].ToString(),out parseValue))
+                    {
+                        if(parseValue!=null && parseValue!= DateTime.MinValue)
+                        {
+                            e.Baja = parseValue;
+                        }
+                    }else
+                    {
+                        e.Baja = null;
+                    }
                     empleados.Add(e);
                 }
             }
@@ -209,7 +219,7 @@ namespace Database
                 {
                     emp.Id = Convert.ToInt32(dr["EmpId"]);
                     emp.Dni = dr["nroDoc"].ToString();
-                    emp.Baja = 0;
+                    emp.Baja = null;
                 }
             }
             catch (AppException appex)
@@ -264,7 +274,7 @@ namespace Database
                     emp.Dni = dr["nroDoc"].ToString();
                     emp.Pin = string.Empty;
                     emp.Privilegio = 0;
-                    emp.Baja = 0;
+                    emp.Baja = null;
                 }
             }
             catch (AppException appex)

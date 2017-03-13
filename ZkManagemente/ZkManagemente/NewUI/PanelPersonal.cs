@@ -161,15 +161,18 @@ namespace ZkManagement.NewUI.Generic
         }
         private void rbActivos_CheckedChanged(object sender, EventArgs e)
         {
+            
             try
             {
                 if (rbActivos.Checked)
                 {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 0");
+                    string filter = String.Format("Baja >= '{0:dd-MM-yyyy}' OR Baja IS null", DateTime.Now.ToString("dd-MM-yyyy"));
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = filter;
                 }
                 else
                 {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja = 1");
+                    string filter = String.Format("Baja < '{0:dd-MM-yyyy}'", DateTime.Now.ToString("dd-MM-yyyy"));
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = filter;
                 }
             }
             catch (Exception ex)

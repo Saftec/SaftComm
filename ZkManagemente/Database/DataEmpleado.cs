@@ -22,6 +22,7 @@ namespace Database
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
+                    DateTime parseValue;
                     Empleado e = new Empleado();
                     e.Legajo = dr["Legajo"].ToString();
                     e.Id = Convert.ToInt32(dr["IdEmpleado"]);
@@ -30,9 +31,19 @@ namespace Database
                     e.Dni = dr["DNI"].ToString();
                     e.Pin = dr["Pin"].ToString();
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
-                    e.Baja = Convert.ToInt32(dr["Baja"]);
                     e.CantHuellas = Convert.ToInt32(dr["CantHuellas"]);
                     e.Apellido = dr["Apellido"].ToString();
+                    if (DateTime.TryParse(dr["Baja"].ToString(), out parseValue))
+                    {
+                        if (parseValue != null && parseValue != DateTime.MinValue)
+                        {
+                            e.Baja = parseValue;
+                        }
+                    }
+                    else
+                    {
+                        e.Baja = null;
+                    }
                     empleados.Add(e);
                 }
             }
@@ -118,7 +129,7 @@ namespace Database
             try
             {
                 query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja.ToString() + "', Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
+                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja + "', Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
@@ -156,11 +167,23 @@ namespace Database
         {
             IDbCommand cmd = null;
             try
-            {
+            //{
                 query = "INSERT INTO Empleados (Nombre, Apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja, Alta) Values('" + emp.Nombre + "', '" + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
-                    "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + ", GETDATE() )";
+                    "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', @baja, GETDATE() )";
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
+
+                var par = cmd.CreateParameter();
+                par.ParameterName="@baja";
+                if(emp.Baja == null)
+                {
+                    par.Value = DBNull.Value;
+                }else
+                {
+                    par.Value = emp.Baja;
+                }
+                cmd.Parameters.Add(par);
+
                 cmd.ExecuteNonQuery();
             }
             catch (AppException appex)
@@ -199,7 +222,7 @@ namespace Database
                 {
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     emp.Dni = dr["DNI"].ToString();
-                    emp.Baja = Convert.ToInt32(dr["Baja"]);
+                    emp.Baja = Convert.ToDateTime(dr["Baja"]);
                 }       
             }
             catch (AppException appex)
@@ -284,7 +307,7 @@ namespace Database
                     emp.Dni = dr["DNI"].ToString();
                     emp.Pin = dr["Pin"].ToString();
                     emp.Privilegio = Convert.ToInt32(dr["Privilegio"]);
-                    emp.Baja = Convert.ToInt32(dr["Baja"]);
+                    emp.Baja = Convert.ToDateTime(dr["Baja"]);
                     emp.Apellido = dr["Apellido"].ToString();
                 }
             }
