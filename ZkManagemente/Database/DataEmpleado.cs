@@ -167,7 +167,7 @@ namespace Database
         {
             IDbCommand cmd = null;
             try
-            //{
+            {
                 query = "INSERT INTO Empleados (Nombre, Apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja, Alta) Values('" + emp.Nombre + "', '" + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
                     "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', @baja, GETDATE() )";
 

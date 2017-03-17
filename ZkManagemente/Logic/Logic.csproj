@@ -49,6 +49,7 @@
     <Compile Include="LogicEmpleado.cs" />
     <Compile Include="LogicFormatos.cs" />
     <Compile Include="LogicLogin.cs" />
+    <Compile Include="LogicOperaciones.cs" />
     <Compile Include="LogicRegistros.cs" />
     <Compile Include="LogicReloj.cs" />
     <Compile Include="LogicUsuario.cs" />
