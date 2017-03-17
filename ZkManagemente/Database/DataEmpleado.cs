@@ -222,7 +222,7 @@ namespace Database
                 {
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     emp.Dni = dr["DNI"].ToString();
-                    emp.Baja = Convert.ToDateTime(dr["Baja"]);
+                    emp.Baja = dr.IsDBNull(2) ? null : (DateTime?)dr.GetDateTime(2);
                 }       
             }
             catch (AppException appex)

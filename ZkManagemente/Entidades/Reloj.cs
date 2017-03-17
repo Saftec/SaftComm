@@ -344,7 +344,7 @@ namespace Entidades
 
             base.EnableDevice(this.numero, false);
 
-            for (int fingerIndex=0; fingerIndex<10; fingerIndex++)
+            for (int fingerIndex=-1; fingerIndex<10; fingerIndex++)
             {
                 if(base.GetUserTmpExStr(this.numero, emp.Legajo, fingerIndex, out flag, out template, out tmpLenght))
                 {
