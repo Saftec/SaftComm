@@ -362,17 +362,13 @@ namespace ZkManagement.NewUI
         #region Informes
         private void LoguearInforme(string mensaje)
         {
-           /* txtLog.SelectionColor = Color.Black;          
-            txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");*/
+           //txtLog.SelectionColor = Color.Black;          
             AppendTextBox(mensaje + "\n");
             Logger.LogInfo(mensaje);
         }
         private void LoguearError(string mensaje)
         {
-            /*txtLog.SelectionColor = Color.Red;
-            txtLog.AppendText(mensaje);
-            txtLog.AppendText("\n");*/
+            //txtLog.SelectionColor = Color.Red;
             AppendTextBox(mensaje + "\n");
             Logger.LogInfo(mensaje);
         }

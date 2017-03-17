@@ -27,7 +27,7 @@ namespace Util
             switch (type)
             {
                 case ExType.Error:
-                    Logger.LogInfo("MESSAGE: " + ex.Message + "\n *-*-*-*-*- \nSTACK TRACE: " + ex.StackTrace);
+                    Logger.LogError("MESSAGE: " + ex.Message + "\n *-*-*-*-*- \nSTACK TRACE: " + ex.StackTrace);
                     break;
                 case ExType.Fatal:
                     Logger.LogFatal("MESSAGE: " + ex.Message + "\n *-*-*-*-*- \nSTACK TRACE: " + ex.StackTrace);
