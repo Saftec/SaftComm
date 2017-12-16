@@ -58,9 +58,9 @@
     <Compile Include="Writer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj">
+    <ProjectReference Include="..\Database\SaftComm.Database.csproj">
       <Project>{b654ecc7-75bf-46aa-b8be-9f0240ff8b7f}</Project>
-      <Name>Database</Name>
+      <Name>SaftComm.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{15510c00-4e51-4ad6-a0d2-2dd1a56e7db8}</Project>

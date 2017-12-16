@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZkManagement", "ZkManagemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDataBase", "CreateDataBase\CreateDataBase.csproj", "{4B6F2670-68E8-493F-A1A0-76212CB2B3A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{B654ECC7-75BF-46AA-B8BE-9F0240FF8B7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaftComm.Database", "Database\SaftComm.Database.csproj", "{B654ECC7-75BF-46AA-B8BE-9F0240FF8B7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", "{F1B2E4BF-821C-4748-A426-CFBE67CDBAA1}"
 EndProject
