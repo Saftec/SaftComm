@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Database.BaseRepository
 {
-    interface IBaseRepository<T> where T : BaseEntity
+    internal interface IBaseRepository<T> where T : BaseEntity
     {
         Task InsertOne(T entity);
 
@@ -12,7 +12,7 @@ namespace Database.BaseRepository
 
         Task<T> GetOneById(int id);
 
-        Task DeleteOneById(int id);
+        Task DeleteOneById(T entity);
 
         Task UpdateOne(T entity);
     }

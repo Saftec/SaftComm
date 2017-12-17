@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Entidades;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Database.DBContext
@@ -10,6 +11,8 @@ namespace Database.DBContext
         public DatabaseContext() : base(DB_CONTEXT)
         {
         }
+
+        public DbSet<Usuario> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

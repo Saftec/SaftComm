@@ -65,9 +65,11 @@
     <Compile Include="DataRelojes.cs" />
     <Compile Include="DataTemplates.cs" />
     <Compile Include="DataUsuarios.cs" />
-    <Compile Include="DBContext\DbContext.cs" />
+    <Compile Include="DBContext\DatabaseContext.cs" />
     <Compile Include="FactoryConnection.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
