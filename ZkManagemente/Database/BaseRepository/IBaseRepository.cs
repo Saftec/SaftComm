@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Database.BaseRepository
+namespace SaftComm.Database.BaseRepository
 {
-    internal interface IBaseRepository<T> where T : BaseEntity
+    interface IBaseRepository<T> where T : BaseEntity
     {
         Task InsertOne(T entity);
 

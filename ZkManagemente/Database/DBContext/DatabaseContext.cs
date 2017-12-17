@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace Database.DBContext
+namespace SaftComm.Database.DBContext
 {
     class DatabaseContext : DbContext
     {

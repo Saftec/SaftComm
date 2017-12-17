@@ -7,8 +7,8 @@
     <ProjectGuid>{B654ECC7-75BF-46AA-B8BE-9F0240FF8B7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Database</RootNamespace>
-    <AssemblyName>Database</AssemblyName>
+    <RootNamespace>SaftComm.Database</RootNamespace>
+    <AssemblyName>SaftComm.Database</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

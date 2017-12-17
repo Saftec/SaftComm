@@ -1,7 +1,7 @@
-﻿using Database.BaseRepository;
-using Entidades;
+﻿using Entidades;
+using SaftComm.Database.BaseRepository;
 
-namespace Database.Interfaces
+namespace SaftComm.Database.Interfaces
 {
     public interface IUserRepository : IBaseRepository<Usuario>
     {

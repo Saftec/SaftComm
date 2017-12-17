@@ -1,12 +1,12 @@
-﻿using Database.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entidades;
-using Database.DBContext;
 using System.Data.Entity;
+using SaftComm.Database.Interfaces;
+using SaftComm.Database.DBContext;
 
-namespace Database.Repositories
+namespace SaftComm.Database.Repositories
 {
     public class UserRepository : IUserRepository
     {
