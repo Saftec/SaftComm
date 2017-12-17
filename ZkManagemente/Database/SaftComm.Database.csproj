@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository\IBaseRepository.cs" />
     <Compile Include="ConnectionSaftime.cs" />
     <Compile Include="DataConfigFile.cs" />
     <Compile Include="DataConfigs.cs" />
