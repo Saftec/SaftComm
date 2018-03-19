@@ -103,7 +103,7 @@ namespace ZkManagement.NewUI
             }
             catch(Exception ex)
             {
-                InformarError(ex.Message, "Iniciar SaftComm");
+                InformarError(ex.Message, "Iniciar SafCom");
             }
         }
     }

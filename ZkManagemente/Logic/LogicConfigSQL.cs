@@ -11,7 +11,7 @@ namespace Logic
         private DataConfigFile dataConfigFile;
         private enum DBType
         {
-            SaftComm,
+            SafCom,
             Saftime,
             Empty
         }
@@ -28,7 +28,7 @@ namespace Logic
                     conexion = dataConfigFile.GetConnectionString("SaftimeDB");
                     builder = new SqlConnectionStringBuilder(conexion);
                     break;
-                case DBType.SaftComm:
+                case DBType.SafCom:
                     conexion = dataConfigFile.GetConnectionString("CNS");
                     builder = new SqlConnectionStringBuilder(conexion);
                     break;
@@ -39,7 +39,7 @@ namespace Logic
         }
 
         /*
-         * VALIDO QUE BD TENGO QUE MODIFICAR (SAFTIME/SAFTCOMM)
+         * VALIDO QUE BD TENGO QUE MODIFICAR (SAFTIME/SAFCOM)
          * ARMO LA NUEVA CADENA Y GUARDO EN EL APP.CONFIG
          * PRUEBO LA CONEXION
          */
@@ -62,7 +62,7 @@ namespace Logic
                     case DBType.Saftime:                        
                         result = dataConfigFile.SetConnectionString("SaftimeDB", cadena.ConnectionString);
                         break;
-                    case DBType.SaftComm:
+                    case DBType.SafCom:
                         result = dataConfigFile.SetConnectionString("CNS", cadena.ConnectionString);
                         break;
                     default:

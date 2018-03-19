@@ -17,19 +17,20 @@ namespace Database
 
             try
             {
-                query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero, Rutina, Tipo FROM Relojes;";
+                query = "SELECT Clave, DNS, IdReloj, IP, Nombre, Puerto, Numero, Rutina, IdFormato FROM Relojes;";
                 dr = FactoryConnection.Instancia.GetReader(query, FactoryConnection.Instancia.GetConnection());
                 while (dr.Read())
                 {
                     Reloj r = new Reloj();
-                    r.Clave = dr.IsDBNull(3) ? string.Empty : dr["Clave"].ToString();
-                    r.DNS = dr.IsDBNull(5) ? string.Empty : dr["DNS"].ToString();
-                    r.Id  = Convert.ToInt32(dr["IdReloj"]);
-                    r.Ip = dr["IP"].ToString();
+                    r.Id = Convert.ToInt32(dr["IdReloj"]);
                     r.Nombre = dr["Nombre"].ToString();
-                    r.Puerto = Convert.ToInt32(dr["Puerto"]);
                     r.Numero = Convert.ToInt32(dr["Numero"]);
+                    r.IP = dr["IP"].ToString();
+                    r.Puerto = Convert.ToInt32(dr["Puerto"]);
+                    r.DNS = dr.IsDBNull(dr.GetOrdinal("DNS")) ? string.Empty : dr["DNS"].ToString();
+                    r.Clave = dr.IsDBNull(dr.GetOrdinal("Clave")) ? string.Empty : dr["Clave"].ToString();
                     r.Rutina = Convert.ToBoolean(dr["Rutina"]);
+                    r.IdFormato = Convert.ToInt32(dr["IdFormato"]);
                     relojes.Add(r);
                 }
             }
@@ -68,7 +69,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero, Rutina) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.Ip + "', '" + Security.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ", '" + r.Rutina.ToString() + "')";
+                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero, Rutina) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.IP + "', '" + Security.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ", '" + r.Rutina.ToString() + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -106,7 +107,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.Ip + "', Clave='" + Security.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + ", Rutina='" + r.Rutina +"'  WHERE IdReloj=" + r.Id;
+                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.IP + "', Clave='" + Security.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + ", Rutina='" + r.Rutina +"', IdFormato = " + r.IdFormato + " WHERE IdReloj=" + r.Id;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }

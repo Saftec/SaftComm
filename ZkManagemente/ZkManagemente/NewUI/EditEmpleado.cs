@@ -86,14 +86,7 @@ namespace ZkManagement.NewUI
             empActual.Tarjeta = txtTarjeta.Text;
             empActual.Privilegio = cbPrivilegio.SelectedIndex;
             empActual.Apellido = txtApellido.Text;
-            if (txtPin.Text != "")
-            {
-                empActual.Pin = txtPin.Text;
-            }
-            else
-            {
-                empActual.Pin = "NULL";
-            }
+            empActual.Pin = txtPin.Text;
         }
 
 

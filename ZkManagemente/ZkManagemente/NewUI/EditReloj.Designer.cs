@@ -40,15 +40,19 @@
             this.txtDns = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtClave = new MetroFramework.Controls.MetroTextBox();
-            this.chckRutinas = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
+            this.cbxRutinas = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Location = new System.Drawing.Point(309, 434);
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.Location = new System.Drawing.Point(34, 434);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtNombre
@@ -66,7 +70,7 @@
             this.txtNombre.CustomButton.UseSelectable = true;
             this.txtNombre.CustomButton.Visible = false;
             this.txtNombre.Lines = new string[0];
-            this.txtNombre.Location = new System.Drawing.Point(135, 60);
+            this.txtNombre.Location = new System.Drawing.Point(108, 18);
             this.txtNombre.MaxLength = 25;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.PasswordChar = '\0';
@@ -86,7 +90,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(67, 60);
+            this.metroLabel1.Location = new System.Drawing.Point(34, 22);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(62, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -97,12 +101,12 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(82, 118);
+            this.metroLabel2.Location = new System.Drawing.Point(34, 128);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(47, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(23, 19);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel2.TabIndex = 6;
-            this.metroLabel2.Text = "Dir. IP:";
+            this.metroLabel2.Text = "IP:";
             this.metroLabel2.UseStyleColors = true;
             // 
             // txtIp
@@ -121,7 +125,7 @@
             this.txtIp.CustomButton.Visible = false;
             this.txtIp.Lines = new string[] {
         "192.168.1.70"};
-            this.txtIp.Location = new System.Drawing.Point(135, 118);
+            this.txtIp.Location = new System.Drawing.Point(108, 124);
             this.txtIp.MaxLength = 32767;
             this.txtIp.Name = "txtIp";
             this.txtIp.PasswordChar = '\0';
@@ -142,7 +146,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(432, 64);
+            this.metroLabel3.Location = new System.Drawing.Point(35, 74);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(61, 19);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
@@ -156,7 +160,7 @@
             // 
             // 
             this.txtNumero.CustomButton.Image = null;
-            this.txtNumero.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.txtNumero.CustomButton.Location = new System.Drawing.Point(87, 1);
             this.txtNumero.CustomButton.Name = "";
             this.txtNumero.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtNumero.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -165,7 +169,7 @@
             this.txtNumero.CustomButton.UseSelectable = true;
             this.txtNumero.CustomButton.Visible = false;
             this.txtNumero.Lines = new string[0];
-            this.txtNumero.Location = new System.Drawing.Point(517, 60);
+            this.txtNumero.Location = new System.Drawing.Point(108, 70);
             this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.PasswordChar = '\0';
@@ -174,7 +178,7 @@
             this.txtNumero.SelectionLength = 0;
             this.txtNumero.SelectionStart = 0;
             this.txtNumero.ShortcutsEnabled = true;
-            this.txtNumero.Size = new System.Drawing.Size(75, 23);
+            this.txtNumero.Size = new System.Drawing.Size(109, 23);
             this.txtNumero.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtNumero.TabIndex = 9;
             this.txtNumero.UseSelectable = true;
@@ -185,9 +189,9 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(442, 118);
+            this.metroLabel4.Location = new System.Drawing.Point(34, 180);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(51, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(52, 19);
             this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 10;
             this.metroLabel4.Text = "Puerto:";
@@ -199,7 +203,7 @@
             // 
             // 
             this.txtPuerto.CustomButton.Image = null;
-            this.txtPuerto.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.txtPuerto.CustomButton.Location = new System.Drawing.Point(87, 1);
             this.txtPuerto.CustomButton.Name = "";
             this.txtPuerto.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtPuerto.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -209,7 +213,7 @@
             this.txtPuerto.CustomButton.Visible = false;
             this.txtPuerto.Lines = new string[] {
         "4370"};
-            this.txtPuerto.Location = new System.Drawing.Point(517, 118);
+            this.txtPuerto.Location = new System.Drawing.Point(108, 176);
             this.txtPuerto.MaxLength = 8;
             this.txtPuerto.Name = "txtPuerto";
             this.txtPuerto.PasswordChar = '\0';
@@ -218,7 +222,7 @@
             this.txtPuerto.SelectionLength = 0;
             this.txtPuerto.SelectionStart = 0;
             this.txtPuerto.ShortcutsEnabled = true;
-            this.txtPuerto.Size = new System.Drawing.Size(75, 23);
+            this.txtPuerto.Size = new System.Drawing.Size(109, 23);
             this.txtPuerto.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPuerto.TabIndex = 11;
             this.txtPuerto.Text = "4370";
@@ -230,7 +234,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(61, 230);
+            this.metroLabel5.Location = new System.Drawing.Point(34, 232);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(68, 19);
             this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
@@ -244,7 +248,7 @@
             // 
             // 
             this.txtDns.CustomButton.Image = null;
-            this.txtDns.CustomButton.Location = new System.Drawing.Point(365, 1);
+            this.txtDns.CustomButton.Location = new System.Drawing.Point(87, 1);
             this.txtDns.CustomButton.Name = "";
             this.txtDns.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtDns.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -253,7 +257,7 @@
             this.txtDns.CustomButton.UseSelectable = true;
             this.txtDns.CustomButton.Visible = false;
             this.txtDns.Lines = new string[0];
-            this.txtDns.Location = new System.Drawing.Point(135, 226);
+            this.txtDns.Location = new System.Drawing.Point(108, 228);
             this.txtDns.MaxLength = 70;
             this.txtDns.Name = "txtDns";
             this.txtDns.PasswordChar = '\0';
@@ -262,7 +266,7 @@
             this.txtDns.SelectionLength = 0;
             this.txtDns.SelectionStart = 0;
             this.txtDns.ShortcutsEnabled = true;
-            this.txtDns.Size = new System.Drawing.Size(387, 23);
+            this.txtDns.Size = new System.Drawing.Size(109, 23);
             this.txtDns.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtDns.TabIndex = 13;
             this.txtDns.UseSelectable = true;
@@ -273,7 +277,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(85, 174);
+            this.metroLabel6.Location = new System.Drawing.Point(34, 286);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(44, 19);
             this.metroLabel6.Style = MetroFramework.MetroColorStyle.Blue;
@@ -296,7 +300,7 @@
             this.txtClave.CustomButton.UseSelectable = true;
             this.txtClave.CustomButton.Visible = false;
             this.txtClave.Lines = new string[0];
-            this.txtClave.Location = new System.Drawing.Point(135, 174);
+            this.txtClave.Location = new System.Drawing.Point(108, 282);
             this.txtClave.MaxLength = 6;
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
@@ -313,26 +317,47 @@
             this.txtClave.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtClave.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // chckRutinas
+            // metroLabel7
             // 
-            this.chckRutinas.AutoSize = true;
-            this.chckRutinas.Checked = true;
-            this.chckRutinas.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chckRutinas.Location = new System.Drawing.Point(432, 178);
-            this.chckRutinas.Name = "chckRutinas";
-            this.chckRutinas.Size = new System.Drawing.Size(171, 15);
-            this.chckRutinas.Style = MetroFramework.MetroColorStyle.Blue;
-            this.chckRutinas.TabIndex = 16;
-            this.chckRutinas.Text = "Agregar a agenda de rutinas";
-            this.chckRutinas.UseSelectable = true;
-            this.chckRutinas.UseStyleColors = true;
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(34, 336);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(242, 19);
+            this.metroLabel7.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroLabel7.TabIndex = 17;
+            this.metroLabel7.Text = "Formato de descarga de registraciones:";
+            this.metroLabel7.UseStyleColors = true;
+            // 
+            // cbFormatos
+            // 
+            this.cbFormatos.FormattingEnabled = true;
+            this.cbFormatos.ItemHeight = 23;
+            this.cbFormatos.Location = new System.Drawing.Point(295, 326);
+            this.cbFormatos.Name = "cbFormatos";
+            this.cbFormatos.Size = new System.Drawing.Size(136, 29);
+            this.cbFormatos.Style = MetroFramework.MetroColorStyle.Blue;
+            this.cbFormatos.TabIndex = 19;
+            this.cbFormatos.UseSelectable = true;
+            this.cbFormatos.UseStyleColors = true;
+            // 
+            // cbxRutinas
+            // 
+            this.cbxRutinas.AutoSize = true;
+            this.cbxRutinas.Location = new System.Drawing.Point(35, 387);
+            this.cbxRutinas.Name = "cbxRutinas";
+            this.cbxRutinas.Size = new System.Drawing.Size(205, 17);
+            this.cbxRutinas.TabIndex = 20;
+            this.cbxRutinas.Text = "Incluir reloj en las rutinas programadas";
+            this.cbxRutinas.UseVisualStyleBackColor = true;
             // 
             // EditReloj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 550);
-            this.Controls.Add(this.chckRutinas);
+            this.ClientSize = new System.Drawing.Size(465, 485);
+            this.Controls.Add(this.cbxRutinas);
+            this.Controls.Add(this.cbFormatos);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.txtDns);
@@ -347,8 +372,6 @@
             this.Controls.Add(this.metroLabel1);
             this.Name = "EditReloj";
             this.Text = "EditReloj";
-            this.Controls.SetChildIndex(this.btnGuardar, 0);
-            this.Controls.SetChildIndex(this.btnCancel, 0);
             this.Controls.SetChildIndex(this.metroLabel1, 0);
             this.Controls.SetChildIndex(this.txtNombre, 0);
             this.Controls.SetChildIndex(this.metroLabel2, 0);
@@ -361,7 +384,11 @@
             this.Controls.SetChildIndex(this.txtDns, 0);
             this.Controls.SetChildIndex(this.metroLabel6, 0);
             this.Controls.SetChildIndex(this.txtClave, 0);
-            this.Controls.SetChildIndex(this.chckRutinas, 0);
+            this.Controls.SetChildIndex(this.metroLabel7, 0);
+            this.Controls.SetChildIndex(this.cbFormatos, 0);
+            this.Controls.SetChildIndex(this.btnGuardar, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.cbxRutinas, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,6 +408,8 @@
         private MetroFramework.Controls.MetroTextBox txtDns;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTextBox txtClave;
-        private MetroFramework.Controls.MetroCheckBox chckRutinas;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroComboBox cbFormatos;
+        private System.Windows.Forms.CheckBox cbxRutinas;
     }
 }

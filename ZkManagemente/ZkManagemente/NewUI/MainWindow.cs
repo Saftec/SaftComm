@@ -46,7 +46,7 @@ namespace ZkManagement.NewUI
         {
             MainWindow.Instancia.Hide();
             iconoBandeja.Visible = true;
-            MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SaftComm");
+            MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SafCom");
         }
         public void Inicializar()
         {
@@ -59,7 +59,7 @@ namespace ZkManagement.NewUI
                     InicializarTimers();
                 }
                 lblVersionBD.Text = "Versión BD: " + lcbd.GetVersion();
-                lblVersionApp.Text = "Versión SaftComm: " + ConfigurationManager.AppSettings["Version"].ToString();
+                lblVersionApp.Text = "Versión SafCom: " + ConfigurationManager.AppSettings["Version"].ToString();
                 lblUsr.Text = "Usuario: " + LogicLogin.Usuario.Usr;
             }
             catch (Exception ex)
@@ -277,7 +277,7 @@ namespace ZkManagement.NewUI
             {
                 MainWindow.Instancia.Hide();
                 iconoBandeja.Visible = true;
-                MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SaftComm");
+                MostrarNotificacionEvento("El sistema continuará trabajando en segundo plano", "SafCom");
             }
         }
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)

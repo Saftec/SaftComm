@@ -32,11 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridUsuarios = new MetroFramework.Controls.MetroGrid();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.linkContraseña = new MetroFramework.Controls.MetroLink();
-            this.linkNuevo = new MetroFramework.Controls.MetroLink();
-            this.linkEdit = new MetroFramework.Controls.MetroLink();
-            this.linkDelete = new MetroFramework.Controls.MetroLink();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +40,11 @@
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Permisos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.linkContraseña = new MetroFramework.Controls.MetroLink();
+            this.linkNuevo = new MetroFramework.Controls.MetroLink();
+            this.linkEdit = new MetroFramework.Controls.MetroLink();
+            this.linkDelete = new MetroFramework.Controls.MetroLink();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             this.gridUsuarios.EnableHeadersVisualStyles = false;
             this.gridUsuarios.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridUsuarios.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridUsuarios.Location = new System.Drawing.Point(120, 79);
+            this.gridUsuarios.Location = new System.Drawing.Point(142, 74);
             this.gridUsuarios.Name = "gridUsuarios";
             this.gridUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -102,69 +102,8 @@
             this.gridUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridUsuarios.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(709, 362);
+            this.gridUsuarios.Size = new System.Drawing.Size(569, 362);
             this.gridUsuarios.TabIndex = 1;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.linkContraseña, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkNuevo, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkEdit, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.linkDelete, 2, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(174, 13);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(535, 30);
-            this.tableLayoutPanel2.TabIndex = 4;
-            // 
-            // linkContraseña
-            // 
-            this.linkContraseña.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.linkContraseña.Location = new System.Drawing.Point(402, 3);
-            this.linkContraseña.Name = "linkContraseña";
-            this.linkContraseña.Size = new System.Drawing.Size(130, 23);
-            this.linkContraseña.TabIndex = 3;
-            this.linkContraseña.Text = "Modificar Contraseña";
-            this.linkContraseña.UseSelectable = true;
-            this.linkContraseña.Click += new System.EventHandler(this.linkContraseña_Click);
-            // 
-            // linkNuevo
-            // 
-            this.linkNuevo.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.linkNuevo.Location = new System.Drawing.Point(3, 3);
-            this.linkNuevo.Name = "linkNuevo";
-            this.linkNuevo.Size = new System.Drawing.Size(127, 24);
-            this.linkNuevo.TabIndex = 0;
-            this.linkNuevo.Text = "Nuevo";
-            this.linkNuevo.UseSelectable = true;
-            this.linkNuevo.Click += new System.EventHandler(this.linkNuevo_Click);
-            // 
-            // linkEdit
-            // 
-            this.linkEdit.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.linkEdit.Location = new System.Drawing.Point(136, 3);
-            this.linkEdit.Name = "linkEdit";
-            this.linkEdit.Size = new System.Drawing.Size(127, 24);
-            this.linkEdit.TabIndex = 1;
-            this.linkEdit.Text = "Editar";
-            this.linkEdit.UseSelectable = true;
-            this.linkEdit.Click += new System.EventHandler(this.linkEdit_Click);
-            // 
-            // linkDelete
-            // 
-            this.linkDelete.ForeColor = System.Drawing.SystemColors.Control;
-            this.linkDelete.Location = new System.Drawing.Point(269, 3);
-            this.linkDelete.Name = "linkDelete";
-            this.linkDelete.Size = new System.Drawing.Size(127, 23);
-            this.linkDelete.TabIndex = 2;
-            this.linkDelete.Text = "Eliminar";
-            this.linkDelete.UseSelectable = true;
             // 
             // Usuario
             // 
@@ -223,6 +162,67 @@
             this.Contraseña.Name = "Contraseña";
             this.Contraseña.ReadOnly = true;
             this.Contraseña.Visible = false;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Controls.Add(this.linkNuevo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkEdit, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkDelete, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.linkContraseña, 3, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(156, 13);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(535, 30);
+            this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // linkContraseña
+            // 
+            this.linkContraseña.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkContraseña.Location = new System.Drawing.Point(402, 3);
+            this.linkContraseña.Name = "linkContraseña";
+            this.linkContraseña.Size = new System.Drawing.Size(130, 23);
+            this.linkContraseña.TabIndex = 3;
+            this.linkContraseña.Text = "Modificar Contraseña";
+            this.linkContraseña.UseSelectable = true;
+            this.linkContraseña.Click += new System.EventHandler(this.linkContraseña_Click);
+            // 
+            // linkNuevo
+            // 
+            this.linkNuevo.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkNuevo.Location = new System.Drawing.Point(3, 3);
+            this.linkNuevo.Name = "linkNuevo";
+            this.linkNuevo.Size = new System.Drawing.Size(127, 24);
+            this.linkNuevo.TabIndex = 0;
+            this.linkNuevo.Text = "Nuevo";
+            this.linkNuevo.UseSelectable = true;
+            this.linkNuevo.Click += new System.EventHandler(this.linkNuevo_Click);
+            // 
+            // linkEdit
+            // 
+            this.linkEdit.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.linkEdit.Location = new System.Drawing.Point(136, 3);
+            this.linkEdit.Name = "linkEdit";
+            this.linkEdit.Size = new System.Drawing.Size(127, 24);
+            this.linkEdit.TabIndex = 1;
+            this.linkEdit.Text = "Editar";
+            this.linkEdit.UseSelectable = true;
+            this.linkEdit.Click += new System.EventHandler(this.linkEdit_Click);
+            // 
+            // linkDelete
+            // 
+            this.linkDelete.ForeColor = System.Drawing.SystemColors.Control;
+            this.linkDelete.Location = new System.Drawing.Point(269, 3);
+            this.linkDelete.Name = "linkDelete";
+            this.linkDelete.Size = new System.Drawing.Size(127, 23);
+            this.linkDelete.TabIndex = 2;
+            this.linkDelete.Text = "Eliminar";
+            this.linkDelete.UseSelectable = true;
             // 
             // PanelUsuario
             // 

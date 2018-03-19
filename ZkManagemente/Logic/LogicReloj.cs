@@ -71,7 +71,7 @@ namespace Logic
             DateTime fecha = DateTime.Now;
             try
             {
-                dataRelojes.SetBorrado(LogicLogin.Usuario.Id, reloj.Id, cantidad, fecha);
+                dataRelojes.SetBorrado(LogicLogin.Usuario.ID, reloj.Id, cantidad, fecha);
             }
             catch (AppException appex)
             {

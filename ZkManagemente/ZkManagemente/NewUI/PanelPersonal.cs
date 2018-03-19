@@ -130,11 +130,11 @@ namespace ZkManagement.NewUI.Generic
             {
                 if (rbActivos.Checked)
                 {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja=0 AND (Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("')", "''"));
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja is null AND (Nombre like '%{0}%' OR Apellido like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("')", "''"));
                 }
                 if (rbBaja.Checked)
                 {
-                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja=1 AND (Nombre like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("'", "''"));
+                    ((DataTable)gridPersonal.DataSource).DefaultView.RowFilter = string.Format("Baja is not null AND (Nombre like '%{0}%' OR Apellido like '%{0}%' OR DNI like '%{0}%' OR Legajo like '%{0}%')", txtBuscar.Text.Trim().Replace("'", "''"));
                 }
             }
             catch (Exception ex)

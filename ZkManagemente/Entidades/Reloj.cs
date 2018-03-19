@@ -8,95 +8,43 @@ namespace Entidades
 {
     public class Reloj : zkemkeeper.CZKEMClass
     {
-        private int puerto;
-        private int numero;
-        private int id;
-        private string clave;
-        private string dns;
-        private string ip;
-        private string nombre;
-        private bool estado;
-        private bool rutina;
+        #region Propiedades
 
-        // private string tipo;  --Esta variable la voy a usar para controlar si es TFT ByW o Facial.-- //
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int Numero { get; set; }
+        public string IP { get; set; }
+        public int Puerto { get; set; }
+        public string DNS { get; set; }
+        public string Clave { get; set; }
+        public int IdFormato { get; set; }
+        public bool Rutina { get; set; }
+        public bool Estado { get; set; }
+        // public string Tipo { get; set; }  --Esta propiedad la voy a usar para controlar si es TFT ByW o Facial.-- //
+
+        #endregion
 
         #region Constructores
         public Reloj()
         {
         }
 
-        public Reloj(int puerto, int numero, int id, string clave, string dns, string ip, string nombre)
+        public Reloj(int puerto, int numero, int id, string clave, string dns, string ip, string nombre, int idformato)
         {
-            this.puerto = puerto;
-            this.numero = numero;
-            this.id = id;
-            this.clave = clave;
-            this.dns = dns;
-            this.ip = ip;
-            this.nombre = nombre;
+            Id = id;
+            Nombre = nombre;
+            Numero = numero;
+            IP = ip;
+            Puerto = puerto;
+            DNS = dns;
+            Clave = clave;
+            IdFormato = IdFormato;
+            
         }
 
         public Reloj(int id)
         {
-            this.id = id;
-        }
-
-        #endregion
-
-        #region Propiedades
-        public bool Rutina
-        {
-            get { return rutina; }
-            set { rutina = value; }
-        }
-        public string DNS
-        {
-            get { return dns; }
-            set { dns = value; }
-        }
-        public bool Estado
-        {
-            get { return estado; }
-        }
-
-        public string Clave
-        {
-            get { return clave; }
-            set { clave = value; }
-        }
-
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public int Numero
-        {
-            get { return this.numero; }
-            set { this.numero = value; }
-        }
-
-
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
-
-
-        public string Ip
-        {
-            get { return ip; }
-            set { ip = value; }
-        }
-
-
-        public int Puerto
-        {
-            get { return puerto; }
-            set { puerto = value; }
+            this.Id = id;
         }
 
         #endregion
@@ -110,12 +58,12 @@ namespace Entidades
             if (this.GetType() != obj.GetType()) { return false; }
 
             Reloj r = (Reloj)obj;
-            return (this.id == r.id);
+            return (Id == r.Id);
         }
         // Override a ToString() para mostrar datos en ComboBox
         public override string ToString()
         {
-            return (this.Nombre + " - IP: " + this.Ip);
+            return (this.Nombre + " - IP: " + this.IP);
         }
         public void Conectar()
         {
@@ -127,52 +75,52 @@ namespace Entidades
             {
                 throw ex;
             }            
-            if (this.clave != string.Empty)
+            if (Clave != string.Empty)
             {
-                int psw = Convert.ToInt32(Security.DesEncriptar(this.clave));
+                int psw = Convert.ToInt32(Security.DesEncriptar(Clave));
                 base.SetCommPassword(psw);
             }
-            this.estado = base.Connect_Net(ip, puerto);
-            if (this.Estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
+            Estado = base.Connect_Net(IP, Puerto);
+            if (Estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
 
         public void Desconectar()
         {
             base.Disconnect();
-            this.estado = false;
+            Estado = false;
         }
         public int GetCantidadRegistros()
         {
             int codError = 0; //Controlo errores del dispositivo
             int cant = 0;
-            base.EnableDevice(this.numero, false);
-            if (!base.GetDeviceStatus(this.numero, 6, ref cant)) //La funcion "GetDeviceStatus" con el parámetro 6, devuelve la cantidad de registros.
+            base.EnableDevice(Numero, false);
+            if (!base.GetDeviceStatus(Numero, 6, ref cant)) //La funcion "GetDeviceStatus" con el parámetro 6, devuelve la cantidad de registros.
             {
                 base.GetLastError(ref codError);
                 throw new AppException("Error al consultar la cantidad de registros en el equipo, coderror: " + codError.ToString());
             }
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
             return cant;
         }
         public int BorrarRegistros()
         {
             int codError = 0;
             int cant = -1;
-            base.EnableDevice(this.numero, false);     //bloqueo dispositivo
+            base.EnableDevice(Numero, false);     //bloqueo dispositivo
             cant = GetCantidadRegistros();
             if (cant == -1)
             {
                 throw new AppException("Error al consultar la cantidad de registros a borrar.");
             }
-            if (base.ClearGLog(this.numero))
+            if (base.ClearGLog(Numero))
             {
-                base.RefreshData(this.numero);     //los datos deben ser actualizados en el reloj
-                base.EnableDevice(this.numero, true);      //desbloqueo
+                base.RefreshData(Numero);     //los datos deben ser actualizados en el reloj
+                base.EnableDevice(Numero, true);      //desbloqueo
             }
             else
             {
                 base.GetLastError(ref codError);
-                base.EnableDevice(this.numero, true);      //desbloqueo
+                base.EnableDevice(Numero, true);      //desbloqueo
                 throw new AppException("Error al borrar los registros, coderror: " + codError.ToString());
             }
             return cant;
@@ -180,9 +128,9 @@ namespace Entidades
         public void SincronizarHora()
         {
             int codError = 0;
-            if (base.SetDeviceTime(this.numero))
+            if (base.SetDeviceTime(Numero))
             {
-                base.RefreshData(this.numero);     //actualizo datos en dispositivo
+                base.RefreshData(Numero);     //actualizo datos en dispositivo
             }
             else
             {
@@ -193,37 +141,37 @@ namespace Entidades
         public string GetModelo()
         {
             string modelo = string.Empty;
-            base.GetProductCode(this.numero, out modelo);
+            base.GetProductCode(Numero, out modelo);
             return modelo;
         }
         public string GetMac()
         {
             string mac = string.Empty;
-            base.GetDeviceMAC(this.numero, ref mac);
+            base.GetDeviceMAC(Numero, ref mac);
             return mac;
         }
         public void Reiniciar()
         {
             int error = 0;
             base.GetLastError(error);
-            if (base.RestartDevice(this.numero) != true) { throw new AppException("Error al intentar reiniciar el dispositivo, error: " + error.ToString()); }
+            if (base.RestartDevice(Numero) != true) { throw new AppException("Error al intentar reiniciar el dispositivo, error: " + error.ToString()); }
         }
         public void Inicializar()
         {
-            if (base.ClearKeeperData(this.numero) != true)
+            if (base.ClearKeeperData(Numero) != true)
             {
                 int error = 0;
                 base.GetLastError(error);
                 throw new AppException("Error al intentar inicializar el dispositivo, error: " + error.ToString());
             }
-            base.RefreshData(this.numero); //Refresh a los datos del equipo.
+            base.RefreshData(Numero); //Refresh a los datos del equipo.
         }
         public void EliminarAdmins()
         {
             int coderror = 0;
-            if (base.ClearAdministrators(this.numero))
+            if (base.ClearAdministrators(Numero))
             {
-                base.RefreshData(this.numero);
+                base.RefreshData(Numero);
             }
             else
             {
@@ -247,18 +195,18 @@ namespace Entidades
             //DECLARO LIST PARA ALMACENAR LAS REGISTRACIONES
             List<Fichada> fichadas = new List<Fichada>();
 
-            base.EnableDevice(this.numero, false);//Bloqueo dispositivo
+            base.EnableDevice(Numero, false);//Bloqueo dispositivo
             cantRegs = GetCantidadRegistros();
-            if (base.ReadGeneralLogData(this.numero)) //Trae todos los registros a la memoria de la pc
+            if (base.ReadGeneralLogData(Numero)) //Trae todos los registros a la memoria de la pc
             {
-                while (base.SSR_GetGeneralLogData(this.numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkCode) && codError == 0)//Obtengo los registros
+                while (base.SSR_GetGeneralLogData(Numero, out legajoEnReloj, out idwVerifyMode, out tipoMov, out año, out mes, out dia, out hora, out minutos, out segundos, ref idwWorkCode) && codError == 0)//Obtengo los registros
                 {
                     Fichada f = new Fichada();
                     f.Registro = new DateTime(año, mes, dia, hora, minutos, segundos);
                     f.Tipo = tipoMov;
                     f.Empleado.Legajo = legajoEnReloj;
-                    f.Reloj.Id = this.id;
-                    f.Reloj.Numero = this.numero;
+                    f.Reloj.Id = Id;
+                    f.Reloj.Numero = Numero;
                     fichadas.Add(f);
                     count++;
                 }
@@ -273,7 +221,7 @@ namespace Entidades
                     throw new AppException("Error durante la descarga de registros, codError: " + idwErrorCode);
                 }
             }
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
             return fichadas;
         }
 
@@ -295,11 +243,11 @@ namespace Entidades
             usuariosDispositivo.Columns.Add("Tarjeta", typeof(string));
             usuariosDispositivo.Columns.Add("Privilegio", typeof(int));
 
-            base.EnableDevice(this.numero, false);
+            base.EnableDevice(Numero, false);
 
-            base.ReadAllUserID(this.numero);//Trae toda la información de usuario a la memoria.
+            base.ReadAllUserID(Numero);//Trae toda la información de usuario a la memoria.
 
-            while (base.SSR_GetAllUserInfo(this.numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled) && codError==0)
+            while (base.SSR_GetAllUserInfo(Numero, out legajoEnReloj, out nombre, out contraseña, out privilegio, out bEnabled) && codError==0)
             {
                 string tarjeta = string.Empty;
                 DataRow fila = usuariosDispositivo.NewRow();
@@ -318,15 +266,15 @@ namespace Entidades
             {
                 throw new AppException("Error durante la descarga de datos de usuario, CodError: " + codError.ToString());
             }
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
             return usuariosDispositivo;
         }
 
         public void LeerTodasLasHuellas()
         {
             int codError = 0;
-            base.EnableDevice(this.numero, false);
-            if (!base.ReadAllTemplate(this.numero))
+            base.EnableDevice(Numero, false);
+            if (!base.ReadAllTemplate(Numero))
             {
                 base.GetLastError(ref codError);
                 throw new AppException("Error durante la lectura de huellas, CodError: " + codError.ToString());
@@ -342,11 +290,11 @@ namespace Entidades
             string template = string.Empty;
             List<Huella> huellas = new List<Huella>();
 
-            base.EnableDevice(this.numero, false);
+            base.EnableDevice(Numero, false);
 
             for (int fingerIndex=-1; fingerIndex<10; fingerIndex++)
             {
-                if(base.GetUserTmpExStr(this.numero, emp.Legajo, fingerIndex, out flag, out template, out tmpLenght))
+                if(base.GetUserTmpExStr(Numero, emp.Legajo, fingerIndex, out flag, out template, out tmpLenght))
                 {
                     Huella huella = new Huella(template, emp, fingerIndex, tmpLenght, flag);
                     huellas.Add(huella);
@@ -357,12 +305,12 @@ namespace Entidades
             {
                 throw new AppException("Error al descargar la huella del usuario: " + legajo + ". CodError: " + codError.ToString());
             }*/
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
             return huellas;
         }
         public void ActivarDispositivo()
         {
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
         }
 
         public void AgregarHuellas(Empleado emp)
@@ -371,13 +319,13 @@ namespace Entidades
 
             foreach(Huella h in emp.Huellas)
             {
-                if(!base.SetUserTmpExStr(this.numero, emp.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
+                if(!base.SetUserTmpExStr(Numero, emp.Legajo.Trim(), h.FingerIndex, h.Flag, h.Template.Trim()))
                 {
                     base.GetLastError(ref codError);
                     throw new AppException("Error durante la carga de huellas, CodErro= " + codError.ToString());
                 }
             }
-            base.RefreshData(this.numero);         
+            base.RefreshData(Numero);         
         }
 
         // ESTE MÉTODO SÓLO ENVÍA LA INFO DE USUARIO, SIN HUELLAS NI ROSTROS //
@@ -390,7 +338,7 @@ namespace Entidades
                 }
                 if (emp.Pin == "0")
                 {
-                    if(!base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true))
+                    if(!base.SSR_SetUserInfo(Numero, emp.Legajo, emp.Nombre, null, emp.Privilegio, true))
                     {
                         base.GetLastError(ref codErrror);
                         throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
@@ -398,7 +346,7 @@ namespace Entidades
                 }
                 else
                 {
-                    if(!base.SSR_SetUserInfo(this.numero, emp.Legajo, emp.Nombre, emp.Pin, emp.Privilegio, true))
+                    if(!base.SSR_SetUserInfo(Numero, emp.Legajo, emp.Nombre, emp.Pin, emp.Privilegio, true))
                     {
                         base.GetLastError(ref codErrror);
                         throw new AppException("Error al intentar cargar infor de usuario, CodError= " + codErrror.ToString());
@@ -408,7 +356,7 @@ namespace Entidades
 
         public void EnviarMensaje(int idSMS, string legajo)  //Se debe indicar el ID al mensaje que DEBE ESTAR guardado en el equipo.
         {
-            if(!base.SSR_SetUserSMS(this.numero, legajo, idSMS))
+            if(!base.SSR_SetUserSMS(Numero, legajo, idSMS))
             {
                 throw new AppException("Error al intentar enviar el mensaje");
             }
@@ -419,7 +367,7 @@ namespace Entidades
             int codError = 0;
             foreach(string leg in legajos)
             {
-                if (!base.SSR_DeleteEnrollData(this.numero, leg, 12)) // El parámetro 12 elimina el usuario por completo del equipo. 
+                if (!base.SSR_DeleteEnrollData(Numero, leg, 12)) // El parámetro 12 elimina el usuario por completo del equipo. 
                 {
                     base.GetLastError(ref codError);
                     throw new AppException("Error durante el borrado de usuarios, CodError= " + codError.ToString());
@@ -431,7 +379,7 @@ namespace Entidades
         
         public void Habilitar(string legajo)
         {
-            if(!base.SSR_EnableUser(this.numero, legajo, true))
+            if(!base.SSR_EnableUser(Numero, legajo, true))
             {
                 throw new AppException("Error al intentar habilitar el usuario");
             }
@@ -439,14 +387,14 @@ namespace Entidades
         }
         public void Deshabilitar()
         {
-            base.EnableDevice(this.numero, false);
+            base.EnableDevice(Numero, false);
         }
 
         public void IniciarBatch()
         {
             int codError = 0;
-            base.EnableDevice(this.numero, false);
-            if(!base.BeginBatchUpdate(this.numero, 1))
+            base.EnableDevice(Numero, false);
+            if(!base.BeginBatchUpdate(Numero, 1))
             {
                 base.GetLastError(ref codError);
                 throw new AppException("Error al intentar iniciar subida en modo batch, CodError= " + codError.ToString());
@@ -456,25 +404,25 @@ namespace Entidades
         public void EjecutarBatch()
         {
             int codError = 0;
-            if (!base.BatchUpdate(this.numero))
+            if (!base.BatchUpdate(Numero))
             {
                 base.GetLastError(ref codError);
                 throw new AppException("Error al intentar ejecutar la subida en modo batch, CodError= " + codError.ToString());
             }
-            base.EnableDevice(this.numero, true);
+            base.EnableDevice(Numero, true);
         }
         
         private void ActualizarIp()
         {
-            if (this.dns != string.Empty)
+            if (DNS != string.Empty)
             {
                 IPHostEntry ipHost;
                 try
                 {
-                    ipHost = Dns.GetHostEntry(dns);
+                    ipHost = Dns.GetHostEntry(DNS);
                     if (ipHost.AddressList.Length > 0)
                     {
-                        this.ip = ipHost.AddressList[0].ToString();
+                        IP = ipHost.AddressList[0].ToString();
                     }
                     else
                     {

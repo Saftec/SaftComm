@@ -24,7 +24,7 @@ namespace Database
                     usr.Nombre = (dr["Nombre"].ToString());
                     usr.Apellido = (dr["Apellido"].ToString());
                     usr.PassDecrypt = (dr["Password"].ToString());
-                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
+                    usr.ID = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                 }else
                 {
@@ -78,7 +78,7 @@ namespace Database
                     usr.Nombre = (dr["Nombre"].ToString());
                     usr.Apellido = (dr["Apellido"].ToString());
                     usr.PassDecrypt = (dr["Password"].ToString());
-                    usr.Id = Convert.ToInt32(dr["IdUsuario"]);
+                    usr.ID = Convert.ToInt32(dr["IdUsuario"]);
                     usr.Nivel = Convert.ToInt32(dr["IdPermisos"]);
                     usr.Permisos = (dr["Permisos"].ToString());
 
@@ -167,7 +167,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + ", Nombre='" + usr.Nombre + "', Apellido='" + usr.Apellido + "' WHERE IdUsuario=" + usr.Id.ToString();
+                query = "UPDATE Usuarios SET Usuario='" + usr.Usr + "', Password='" + usr.PassEncrypt + "', IdPermisos=" + usr.Nivel.ToString() + ", Nombre='" + usr.Nombre + "', Apellido='" + usr.Apellido + "' WHERE IdUsuario=" + usr.ID.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -205,7 +205,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "DELETE FROM Usuarios WHERE IdUsuario=" + usr.Id;
+                query = "DELETE FROM Usuarios WHERE IdUsuario=" + usr.ID;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -243,7 +243,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Usuarios SET UltimoInicio=GETDATE() WHERE IdUsuario=" + usr.Id.ToString();
+                query = "UPDATE Usuarios SET UltimoInicio=GETDATE() WHERE IdUsuario=" + usr.ID.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }

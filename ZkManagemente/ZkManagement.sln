@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZkManagement", "ZkManagemente\ZkManagement.csproj", "{CEBF1BF5-65C7-4914-9730-E40F5B1B1935}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafCom", "ZkManagemente\SafCom.csproj", "{CEBF1BF5-65C7-4914-9730-E40F5B1B1935}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDataBase", "CreateDataBase\CreateDataBase.csproj", "{4B6F2670-68E8-493F-A1A0-76212CB2B3A6}"
 EndProject

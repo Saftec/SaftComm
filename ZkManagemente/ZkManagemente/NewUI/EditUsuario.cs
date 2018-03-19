@@ -29,7 +29,7 @@ namespace ZkManagement.NewUI
             lu = new LogicUsuario();
             try
             {
-                if (usrAct.Id == 0)
+                if (usrAct.ID == 0)
                 {
                     lu.AgregarUsuario(usrAct);
                 }else
@@ -50,7 +50,7 @@ namespace ZkManagement.NewUI
         public void MapearAForm(Usuario u)
         {
             usrAct = u;
-            if (usrAct.Id == 0)
+            if (usrAct.ID == 0)
             {
                 lblPassword.Visible = true;
                 txtPassword.Visible = true;
@@ -69,7 +69,7 @@ namespace ZkManagement.NewUI
             usrAct.Nivel = cbPermisos.SelectedIndex + 1;
             usrAct.Nombre = txtNombre.Text;
             usrAct.Usr = txtUsuario.Text;
-            if (usrAct.Id == 0)
+            if (usrAct.ID == 0)
             {
                 usrAct.PassEncrypt = txtPassword.Text;
             }
@@ -91,7 +91,7 @@ namespace ZkManagement.NewUI
                 return false;
             }
 
-            if (usrAct.Id == 0)
+            if (usrAct.ID == 0)
             {
                 if (txtPassword.Text != txtPassword2.Text)
                 {

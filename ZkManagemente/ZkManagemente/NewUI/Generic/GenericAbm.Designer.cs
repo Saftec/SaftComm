@@ -35,7 +35,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
-            this.btnGuardar.Location = new System.Drawing.Point(533, 481);
+            this.btnGuardar.Location = new System.Drawing.Point(533, 414);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(122, 32);
             this.btnGuardar.Style = MetroFramework.MetroColorStyle.Blue;
@@ -49,7 +49,7 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.Location = new System.Drawing.Point(60, 481);
+            this.btnCancel.Location = new System.Drawing.Point(60, 414);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(122, 32);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Blue;
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 550);
+            this.ClientSize = new System.Drawing.Size(741, 481);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGuardar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

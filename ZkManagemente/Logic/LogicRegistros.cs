@@ -19,7 +19,7 @@ namespace Logic
                 writer.EscribirRegistros(fichadas);
                 foreach (Fichada f in fichadas)
                 {
-                    // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFTCOMM //
+                    // VALIDAR SI LO TENGO QUE BUSCAR EN SAFTIME O EN SAFCOM //
                     if (VerificarSaftime())
                     {
                         DataEmpleadoSaftime dataEmpleadoSaftime = new DataEmpleadoSaftime();

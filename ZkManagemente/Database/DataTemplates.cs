@@ -14,7 +14,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + h.Empleado.Legajo.ToString() + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
+                query = "INSERT INTO Huellas (IdEmpleado, Template, FingerIndex, Lengh, Flag) VALUES(" + h.Empleado.Id + ", '" + h.Template + "', '" + h.FingerIndex.ToString() + "', '" + h.Lengh.ToString() + "', '" + h.Flag.ToString() + "')";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -114,43 +114,6 @@ namespace Database
             catch (Exception ex)
             {
                 throw new AppException("Error desconocido al actualizar la tabla huellas", "Fatal", ex);
-            }
-            finally
-            {
-                try
-                {
-                    if (cmd != null)
-                    {
-                        cmd.Dispose();
-                    }
-                    FactoryConnection.Instancia.ReleaseConn();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-        public void EliminarHuella(Huella h)
-        {
-            IDbCommand cmd = null;
-            try
-            {
-                query = "DELETE FROM Huellas WHERE IdEmpleado=" + h.Empleado.Id.ToString();
-                cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
-                cmd.ExecuteNonQuery();
-            }
-            catch (AppException appex)
-            {
-                throw appex;
-            }
-            catch (DbException dbex)
-            {
-                throw new AppException("Error al intentar eliminar las huellas", "Error", dbex);
-            }
-            catch(Exception ex)
-            {
-                throw new AppException("Error no controlado al intentar eliminar las huellas", "Fatal", ex);
             }
             finally
             {

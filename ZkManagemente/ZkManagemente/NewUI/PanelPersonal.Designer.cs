@@ -107,7 +107,7 @@
             this.gridPersonal.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridPersonal.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridPersonal.Size = new System.Drawing.Size(926, 479);
+            this.gridPersonal.Size = new System.Drawing.Size(783, 427);
             this.gridPersonal.TabIndex = 3;
             // 
             // Id
@@ -190,8 +190,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.24431F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.24431F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.24431F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.005198F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.01754F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.939975F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.18135F));
             this.tableLayoutPanel2.Controls.Add(this.linkNuevo, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.linkEdit, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.linkDelete, 2, 0);
@@ -202,14 +202,14 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(926, 30);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(783, 30);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // linkNuevo
             // 
             this.linkNuevo.Location = new System.Drawing.Point(3, 3);
             this.linkNuevo.Name = "linkNuevo";
-            this.linkNuevo.Size = new System.Drawing.Size(127, 24);
+            this.linkNuevo.Size = new System.Drawing.Size(121, 24);
             this.linkNuevo.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkNuevo.TabIndex = 0;
             this.linkNuevo.Text = "Nuevo";
@@ -219,9 +219,9 @@
             // 
             // linkEdit
             // 
-            this.linkEdit.Location = new System.Drawing.Point(153, 3);
+            this.linkEdit.Location = new System.Drawing.Point(130, 3);
             this.linkEdit.Name = "linkEdit";
-            this.linkEdit.Size = new System.Drawing.Size(127, 24);
+            this.linkEdit.Size = new System.Drawing.Size(121, 24);
             this.linkEdit.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkEdit.TabIndex = 1;
             this.linkEdit.Text = "Editar";
@@ -231,9 +231,9 @@
             // 
             // linkDelete
             // 
-            this.linkDelete.Location = new System.Drawing.Point(303, 3);
+            this.linkDelete.Location = new System.Drawing.Point(257, 3);
             this.linkDelete.Name = "linkDelete";
-            this.linkDelete.Size = new System.Drawing.Size(127, 23);
+            this.linkDelete.Size = new System.Drawing.Size(121, 23);
             this.linkDelete.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkDelete.TabIndex = 2;
             this.linkDelete.Text = "Eliminar";
@@ -247,7 +247,7 @@
             // 
             // 
             this.txtBuscar.CustomButton.Image = null;
-            this.txtBuscar.CustomButton.Location = new System.Drawing.Point(209, 1);
+            this.txtBuscar.CustomButton.Location = new System.Drawing.Point(178, 1);
             this.txtBuscar.CustomButton.Name = "";
             this.txtBuscar.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtBuscar.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -256,7 +256,7 @@
             this.txtBuscar.CustomButton.UseSelectable = true;
             this.txtBuscar.CustomButton.Visible = false;
             this.txtBuscar.Lines = new string[0];
-            this.txtBuscar.Location = new System.Drawing.Point(677, 3);
+            this.txtBuscar.Location = new System.Drawing.Point(580, 3);
             this.txtBuscar.MaxLength = 32767;
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.PasswordChar = '\0';
@@ -265,7 +265,7 @@
             this.txtBuscar.SelectionLength = 0;
             this.txtBuscar.SelectionStart = 0;
             this.txtBuscar.ShortcutsEnabled = true;
-            this.txtBuscar.Size = new System.Drawing.Size(231, 23);
+            this.txtBuscar.Size = new System.Drawing.Size(200, 23);
             this.txtBuscar.TabIndex = 3;
             this.txtBuscar.UseSelectable = true;
             this.txtBuscar.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -274,9 +274,9 @@
             // 
             // linkSinc
             // 
-            this.linkSinc.Location = new System.Drawing.Point(453, 3);
+            this.linkSinc.Location = new System.Drawing.Point(384, 3);
             this.linkSinc.Name = "linkSinc";
-            this.linkSinc.Size = new System.Drawing.Size(127, 23);
+            this.linkSinc.Size = new System.Drawing.Size(121, 23);
             this.linkSinc.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkSinc.TabIndex = 5;
             this.linkSinc.Text = "Sinc. Dispositivo";
@@ -290,10 +290,10 @@
             this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.metroLabel1.ForeColor = System.Drawing.SystemColors.Control;
-            this.metroLabel1.Location = new System.Drawing.Point(607, 5);
+            this.metroLabel1.Location = new System.Drawing.Point(515, 5);
             this.metroLabel1.Margin = new System.Windows.Forms.Padding(7, 5, 3, 0);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(58, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 4;
             this.metroLabel1.Text = "Buscar:";

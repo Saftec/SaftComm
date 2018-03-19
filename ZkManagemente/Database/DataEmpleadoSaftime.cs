@@ -19,7 +19,7 @@ namespace Database
 
             try
             {
-                query = "SELECT legajo, EmpId, nombres, apellido, tarjeta, nroDoc, Baja FROM Vi_SaftComm e ORDER BY nombres ASC";
+                query = "SELECT legajo, EmpId, nombres, apellido, tarjeta, nroDoc, fecBaja FROM empleados e ORDER BY nombres ASC";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -34,7 +34,7 @@ namespace Database
                     e.Dni = dr["nroDoc"].ToString();
                     e.Pin = string.Empty;
                     e.Privilegio = 0;
-                    if(DateTime.TryParse(dr["Baja"].ToString(),out parseValue))
+                    if(DateTime.TryParse(dr["fecBaja"].ToString(),out parseValue))
                     {
                         if(parseValue!=null && parseValue!= DateTime.MinValue)
                         {
@@ -212,7 +212,7 @@ namespace Database
             SqlCommand cmd = null;
             try
             {
-                query = "SELECT e.EmpId, e.nroDoc FROM Empleados e WHERE e.legajo='" + emp.Legajo.PadLeft(5,'0') + "'";
+                query = "SELECT e.EmpId, e.nroDoc FROM Empleados e WHERE LTRIM(e.legajo)='" + emp.Legajo.PadLeft(5,'0') + "'";
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 dr = cmd.ExecuteReader();
                 if (dr.Read())

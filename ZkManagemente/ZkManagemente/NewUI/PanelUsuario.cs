@@ -58,7 +58,7 @@ namespace ZkManagement.NewUI.Generic
 
             if (int.TryParse(gridUsuarios.CurrentRow.Cells["IdUsuario"].Value.ToString(), out valor))
             {
-                u.Id = valor;
+                u.ID = valor;
             }
             else
             {
@@ -88,7 +88,7 @@ namespace ZkManagement.NewUI.Generic
         {
             Usuario u = new Usuario();
             EditUsuario eu = new EditUsuario();
-            u.Id = 0;
+            u.ID = 0;
 
             try
             {
@@ -137,7 +137,7 @@ namespace ZkManagement.NewUI.Generic
                 row["Contraseña"] = u.PassEncrypt;
                 row["Permisos"] = u.Permisos;
                 row["IdPermisos"] = u.Nivel;
-                row["IdUsuario"] = u.Id;
+                row["IdUsuario"] = u.ID;
                 row["UltAcceso"] = u.UltimoAcceso.ToString();
                 dt.Rows.Add(row);
             }

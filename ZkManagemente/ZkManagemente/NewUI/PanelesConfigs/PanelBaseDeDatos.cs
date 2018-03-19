@@ -43,7 +43,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
         }
         private void LoadSQL()
         {
-            lcsql = new LogicConfigSQL("SaftComm");
+            lcsql = new LogicConfigSQL("SafCom");
             try
             {
                 txtBase.Text = lcsql.GetCatalogo();
@@ -82,9 +82,9 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 if (rbSQL.Checked)
                 {
                     lcbd.SetType("SQL");
-                    if (!lcsql.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuarioSQL.Text, txtPasswordSQL.Text, "SaftComm"))
+                    if (!lcsql.SetConnectionString(txtServer.Text, txtBase.Text, txtUsuarioSQL.Text, txtPasswordSQL.Text, "SafCom"))
                     {
-                        base.InformarError("No se pudo establecer conexión con la base de datos de SaftComm", "Guardar Configuracion.");
+                        base.InformarError("No se pudo establecer conexión con la base de datos de SafCom", "Guardar Configuracion.");
                     }
                     else
                     {
@@ -97,7 +97,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
                     lcbd.SetType("Access");
                     if (!lcbd.SetConnection(txtPath.Text))
                     {
-                        base.InformarError("No se pudo establecer conexión con la base de datos de SaftComm", "Guardar Configuración.");
+                        base.InformarError("No se pudo establecer conexión con la base de datos de SafCom", "Guardar Configuración.");
                     }
                     else
                     {

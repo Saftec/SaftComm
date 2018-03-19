@@ -552,7 +552,7 @@ namespace ZkManagement.NewUI
             foreach (Reloj r in relojes)
             {
                 DataRow row = dt.NewRow();
-                row["IP"] = r.Ip;
+                row["IP"] = r.IP;
                 row["Nombre"] = r.Nombre;
                 row["IdReloj"] = r.Id.ToString();
                 row["Puerto"] = r.Puerto.ToString();

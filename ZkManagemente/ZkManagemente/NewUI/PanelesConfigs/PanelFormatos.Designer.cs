@@ -94,7 +94,7 @@
             this.groupBox1.Controls.Add(this.txtPath);
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox1.Location = new System.Drawing.Point(9, 86);
+            this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(678, 107);
             this.groupBox1.TabIndex = 3;
@@ -107,7 +107,7 @@
             // 
             // 
             this.txtNombreFormato.CustomButton.Image = null;
-            this.txtNombreFormato.CustomButton.Location = new System.Drawing.Point(187, 1);
+            this.txtNombreFormato.CustomButton.Location = new System.Drawing.Point(138, 1);
             this.txtNombreFormato.CustomButton.Name = "";
             this.txtNombreFormato.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtNombreFormato.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -125,7 +125,7 @@
             this.txtNombreFormato.SelectionLength = 0;
             this.txtNombreFormato.SelectionStart = 0;
             this.txtNombreFormato.ShortcutsEnabled = true;
-            this.txtNombreFormato.Size = new System.Drawing.Size(209, 23);
+            this.txtNombreFormato.Size = new System.Drawing.Size(160, 23);
             this.txtNombreFormato.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtNombreFormato.TabIndex = 5;
             this.txtNombreFormato.UseSelectable = true;
@@ -212,7 +212,7 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(6, 26);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(114, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(113, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "Path de descarga:";
@@ -228,9 +228,9 @@
             this.groupBox2.Controls.Add(this.cbFormatoFecha);
             this.groupBox2.Controls.Add(this.metroLabel3);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox2.Location = new System.Drawing.Point(9, 199);
+            this.groupBox2.Location = new System.Drawing.Point(12, 155);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(312, 151);
+            this.groupBox2.Size = new System.Drawing.Size(315, 132);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fecha";
@@ -250,7 +250,7 @@
             this.txtPosicionFecha.CustomButton.UseSelectable = true;
             this.txtPosicionFecha.CustomButton.Visible = false;
             this.txtPosicionFecha.Lines = new string[0];
-            this.txtPosicionFecha.Location = new System.Drawing.Point(69, 113);
+            this.txtPosicionFecha.Location = new System.Drawing.Point(132, 97);
             this.txtPosicionFecha.MaxLength = 1;
             this.txtPosicionFecha.Name = "txtPosicionFecha";
             this.txtPosicionFecha.PasswordChar = '\0';
@@ -270,9 +270,9 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(6, 113);
+            this.metroLabel5.Location = new System.Drawing.Point(6, 97);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(56, 19);
             this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel5.TabIndex = 4;
             this.metroLabel5.Text = "Posicion";
@@ -287,7 +287,7 @@
             "/",
             "-",
             "."});
-            this.cbSeparadorFecha.Location = new System.Drawing.Point(86, 62);
+            this.cbSeparadorFecha.Location = new System.Drawing.Point(132, 58);
             this.cbSeparadorFecha.Name = "cbSeparadorFecha";
             this.cbSeparadorFecha.Size = new System.Drawing.Size(121, 29);
             this.cbSeparadorFecha.Style = MetroFramework.MetroColorStyle.Blue;
@@ -298,9 +298,9 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(6, 68);
+            this.metroLabel4.Location = new System.Drawing.Point(6, 64);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(75, 19);
             this.metroLabel4.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel4.TabIndex = 2;
             this.metroLabel4.Text = "Separador:";
@@ -315,7 +315,7 @@
             "ddmmyyyy",
             "yymmdd",
             "ddmmyy"});
-            this.cbFormatoFecha.Location = new System.Drawing.Point(132, 19);
+            this.cbFormatoFecha.Location = new System.Drawing.Point(132, 15);
             this.cbFormatoFecha.Name = "cbFormatoFecha";
             this.cbFormatoFecha.Size = new System.Drawing.Size(121, 29);
             this.cbFormatoFecha.Style = MetroFramework.MetroColorStyle.Blue;
@@ -326,7 +326,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(6, 25);
+            this.metroLabel3.Location = new System.Drawing.Point(6, 21);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(120, 19);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Blue;
@@ -344,7 +344,7 @@
             this.groupBox3.Controls.Add(this.cbFormatoHora);
             this.groupBox3.Controls.Add(this.metroLabel8);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox3.Location = new System.Drawing.Point(345, 199);
+            this.groupBox3.Location = new System.Drawing.Point(345, 155);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(312, 151);
             this.groupBox3.TabIndex = 5;
@@ -366,7 +366,7 @@
             this.txtPosicionHora.CustomButton.UseSelectable = true;
             this.txtPosicionHora.CustomButton.Visible = false;
             this.txtPosicionHora.Lines = new string[0];
-            this.txtPosicionHora.Location = new System.Drawing.Point(75, 113);
+            this.txtPosicionHora.Location = new System.Drawing.Point(132, 113);
             this.txtPosicionHora.MaxLength = 1;
             this.txtPosicionHora.Name = "txtPosicionHora";
             this.txtPosicionHora.PasswordChar = '\0';
@@ -388,7 +388,7 @@
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.Location = new System.Drawing.Point(6, 113);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(56, 19);
             this.metroLabel6.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel6.TabIndex = 4;
             this.metroLabel6.Text = "Posicion";
@@ -403,7 +403,7 @@
             ":",
             ".",
             "-"});
-            this.cbSeparadorHora.Location = new System.Drawing.Point(86, 62);
+            this.cbSeparadorHora.Location = new System.Drawing.Point(132, 62);
             this.cbSeparadorHora.Name = "cbSeparadorHora";
             this.cbSeparadorHora.Size = new System.Drawing.Size(121, 29);
             this.cbSeparadorHora.Style = MetroFramework.MetroColorStyle.Blue;
@@ -416,7 +416,7 @@
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.Location = new System.Drawing.Point(6, 68);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(75, 19);
             this.metroLabel7.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel7.TabIndex = 2;
             this.metroLabel7.Text = "Separador:";
@@ -456,9 +456,9 @@
             this.groupBox4.Controls.Add(this.metroLabel9);
             this.groupBox4.Controls.Add(this.metroLabel10);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox4.Location = new System.Drawing.Point(9, 356);
+            this.groupBox4.Location = new System.Drawing.Point(15, 288);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(312, 67);
+            this.groupBox4.Size = new System.Drawing.Size(312, 48);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Legajo";
@@ -478,7 +478,7 @@
             this.txtPosicionLegajo.CustomButton.UseSelectable = true;
             this.txtPosicionLegajo.CustomButton.Visible = false;
             this.txtPosicionLegajo.Lines = new string[0];
-            this.txtPosicionLegajo.Location = new System.Drawing.Point(201, 19);
+            this.txtPosicionLegajo.Location = new System.Drawing.Point(201, 15);
             this.txtPosicionLegajo.MaxLength = 1;
             this.txtPosicionLegajo.Name = "txtPosicionLegajo";
             this.txtPosicionLegajo.PasswordChar = '\0';
@@ -510,7 +510,7 @@
             this.txtLongitudLegajo.CustomButton.UseSelectable = true;
             this.txtLongitudLegajo.CustomButton.Visible = false;
             this.txtLongitudLegajo.Lines = new string[0];
-            this.txtLongitudLegajo.Location = new System.Drawing.Point(72, 19);
+            this.txtLongitudLegajo.Location = new System.Drawing.Point(72, 15);
             this.txtLongitudLegajo.MaxLength = 2;
             this.txtLongitudLegajo.Name = "txtLongitudLegajo";
             this.txtLongitudLegajo.PasswordChar = '\0';
@@ -530,9 +530,9 @@
             // metroLabel9
             // 
             this.metroLabel9.AutoSize = true;
-            this.metroLabel9.Location = new System.Drawing.Point(138, 23);
+            this.metroLabel9.Location = new System.Drawing.Point(138, 19);
             this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel9.Size = new System.Drawing.Size(56, 19);
             this.metroLabel9.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel9.TabIndex = 4;
             this.metroLabel9.Text = "Posicion";
@@ -541,7 +541,7 @@
             // metroLabel10
             // 
             this.metroLabel10.AutoSize = true;
-            this.metroLabel10.Location = new System.Drawing.Point(6, 23);
+            this.metroLabel10.Location = new System.Drawing.Point(6, 19);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(60, 19);
             this.metroLabel10.Style = MetroFramework.MetroColorStyle.Blue;
@@ -559,7 +559,7 @@
             this.groupBox5.Controls.Add(this.metroLabel11);
             this.groupBox5.Controls.Add(this.metroLabel12);
             this.groupBox5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox5.Location = new System.Drawing.Point(345, 356);
+            this.groupBox5.Location = new System.Drawing.Point(345, 316);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(312, 113);
             this.groupBox5.TabIndex = 7;
@@ -678,7 +678,7 @@
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.Location = new System.Drawing.Point(141, 31);
             this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel11.Size = new System.Drawing.Size(56, 19);
             this.metroLabel11.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel11.TabIndex = 4;
             this.metroLabel11.Text = "Posicion";
@@ -705,12 +705,12 @@
             this.groupBox6.Controls.Add(this.metroLabel14);
             this.groupBox6.Controls.Add(this.metroLabel15);
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox6.Location = new System.Drawing.Point(9, 429);
+            this.groupBox6.Location = new System.Drawing.Point(15, 342);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(312, 83);
+            this.groupBox6.Size = new System.Drawing.Size(312, 87);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Legajo";
+            this.groupBox6.Text = "Movimientos";
             // 
             // txtPosicionRegistro
             // 
@@ -718,7 +718,7 @@
             // 
             // 
             this.txtPosicionRegistro.CustomButton.Image = null;
-            this.txtPosicionRegistro.CustomButton.Location = new System.Drawing.Point(29, 1);
+            this.txtPosicionRegistro.CustomButton.Location = new System.Drawing.Point(28, 1);
             this.txtPosicionRegistro.CustomButton.Name = "";
             this.txtPosicionRegistro.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtPosicionRegistro.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -727,7 +727,7 @@
             this.txtPosicionRegistro.CustomButton.UseSelectable = true;
             this.txtPosicionRegistro.CustomButton.Visible = false;
             this.txtPosicionRegistro.Lines = new string[0];
-            this.txtPosicionRegistro.Location = new System.Drawing.Point(72, 51);
+            this.txtPosicionRegistro.Location = new System.Drawing.Point(98, 51);
             this.txtPosicionRegistro.MaxLength = 1;
             this.txtPosicionRegistro.Name = "txtPosicionRegistro";
             this.txtPosicionRegistro.PasswordChar = '\0';
@@ -736,7 +736,7 @@
             this.txtPosicionRegistro.SelectionLength = 0;
             this.txtPosicionRegistro.SelectionStart = 0;
             this.txtPosicionRegistro.ShortcutsEnabled = true;
-            this.txtPosicionRegistro.Size = new System.Drawing.Size(51, 23);
+            this.txtPosicionRegistro.Size = new System.Drawing.Size(50, 23);
             this.txtPosicionRegistro.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPosicionRegistro.TabIndex = 9;
             this.txtPosicionRegistro.UseSelectable = true;
@@ -747,12 +747,12 @@
             // metroLabel16
             // 
             this.metroLabel16.AutoSize = true;
-            this.metroLabel16.Location = new System.Drawing.Point(158, 25);
+            this.metroLabel16.Location = new System.Drawing.Point(154, 26);
             this.metroLabel16.Name = "metroLabel16";
             this.metroLabel16.Size = new System.Drawing.Size(79, 19);
             this.metroLabel16.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel16.TabIndex = 7;
-            this.metroLabel16.Text = "Cod. Salida:";
+            this.metroLabel16.Text = "Cód. Salida:";
             this.metroLabel16.UseStyleColors = true;
             // 
             // txtCodSalida
@@ -761,7 +761,7 @@
             // 
             // 
             this.txtCodSalida.CustomButton.Image = null;
-            this.txtCodSalida.CustomButton.Location = new System.Drawing.Point(26, 1);
+            this.txtCodSalida.CustomButton.Location = new System.Drawing.Point(28, 1);
             this.txtCodSalida.CustomButton.Name = "";
             this.txtCodSalida.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtCodSalida.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -770,7 +770,7 @@
             this.txtCodSalida.CustomButton.UseSelectable = true;
             this.txtCodSalida.CustomButton.Visible = false;
             this.txtCodSalida.Lines = new string[0];
-            this.txtCodSalida.Location = new System.Drawing.Point(243, 23);
+            this.txtCodSalida.Location = new System.Drawing.Point(243, 22);
             this.txtCodSalida.MaxLength = 2;
             this.txtCodSalida.Name = "txtCodSalida";
             this.txtCodSalida.PasswordChar = '\0';
@@ -779,7 +779,7 @@
             this.txtCodSalida.SelectionLength = 0;
             this.txtCodSalida.SelectionStart = 0;
             this.txtCodSalida.ShortcutsEnabled = true;
-            this.txtCodSalida.Size = new System.Drawing.Size(48, 23);
+            this.txtCodSalida.Size = new System.Drawing.Size(50, 23);
             this.txtCodSalida.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtCodSalida.TabIndex = 6;
             this.txtCodSalida.UseSelectable = true;
@@ -793,7 +793,7 @@
             // 
             // 
             this.txtCodEntrada.CustomButton.Image = null;
-            this.txtCodEntrada.CustomButton.Location = new System.Drawing.Point(26, 1);
+            this.txtCodEntrada.CustomButton.Location = new System.Drawing.Point(28, 1);
             this.txtCodEntrada.CustomButton.Name = "";
             this.txtCodEntrada.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtCodEntrada.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -811,7 +811,7 @@
             this.txtCodEntrada.SelectionLength = 0;
             this.txtCodEntrada.SelectionStart = 0;
             this.txtCodEntrada.ShortcutsEnabled = true;
-            this.txtCodEntrada.Size = new System.Drawing.Size(48, 23);
+            this.txtCodEntrada.Size = new System.Drawing.Size(50, 23);
             this.txtCodEntrada.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtCodEntrada.TabIndex = 5;
             this.txtCodEntrada.UseSelectable = true;
@@ -824,28 +824,28 @@
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.Location = new System.Drawing.Point(6, 51);
             this.metroLabel14.Name = "metroLabel14";
-            this.metroLabel14.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel14.Size = new System.Drawing.Size(59, 19);
             this.metroLabel14.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel14.TabIndex = 4;
-            this.metroLabel14.Text = "Posicion";
+            this.metroLabel14.Text = "Posición:";
             this.metroLabel14.UseStyleColors = true;
             // 
             // metroLabel15
             // 
             this.metroLabel15.AutoSize = true;
-            this.metroLabel15.Location = new System.Drawing.Point(6, 23);
+            this.metroLabel15.Location = new System.Drawing.Point(3, 26);
             this.metroLabel15.Name = "metroLabel15";
             this.metroLabel15.Size = new System.Drawing.Size(89, 19);
             this.metroLabel15.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel15.TabIndex = 2;
-            this.metroLabel15.Text = "Cod. Entrada:";
+            this.metroLabel15.Text = "Cód. Entrada:";
             this.metroLabel15.UseStyleColors = true;
             // 
             // cbFormatos
             // 
             this.cbFormatos.FormattingEnabled = true;
             this.cbFormatos.ItemHeight = 23;
-            this.cbFormatos.Location = new System.Drawing.Point(252, 31);
+            this.cbFormatos.Location = new System.Drawing.Point(205, 7);
             this.cbFormatos.Name = "cbFormatos";
             this.cbFormatos.Size = new System.Drawing.Size(141, 29);
             this.cbFormatos.Style = MetroFramework.MetroColorStyle.Blue;
@@ -857,7 +857,7 @@
             // metroLabel17
             // 
             this.metroLabel17.AutoSize = true;
-            this.metroLabel17.Location = new System.Drawing.Point(178, 31);
+            this.metroLabel17.Location = new System.Drawing.Point(134, 11);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(68, 19);
             this.metroLabel17.Style = MetroFramework.MetroColorStyle.Blue;
@@ -867,7 +867,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(417, 35);
+            this.metroButton2.Location = new System.Drawing.Point(417, 13);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(112, 23);
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -879,7 +879,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(549, 35);
+            this.btnEliminar.Location = new System.Drawing.Point(545, 13);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 23);
             this.btnEliminar.Style = MetroFramework.MetroColorStyle.Blue;
@@ -961,7 +961,6 @@
         private MetroFramework.Controls.MetroTextBox txtLongitudReloj;
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private MetroFramework.Controls.MetroLabel metroLabel12;
-        private System.Windows.Forms.GroupBox groupBox6;
         private MetroFramework.Controls.MetroTextBox txtCodEntrada;
         private MetroFramework.Controls.MetroLabel metroLabel14;
         private MetroFramework.Controls.MetroLabel metroLabel15;
@@ -978,5 +977,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel18;
         private MetroFramework.Controls.MetroTextBox txtNombreFormato;
         private MetroFramework.Controls.MetroButton btnEliminar;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

@@ -84,12 +84,6 @@ namespace Logic
                     dataEmpleado = new DataEmpleado();
                     dataEmpleado.Eliminar(empleados);
                 }
-                foreach(Empleado emp in empleados)
-                {
-                    Huella h = new Huella();
-                    h.Empleado = emp;
-                    dataTemplates.EliminarHuella(h);
-                }
             }
             catch (AppException appex)
             {

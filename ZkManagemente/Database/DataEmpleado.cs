@@ -126,12 +126,20 @@ namespace Database
         public void Actualizar(Empleado emp)
         {
             IDbCommand cmd = null;
+            IDbDataParameter param;
             try
             {
-                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=" + emp.Pin + ", Tarjeta='" + emp.Tarjeta +
-                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja='" + emp.Baja + "', Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
-
+                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=@pin, Tarjeta='" + emp.Tarjeta +
+                    "', Privilegio='" + emp.Privilegio.ToString() + "', Baja=@baja, Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
+                param = cmd.CreateParameter();                             
+                param.ParameterName = "@baja";
+                param.Value = emp.Baja == null ? (object)DBNull.Value : emp.Baja;
+                cmd.Parameters.Add(param);
+                param = cmd.CreateParameter();
+                param.ParameterName = "@pin";
+                param.Value = emp.Pin == null ? (object)DBNull.Value : emp.Pin;
+                cmd.Parameters.Add(param);
                 cmd.ExecuteNonQuery();
             }
             catch (AppException appex)

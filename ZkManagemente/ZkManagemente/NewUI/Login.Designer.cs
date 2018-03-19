@@ -45,7 +45,7 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(57, 56);
+            this.metroLabel1.Location = new System.Drawing.Point(23, 22);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(59, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -59,7 +59,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(34, 128);
+            this.metroLabel2.Location = new System.Drawing.Point(23, 56);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(82, 19);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -74,7 +74,7 @@
             // 
             // 
             this.txtPassword.CustomButton.Image = null;
-            this.txtPassword.CustomButton.Location = new System.Drawing.Point(214, 1);
+            this.txtPassword.CustomButton.Location = new System.Drawing.Point(117, 1);
             this.txtPassword.CustomButton.Name = "";
             this.txtPassword.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtPassword.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -83,7 +83,7 @@
             this.txtPassword.CustomButton.UseSelectable = true;
             this.txtPassword.CustomButton.Visible = false;
             this.txtPassword.Lines = new string[0];
-            this.txtPassword.Location = new System.Drawing.Point(130, 124);
+            this.txtPassword.Location = new System.Drawing.Point(130, 56);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -92,7 +92,7 @@
             this.txtPassword.SelectionLength = 0;
             this.txtPassword.SelectionStart = 0;
             this.txtPassword.ShortcutsEnabled = true;
-            this.txtPassword.Size = new System.Drawing.Size(236, 23);
+            this.txtPassword.Size = new System.Drawing.Size(139, 23);
             this.txtPassword.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSelectable = true;
@@ -107,7 +107,7 @@
             // 
             // 
             this.txtUsuario.CustomButton.Image = null;
-            this.txtUsuario.CustomButton.Location = new System.Drawing.Point(214, 1);
+            this.txtUsuario.CustomButton.Location = new System.Drawing.Point(117, 1);
             this.txtUsuario.CustomButton.Name = "";
             this.txtUsuario.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtUsuario.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -116,7 +116,7 @@
             this.txtUsuario.CustomButton.UseSelectable = true;
             this.txtUsuario.CustomButton.Visible = false;
             this.txtUsuario.Lines = new string[0];
-            this.txtUsuario.Location = new System.Drawing.Point(130, 52);
+            this.txtUsuario.Location = new System.Drawing.Point(130, 18);
             this.txtUsuario.MaxLength = 32767;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.PasswordChar = '\0';
@@ -125,7 +125,7 @@
             this.txtUsuario.SelectionLength = 0;
             this.txtUsuario.SelectionStart = 0;
             this.txtUsuario.ShortcutsEnabled = true;
-            this.txtUsuario.Size = new System.Drawing.Size(236, 23);
+            this.txtUsuario.Size = new System.Drawing.Size(139, 23);
             this.txtUsuario.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.UseSelectable = true;
@@ -135,7 +135,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(45, 189);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(167, 117);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(102, 30);
             this.btnCancel.Style = MetroFramework.MetroColorStyle.Blue;
@@ -147,7 +148,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(245, 189);
+            this.btnIngresar.Location = new System.Drawing.Point(23, 117);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(102, 30);
             this.btnIngresar.Style = MetroFramework.MetroColorStyle.Blue;
@@ -160,17 +161,17 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ZkManagement.Properties.Resources.CandadoLogin;
-            this.pictureBox1.Location = new System.Drawing.Point(391, 42);
+            this.pictureBox1.Location = new System.Drawing.Point(290, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(125, 139);
+            this.pictureBox1.Size = new System.Drawing.Size(122, 129);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // linkMonitor
             // 
-            this.linkMonitor.Location = new System.Drawing.Point(357, 234);
+            this.linkMonitor.Location = new System.Drawing.Point(130, 176);
             this.linkMonitor.Name = "linkMonitor";
-            this.linkMonitor.Size = new System.Drawing.Size(182, 23);
+            this.linkMonitor.Size = new System.Drawing.Size(149, 23);
             this.linkMonitor.Style = MetroFramework.MetroColorStyle.Blue;
             this.linkMonitor.TabIndex = 6;
             this.linkMonitor.Text = "Iniciar en Modo Monitor";
@@ -180,10 +181,12 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.btnIngresar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(547, 265);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(424, 202);
             this.Controls.Add(this.linkMonitor);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnIngresar);

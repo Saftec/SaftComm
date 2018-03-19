@@ -12,11 +12,7 @@ namespace Logic
         private DataEmpleadoSaftime dataEmpleadoSaftime;
         private DataTemplates dataTemplates;
         public void ActualizarInfo(Empleado emp)
-        {          
-            if (emp.Pin==string.Empty)
-            {
-                emp.Pin = "NULL";
-            }                   
+        {                            
             try
             {
                 if (IsSaftime())

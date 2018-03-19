@@ -64,7 +64,7 @@
             this.groupSQL.Controls.Add(this.metroLabel1);
             this.groupSQL.Enabled = false;
             this.groupSQL.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupSQL.Location = new System.Drawing.Point(145, 64);
+            this.groupSQL.Location = new System.Drawing.Point(145, 15);
             this.groupSQL.Name = "groupSQL";
             this.groupSQL.Size = new System.Drawing.Size(528, 211);
             this.groupSQL.TabIndex = 4;
@@ -174,7 +174,7 @@
             this.txtBase.CustomButton.UseSelectable = true;
             this.txtBase.CustomButton.Visible = false;
             this.txtBase.Lines = new string[] {
-        "SaftCommDB"};
+        "SafComDB"};
             this.txtBase.Location = new System.Drawing.Point(106, 99);
             this.txtBase.MaxLength = 32767;
             this.txtBase.Name = "txtBase";
@@ -187,7 +187,7 @@
             this.txtBase.Size = new System.Drawing.Size(168, 23);
             this.txtBase.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtBase.TabIndex = 3;
-            this.txtBase.Text = "SaftCommDB";
+            this.txtBase.Text = "SafComDB";
             this.txtBase.UseSelectable = true;
             this.txtBase.UseStyleColors = true;
             this.txtBase.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -241,7 +241,7 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(6, 37);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(61, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(63, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "Servidor:";
@@ -255,7 +255,7 @@
             this.groupAccess.Controls.Add(this.txtPath);
             this.groupAccess.Enabled = false;
             this.groupAccess.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupAccess.Location = new System.Drawing.Point(145, 306);
+            this.groupAccess.Location = new System.Drawing.Point(145, 232);
             this.groupAccess.Name = "groupAccess";
             this.groupAccess.Size = new System.Drawing.Size(528, 178);
             this.groupAccess.TabIndex = 5;
@@ -279,7 +279,7 @@
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.Location = new System.Drawing.Point(6, 23);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(38, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(37, 19);
             this.metroLabel5.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroLabel5.TabIndex = 8;
             this.metroLabel5.Text = "Path:";
@@ -320,7 +320,7 @@
             // rbSQL
             // 
             this.rbSQL.AutoSize = true;
-            this.rbSQL.Location = new System.Drawing.Point(12, 243);
+            this.rbSQL.Location = new System.Drawing.Point(14, 202);
             this.rbSQL.Name = "rbSQL";
             this.rbSQL.Size = new System.Drawing.Size(79, 15);
             this.rbSQL.Style = MetroFramework.MetroColorStyle.Blue;
@@ -333,7 +333,7 @@
             // rbAccess
             // 
             this.rbAccess.AutoSize = true;
-            this.rbAccess.Location = new System.Drawing.Point(12, 296);
+            this.rbAccess.Location = new System.Drawing.Point(14, 240);
             this.rbAccess.Name = "rbAccess";
             this.rbAccess.Size = new System.Drawing.Size(79, 15);
             this.rbAccess.Style = MetroFramework.MetroColorStyle.Blue;
