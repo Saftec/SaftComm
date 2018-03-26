@@ -28,7 +28,7 @@ namespace Database
                     e.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     e.Nombre = dr["Nombre"].ToString();
                     e.Tarjeta = dr["Tarjeta"].ToString();
-                    e.Dni = dr["DNI"].ToString();
+                    e.DNI = dr["DNI"].ToString();
                     e.Pin = dr["Pin"].ToString();
                     e.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     e.CantHuellas = Convert.ToInt32(dr["CantHuellas"]);
@@ -129,7 +129,7 @@ namespace Database
             IDbDataParameter param;
             try
             {
-                query = "UPDATE Empleados SET DNI='" + emp.Dni + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=@pin, Tarjeta='" + emp.Tarjeta +
+                query = "UPDATE Empleados SET DNI='" + emp.DNI + "', Legajo='" + emp.Legajo + "', Nombre='" + emp.Nombre + "', Pin=@pin, Tarjeta='" + emp.Tarjeta +
                     "', Privilegio='" + emp.Privilegio.ToString() + "', Baja=@baja, Apellido='" + emp.Apellido + "' WHERE IdEmpleado=" + emp.Id.ToString();
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 param = cmd.CreateParameter();                             
@@ -177,7 +177,7 @@ namespace Database
             try
             {
                 query = "INSERT INTO Empleados (Nombre, Apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja, Alta) Values('" + emp.Nombre + "', '" + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
-                    "', '" + emp.Legajo + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', @baja, GETDATE() )";
+                    "', '" + emp.Legajo + "', '" + emp.DNI + "', '" + emp.Privilegio.ToString() + "', @baja, GETDATE() )";
 
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
 
@@ -229,7 +229,7 @@ namespace Database
                 if (dr.Read())
                 {
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
-                    emp.Dni = dr["DNI"].ToString();
+                    emp.DNI = dr["DNI"].ToString();
                     emp.Baja = dr.IsDBNull(2) ? null : (DateTime?)dr.GetDateTime(2);
                 }       
             }
@@ -312,7 +312,7 @@ namespace Database
                     emp.Id = Convert.ToInt32(dr["IdEmpleado"]);
                     emp.Nombre = dr["Nombre"].ToString();
                     emp.Tarjeta = dr["Tarjeta"].ToString();
-                    emp.Dni = dr["DNI"].ToString();
+                    emp.DNI = dr["DNI"].ToString();
                     emp.Pin = dr["Pin"].ToString();
                     emp.Privilegio = Convert.ToInt32(dr["Privilegio"]);
                     emp.Baja = Convert.ToDateTime(dr["Baja"]);

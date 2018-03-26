@@ -169,11 +169,11 @@
     <Compile Include="NewUI\PanelesConfigs\PanelFormatos.Designer.cs">
       <DependentUpon>PanelFormatos.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelFichadas.cs">
+    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewUI\PanelesConfigs\PanelFichadas.Designer.cs">
-      <DependentUpon>PanelFichadas.cs</DependentUpon>
+    <Compile Include="NewUI\PanelesConfigs\PanelRutinas.Designer.cs">
+      <DependentUpon>PanelRutinas.cs</DependentUpon>
     </Compile>
     <Compile Include="NewUI\PanelesConfigs\PanelGral.cs">
       <SubType>UserControl</SubType>
@@ -255,8 +255,8 @@
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFormatos.resx">
       <DependentUpon>PanelFormatos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelFichadas.resx">
-      <DependentUpon>PanelFichadas.cs</DependentUpon>
+    <EmbeddedResource Include="NewUI\PanelesConfigs\PanelRutinas.resx">
+      <DependentUpon>PanelRutinas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUI\PanelesConfigs\PanelGral.resx">
       <DependentUpon>PanelGral.cs</DependentUpon>

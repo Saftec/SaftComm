@@ -17,7 +17,7 @@ namespace Entidades
         public int Puerto { get; set; }
         public string DNS { get; set; }
         public string Clave { get; set; }
-        public int IdFormato { get; set; }
+        public FormatoExport Formato { get; set; }
         public bool Rutina { get; set; }
         public bool Estado { get; set; }
         // public string Tipo { get; set; }  --Esta propiedad la voy a usar para controlar si es TFT ByW o Facial.-- //
@@ -29,7 +29,7 @@ namespace Entidades
         {
         }
 
-        public Reloj(int puerto, int numero, int id, string clave, string dns, string ip, string nombre, int idformato)
+        public Reloj(int puerto, int numero, int id, string clave, string dns, string ip, string nombre, FormatoExport formato)
         {
             Id = id;
             Nombre = nombre;
@@ -38,8 +38,7 @@ namespace Entidades
             Puerto = puerto;
             DNS = dns;
             Clave = clave;
-            IdFormato = IdFormato;
-            
+            Formato = formato;
         }
 
         public Reloj(int id)
@@ -83,7 +82,6 @@ namespace Entidades
             Estado = base.Connect_Net(IP, Puerto);
             if (Estado == false) { throw new AppException("Error al intentar conectar con dispostivo"); }
         }
-
         public void Desconectar()
         {
             base.Disconnect();
@@ -224,7 +222,6 @@ namespace Entidades
             base.EnableDevice(Numero, true);
             return fichadas;
         }
-
         public DataTable DescargarInfo()
         {
             //Inicializo todas las variables necesarias//
@@ -269,7 +266,6 @@ namespace Entidades
             base.EnableDevice(Numero, true);
             return usuariosDispositivo;
         }
-
         public void LeerTodasLasHuellas()
         {
             int codError = 0;
@@ -280,7 +276,6 @@ namespace Entidades
                 throw new AppException("Error durante la lectura de huellas, CodError: " + codError.ToString());
             }
         }
-
         public List<Huella> ObtenerHuella (Empleado emp)
         {
             /* Tengo que recorrer SI O SI todo los fingerIndex porque si la huella fue cargada desde otro equipo
@@ -312,7 +307,6 @@ namespace Entidades
         {
             base.EnableDevice(Numero, true);
         }
-
         public void AgregarHuellas(Empleado emp)
         {
             int codError = 0;
@@ -353,7 +347,6 @@ namespace Entidades
                     }
                 }                           
         }
-
         public void EnviarMensaje(int idSMS, string legajo)  //Se debe indicar el ID al mensaje que DEBE ESTAR guardado en el equipo.
         {
             if(!base.SSR_SetUserSMS(Numero, legajo, idSMS))
@@ -361,7 +354,6 @@ namespace Entidades
                 throw new AppException("Error al intentar enviar el mensaje");
             }
         }
-
         public void EliminarUsuarios(List<string> legajos)
         {
             int codError = 0;
@@ -375,8 +367,7 @@ namespace Entidades
             }
         }
 
-        //Estos métodos deshabilitan o habilitan el ingreso al menú de un usuario administrador.
-        
+        //Estos métodos deshabilitan o habilitan el ingreso al menú de un usuario administrador.        
         public void Habilitar(string legajo)
         {
             if(!base.SSR_EnableUser(Numero, legajo, true))
@@ -389,7 +380,6 @@ namespace Entidades
         {
             base.EnableDevice(Numero, false);
         }
-
         public void IniciarBatch()
         {
             int codError = 0;
@@ -400,7 +390,6 @@ namespace Entidades
                 throw new AppException("Error al intentar iniciar subida en modo batch, CodError= " + codError.ToString());
             }
         }
-
         public void EjecutarBatch()
         {
             int codError = 0;
@@ -411,7 +400,6 @@ namespace Entidades
             }
             base.EnableDevice(Numero, true);
         }
-        
         private void ActualizarIp()
         {
             if (DNS != string.Empty)
@@ -437,7 +425,7 @@ namespace Entidades
 
             }
         } 
-            #endregion
-
+        
+        #endregion
         }
     }

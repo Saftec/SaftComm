@@ -8,9 +8,8 @@ namespace Logic
 {
     public class LogicFormatos
     {
-        private DataConfigs dataConfigs;
         private DataFormatos dataFormatos;
-        public List<FormatoExport> GetFormatos()
+        public List<FormatoExport> GetAll()
         {
             List<FormatoExport> formatos;
             dataFormatos = new DataFormatos();
@@ -78,51 +77,6 @@ namespace Logic
             {
                 throw new AppException("Error no controlado durante la baja del formato.", "Fatal", ex);
             }
-        }
-        public void SetFormatoActivo(FormatoExport f)
-        {
-            dataConfigs = new DataConfigs();
-            try
-            {
-                dataConfigs.SetConfig(2, f.Id.ToString());
-            }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
-            catch(Exception ex)
-            {
-                throw new AppException("Error no controlado al intentar establecer el formato activo", "Fatal", ex);
-            }
-                        
-        }
-
-        public FormatoExport GetFormatoActivo()
-        {
-            dataConfigs = new DataConfigs();
-            dataFormatos = new DataFormatos();
-            FormatoExport f;
-            int id;
-            string valor;
-
-            try
-            {
-                valor=dataConfigs.GetConfig(2);
-                if(!int.TryParse(valor, out id))
-                {
-                    throw new AppException("Error al intentar el id de formato a entero");
-                }
-                f = dataFormatos.GetById(id);
-            }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
-            catch(Exception ex)
-            {
-                throw new AppException("Error no controlado al intentar obtener el formato activo", "Fatal", ex);
-            }
-            return f;
         }
     }
 }

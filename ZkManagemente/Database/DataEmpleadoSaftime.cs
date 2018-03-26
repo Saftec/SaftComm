@@ -31,7 +31,7 @@ namespace Database
                     e.Nombre = dr["nombres"].ToString();
                     e.Apellido = dr["Apellido"].ToString();
                     e.Tarjeta = dr["tarjeta"].ToString();
-                    e.Dni = dr["nroDoc"].ToString();
+                    e.DNI = dr["nroDoc"].ToString();
                     e.Pin = string.Empty;
                     e.Privilegio = 0;
                     if(DateTime.TryParse(dr["fecBaja"].ToString(),out parseValue))
@@ -132,7 +132,7 @@ namespace Database
             SqlCommand cmd = null;
             try
             {
-                query = "UPDATE Empleados SET nroDoc='" + emp.Dni + "', legajo='" + emp.Legajo.PadLeft(5, '0') + "', tarjeta='" + emp.Tarjeta + "', nombres='" + emp.Nombre + "', apellido='" + emp.Apellido +"' WHERE EmpId=" + emp.Id.ToString();
+                query = "UPDATE Empleados SET nroDoc='" + emp.DNI + "', legajo='" + emp.Legajo.PadLeft(5, '0') + "', tarjeta='" + emp.Tarjeta + "', nombres='" + emp.Nombre + "', apellido='" + emp.Apellido +"' WHERE EmpId=" + emp.Id.ToString();
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
@@ -172,7 +172,7 @@ namespace Database
             try
             {
                 query = "INSERT INTO Empleados (nombres, apellido, Pin, Tarjeta, Legajo, DNI, Privilegio, Baja) Values('" + emp.Nombre + "', ' " + emp.Apellido + "', " + emp.Pin.ToString() + ", '" + emp.Tarjeta +
-                    "', '" + emp.Legajo.PadLeft(5, '0') + "', '" + emp.Dni + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
+                    "', '" + emp.Legajo.PadLeft(5, '0') + "', '" + emp.DNI + "', '" + emp.Privilegio.ToString() + "', " + emp.Baja + " )";
 
                 cmd = new SqlCommand(query, ConnectionSaftime.Instancia.GetConn());
                 cmd.ExecuteNonQuery();
@@ -218,7 +218,7 @@ namespace Database
                 if (dr.Read())
                 {
                     emp.Id = Convert.ToInt32(dr["EmpId"]);
-                    emp.Dni = dr["nroDoc"].ToString();
+                    emp.DNI = dr["nroDoc"].ToString();
                     emp.Baja = null;
                 }
             }
@@ -271,7 +271,7 @@ namespace Database
                     emp.Nombre = dr["Nombre"].ToString();
                     emp.Apellido = dr["Apellido"].ToString();
                     emp.Tarjeta = dr["tarjeta"].ToString();
-                    emp.Dni = dr["nroDoc"].ToString();
+                    emp.DNI = dr["nroDoc"].ToString();
                     emp.Pin = string.Empty;
                     emp.Privilegio = 0;
                     emp.Baja = null;

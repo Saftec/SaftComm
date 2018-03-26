@@ -71,7 +71,6 @@ namespace Database
             }
             return f;
  }
-
         public List<FormatoExport> GetFormatos()
         {
             List<FormatoExport> formatos = new List<FormatoExport>();
@@ -212,7 +211,6 @@ namespace Database
                 }
             }
         }
-
         public void Insert(FormatoExport f)
         {
             IDbCommand cmd = null;

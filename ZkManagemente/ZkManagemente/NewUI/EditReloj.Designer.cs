@@ -42,7 +42,7 @@
             this.txtClave = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.cbFormatos = new MetroFramework.Controls.MetroComboBox();
-            this.cbxRutinas = new System.Windows.Forms.CheckBox();
+            this.cbxRutinas = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -343,12 +343,14 @@
             // cbxRutinas
             // 
             this.cbxRutinas.AutoSize = true;
-            this.cbxRutinas.Location = new System.Drawing.Point(35, 387);
+            this.cbxRutinas.Location = new System.Drawing.Point(34, 385);
             this.cbxRutinas.Name = "cbxRutinas";
-            this.cbxRutinas.Size = new System.Drawing.Size(205, 17);
-            this.cbxRutinas.TabIndex = 20;
+            this.cbxRutinas.Size = new System.Drawing.Size(227, 15);
+            this.cbxRutinas.Style = MetroFramework.MetroColorStyle.Blue;
+            this.cbxRutinas.TabIndex = 21;
             this.cbxRutinas.Text = "Incluir reloj en las rutinas programadas";
-            this.cbxRutinas.UseVisualStyleBackColor = true;
+            this.cbxRutinas.UseSelectable = true;
+            this.cbxRutinas.UseStyleColors = true;
             // 
             // EditReloj
             // 
@@ -410,6 +412,6 @@
         private MetroFramework.Controls.MetroTextBox txtClave;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroComboBox cbFormatos;
-        private System.Windows.Forms.CheckBox cbxRutinas;
+        private MetroFramework.Controls.MetroCheckBox cbxRutinas;
     }
 }

@@ -270,7 +270,7 @@ namespace ZkManagement.NewUI
                 empleados = ConvertToDatatable(le.GetEmpleados());
                 gridPersonalLocal.DataSource = empleados;
                 gridPersonalLocal.Refresh();
-                cbRelojes.DataSource = lr.TodosRelojes();
+                cbRelojes.DataSource = lr.GetAll();
                 gridPersonalReloj.DataSource = null;
                 gridPersonalReloj.Refresh();
                 lblDispositivo.Text = "Usuarios en dispositivo: ";

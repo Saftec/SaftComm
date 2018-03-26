@@ -52,9 +52,9 @@ namespace ZkManagement.NewUI
         {
             empActual = emp;
             
-            if(emp.Dni != null)
+            if(emp.DNI != null)
             {
-                txtDni.Text = emp.Dni.Trim();
+                txtDni.Text = emp.DNI.Trim();
             }
             if (emp.Legajo != null)
             {
@@ -80,7 +80,7 @@ namespace ZkManagement.NewUI
 
         protected override void MapearDeForm()
         {
-            empActual.Dni = txtDni.Text;
+            empActual.DNI = txtDni.Text;
             empActual.Legajo = txtLegajo.Text;
             empActual.Nombre = txtNombre.Text;
             empActual.Tarjeta = txtTarjeta.Text;

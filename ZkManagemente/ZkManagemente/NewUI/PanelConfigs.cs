@@ -26,7 +26,7 @@ namespace ZkManagement.NewUI
 
         private void linkRutinas_Click(object sender, System.EventArgs e)
         {
-            PanelFichadas pr = new PanelFichadas();
+            PanelRutinas pr = new PanelRutinas();
             pr.LoadConfigs();
             pConfigs.Controls.Clear();
             pConfigs.Controls.Add(pr);

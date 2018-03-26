@@ -22,7 +22,7 @@ namespace ZkManagement.NewUI.PanelesConfigs
 
             try
             {
-                formatos = lf.GetFormatos();
+                formatos = lf.GetAll();
                 cbFormatos.DataSource = formatos;
             }
             catch(AppException appex)
@@ -258,10 +258,11 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 FormatoExport fe = null;
                 fe = (FormatoExport)cbFormatos.SelectedItem;
                 if (fe == null) { throw new AppException("Error al intentar obtener el formato seleccionado."); }
-                FormatoExport feActivo = lf.GetFormatoActivo();
-                if (fe.Equals(feActivo))
+                List<Reloj> equipos = new LogicReloj().GetAll();
+                foreach (Reloj equipo in equipos)
                 {
-                    throw new AppException("El formato que desea eliminar se encuentra activo.");
+                    if (equipo.Formato == fe)
+                        throw new AppException("El formato que desea eliminar se encuentra en uso en algún reloj.");
                 }
                 lf.DeleteFormato(fe);
                 base.Informar("Formato eliminado correctamente.", "Eliminar Formato");

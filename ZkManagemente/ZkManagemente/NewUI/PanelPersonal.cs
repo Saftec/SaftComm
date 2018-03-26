@@ -204,7 +204,7 @@ namespace ZkManagement.NewUI.Generic
                 row["Legajo"] = e.Legajo.Trim();
                 row["IdEmpleado"] = e.Id;
                 row["Tarjeta"] = e.Tarjeta;
-                row["DNI"] = e.Dni.Trim();
+                row["DNI"] = e.DNI.Trim();
                 row["Pin"] = e.Pin;
                 row["Privilegio"] = e.Privilegio;
                 row["Baja"] = e.Baja;

@@ -9,13 +9,13 @@ namespace Logic
     public class LogicReloj
     {
         private DataRelojes dataRelojes;
-        public List<Reloj> TodosRelojes()
+        public List<Reloj> GetAll()
         {
             dataRelojes = new DataRelojes();
             List<Reloj> relojes = new List<Reloj>();
             try
             {
-                relojes = dataRelojes.GetRelojes();
+                relojes = dataRelojes.GetAll();
             }
             catch(AppException appex)
             {

@@ -8,15 +8,18 @@ namespace Logic
 {
     public class Writer
     {
-        private FormatoExport fe;
+        public FormatoExport Formato { get; set; }
+        public Writer(FormatoExport fe) {
+            Formato = fe;
+        }
+        
         public void EscribirRegistros(List<Fichada> fichadas)
         {
             string linea, hora, tipoMov, fecha, reloj, legajo;
             LogicConfigRutinas lcr = new LogicConfigRutinas(); // AGREGO PARA VERIFICAR SI TENGO QUE ESCRIBIR FICHERO DE COPIA EN CARPETA RAIZ.
 
             try
-            {                         
-                ObtenerFormatoActual();
+            {
                 bool ficheroCopia = lcr.IsFicheroCopia();
                 foreach(Fichada f in fichadas)
                 {
@@ -29,14 +32,14 @@ namespace Logic
                     linea = FormatoLinea(hora, tipoMov, fecha, reloj, legajo);
 
                     // ESCRIBO LA LINEA //
-                    using (StreamWriter w = File.AppendText(fe.Path))
+                    using (StreamWriter w = File.AppendText(Formato.Path))
                         w.WriteLine(linea);
 
                     // SI ESTA ACTIVA LA CONFIG DEL FICHERO DE BK LO ESCRIBO EN EL PATH DE LA APP
                     if (ficheroCopia)
                     {
                         string pathBK = Directory.GetCurrentDirectory() + @"\Regs\";
-                        string fileName = FileName(fe.Path);
+                        string fileName = FileName(Formato.Path);
                         FileInfo fi = new FileInfo(pathBK);
                         if (!fi.Directory.Exists)
                         {
@@ -56,7 +59,6 @@ namespace Logic
                 throw new AppException("Error al intentar escribir el archivo de registros", "Fatal", ex);               
             }
         }
-
         private string FileName(string path)
         {
             string[] directories = path.Split(Path.DirectorySeparatorChar);
@@ -71,25 +73,24 @@ namespace Logic
 
             string[] linea = new string[5];
 
-            linea[fe.PosicionHora - 1] = hora;
+            linea[Formato.PosicionHora - 1] = hora;
 
-            linea[fe.PosicionMov - 1] = tipoMov;
+            linea[Formato.PosicionMov - 1] = tipoMov;
 
-            linea[fe.PosicionFecha - 1] = fecha;
+            linea[Formato.PosicionFecha - 1] = fecha;
 
-            linea[fe.PosicionReloj - 1] = reloj;
+            linea[Formato.PosicionReloj - 1] = reloj;
 
-            linea[fe.PosicionLegajo - 1] = legajo;
+            linea[Formato.PosicionLegajo - 1] = legajo;
 
             separador = LeerSeparador();
 
             return string.Join(separador, linea);
         }
-
         // este método reemplaza el separador por el caracter que corresponda y lo devuelve //
         private string LeerSeparador()
         {
-            string separador = fe.SeparadorCampos;
+            string separador = Formato.SeparadorCampos;
             switch (separador)
             {
                 case "ninguno":
@@ -108,10 +109,10 @@ namespace Logic
         {
             string horaFormateada = string.Empty;
 
-            string separador = fe.SeparadorHora;
+            string separador = Formato.SeparadorHora;
             if(separador=="ninguno") { separador = string.Empty; }
 
-            switch (fe.FormatoHora)
+            switch (Formato.FormatoHora)
             {
                 case "hhmm":
                     horaFormateada = hora.ToString().PadLeft(2,'0') + separador + minutos.ToString().PadLeft(2,'0');
@@ -123,15 +124,14 @@ namespace Logic
             return horaFormateada;
 
         }
-
         private string FormatoFecha(int año, int mes, int dia)
         {
             string fecha = string.Empty;
 
-            string separador = fe.SeparadorFecha;
+            string separador = Formato.SeparadorFecha;
             if(separador=="ninguno") { separador = string.Empty; }
 
-            switch (fe.FormatoFecha)
+            switch (Formato.FormatoFecha)
             {
                 case "yyyymmdd":
                         fecha = año.ToString().PadLeft(4,'0') + separador + mes.ToString().PadLeft(2, '0') + separador + dia.ToString().PadLeft(2,'0');
@@ -148,56 +148,36 @@ namespace Logic
             }
             return fecha;
         }
-        
         private string FormatoLegajo(string legajo)
         {
-            if (fe.LongitudLegajo > 0)
+            if (Formato.LongitudLegajo > 0)
             {
-                legajo=legajo.PadLeft(fe.LongitudLegajo, '0');
+                legajo=legajo.PadLeft(Formato.LongitudLegajo, '0');
             }
             return legajo;
         }
-
         private string FormatoModo(int modo)
         {
             string codigo;
 
             if (modo == 0)
             {
-                codigo = fe.CodEntrada;
+                codigo = Formato.CodEntrada;
             }
             else
             {
-                codigo = fe.CodSalida;
+                codigo = Formato.CodSalida;
             }
             return codigo;
         }
-
         private string FormatoReloj(int reloj)
         {
             string relojFormateado = reloj.ToString();
-            if (fe.LongitudReloj > 0)
+            if (Formato.LongitudReloj > 0)
             {
-                relojFormateado=reloj.ToString().PadLeft(fe.LongitudReloj, '0');                
+                relojFormateado=reloj.ToString().PadLeft(Formato.LongitudReloj, '0');                
             }
-            return (fe.PrefijoReloj.ToUpper()+relojFormateado);
-        }
-
-        private void ObtenerFormatoActual()
-        {
-            LogicFormatos lf = new LogicFormatos();
-            try
-            {
-                fe = lf.GetFormatoActivo();
-            }
-            catch(AppException appex)
-            {
-                throw appex;
-            }
-            catch(Exception ex)
-            {
-                throw new AppException("Error no controlado al consultar formato activo", "Fatal", ex);
-            }
+            return (Formato.PrefijoReloj.ToUpper()+relojFormateado);
         }
     }
 }

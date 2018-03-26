@@ -8,20 +8,18 @@ using Util;
 
 namespace ZkManagement.NewUI.PanelesConfigs
 {
-    public partial class PanelFichadas : GenericConfigsPanel
+    public partial class PanelRutinas : GenericConfigsPanel
     {
-        private LogicFormatos lf;
         private LogicConfigRutinas lcr;
 
         // The path to the key where Windows looks for startup applications
         private RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        public PanelFichadas()
+        public PanelRutinas()
         {
             InitializeComponent();
         }
         protected override void SaveConfigs()
         {
-            lf = new LogicFormatos();
             lcr = new LogicConfigRutinas();
             try
             {
@@ -34,10 +32,6 @@ namespace ZkManagement.NewUI.PanelesConfigs
                     rkApp.DeleteValue("SaftComm", false);
                 }
                 // HASTA ACA //
-
-                FormatoExport fe = new FormatoExport();
-                fe = (FormatoExport)cbFormatos.SelectedItem;
-                lf.SetFormatoActivo(fe);
 
                 lcr.SetDescarga(chckEjecutarRutina.Checked);
                 lcr.SetEstadoRango(chckActivarHorario.Checked);
@@ -60,9 +54,6 @@ namespace ZkManagement.NewUI.PanelesConfigs
         }
         public override void LoadConfigs()
         {
-            List<FormatoExport> formatos = new List<FormatoExport>();
-            FormatoExport formatoAct = new FormatoExport();
-            lf = new LogicFormatos();
             lcr = new LogicConfigRutinas();
             try
             {
@@ -77,10 +68,6 @@ namespace ZkManagement.NewUI.PanelesConfigs
                 }
                 // HASTA ACA //
 
-                formatos = lf.GetFormatos();
-                formatoAct = lf.GetFormatoActivo();
-                cbFormatos.DataSource = formatos;
-                cbFormatos.SelectedIndex = cbFormatos.Items.IndexOf(formatoAct);
                 chckFicheroCopia.Checked = lcr.IsFicheroCopia();
 
                 // RUTINAS //
@@ -121,11 +108,6 @@ namespace ZkManagement.NewUI.PanelesConfigs
             if (!v.TimeFormat(new string[] { txtHoraFin.Text, txtHoraInicio.Text }))
             {
                 base.InformarError("El formato de la hora no es correcto.", "Guardar Configuraciones.");
-                return false;
-            }
-            if (cbFormatos.SelectedIndex < 0)
-            {
-                base.InformarError("Debe seleccionar un formato activo.", "Guardar Configuraciones.");
                 return false;
             }
             return true;

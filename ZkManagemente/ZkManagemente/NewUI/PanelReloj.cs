@@ -162,7 +162,7 @@ namespace ZkManagement.NewUI
                 LogicRegistros lr = new LogicRegistros();
                 logicOperaciones = new LogicOperaciones();
                 fichadas = logicOperaciones.DownloadRegis(relojAct);
-                desconocidos = lr.AgregarRegis(fichadas);
+                desconocidos = lr.AgregarRegis(fichadas, relojAct.Formato);
                 if (desconocidos.Count > 0)
                 {
                     LoguearError("Los siguientes legajos son desconocidos: ");
@@ -421,7 +421,7 @@ namespace ZkManagement.NewUI
             lr = new LogicReloj();
             try
             {
-                equipos = lr.TodosRelojes();
+                equipos = lr.GetAll();
             }
             catch (Exception ex)
             {
@@ -474,7 +474,7 @@ namespace ZkManagement.NewUI
                         fichadas = r.DescargarRegistros();
                         LoguearInforme("Se escribieron " + fichadas.Count.ToString() + " registros");
                         LoguearInforme("Insertando registros a la base de datos...");
-                        desconocidos = lregs.AgregarRegis(fichadas);
+                        desconocidos = lregs.AgregarRegis(fichadas, relojAct.Formato);
                         LoguearInforme("Registros insertados correctamente en la base de datos.");
                         if (desconocidos.Count > 0)
                         {

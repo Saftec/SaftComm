@@ -39,10 +39,10 @@
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.linkRutinas);
             this.metroPanel1.Controls.Add(this.linkBaseDeDatos);
             this.metroPanel1.Controls.Add(this.metroLink2);
             this.metroPanel1.Controls.Add(this.linkSaftime);
-            this.metroPanel1.Controls.Add(this.linkRutinas);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
@@ -63,6 +63,7 @@
             this.linkBaseDeDatos.Size = new System.Drawing.Size(84, 23);
             this.linkBaseDeDatos.TabIndex = 5;
             this.linkBaseDeDatos.Text = "Base de datos";
+            this.linkBaseDeDatos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkBaseDeDatos.UseSelectable = true;
             this.linkBaseDeDatos.UseStyleColors = true;
             this.linkBaseDeDatos.Click += new System.EventHandler(this.linkBaseDeDatos_Click);
@@ -74,6 +75,7 @@
             this.metroLink2.Size = new System.Drawing.Size(129, 23);
             this.metroLink2.TabIndex = 4;
             this.metroLink2.Text = "Formatos de descarga";
+            this.metroLink2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.metroLink2.UseSelectable = true;
             this.metroLink2.UseStyleColors = true;
             this.metroLink2.Click += new System.EventHandler(this.metroLink2_Click);
@@ -85,6 +87,7 @@
             this.linkSaftime.Size = new System.Drawing.Size(51, 23);
             this.linkSaftime.TabIndex = 3;
             this.linkSaftime.Text = "Saftime";
+            this.linkSaftime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkSaftime.UseSelectable = true;
             this.linkSaftime.UseStyleColors = true;
             this.linkSaftime.Click += new System.EventHandler(this.linkSaftime_Click);
@@ -93,9 +96,10 @@
             // 
             this.linkRutinas.Location = new System.Drawing.Point(3, 164);
             this.linkRutinas.Name = "linkRutinas";
-            this.linkRutinas.Size = new System.Drawing.Size(125, 23);
+            this.linkRutinas.Size = new System.Drawing.Size(123, 23);
             this.linkRutinas.TabIndex = 2;
-            this.linkRutinas.Text = "Descarga de fichadas";
+            this.linkRutinas.Text = "Rutinas automáticas";
+            this.linkRutinas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkRutinas.UseSelectable = true;
             this.linkRutinas.UseStyleColors = true;
             this.linkRutinas.Click += new System.EventHandler(this.linkRutinas_Click);

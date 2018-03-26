@@ -8,9 +8,9 @@ namespace Logic
 {
     public class LogicRegistros
     {
-        public List<string> AgregarRegis(List<Fichada> fichadas)
+        public List<string> AgregarRegis(List<Fichada> fichadas, FormatoExport formato)
         {
-            Writer writer = new Writer();
+            Writer writer = new Writer(formato);
             List<string> desconocidos = new List<string>();
             DataEmpleado dataEmpleado = new DataEmpleado();
 

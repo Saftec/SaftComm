@@ -16,7 +16,7 @@ namespace ZkManagement.NewUI
         public EditReloj()
         {
             InitializeComponent();
-            formatos = new LogicFormatos().GetFormatos();
+            formatos = new LogicFormatos().GetAll();
             foreach (FormatoExport formato in formatos)
             {
                 cbFormatos.Items.Add(formato);
@@ -34,14 +34,7 @@ namespace ZkManagement.NewUI
                 txtNombre.Text = r.Nombre;
                 txtNumero.Text = r.Numero.ToString();
                 txtPuerto.Text = r.Puerto.ToString();
-                foreach (FormatoExport formato in formatos)
-                {
-                    if (formato.Id == r.IdFormato)
-                    {
-                        cbFormatos.SelectedItem = formato;
-                        break;
-                    }
-                }
+                cbFormatos.SelectedItem = r.Formato;
                 cbxRutinas.Checked = r.Rutina;
             }
         }
@@ -70,14 +63,7 @@ namespace ZkManagement.NewUI
             reloj.IP = txtIp.Text;
             reloj.DNS = txtDns.Text;
             reloj.Clave = txtClave.Text;
-            foreach (FormatoExport formato in formatos)
-            {
-                if (formato.Nombre == cbFormatos.Text)
-                {
-                    reloj.IdFormato = formato.Id;
-                    break;
-                }
-            }
+            reloj.Formato = (FormatoExport)cbFormatos.SelectedItem;
             reloj.Rutina = cbxRutinas.Checked;
             return reloj;
         }

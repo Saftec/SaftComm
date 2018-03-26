@@ -10,7 +10,7 @@ namespace Database
     public class DataRelojes
     {
         private string query = string.Empty;
-        public List<Reloj> GetRelojes()
+        public List<Reloj> GetAll()
         {
             List<Reloj> relojes = new List<Reloj>();
             IDataReader dr = null;
@@ -30,7 +30,7 @@ namespace Database
                     r.DNS = dr.IsDBNull(dr.GetOrdinal("DNS")) ? string.Empty : dr["DNS"].ToString();
                     r.Clave = dr.IsDBNull(dr.GetOrdinal("Clave")) ? string.Empty : dr["Clave"].ToString();
                     r.Rutina = Convert.ToBoolean(dr["Rutina"]);
-                    r.IdFormato = Convert.ToInt32(dr["IdFormato"]);
+                    r.Formato = new DataFormatos().GetById(Convert.ToInt32(dr["IdFormato"]));
                     relojes.Add(r);
                 }
             }
@@ -69,7 +69,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero, Rutina) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.IP + "', '" + Security.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ", '" + r.Rutina.ToString() + "')";
+                query = "INSERT INTO Relojes (Nombre, DNS, IP, Clave, Puerto, Numero, Rutina, IdFormato) VALUES('" + r.Nombre + "', '" + r.DNS + "', '" + r.IP + "', '" + Security.Encriptar(r.Clave) + "', " + r.Puerto + ", " + r.Numero + ", '" + r.Rutina.ToString() + "', " + r.Formato.Id + ")";
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -107,7 +107,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.IP + "', Clave='" + Security.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + ", Rutina='" + r.Rutina +"', IdFormato = " + r.IdFormato + " WHERE IdReloj=" + r.Id;
+                query = "UPDATE Relojes SET Nombre='" + r.Nombre + "', DNS='" + r.DNS + "', IP='" + r.IP + "', Clave='" + Security.Encriptar(r.Clave) + "', Puerto=" + r.Puerto + ", Numero=" + r.Numero + ", Rutina='" + r.Rutina +"', IdFormato = " + r.Formato.Id + " WHERE IdReloj=" + r.Id;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
@@ -145,7 +145,7 @@ namespace Database
             IDbCommand cmd = null;
             try
             {
-                query = "DELETE FROM Relojes WHERE IdReloj=" + r.Id;
+                query = "DELETE FROM Relojes WHERE IdReloj = " + r.Id;
                 cmd = FactoryConnection.Instancia.GetCommand(query, FactoryConnection.Instancia.GetConnection());
                 cmd.ExecuteNonQuery();
             }
